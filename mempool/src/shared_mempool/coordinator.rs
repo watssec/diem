@@ -239,6 +239,17 @@ async fn handle_network_event<V>(
         Event::NewPeer(metadata) => {
             counters::shared_mempool_event_inc("new_peer");
             let peer = PeerNetworkId::new(network_id, metadata.remote_peer_id);
+            if !(metadata
+                .application_protocols
+                .contains(ProtocolId::MempoolDirectSend)
+                || metadata
+                    .application_protocols
+                    .contains(ProtocolId::MempoolRpc))
+            {
+                debug!("New peer {} does not support mempool", peer);
+                return;
+            }
+
             let is_new_peer = smp.network_interface.add_peer(peer, metadata.clone());
             let is_upstream_peer = smp
                 .network_interface
