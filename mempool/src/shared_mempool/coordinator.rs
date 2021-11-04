@@ -315,15 +315,6 @@ async fn handle_message<V>(
                 counters::PEER_BROADCAST_EVENT_LABEL,
                 counters::START_LABEL,
             );
-            if rpc_info.is_some() {
-                counters::unexpected_msg_count_inc(&network_id, &peer_id);
-                sample!(
-                    SampleRate::Duration(Duration::from_secs(60)),
-                    warn!(LogSchema::new(LogEntry::UnexpectedNetworkMsg)
-                        .peer(&PeerNetworkId::new(network_id, peer_id)))
-                );
-                return;
-            }
 
             bounded_executor
                 .spawn(tasks::process_transaction_broadcast(
@@ -333,6 +324,7 @@ async fn handle_message<V>(
                     timeline_state,
                     peer,
                     task_start_timer,
+                    rpc_info,
                 ))
                 .await;
         }
