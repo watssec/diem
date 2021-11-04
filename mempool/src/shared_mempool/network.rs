@@ -453,7 +453,7 @@ impl MempoolNetworkInterface {
     }
 
     /// Sends a batch to the given `Peer`
-    fn send_batch(
+    async fn send_batch(
         &self,
         peer: PeerNetworkId,
         batch_id: BatchId,
@@ -498,7 +498,7 @@ impl MempoolNetworkInterface {
         Ok(state.broadcast_info.sent_batches.len())
     }
 
-    pub fn execute_broadcast<V>(
+    pub async fn execute_broadcast<V>(
         &self,
         peer: PeerNetworkId,
         scheduled_backoff: bool,
@@ -514,7 +514,7 @@ impl MempoolNetworkInterface {
 
         let num_txns = transactions.len();
         let send_time = SystemTime::now();
-        self.send_batch(peer, batch_id, transactions)?;
+        self.send_batch(peer, batch_id, transactions).await?;
         let num_pending_broadcasts = self.update_broadcast_state(peer, batch_id, send_time)?;
         notify_subscribers(SharedMempoolNotification::Broadcast, &smp.subscribers);
 
