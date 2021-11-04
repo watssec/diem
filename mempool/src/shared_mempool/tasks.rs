@@ -67,13 +67,8 @@ pub(crate) async fn execute_broadcast<V>(
                 )
                 .peer(&peer)
                 .error(&error)),
-                BroadcastError::TooManyPendingBroadcasts(_)
-                | BroadcastError::NoTransactions(_)
-                | BroadcastError::PeerNotScheduled(_)
-                | BroadcastError::PeerNotPrioritized(_, _)
-                | BroadcastError::PeerNotFound(_) => {
-                    trace!("{:?}", err)
-                }
+                BroadcastError::InvalidRpcResponse(_, _) => warn!("{:?}", err),
+                _ => trace!("{:?}", err),
             }
         }
     } else {
