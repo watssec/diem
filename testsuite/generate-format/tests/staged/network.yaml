@@ -147,6 +147,8 @@ ProtocolId:
     8:
       StorageServiceRpc: UNIT
     9:
+      InvalidRpc: UNIT
+    10:
       MempoolRpc: UNIT
 ProtocolIdSet:
   NEWTYPESTRUCT: BYTES
