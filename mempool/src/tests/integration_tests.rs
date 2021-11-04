@@ -54,7 +54,7 @@ fn single_node_test() {
         node.assert_txns_in_mempool(&test_transactions(0, 2));
         respond_to_request(&mut node, network_id, other_peer_id, &test_txns).await;
 
-        // Let's also send it an incoming request with more txns and respond with an ack (DirectSend)
+        // Let's also send it an incoming request with more txns and respond with an ack (DirectSend & Rpc)
         send_message(
             &mut node,
             ProtocolId::MempoolDirectSend,
@@ -64,8 +64,19 @@ fn single_node_test() {
         )
         .await;
         node.assert_txns_in_mempool(&test_transactions(0, 3));
-        node.commit_txns(&test_transactions(0, 3));
-        node.assert_txns_not_in_mempool(&test_transactions(0, 3));
+
+        send_message(
+            &mut node,
+            ProtocolId::MempoolRpc,
+            network_id,
+            other_peer_id,
+            &test_transactions(3, 1),
+        )
+        .await;
+        let all_txns = test_transactions(0, 4);
+        node.assert_txns_in_mempool(&all_txns);
+        node.commit_txns(&all_txns);
+        node.assert_txns_not_in_mempool(&all_txns);
     };
     block_on(future);
 }
@@ -81,7 +92,9 @@ fn vfn_middle_man_test() {
         PeerRole::Validator,
         ConnectionOrigin::Outbound,
     );
-    validator_metadata.application_protocols = ProtocolIdSet::all_known();
+    validator_metadata
+        .application_protocols
+        .insert(ProtocolId::MempoolRpc);
 
     let fn_peer_id = PeerId::random();
     let mut fn_metadata = ConnectionMetadata::mock_with_role_and_origin(
@@ -110,7 +123,7 @@ fn vfn_middle_man_test() {
         // Incoming transactions should be accepted
         send_message(
             &mut node,
-            ProtocolId::MempoolDirectSend,
+            ProtocolId::MempoolRpc,
             NetworkId::Public,
             fn_peer_id,
             &test_txns,
@@ -123,6 +136,8 @@ fn vfn_middle_man_test() {
     };
     block_on(future);
 }
+
+// -- Multi node tests below here.  They struggle with [`ProtocolId::MempoolRpc`]--
 
 #[test]
 fn fn_to_val_test() {
@@ -141,9 +156,17 @@ fn fn_to_val_test() {
     let val_txns = pfn_txns.clone();
 
     let pfn_vfn_network = pfn.find_common_network(&vfn).unwrap();
-    let vfn_metadata = vfn.conn_metadata(pfn_vfn_network, ConnectionOrigin::Outbound, None);
+    let vfn_metadata = vfn.conn_metadata(
+        pfn_vfn_network,
+        ConnectionOrigin::Outbound,
+        Some(&[ProtocolId::MempoolDirectSend]),
+    );
     let vfn_val_network = vfn.find_common_network(&val).unwrap();
-    let val_metadata = val.conn_metadata(vfn_val_network, ConnectionOrigin::Outbound, None);
+    let val_metadata = val.conn_metadata(
+        vfn_val_network,
+        ConnectionOrigin::Outbound,
+        Some(&[ProtocolId::MempoolDirectSend]),
+    );
 
     // NOTE: Always return node at end, or it will be dropped and channels closed
     let pfn_future = async move {

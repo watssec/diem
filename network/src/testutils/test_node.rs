@@ -237,7 +237,7 @@ pub trait TestNode {
         &self,
         network_id: NetworkId,
         origin: ConnectionOrigin,
-        maybe_protocols: Option<ProtocolIdSet>,
+        maybe_protocols: Option<&[ProtocolId]>,
     ) -> ConnectionMetadata {
         let peer_network_id = self.peer_network_id(network_id);
         let mut metadata = ConnectionMetadata::mock_with_role_and_origin(
@@ -246,7 +246,9 @@ pub trait TestNode {
             origin,
         );
         if let Some(protocols) = maybe_protocols {
-            metadata.application_protocols = protocols;
+            for protocol in protocols {
+                metadata.application_protocols.insert(*protocol);
+            }
         } else {
             metadata.application_protocols = ProtocolIdSet::all_known()
         }
