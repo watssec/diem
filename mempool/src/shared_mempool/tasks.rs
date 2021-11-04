@@ -6,7 +6,7 @@ use crate::{
     core_mempool::{CoreMempool, TimelineState, TxnPointer},
     counters,
     logging::{LogEntry, LogEvent, LogSchema},
-    network::MempoolSyncMsg,
+    network::{BroadcastError, MempoolSyncMsg},
     shared_mempool::types::{
         notify_subscribers, ScheduledBroadcast, SharedMempool, SharedMempoolNotification,
         SubmissionStatusBundle, TransactionSummary,
@@ -55,7 +55,23 @@ pub(crate) fn execute_broadcast<V>(
     let network_interface = &smp.network_interface.clone();
     // If there's no connection, don't bother to broadcast
     if network_interface.app_data().read(&peer).is_some() {
-        network_interface.execute_broadcast(peer, backoff, smp);
+        if let Err(err) = network_interface.execute_broadcast(peer, backoff, smp) {
+            match err {
+                BroadcastError::NetworkError(peer, error) => error!(LogSchema::event_log(
+                    LogEntry::BroadcastTransaction,
+                    LogEvent::NetworkSendFail
+                )
+                .peer(&peer)
+                .error(&error)),
+                BroadcastError::TooManyPendingBroadcasts(_)
+                | BroadcastError::NoTransactions(_)
+                | BroadcastError::PeerNotScheduled(_)
+                | BroadcastError::PeerNotPrioritized(_, _)
+                | BroadcastError::PeerNotFound(_) => {
+                    trace!("{:?}", err)
+                }
+            }
+        }
     } else {
         // Drop the scheduled broadcast, we're not connected anymore
         return;
