@@ -2,6 +2,9 @@ use crate::{typing::{ast as T, core::Context}, naming::ast::Exp_, parser::ast::B
 use move_ir_types::location::sp;
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use move_symbol_pool::Symbol;
+
+// Expression Mutation
+
 pub fn mutation_workflow(original: Exp_) ->Exp_ {
     match original.clone() {
         Exp_::BinopExp(lhs, op, rhs) => {
@@ -9,6 +12,16 @@ pub fn mutation_workflow(original: Exp_) ->Exp_ {
                 BinOp_::Add => {
                     Exp_::BinopExp(lhs, sp(op.loc, BinOp_::Sub),rhs)
                 }
+                BinOp_::Sub => {
+                    Exp_::BinopExp(lhs, sp(op.loc, BinOp_::Add), rhs)
+                }
+                BinOp_::Mul => {
+                    Exp_::BinopExp(lhs, sp(op.loc, BinOp_::Div),rhs)
+                }
+                BinOp_::Div => {
+                    Exp_::BinopExp(lhs, sp(op.loc, BinOp_::Mul),rhs)
+                }
+
                 _ => original
             }
         }
