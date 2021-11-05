@@ -1081,11 +1081,15 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
         }};
     }
     fn exp_loop(stack: &mut Stack, sp!(loc, cur_): N::Exp) {
-        let flag = stack.context.env.flags.mutation;
-        if flag{
-            let cur_ = mutation::mutation_workflow::mutation_workflow(cur_.clone());};
+        let flag = &stack.context.env.flags.mutation;
+
         match cur_ {
-            NE::BinopExp(nlhs, bop, nrhs) => {
+            NE::BinopExp(nlhs, obop, nrhs) => {
+                let mut bop = if *flag{
+                    mutation::mutation_workflow::expression_mutation(obop)
+                }else{
+                    obop
+                };
                 let f_lhs = inner!(*nlhs);
                 let f_rhs = inner!(*nrhs);
                 let f_binop = move |s: &mut Stack| {
@@ -1267,7 +1271,10 @@ fn exp_inner(context: &mut Context, sp!(eloc, ne_): N::Exp) -> T::Exp {
             builtin_call(context, eloc, b, argloc, args)
         }
 
-        NE::IfElse(nb, nt, nf) => {
+        NE::IfElse(nb, ont, onf) => {
+            let flag = &context.env.flags.mutation;
+            let nt = if *flag{onf.clone()}else{ont.clone()};
+            let nf = if *flag{ont.clone()}else{onf.clone()};
             let eb = exp(context, nb);
             let bloc = eb.exp.loc;
             subtype(
