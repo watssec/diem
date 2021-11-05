@@ -336,7 +336,7 @@ pub fn shortest_cycle<'a, T: Ord + Hash>(
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CompilationEnv {
-    flags: Flags,
+    pub flags: Flags,
     diags: Diagnostics,
     named_address_mapping: BTreeMap<Symbol, NumericalAddress>,
     // TODO(tzakian): Remove the global counter and use this counter instead
@@ -449,6 +449,12 @@ pub struct Flags {
         long = cli::NO_SHADOW,
     )]
     no_shadow: bool,
+
+    #[structopt(
+    long = "mutation",
+    )]
+
+    pub mutation: bool,
 }
 
 impl Flags {
@@ -456,6 +462,7 @@ impl Flags {
         Self {
             test: false,
             no_shadow: false,
+            mutation: false,
         }
     }
 
@@ -463,6 +470,7 @@ impl Flags {
         Self {
             test: true,
             no_shadow: false,
+            mutation: false,
         }
     }
 

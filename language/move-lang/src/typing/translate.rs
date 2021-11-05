@@ -18,7 +18,7 @@ use crate::{
 use move_ir_types::location::*;
 use move_symbol_pool::Symbol;
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
-
+use crate::mutation;
 //**************************************************************************************************
 // Entry
 //**************************************************************************************************
@@ -1081,6 +1081,9 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
         }};
     }
     fn exp_loop(stack: &mut Stack, sp!(loc, cur_): N::Exp) {
+        let flag = stack.context.env.flags.mutation;
+        if flag{
+            let cur_ = mutation::mutation_workflow::mutation_workflow(cur_.clone());};
         match cur_ {
             NE::BinopExp(nlhs, bop, nrhs) => {
                 let f_lhs = inner!(*nlhs);
