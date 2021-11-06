@@ -3,12 +3,6 @@
 
 use structopt::StructOpt;
 
-use move_lang::shared::{parse_named_address, NumericalAddress};
-
-use move_model::{
-    ast::Spec,
-    model::{FunId, GlobalEnv, QualifiedId, VerificationScope},
-    options::ModelBuilderOptions};
 
 /// Options passed into the specification flattening tool.
 #[derive(StructOpt, Clone,Debug)]

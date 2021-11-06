@@ -5494,6 +5494,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "mutation"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bytecode",
+ "move-lang",
+ "move-model",
+ "move-prover",
+ "structopt 0.3.21",
+]
+
+[[package]]
 name = "mvhashmap"
 version = "0.1.0"
 dependencies = [

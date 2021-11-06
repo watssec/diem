@@ -1080,129 +1080,131 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
             move |s: &mut Stack| exp_loop(s, $e)
         }};
     }
+
     fn exp_loop(stack: &mut Stack, sp!(loc, cur_): N::Exp) {
         let flag = &stack.context.env.flags.mutation;
 
         match cur_ {
             NE::BinopExp(nlhs, obop, nrhs) => {
-                let mut bop = if *flag{
-                    mutation::mutation_workflow::expression_mutation(obop)
-                }else{
-                    obop
-                };
-                let f_lhs = inner!(*nlhs);
-                let f_rhs = inner!(*nrhs);
-                let f_binop = move |s: &mut Stack| {
-                    let er = Box::new(s.operands.pop().unwrap());
-                    let el = Box::new(s.operands.pop().unwrap());
-                    use BinOp_::*;
-                    let msg = || format!("Incompatible arguments to '{}'", &bop);
-                    let context = &mut s.context;
-                    let (ty, operand_ty) = match &bop.value {
-                        Sub | Add | Mul | Mod | Div => {
-                            context.add_numeric_constraint(
-                                el.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            context.add_numeric_constraint(
-                                er.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            let operand_ty =
-                                join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
-                            (operand_ty.clone(), operand_ty)
-                        }
-
-                        BitOr | BitAnd | Xor => {
-                            context.add_bits_constraint(
-                                el.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            context.add_bits_constraint(
-                                er.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            let operand_ty =
-                                join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
-                            (operand_ty.clone(), operand_ty)
-                        }
-
-                        Shl | Shr => {
-                            let msg = || format!("Invalid argument to '{}'", &bop);
-                            let u8ty = Type_::u8(er.exp.loc);
-                            context.add_bits_constraint(
-                                el.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            subtype(context, er.exp.loc, msg, er.ty.clone(), u8ty);
-                            (el.ty.clone(), el.ty.clone())
-                        }
-
-                        Lt | Gt | Le | Ge => {
-                            context.add_ordered_constraint(
-                                el.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            context.add_ordered_constraint(
-                                er.exp.loc,
-                                bop.value.symbol(),
-                                el.ty.clone(),
-                            );
-                            let operand_ty =
-                                join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
-                            (Type_::bool(loc), operand_ty)
-                        }
-
-                        Eq | Neq => {
-                            let ability_msg = Some(format!(
-                                "'{}' requires the '{}' ability as the value is consumed. Try \
-                                 borrowing the values with '&' first.'",
-                                &bop,
-                                Ability_::Drop,
-                            ));
-                            context.add_ability_constraint(
-                                el.exp.loc,
-                                ability_msg.clone(),
-                                el.ty.clone(),
-                                Ability_::Drop,
-                            );
-                            context.add_ability_constraint(
-                                er.exp.loc,
-                                ability_msg,
-                                er.ty.clone(),
-                                Ability_::Drop,
-                            );
-                            let ty = join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
-                            context.add_single_type_constraint(loc, msg(), ty.clone());
-                            (Type_::bool(loc), ty)
-                        }
-
-                        And | Or => {
-                            let msg = || format!("Invalid argument to '{}'", &bop);
-                            let lloc = el.exp.loc;
-                            subtype(context, lloc, msg, el.ty.clone(), Type_::bool(bop.loc));
-                            let rloc = er.exp.loc;
-                            subtype(context, rloc, msg, er.ty.clone(), Type_::bool(bop.loc));
-                            (Type_::bool(loc), Type_::bool(loc))
-                        }
-
-                        Range | Implies | Iff => panic!("specification operator unexpected"),
-                    };
-                    let binop =
-                        T::exp(ty, sp(loc, TE::BinopExp(el, bop, Box::new(operand_ty), er)));
-                    s.operands.push(binop)
-                };
-
-                stack.frames.push(Box::new(f_binop));
-                stack.frames.push(Box::new(f_rhs));
-                stack.frames.push(Box::new(f_lhs));
+                let bop = if *flag{
+                mutation::mutation_workflow::expression_mutation(obop)
+            }else{
+            obop
+            };
+            let f_lhs = inner!(*nlhs);
+            let f_rhs = inner!(*nrhs);
+            let f_binop = move | s: &mut Stack | {
+            let er = Box::new(s.operands.pop().unwrap());
+            let el = Box::new(s.operands.pop().unwrap());
+            use BinOp_::*;
+            let msg = | | format ! ("Incompatible arguments to '{}'", & bop);
+            let context = & mut s.context;
+            let (ty, operand_ty) = match & bop.value {
+            Sub | Add | Mul | Mod | Div => {
+            context.add_numeric_constraint(
+            el.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            context.add_numeric_constraint(
+            er.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            let operand_ty =
+            join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
+            (operand_ty.clone(), operand_ty)
             }
+
+            BitOr | BitAnd | Xor => {
+            context.add_bits_constraint(
+            el.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            context.add_bits_constraint(
+            er.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            let operand_ty =
+            join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
+            (operand_ty.clone(), operand_ty)
+            }
+
+            Shl | Shr => {
+            let msg = | | format ! ("Invalid argument to '{}'", & bop);
+            let u8ty = Type_::u8(er.exp.loc);
+            context.add_bits_constraint(
+            el.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            subtype(context, er.exp.loc, msg, er.ty.clone(), u8ty);
+            (el.ty.clone(), el.ty.clone())
+            }
+
+            Lt | Gt | Le | Ge => {
+            context.add_ordered_constraint(
+            el.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            context.add_ordered_constraint(
+            er.exp.loc,
+            bop.value.symbol(),
+            el.ty.clone(),
+            );
+            let operand_ty =
+            join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
+            (Type_::bool(loc), operand_ty)
+            }
+
+            Eq | Neq => {
+            let ability_msg = Some(format ! (
+            "'{}' requires the '{}' ability as the value is consumed. Try \
+                                 borrowing the values with '&' first.'",
+            & bop,
+            Ability_::Drop,
+            ));
+            context.add_ability_constraint(
+            el.exp.loc,
+            ability_msg.clone(),
+            el.ty.clone(),
+            Ability_::Drop,
+            );
+            context.add_ability_constraint(
+            er.exp.loc,
+            ability_msg,
+            er.ty.clone(),
+            Ability_::Drop,
+            );
+            let ty = join(context, bop.loc, msg, el.ty.clone(), er.ty.clone());
+            context.add_single_type_constraint(loc, msg(), ty.clone());
+            (Type_::bool(loc), ty)
+            }
+
+            And | Or => {
+            let msg = | | format ! ("Invalid argument to '{}'", & bop);
+            let lloc = el.exp.loc;
+            subtype(context, lloc, msg, el.ty.clone(), Type_::bool(bop.loc));
+            let rloc = er.exp.loc;
+            subtype(context, rloc, msg, er.ty.clone(), Type_::bool(bop.loc));
+            (Type_::bool(loc), Type_::bool(loc))
+            }
+
+            Range | Implies | Iff => panic ! ("specification operator unexpected"),
+            };
+            let binop =
+            T::exp(ty, sp(loc, TE::BinopExp(el, bop, Box::new(operand_ty), er)));
+            s.operands.push(binop)
+            };
+
+            stack.frames.push(Box::new(f_binop));
+            stack.frames.push(Box::new(f_rhs));
+            stack.frames.push(Box::new(f_lhs));
+        }
+
             cur_ => stack.operands.push(exp_inner(stack.context, sp(loc, cur_))),
         }
     }

@@ -1,7 +1,6 @@
-use crate::{typing::{ast as T, core::Context}, naming::ast::Exp_, parser::ast::{BinOp_, BinOp}, shared::{unique_map::UniqueMap, *}, expansion::ast::{Fields, ModuleIdent, Value_}};
+use crate::{parser::ast::{BinOp_, BinOp}};
 use move_ir_types::location::sp;
-use std::collections::{BTreeMap, BTreeSet, VecDeque};
-use move_symbol_pool::Symbol;
+
 
 // Expression Mutation
 

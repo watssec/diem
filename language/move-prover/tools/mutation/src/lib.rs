@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 use anyhow::{anyhow, Result};
-
-mod mutate;
 mod options;
 mod workflow;
 
@@ -23,8 +21,6 @@ pub fn run(options: &MutationOptions) -> Result<()> {
     if !proved {
         return Err(anyhow!("Original proof is not successful"));
     }
-
-    println!("Proved{:?}",proved);
 
     // everything is OK
     Ok(())
