@@ -1090,10 +1090,10 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
         stack.context.env.mutation_counter.push(loc);}
         match cur_ {
             NE::BinopExp(nlhs, obop, nrhs) => {
-                if(flag == false && mutated_flag == false){
+                if flag == false && mutated_flag == false{
                     mutated_flag = true;
                 }
-                let bop = if(flag == true && mutated_flag == false) {
+                let bop = if flag == true && mutated_flag == false {
                 mutation::mutation_workflow::expression_mutation(obop)
             }else{
             obop

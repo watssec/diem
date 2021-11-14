@@ -40,8 +40,6 @@ use crate::{
     model::{FunId, FunctionData, GlobalEnv, Loc, ModuleData, ModuleId, StructId},
     options::ModelBuilderOptions,
 };
-use std::fs;
-
 pub mod ast;
 mod builder;
 pub mod code_writer;
