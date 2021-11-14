@@ -10,15 +10,16 @@ use std::{
     path::{Path, PathBuf},
 };
 
-pub fn handle(genesis: Option<String>) -> Result<()> {
-    let home = Home::new(shared::get_home_path().as_path())?;
+const LAZY_ENABLED: bool = true;
+
+pub fn handle(home: &Home, genesis: Option<String>) -> Result<()> {
     if !home.get_shuffle_path().is_dir() {
         println!(
             "Creating node config in {}",
             home.get_shuffle_path().display()
         );
 
-        create_node(&home, genesis)
+        create_node(home, genesis)
     } else {
         println!(
             "Accessing node config in {}",
@@ -32,18 +33,19 @@ pub fn handle(genesis: Option<String>) -> Result<()> {
             );
         }
 
-        start_node(&home)
+        start_node(home)
     }
 }
 
 fn create_node(home: &Home, genesis: Option<String>) -> Result<()> {
     fs::create_dir_all(home.get_shuffle_path())?;
-
+    home.write_default_networks_config_into_toml()?;
     let publishing_option = VMPublishingOption::open();
     let genesis_modules = genesis_modules_from_path(&genesis)?;
     diem_node::load_test_environment(
         Some(PathBuf::from(home.get_node_config_path())),
         false,
+        LAZY_ENABLED,
         Some(publishing_option),
         genesis_modules,
         rand::rngs::OsRng,
@@ -56,24 +58,10 @@ fn start_node(home: &Home) -> Result<()> {
     println!("\tConfig path: {:?}", home.get_validator_config_path());
     println!("\tDiem root key path: {:?}", home.get_root_key_path());
     println!("\tWaypoint: {}", home.read_genesis_waypoint()?);
-    // Configure json rpc to bind on 0.0.0.0
-    let mut config = NodeConfig::load(home.get_validator_config_path()).unwrap();
-    config.json_rpc.address = format!("0.0.0.0:{}", config.json_rpc.address.port())
-        .parse()
-        .unwrap();
-    println!("\tJSON-RPC endpoint: {}", config.json_rpc.address);
-    config.json_rpc.stream_rpc.enabled = true;
-    println!("\tStream-RPC enabled!");
-    config.api.enabled = true;
-    println!("\tREST API enabled!");
-    println!("\tREST API: {}", config.api.address);
-
-    println!(
-        "\tFullNode network: {}",
-        config.full_node_networks[0].listen_address
-    );
     println!("\tChainId: {}", ChainId::test());
-    println!();
+    let config = NodeConfig::load(home.get_validator_config_path()).unwrap();
+    diem_node::print_api_config(&config, LAZY_ENABLED);
+
     println!("Diem is running, press ctrl-c to exit");
     println!();
 

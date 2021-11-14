@@ -605,12 +605,12 @@ dependencies = [
  "move-core-types",
  "move-model",
  "move-prover-test-utils",
+ "move-read-write-set-types",
  "move-stdlib",
  "num 0.4.0",
  "once_cell",
  "paste",
  "petgraph 0.5.1",
- "read-write-set-types",
  "serde",
  "serde_json",
 ]
@@ -1083,6 +1083,7 @@ dependencies = [
  "byteorder",
  "bytes",
  "channel",
+ "claim",
  "consensus-notifications",
  "consensus-types",
  "diem-config",
@@ -1463,6 +1464,7 @@ dependencies = [
  "async-trait",
  "channel",
  "claim",
+ "diem-config",
  "diem-crypto",
  "diem-data-client",
  "diem-id-generator",
@@ -1529,6 +1531,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "demo-cli"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bcs",
+ "diem-json-rpc-types",
+ "diem-sdk",
+ "diem-types",
+ "diem-workspace-hack",
+ "generate-key",
+ "hex",
+ "log",
+ "move-core-types",
+ "rand 0.8.4",
+ "structopt 0.3.21",
+ "tokio",
+ "walkdir",
+]
+
+[[package]]
 name = "determinator"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1582,6 +1604,7 @@ dependencies = [
  "diem-json-rpc",
  "diem-logger",
  "diem-mempool",
+ "diem-metrics",
  "diem-sdk",
  "diem-secure-storage",
  "diem-temppath",
@@ -1594,7 +1617,9 @@ dependencies = [
  "futures",
  "hex",
  "hyper",
+ "mempool-notifications",
  "move-core-types",
+ "once_cell",
  "percent-encoding",
  "rand 0.8.4",
  "reqwest",
@@ -1878,6 +1903,7 @@ dependencies = [
  "log",
  "move-binary-format",
  "move-bytecode-utils",
+ "move-cli",
  "move-command-line-common",
  "move-core-types",
  "move-lang",
@@ -1885,7 +1911,6 @@ dependencies = [
  "move-prover",
  "move-stdlib",
  "move-symbol-pool",
- "move-unit-test",
  "move-vm-runtime",
  "move-vm-types",
  "once_cell",
@@ -2051,6 +2076,7 @@ dependencies = [
  "proptest-derive",
  "rand 0.8.4",
  "serde",
+ "storage-interface",
  "thiserror",
 ]
 
@@ -2252,6 +2278,7 @@ dependencies = [
  "channel",
  "diem-config",
  "diem-crypto",
+ "diem-id-generator",
  "diem-infallible",
  "diem-logger",
  "diem-metrics",
@@ -2364,7 +2391,7 @@ dependencies = [
  "network",
  "network-builder",
  "rand 0.8.4",
- "state-sync-v1",
+ "state-sync-multiplexer",
  "storage-client",
  "storage-interface",
  "storage-service",
@@ -2708,6 +2735,7 @@ dependencies = [
  "itertools 0.10.1",
  "mirai-annotations",
  "move-core-types",
+ "move-read-write-set-types",
  "once_cell",
  "proptest",
  "proptest-derive",
@@ -2774,6 +2802,7 @@ dependencies = [
  "fail",
  "mirai-annotations",
  "move-binary-format",
+ "move-bytecode-utils",
  "move-core-types",
  "move-stdlib",
  "move-vm-runtime",
@@ -2902,6 +2931,7 @@ dependencies = [
  "move-vm-test-utils",
  "move-vm-types",
  "once_cell",
+ "read-write-set",
  "serde",
  "serde_json",
  "structopt 0.3.21",
@@ -3074,6 +3104,7 @@ dependencies = [
  "move-core-types",
  "move-coverage",
  "move-ir-types",
+ "move-lang",
  "structopt 0.3.21",
 ]
 
@@ -3362,8 +3393,8 @@ dependencies = [
  "serde",
  "storage-client",
  "storage-interface",
- "storage-service",
  "structopt 0.3.21",
+ "toml",
 ]
 
 [[package]]
@@ -4659,6 +4690,7 @@ dependencies = [
  "diem-framework-releases",
  "diem-keygen",
  "diem-logger",
+ "diem-parallel-executor",
  "diem-state-view",
  "diem-transaction-builder",
  "diem-types",
@@ -4954,7 +4986,7 @@ dependencies = [
 
 [[package]]
 name = "move-binary-format"
-version = "0.1.0"
+version = "0.0.3"
 dependencies = [
  "anyhow",
  "diem-workspace-hack",
@@ -4964,6 +4996,7 @@ dependencies = [
  "proptest",
  "proptest-derive",
  "ref-cast",
+ "serde",
  "serde_json",
  "variant_count",
 ]
@@ -5013,6 +5046,7 @@ dependencies = [
  "include_dir",
  "move-binary-format",
  "move-bytecode-utils",
+ "move-bytecode-viewer",
  "move-command-line-common",
  "move-core-types",
  "move-coverage",
@@ -5304,6 +5338,17 @@ dependencies = [
  "move-command-line-common",
  "prettydiff",
  "regex",
+]
+
+[[package]]
+name = "move-read-write-set-types"
+version = "0.0.3"
+dependencies = [
+ "anyhow",
+ "diem-workspace-hack",
+ "move-binary-format",
+ "move-core-types",
+ "serde",
 ]
 
 [[package]]
@@ -6525,34 +6570,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "public-script-helper"
-version = "0.1.0"
-dependencies = [
- "abigen",
- "anyhow",
- "bcs",
- "diem-config",
- "diem-crypto",
- "diem-genesis-tool",
- "diem-json-rpc-types",
- "diem-node",
- "diem-sdk",
- "diem-temppath",
- "diem-types",
- "diem-workspace-hack",
- "diemdb",
- "generate-key",
- "log",
- "move-core-types",
- "move-prover",
- "rand 0.8.4",
- "shuffle-transaction-builder",
- "structopt 0.3.21",
- "transaction-builder-generator",
- "walkdir",
-]
-
-[[package]]
 name = "qstring"
 version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6761,8 +6778,8 @@ dependencies = [
  "move-bytecode-utils",
  "move-core-types",
  "move-model",
+ "move-read-write-set-types",
  "read-write-set-dynamic",
- "read-write-set-types",
  "resource-viewer",
 ]
 
@@ -6773,18 +6790,9 @@ dependencies = [
  "anyhow",
  "diem-workspace-hack",
  "move-binary-format",
+ "move-bytecode-utils",
  "move-core-types",
- "read-write-set-types",
-]
-
-[[package]]
-name = "read-write-set-types"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "diem-workspace-hack",
- "move-binary-format",
- "move-core-types",
+ "move-read-write-set-types",
 ]
 
 [[package]]
@@ -7744,6 +7752,7 @@ dependencies = [
  "abigen",
  "anyhow",
  "bcs",
+ "diem-api-types",
  "diem-config",
  "diem-crypto",
  "diem-framework-releases",
@@ -7753,6 +7762,7 @@ dependencies = [
  "diem-node",
  "diem-sdk",
  "diem-types",
+ "diem-vm",
  "diem-workspace-hack",
  "diemdb",
  "directories",
@@ -7761,6 +7771,7 @@ dependencies = [
  "include_dir",
  "move-binary-format",
  "move-cli",
+ "move-core-types",
  "move-lang",
  "move-package",
  "once_cell",
@@ -7771,8 +7782,6 @@ dependencies = [
  "serde-reflection",
  "serde_json",
  "serde_yaml",
- "shuffle-custom-node",
- "shuffle-transaction-builder",
  "structopt 0.3.21",
  "tempfile",
  "tokio",
@@ -7793,52 +7802,25 @@ dependencies = [
 ]
 
 [[package]]
-name = "shuffle-custom-node"
-version = "0.1.0"
+name = "shuffle-integration-tests"
+version = "0.0.0"
 dependencies = [
- "abigen",
  "anyhow",
  "bcs",
- "diem-config",
- "diem-crypto",
- "diem-framework",
- "diem-framework-releases",
- "diem-genesis-tool",
  "diem-json-rpc-types",
- "diem-node",
  "diem-sdk",
- "diem-temppath",
  "diem-types",
  "diem-workspace-hack",
- "diemdb",
+ "forge",
  "generate-key",
- "log",
- "move-command-line-common",
- "move-prover",
- "move-stdlib",
- "rand 0.8.4",
- "structopt 0.3.21",
- "transaction-builder-generator",
- "walkdir",
-]
-
-[[package]]
-name = "shuffle-transaction-builder"
-version = "0.0.1"
-dependencies = [
- "anyhow",
- "bcs",
- "diem-types",
- "diem-workspace-hack",
  "hex",
- "log",
- "move-core-types",
- "once_cell",
- "parking_lot",
- "proptest",
- "proptest-derive",
- "thiserror",
+ "reqwest",
+ "serde_json",
+ "shuffle",
+ "smoke-test",
+ "tempfile",
  "tokio",
+ "url",
 ]
 
 [[package]]
@@ -8044,6 +8026,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "state-sync-multiplexer"
+version = "0.1.0"
+dependencies = [
+ "consensus-notifications",
+ "diem-config",
+ "diem-crypto",
+ "diem-genesis-tool",
+ "diem-infallible",
+ "diem-temppath",
+ "diem-types",
+ "diem-vm",
+ "diem-workspace-hack",
+ "diemdb",
+ "event-notifications",
+ "executor",
+ "executor-test-helpers",
+ "executor-types",
+ "futures",
+ "mempool-notifications",
+ "network",
+ "state-sync-v1",
+ "storage-interface",
+]
+
+[[package]]
 name = "state-sync-v1"
 version = "0.1.0"
 dependencies = [
@@ -8243,12 +8250,16 @@ dependencies = [
  "bytes",
  "channel",
  "claim",
+ "diem-config",
  "diem-crypto",
+ "diem-logger",
+ "diem-metrics",
  "diem-types",
  "diem-workspace-hack",
  "futures",
  "move-core-types",
  "network",
+ "once_cell",
  "serde",
  "storage-interface",
  "storage-service-types",
@@ -9317,6 +9328,7 @@ dependencies = [
  "executor-test-helpers",
  "fail",
  "move-core-types",
+ "ouroboros",
  "rand 0.8.4",
  "scratchpad",
  "storage-interface",

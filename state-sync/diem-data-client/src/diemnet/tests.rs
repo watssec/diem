@@ -6,7 +6,10 @@ use super::{
 };
 use channel::{diem_channel, message_queues::QueueStyle};
 use claim::assert_matches;
-use diem_config::network_id::{NetworkId, PeerNetworkId};
+use diem_config::{
+    config::StorageServiceConfig,
+    network_id::{NetworkId, PeerNetworkId},
+};
 use diem_time_service::{MockTimeService, TimeService};
 use diem_types::{transaction::TransactionListWithProof, PeerId};
 use futures::StreamExt;
@@ -47,7 +50,11 @@ impl MockNetwork {
         let network_client = StorageServiceClient::new(network_sender, peer_infos.clone());
 
         let mock_time = TimeService::mock();
-        let (client, poller) = DiemNetDataClient::new(mock_time.clone(), network_client);
+        let (client, poller) = DiemNetDataClient::new(
+            StorageServiceConfig::default(),
+            mock_time.clone(),
+            network_client,
+        );
 
         let mock_network = Self {
             peer_mgr_reqs_rx,
@@ -158,7 +165,7 @@ async fn test_request_works_only_when_data_available() {
             request,
             StorageServiceRequest::GetTransactionsWithProof(TransactionsWithProofRequest {
                 start_version: 50,
-                expected_num_transactions: 51,
+                end_version: 100,
                 proof_version: 100,
                 include_events: false,
             })

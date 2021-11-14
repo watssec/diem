@@ -24,8 +24,8 @@ pub type Result<T, E = StorageServiceError> = ::std::result::Result<T, E>;
 /// to process a service request.
 #[derive(Clone, Debug, Deserialize, Eq, Error, PartialEq, Serialize)]
 pub enum StorageServiceError {
-    #[error("Internal service error")]
-    InternalError,
+    #[error("Internal service error: {0}")]
+    InternalError(String),
 }
 
 /// A single storage service message sent or received over DiemNet.
@@ -53,6 +53,19 @@ pub enum StorageServiceRequest {
 }
 
 impl StorageServiceRequest {
+    /// Returns a summary label for the request
+    pub fn get_label(&self) -> &'static str {
+        match self {
+            Self::GetAccountStatesChunkWithProof(_) => "get_account_states_chunk_with_proof",
+            Self::GetEpochEndingLedgerInfos(_) => "get_epoch_ending_ledger_infos",
+            Self::GetNumberOfAccountsAtVersion(_) => "get_number_of_accounts_at_version",
+            Self::GetServerProtocolVersion => "get_server_protocol_version",
+            Self::GetStorageServerSummary => "get_storage_server_summary",
+            Self::GetTransactionOutputsWithProof(_) => "get_transaction_outputs_with_proof",
+            Self::GetTransactionsWithProof(_) => "get_transactions_with_proof",
+        }
+    }
+
     pub fn is_get_storage_server_summary(&self) -> bool {
         matches!(self, &Self::GetStorageServerSummary)
     }
@@ -74,15 +87,16 @@ pub enum StorageServiceResponse {
 
 // TODO(philiphayes): is there a proc-macro for this?
 impl StorageServiceResponse {
-    pub fn name(&self) -> &'static str {
+    /// Returns a summary label for the response
+    pub fn get_label(&self) -> &'static str {
         match self {
-            Self::AccountStatesChunkWithProof(_) => "AccountStatesChunkWithProof",
-            Self::EpochEndingLedgerInfos(_) => "EpochEndingLedgerInfos",
-            Self::NumberOfAccountsAtVersion(_) => "NumberOfAccountsAtVersion",
-            Self::ServerProtocolVersion(_) => "ServerProtocolVersion",
-            Self::StorageServerSummary(_) => "StorageServerSummary",
-            Self::TransactionOutputsWithProof(_) => "TransactionOutputsWithProof",
-            Self::TransactionsWithProof(_) => "TransactionsWithProof",
+            Self::AccountStatesChunkWithProof(_) => "account_states_chunk_with_proof",
+            Self::EpochEndingLedgerInfos(_) => "epoch_ending_ledger_infos",
+            Self::NumberOfAccountsAtVersion(_) => "number_of_accounts_at_version",
+            Self::ServerProtocolVersion(_) => "server_protocol_version",
+            Self::StorageServerSummary(_) => "storage_server_summary",
+            Self::TransactionOutputsWithProof(_) => "transaction_outputs_with_proof",
+            Self::TransactionsWithProof(_) => "transactions_with_proof",
         }
     }
 }
@@ -100,8 +114,8 @@ impl TryFrom<StorageServiceResponse> for AccountStatesChunkWithProof {
         match response {
             StorageServiceResponse::AccountStatesChunkWithProof(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected AccountStatesChunkWithProof found {}",
-                response.name()
+                "expected account_states_chunk_with_proof, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -113,8 +127,8 @@ impl TryFrom<StorageServiceResponse> for EpochChangeProof {
         match response {
             StorageServiceResponse::EpochEndingLedgerInfos(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected EpochEndingLedgerInfos found {}",
-                response.name()
+                "expected epoch_ending_ledger_infos, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -126,8 +140,8 @@ impl TryFrom<StorageServiceResponse> for u64 {
         match response {
             StorageServiceResponse::NumberOfAccountsAtVersion(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected NumberOfAccountsAtVersion found {}",
-                response.name()
+                "expected number_of_accounts_at_version, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -139,8 +153,8 @@ impl TryFrom<StorageServiceResponse> for ServerProtocolVersion {
         match response {
             StorageServiceResponse::ServerProtocolVersion(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected ServerProtocolVersion found {}",
-                response.name()
+                "expected server_protocol_version, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -152,8 +166,8 @@ impl TryFrom<StorageServiceResponse> for StorageServerSummary {
         match response {
             StorageServiceResponse::StorageServerSummary(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected StorageServerSummary found {}",
-                response.name()
+                "expected storage_server_summary, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -165,8 +179,8 @@ impl TryFrom<StorageServiceResponse> for TransactionOutputListWithProof {
         match response {
             StorageServiceResponse::TransactionOutputsWithProof(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected TransactionOutputsWithProof found {}",
-                response.name()
+                "expected transaction_outputs_with_proof, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -178,8 +192,8 @@ impl TryFrom<StorageServiceResponse> for TransactionListWithProof {
         match response {
             StorageServiceResponse::TransactionsWithProof(inner) => Ok(inner),
             _ => Err(UnexpectedResponseError(format!(
-                "expected TransactionsWithProof found {}",
-                response.name()
+                "expected transactions_with_proof, found {}",
+                response.get_label()
             ))),
         }
     }
@@ -189,27 +203,27 @@ impl TryFrom<StorageServiceResponse> for TransactionListWithProof {
 /// specified version.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct AccountStatesChunkWithProofRequest {
-    pub version: u64,                     // The version to fetch the account states at
-    pub start_account_index: u64,         // The account index to start fetching account states
-    pub expected_num_account_states: u64, // Expected number of account states to fetch
+    pub version: u64,             // The version to fetch the account states at
+    pub start_account_index: u64, // The account index to start fetching account states
+    pub end_account_index: u64,   // The account index to stop fetching account states (inclusive)
 }
 
 /// A storage service request for fetching a transaction output list with a
 /// corresponding proof.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct TransactionOutputsWithProofRequest {
-    pub proof_version: u64,        // The version the proof should be relative to
-    pub start_version: u64,        // The starting version of the transaction output list
-    pub expected_num_outputs: u64, // Expected number of transaction outputs in the list
+    pub proof_version: u64, // The version the proof should be relative to
+    pub start_version: u64, // The starting version of the transaction output list
+    pub end_version: u64,   // The ending version of the transaction output list (inclusive)
 }
 
 /// A storage service request for fetching a transaction list with a
 /// corresponding proof.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 pub struct TransactionsWithProofRequest {
-    pub proof_version: u64, // The version the proof should be relative to
-    pub start_version: u64, // The starting version of the transaction list
-    pub expected_num_transactions: u64, // Expected number of transactions in the list
+    pub proof_version: u64,   // The version the proof should be relative to
+    pub start_version: u64,   // The starting version of the transaction list
+    pub end_version: u64,     // The ending version of the transaction list (inclusive)
     pub include_events: bool, // Whether or not to include events in the response
 }
 

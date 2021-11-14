@@ -10,6 +10,9 @@ compiled_package_info:
     VMReserved: "00000000000000000000000000000000"
   module_resolution_metadata:
     ? address: "00000000000000000000000000000001"
+      name: ASCII
+    : Std
+    ? address: "00000000000000000000000000000001"
       name: AccountAdministrationScripts
     : DiemFramework
     ? address: "00000000000000000000000000000001"
@@ -106,6 +109,9 @@ compiled_package_info:
       name: Option
     : Std
     ? address: "00000000000000000000000000000001"
+      name: ParallelExecutionConfig
+    : DiemFramework
+    ? address: "00000000000000000000000000000001"
       name: PaymentScripts
     : DiemFramework
     ? address: "00000000000000000000000000000001"
@@ -154,20 +160,18 @@ compiled_package_info:
       name: Vector
     : Std
     ? address: "00000000000000000000000000000001"
-      name: Vote
-    : DiemFramework
-    ? address: "00000000000000000000000000000001"
       name: XDX
     : DiemFramework
     ? address: "00000000000000000000000000000001"
       name: XUS
     : DiemFramework
-  source_digest: 1FD3B7BC33E90BB82005A11A724DAFDA60E7240DA8BCB16367A8047FCC36A06D
+  source_digest: 54115D8D4F808A0979E109E47CDA40FBFD1E6B608D2FCC0797827FAD7BD1C2B2
   build_flags:
     dev_mode: false
     test_mode: false
     generate_docs: true
     generate_abis: true
     install_dir: DPN/releases/artifacts/current
+    force_recompilation: false
 dependencies:
   - MoveStdlib

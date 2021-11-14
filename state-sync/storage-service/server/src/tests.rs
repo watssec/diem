@@ -7,29 +7,25 @@ use crate::{network::StorageServiceNetworkEvents, StorageReader, StorageServiceS
 use anyhow::Result;
 use channel::diem_channel;
 use claim::{assert_matches, assert_none, assert_some};
+use diem_config::config::StorageServiceConfig;
 use diem_crypto::{ed25519::Ed25519PrivateKey, HashValue, PrivateKey, SigningKey, Uniform};
+use diem_logger::Level;
 use diem_types::{
     account_address::AccountAddress,
-    account_state_blob::{default_protocol::AccountStateWithProof, AccountStateBlob},
     block_info::BlockInfo,
     chain_id::ChainId,
-    contract_event::{
-        default_protocol::{EventByVersionWithProof, EventWithProof},
-        ContractEvent,
-    },
+    contract_event::ContractEvent,
     epoch_change::EpochChangeProof,
     event::EventKey,
     ledger_info::{LedgerInfo, LedgerInfoWithSignatures},
-    proof::{SparseMerkleProof, TransactionInfoListWithProof},
+    proof::TransactionInfoListWithProof,
     protocol_spec::DpnProto,
-    state_proof::StateProof,
     transaction::{
-        default_protocol::{
-            AccountTransactionsWithProof, TransactionListWithProof, TransactionOutputListWithProof,
-            TransactionWithProof,
-        },
-        RawTransaction, Script, SignedTransaction, Transaction, TransactionPayload, Version,
+        default_protocol::{TransactionListWithProof, TransactionOutputListWithProof},
+        RawTransaction, Script, SignedTransaction, Transaction, TransactionOutput,
+        TransactionPayload, TransactionStatus, Version,
     },
+    write_set::WriteSet,
     PeerId,
 };
 use futures::channel::oneshot;
@@ -41,7 +37,7 @@ use network::{
     },
 };
 use std::{collections::BTreeMap, sync::Arc};
-use storage_interface::{DbReader, Order, StartupInfo, TreeState};
+use storage_interface::DbReader;
 use storage_service_types::{
     AccountStatesChunkWithProofRequest, CompleteDataRange, DataSummary,
     EpochEndingLedgerInfoRequest, ProtocolMetadata, ServerProtocolVersion, StorageServerSummary,
@@ -78,14 +74,14 @@ async fn test_get_account_states_chunk_with_proof() {
         StorageServiceRequest::GetAccountStatesChunkWithProof(AccountStatesChunkWithProofRequest {
             version: 0,
             start_account_index: 0,
-            expected_num_account_states: 0,
+            end_account_index: 0,
         });
 
     // Process the request
     let error = mock_client.send_request(request).await.unwrap_err();
 
     // Verify the response is correct (the API call is currently unsupported)
-    assert_matches!(error, StorageServiceError::InternalError);
+    assert_matches!(error, StorageServiceError::InternalError(_));
 }
 
 #[tokio::test]
@@ -100,7 +96,7 @@ async fn test_get_number_of_accounts_at_version() {
     let error = mock_client.send_request(request).await.unwrap_err();
 
     // Verify the response is correct (the API call is currently unsupported)
-    assert_matches!(error, StorageServiceError::InternalError);
+    assert_matches!(error, StorageServiceError::InternalError(_));
 }
 
 #[tokio::test]
@@ -117,7 +113,7 @@ async fn test_get_storage_server_summary() {
     let highest_epoch = 10;
     let expected_server_summary = StorageServerSummary {
         protocol_metadata: ProtocolMetadata {
-            max_epoch_chunk_size: 1000,
+            max_epoch_chunk_size: 100,
             max_transaction_chunk_size: 1000,
             max_transaction_output_chunk_size: 1000,
             max_account_states_chunk_size: 1000,
@@ -146,11 +142,11 @@ async fn test_get_transactions_with_proof_events() {
 
     // Create a request to fetch transactions with a proof
     let start_version = 0;
-    let expected_num_transactions = 10;
+    let end_version = 10;
     let request = StorageServiceRequest::GetTransactionsWithProof(TransactionsWithProofRequest {
         proof_version: 100,
         start_version,
-        expected_num_transactions,
+        end_version,
         include_events: true,
     });
 
@@ -161,8 +157,8 @@ async fn test_get_transactions_with_proof_events() {
     match response {
         StorageServiceResponse::TransactionsWithProof(transactions_with_proof) => {
             assert_eq!(
-                transactions_with_proof.transactions.len(),
-                expected_num_transactions as usize
+                transactions_with_proof.transactions.len() as u64,
+                end_version - start_version + 1,
             );
             assert_eq!(
                 transactions_with_proof.first_transaction_version,
@@ -170,9 +166,7 @@ async fn test_get_transactions_with_proof_events() {
             );
             assert_some!(transactions_with_proof.events);
         }
-        _ => {
-            panic!("Expected transactions with proof but got: {:?}", response);
-        }
+        _ => panic!("Expected transactions with proof but got: {:?}", response),
     };
 }
 
@@ -183,11 +177,11 @@ async fn test_get_transactions_with_proof_no_events() {
 
     // Create a request to fetch transactions with a proof (excluding events)
     let start_version = 10;
-    let expected_num_transactions = 20;
+    let end_version = 30;
     let request = StorageServiceRequest::GetTransactionsWithProof(TransactionsWithProofRequest {
         proof_version: 1000,
         start_version,
-        expected_num_transactions,
+        end_version,
         include_events: false,
     });
 
@@ -198,8 +192,8 @@ async fn test_get_transactions_with_proof_no_events() {
     match response {
         StorageServiceResponse::TransactionsWithProof(transactions_with_proof) => {
             assert_eq!(
-                transactions_with_proof.transactions.len(),
-                expected_num_transactions as usize
+                transactions_with_proof.transactions.len() as u64,
+                end_version - start_version + 1,
             );
             assert_eq!(
                 transactions_with_proof.first_transaction_version,
@@ -207,9 +201,7 @@ async fn test_get_transactions_with_proof_no_events() {
             );
             assert_none!(transactions_with_proof.events);
         }
-        _ => {
-            panic!("Expected transactions with proof but got: {:?}", response);
-        }
+        _ => panic!("Expected transactions with proof but got: {:?}", response),
     };
 }
 
@@ -219,18 +211,32 @@ async fn test_get_transaction_outputs_with_proof() {
     tokio::spawn(service.start());
 
     // Create a request to fetch transaction outputs with a proof
+    let start_version = 5;
+    let end_version = 47;
     let request =
         StorageServiceRequest::GetTransactionOutputsWithProof(TransactionOutputsWithProofRequest {
             proof_version: 1000,
-            start_version: 0,
-            expected_num_outputs: 10,
+            start_version,
+            end_version,
         });
 
     // Process the request
-    let error = mock_client.send_request(request).await.unwrap_err();
+    let response = mock_client.send_request(request).await.unwrap();
 
-    // Verify the response is correct (the API call is currently unsupported)
-    assert_matches!(error, StorageServiceError::InternalError);
+    // Verify the response is correct
+    match response {
+        StorageServiceResponse::TransactionOutputsWithProof(outputs_with_proof) => {
+            assert_eq!(
+                outputs_with_proof.transactions_and_outputs.len() as u64,
+                end_version - start_version + 1,
+            );
+            assert_eq!(
+                outputs_with_proof.first_transaction_output_version,
+                Some(start_version)
+            );
+        }
+        _ => panic!("Expected outputs with proof but got: {:?}", response),
+    };
 }
 
 #[tokio::test]
@@ -266,9 +272,7 @@ async fn test_get_epoch_ending_ledger_infos() {
                 );
             }
         }
-        _ => {
-            panic!("Expected epoch ending ledger infos but got: {:?}", response);
-        }
+        _ => panic!("Expected epoch ending ledger infos but got: {:?}", response),
     };
 }
 
@@ -280,6 +284,7 @@ struct MockClient {
 
 impl MockClient {
     fn new() -> (Self, StorageServiceServer<StorageReader>) {
+        initialize_logger();
         let storage = StorageReader::new(Arc::new(MockDbReader));
 
         let queue_cfg = crate::network::network_endpoint_config()
@@ -291,7 +296,12 @@ impl MockClient {
             StorageServiceNetworkEvents::new(peer_mgr_notifs_rx, connection_notifs_rx);
 
         let executor = tokio::runtime::Handle::current();
-        let storage_server = StorageServiceServer::new(executor, storage, network_requests);
+        let storage_server = StorageServiceServer::new(
+            StorageServiceConfig::default(),
+            executor,
+            storage,
+            network_requests,
+        );
 
         (Self { peer_mgr_notifs_tx }, storage_server)
     }
@@ -364,6 +374,10 @@ fn create_test_transaction(sequence_number: u64) -> Transaction {
     Transaction::UserTransaction(signed_transaction)
 }
 
+fn create_test_output() -> TransactionOutput {
+    TransactionOutput::new(WriteSet::default(), vec![], 0, TransactionStatus::Retry)
+}
+
 fn create_test_ledger_info_with_sigs(epoch: u64, version: u64) -> LedgerInfoWithSignatures {
     // Create a mock ledger info with signatures
     let ledger_info = LedgerInfo::new(
@@ -434,150 +448,37 @@ impl DbReader<DpnProto> for MockDbReader {
         })
     }
 
-    fn get_transaction_by_hash(
-        &self,
-        _hash: HashValue,
-        _ledger_version: Version,
-        _fetch_events: bool,
-    ) -> Result<Option<TransactionWithProof>> {
-        unimplemented!()
-    }
-
-    fn get_transaction_by_version(
-        &self,
-        _version: u64,
-        _ledger_version: Version,
-        _fetch_events: bool,
-    ) -> Result<TransactionWithProof> {
-        unimplemented!()
-    }
-
     fn get_transaction_outputs(
         &self,
-        _start_version: Version,
-        _limit: u64,
+        start_version: Version,
+        limit: u64,
         _ledger_version: Version,
     ) -> Result<TransactionOutputListWithProof> {
-        unimplemented!()
-    }
+        // Create mock transactions and outputs
+        let mut transactions_and_outputs = vec![];
+        for i in 0..limit {
+            let transaction = create_test_transaction(i);
+            let output = create_test_output();
+            transactions_and_outputs.push((transaction, output))
+        }
 
-    /// Returns events by given event key
-    fn get_events(
-        &self,
-        _event_key: &EventKey,
-        _start: u64,
-        _order: Order,
-        _limit: u64,
-    ) -> Result<Vec<(u64, ContractEvent)>> {
-        unimplemented!()
-    }
-
-    /// Returns events by given event key
-    fn get_events_with_proofs(
-        &self,
-        _event_key: &EventKey,
-        _start: u64,
-        _order: Order,
-        _limit: u64,
-        _known_version: Option<u64>,
-    ) -> Result<Vec<EventWithProof>> {
-        unimplemented!()
-    }
-
-    fn get_block_timestamp(&self, _version: u64) -> Result<u64> {
-        unimplemented!()
-    }
-
-    fn get_event_by_version_with_proof(
-        &self,
-        _event_key: &EventKey,
-        _version: u64,
-        _proof_version: u64,
-    ) -> Result<EventByVersionWithProof> {
-        unimplemented!()
-    }
-
-    fn get_latest_account_state(
-        &self,
-        _address: AccountAddress,
-    ) -> Result<Option<AccountStateBlob>> {
-        unimplemented!()
+        Ok(TransactionOutputListWithProof {
+            transactions_and_outputs,
+            first_transaction_output_version: Some(start_version),
+            proof: TransactionInfoListWithProof::new_empty(),
+        })
     }
 
     /// Returns the latest ledger info.
     fn get_latest_ledger_info(&self) -> Result<LedgerInfoWithSignatures> {
         Ok(create_test_ledger_info_with_sigs(10, 100))
     }
+}
 
-    fn get_startup_info(&self) -> Result<Option<StartupInfo>> {
-        unimplemented!()
-    }
-
-    fn get_account_transaction(
-        &self,
-        _address: AccountAddress,
-        _seq_num: u64,
-        _include_events: bool,
-        _ledger_version: Version,
-    ) -> Result<Option<TransactionWithProof>> {
-        unimplemented!()
-    }
-
-    fn get_account_transactions(
-        &self,
-        _address: AccountAddress,
-        _start_seq_num: u64,
-        _limit: u64,
-        _include_events: bool,
-        _ledger_version: Version,
-    ) -> Result<AccountTransactionsWithProof> {
-        unimplemented!()
-    }
-
-    fn get_state_proof_with_ledger_info(
-        &self,
-        _known_version: u64,
-        _ledger_info: LedgerInfoWithSignatures,
-    ) -> Result<StateProof> {
-        unimplemented!()
-    }
-
-    fn get_state_proof(&self, _known_version: u64) -> Result<StateProof> {
-        unimplemented!()
-    }
-
-    fn get_account_state_with_proof(
-        &self,
-        _address: AccountAddress,
-        _version: Version,
-        _ledger_version: Version,
-    ) -> Result<AccountStateWithProof> {
-        unimplemented!()
-    }
-
-    fn get_account_state_with_proof_by_version(
-        &self,
-        _address: AccountAddress,
-        _version: Version,
-    ) -> Result<(
-        Option<AccountStateBlob>,
-        SparseMerkleProof<AccountStateBlob>,
-    )> {
-        unimplemented!()
-    }
-
-    fn get_latest_state_root(&self) -> Result<(Version, HashValue)> {
-        unimplemented!()
-    }
-
-    fn get_latest_tree_state(&self) -> Result<TreeState> {
-        unimplemented!()
-    }
-
-    fn get_epoch_ending_ledger_info(
-        &self,
-        _known_version: u64,
-    ) -> Result<LedgerInfoWithSignatures> {
-        unimplemented!()
-    }
+/// Initializes the Diem logger for tests
+pub fn initialize_logger() {
+    diem_logger::DiemLogger::builder()
+        .is_async(false)
+        .level(Level::Debug)
+        .build();
 }
