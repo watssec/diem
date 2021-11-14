@@ -7,7 +7,7 @@ use diem_api_types::{
     mime_types, TransactionOnChainData, X_DIEM_CHAIN_ID, X_DIEM_LEDGER_TIMESTAMP,
     X_DIEM_LEDGER_VERSION,
 };
-use diem_config::config::{JsonRpcConfig, RoleType};
+use diem_config::config::{ApiConfig, JsonRpcConfig, RoleType};
 use diem_crypto::hash::HashValue;
 use diem_genesis_tool::validator_builder::{RootKeys, ValidatorBuilder};
 use diem_global_constants::OWNER_ACCOUNT;
@@ -38,12 +38,13 @@ use diemdb::DiemDB;
 use executor::{db_bootstrapper, Executor};
 use executor_types::BlockExecutor;
 use hyper::Response;
+use mempool_notifications::MempoolNotificationSender;
 use storage_interface::DbReaderWriter;
-use vm_validator::vm_validator::VMValidator;
 
 use rand::{Rng, SeedableRng};
 use serde_json::Value;
 use std::{boxed::Box, collections::BTreeMap, sync::Arc, time::SystemTime};
+use vm_validator::vm_validator::VMValidator;
 use warp::http::header::CONTENT_TYPE;
 
 pub fn new_test_context() -> TestContext {
@@ -74,6 +75,7 @@ pub fn new_test_context() -> TestContext {
             mempool.ac_client.clone(),
             RoleType::Validator,
             JsonRpcConfig::default(),
+            ApiConfig::default(),
         ),
         rng,
         root_keys,
@@ -204,16 +206,17 @@ impl TestContext {
         ret
     }
 
-    pub fn commit_mempool_txns(&self, size: u64) {
+    pub async fn commit_mempool_txns(&self, size: u64) {
         let txns = self.mempool.get_txns(size);
-        self.commit_block(&txns);
+        self.commit_block(&txns).await;
         for txn in txns {
             self.mempool.remove_txn(&txn);
         }
     }
 
-    pub fn commit_block(&self, signed_txns: &[SignedTransaction]) {
+    pub async fn commit_block(&self, signed_txns: &[SignedTransaction]) {
         let metadata = self.new_block_metadata();
+        let timestamp = metadata.timestamp_usec();
         let txns: Vec<Transaction> = std::iter::once(Transaction::BlockMetadata(metadata.clone()))
             .chain(
                 signed_txns
@@ -242,6 +245,12 @@ impl TestContext {
                 vec![metadata.id()],
                 self.new_ledger_info(&metadata, result.root_hash(), txns.len()),
             )
+            .unwrap();
+
+        self.mempool
+            .mempool_notifier
+            .notify_new_commit(txns, timestamp, 1000)
+            .await
             .unwrap();
     }
 

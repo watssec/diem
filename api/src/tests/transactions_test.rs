@@ -25,6 +25,7 @@ use move_core_types::{
     identifier::Identifier,
     language_storage::{ModuleId, StructTag, TypeTag, CORE_CODE_ADDRESS},
 };
+use rand::{distributions::Alphanumeric, thread_rng, Rng};
 use serde_json::json;
 
 #[tokio::test]
@@ -234,7 +235,7 @@ async fn test_get_transactions_output_user_transaction_with_script_function_payl
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let txns = context.get("/transactions?start=1").await;
     assert_eq!(2, txns.as_array().unwrap().len());
@@ -343,7 +344,7 @@ async fn test_get_transactions_output_user_transaction_with_script_payload() {
             .transaction_factory()
             .rotate_authentication_key_by_script(new_key),
     );
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let txns = context.get("/transactions?start=2").await;
     assert_eq!(1, txns.as_array().unwrap().len());
@@ -386,7 +387,7 @@ async fn test_get_transactions_output_user_transaction_with_module_payload() {
             .transaction_factory()
             .module(hex::decode(code).unwrap()),
     );
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let txns = context.get("/transactions?start=2").await;
     assert_eq!(1, txns.as_array().unwrap().len());
@@ -397,23 +398,27 @@ async fn test_get_transactions_output_user_transaction_with_module_payload() {
     assert_json(
         txns[0]["payload"].clone(),
         json!({
-            "type": "module_payload",
-            "bytecode": format!("0x{}", code),
-            "abi": {
-                "address": "0xb1e55ed",
-                "name": "MyModule",
-                "friends": [],
-                "exposed_functions": [
-                    {
-                        "name": "id",
-                        "visibility": "public",
-                        "generic_type_params": [],
-                        "params": [],
-                        "return": ["u8"]
+            "type": "module_bundle_payload",
+            "modules": [
+                {
+                    "bytecode": format!("0x{}", code),
+                    "abi": {
+                        "address": "0xb1e55ed",
+                        "name": "MyModule",
+                        "friends": [],
+                        "exposed_functions": [
+                            {
+                                "name": "id",
+                                "visibility": "public",
+                                "generic_type_params": [],
+                                "params": [],
+                                "return": ["u8"]
+                            }
+                        ],
+                        "structs": []
                     }
-                ],
-                "structs": []
-            }
+                },
+            ]
         }),
     )
 }
@@ -456,7 +461,7 @@ async fn test_get_transactions_output_user_transaction_with_write_set_payload() 
             vec![],
         )),
     );
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let txns = context.get("/transactions?start=2").await;
     assert_eq!(1, txns.as_array().unwrap().len());
@@ -559,7 +564,7 @@ async fn test_post_invalid_bcs_format_transaction() {
         resp,
         json!({
           "code": 400,
-          "message": "invalid request body: deserialize SignedTransaction BCS bytes failed"
+          "message": "invalid request body: deserialize error: unexpected end of input"
         }),
     );
 }
@@ -685,7 +690,7 @@ async fn test_multi_ed25519_signed_transaction() {
     let create_account_txn = tc_account.sign_with_transaction_builder(
         factory.create_parent_vasp_account(Currency::XUS, 0, auth_key, "vasp", true),
     );
-    context.commit_block(&vec![create_account_txn]);
+    context.commit_block(&vec![create_account_txn]).await;
 
     let raw_txn = factory
         .create_recovery_address()
@@ -742,7 +747,7 @@ async fn test_get_transaction_by_hash() {
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let txns = context.get("/transactions?start=2").await;
     assert_eq!(1, txns.as_array().unwrap().len());
@@ -814,7 +819,7 @@ async fn test_get_transaction_by_version() {
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let txns = context.get("/transactions?start=2").await;
     assert_eq!(1, txns.as_array().unwrap().len());
@@ -887,8 +892,10 @@ async fn test_signing_message_with_module_payload() {
             .module(hex::decode(code).unwrap()),
     );
     let payload = json!({
-            "type": "module_payload",
-            "bytecode": format!("0x{}", code),
+            "type": "module_bundle_payload",
+            "modules" : [
+                {"bytecode": format!("0x{}", code)},
+            ],
     });
 
     test_signing_message_with_payload(context, txn, payload).await;
@@ -1055,7 +1062,7 @@ async fn test_signing_message_with_payload(
         .post("/transactions", body)
         .await;
 
-    context.commit_mempool_txns(10);
+    context.commit_mempool_txns(10).await;
 
     let ledger = context.get("/").await;
     assert_eq!(ledger["ledger_version"].as_str().unwrap(), "2"); // one metadata + one txn
@@ -1066,7 +1073,7 @@ async fn test_get_account_transactions() {
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn]);
+    context.commit_block(&vec![txn]).await;
 
     let txns = context
         .get(format!("/accounts/{}/transactions", context.tc_account().address()).as_str())
@@ -1081,7 +1088,7 @@ async fn test_get_account_transactions_filter_transactions_by_start_sequence_num
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn]);
+    context.commit_block(&vec![txn]).await;
 
     let txns = context
         .get(
@@ -1100,7 +1107,7 @@ async fn test_get_account_transactions_filter_transactions_by_start_sequence_num
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn]);
+    context.commit_block(&vec![txn]).await;
 
     let txns = context
         .get(
@@ -1122,7 +1129,7 @@ async fn test_get_account_transactions_filter_transactions_by_limit() {
     let txn1 = context.create_parent_vasp_by_account(&mut tc_account, &account1);
     let account2 = context.gen_account();
     let txn2 = context.create_parent_vasp_by_account(&mut tc_account, &account2);
-    context.commit_block(&vec![txn1, txn2]);
+    context.commit_block(&vec![txn1, txn2]).await;
 
     let txns = context
         .get(
@@ -1341,7 +1348,9 @@ async fn test_get_txn_execute_failed_by_missing_script_function_arguments() {
 async fn test_get_txn_execute_failed_by_script_function_validation() {
     let mut context = new_test_context();
     let account = context.gen_account();
-    context.commit_block(&vec![context.create_parent_vasp(&account)]);
+    context
+        .commit_block(&vec![context.create_parent_vasp(&account)])
+        .await;
 
     test_get_txn_execute_failed_by_invalid_script_function(
         context,
@@ -1383,7 +1392,7 @@ async fn test_get_txn_execute_failed_by_script_function_execution_failure() {
     let module_txn = root_account
         .sign_with_transaction_builder(context.transaction_factory().module(hello_script_fun));
 
-    context.commit_block(&vec![module_txn]);
+    context.commit_block(&vec![module_txn]).await;
 
     test_get_txn_execute_failed_by_invalid_script_function(
         context,
@@ -1464,7 +1473,7 @@ async fn test_transaction_vm_status(
         .post_bcs_txn("/transactions", body)
         .await;
 
-    context.commit_mempool_txns(1);
+    context.commit_mempool_txns(1).await;
 
     let resp = context
         .get(format!("/transactions/{}", txn.committed_hash().to_hex_literal()).as_str())
@@ -1476,4 +1485,171 @@ async fn test_transaction_vm_status(
         pretty(&resp)
     );
     assert_eq!(resp["vm_status"].as_str().unwrap(), vm_status);
+}
+
+#[tokio::test]
+async fn test_submit_transaction_rejects_payload_too_large_bcs_txn_body() {
+    let context = new_test_context();
+
+    let resp = context
+        .expect_status_code(413)
+        .post_bcs_txn(
+            "/transactions",
+            gen_string(context.context.content_length_limit() + 1).as_bytes(),
+        )
+        .await;
+    assert_json(
+        resp,
+        json!({
+          "code": 413,
+          "message": "The request payload is too large"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_submit_transaction_rejects_payload_too_large_json_body() {
+    let context = new_test_context();
+
+    let resp = context
+        .expect_status_code(413)
+        .post(
+            "/transactions",
+            json!({
+                "data": gen_string(context.context.content_length_limit()+1).as_bytes(),
+            }),
+        )
+        .await;
+    assert_json(
+        resp,
+        json!({
+          "code": 413,
+          "message": "The request payload is too large"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_submit_transaction_rejects_invalid_content_type() {
+    let context = new_test_context();
+    let req = warp::test::request()
+        .header("content-type", "invalid")
+        .method("POST")
+        .body("text")
+        .path("/transactions");
+
+    let resp = context.expect_status_code(415).execute(req).await;
+    assert_json(
+        resp,
+        json!({
+            "code": 415,
+            "message": "The request's content-type is not supported"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_submit_transaction_rejects_invalid_json() {
+    let context = new_test_context();
+    let req = warp::test::request()
+        .header("content-type", "application/json")
+        .method("POST")
+        .body("invalid json")
+        .path("/transactions");
+
+    let resp = context.expect_status_code(400).execute(req).await;
+    assert_json(
+        resp,
+        json!({
+            "code": 400,
+            "message": "Request body deserialize error: expected value at line 1 column 1"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_create_signing_message_rejects_payload_too_large_json_body() {
+    let context = new_test_context();
+
+    let resp = context
+        .expect_status_code(413)
+        .post(
+            "/transactions/signing_message",
+            json!({
+                "data": gen_string(context.context.content_length_limit()+1).as_bytes(),
+            }),
+        )
+        .await;
+    assert_json(
+        resp,
+        json!({
+          "code": 413,
+          "message": "The request payload is too large"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_create_signing_message_rejects_invalid_content_type() {
+    let context = new_test_context();
+    let req = warp::test::request()
+        .header("content-type", "invalid")
+        .method("POST")
+        .body("text")
+        .path("/transactions/signing_message");
+
+    let resp = context.expect_status_code(415).execute(req).await;
+    assert_json(
+        resp,
+        json!({
+            "code": 415,
+            "message": "The request's content-type is not supported"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_create_signing_message_rejects_invalid_json() {
+    let context = new_test_context();
+    let req = warp::test::request()
+        .header("content-type", "application/json")
+        .method("POST")
+        .body("invalid json")
+        .path("/transactions/signing_message");
+
+    let resp = context.expect_status_code(400).execute(req).await;
+    assert_json(
+        resp,
+        json!({
+            "code": 400,
+            "message": "Request body deserialize error: expected value at line 1 column 1"
+        }),
+    );
+}
+
+#[tokio::test]
+async fn test_create_signing_message_rejects_no_content_length_request() {
+    let context = new_test_context();
+    let req = warp::test::request()
+        .header("content-type", "application/json")
+        .method("POST")
+        .path("/transactions/signing_message");
+
+    let resp = context.expect_status_code(411).execute(req).await;
+    assert_json(
+        resp,
+        json!({
+            "code": 411,
+            "message": "A content-length header is required"
+        }),
+    );
+}
+
+fn gen_string(len: u64) -> String {
+    let mut rng = thread_rng();
+    std::iter::repeat(())
+        .map(|()| rng.sample(Alphanumeric))
+        .take(len as usize)
+        .map(char::from)
+        .collect()
 }

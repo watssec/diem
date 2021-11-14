@@ -276,6 +276,7 @@ jobs:
           docker/build_push.sh -u -p -b ${BRANCH} -n validator || success=$(echo "validator" >> "${tmpfile}"; echo 1)
           docker/build_push.sh -u -p -b ${BRANCH} -n validator-tcb || success=$(echo "validator-tcb" >> "${tmpfile}"; echo 1)
           docker/build_push.sh -u -p -b ${BRANCH} -n cluster-test || success=$(echo "cluster-test" >> "${tmpfile}"; echo 1)
+          docker/build_push.sh -u -p -b ${BRANCH} -n forge || success=$(echo "forge" >> "${tmpfile}"; echo 1)
           if [[ "$success" == "1" ]]; then
             cat "${tmpfile}"
           fi
@@ -297,6 +298,7 @@ jobs:
           docker/build_push.sh -u -b ${BRANCH} -n validator || success=$(echo "validator" >> "${tmpfile}"; echo 1)
           docker/build_push.sh -u -b ${BRANCH} -n validator-tcb || success=$(echo "validator-tcb" >> "${tmpfile}"; echo 1)
           docker/build_push.sh -u -b ${BRANCH} -n cluster-test || success=$(echo "cluster-test" >> "${tmpfile}"; echo 1)
+          docker/build_push.sh -u -b ${BRANCH} -n forge || success=$(echo "forge" >> "${tmpfile}"; echo 1)
           if [[ "$success" == "1" ]]; then
             cat "${tmpfile}"
           fi
@@ -340,6 +342,8 @@ jobs:
           RUSTDOCFLAGS: "-Z unstable-options --enable-index-page"
           CARGO_INCREMENTAL: 0
           RUSTFLAGS: -D warnings
+      - name: Build API specification doc into target/doc/diem_api
+        run : npx redoc-cli bundle api/doc/openapi.yaml -o target/doc/diem_api/spec.html
       - name: Deploy Docs
         uses: peaceiris/actions-gh-pages@v3.8.0
         with:

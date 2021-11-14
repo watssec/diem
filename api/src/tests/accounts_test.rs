@@ -194,6 +194,7 @@ async fn test_get_module_diem_config() {
                 "0x1::DiemTransactionPublishingOption",
                 "0x1::DiemVMConfig",
                 "0x1::DiemVersion",
+                "0x1::ParallelExecutionConfig",
                 "0x1::RegisteredCurrencies"
             ],
             "exposed_functions": [
@@ -473,7 +474,7 @@ async fn test_get_account_resources_by_ledger_version() {
     let mut context = new_test_context();
     let account = context.gen_account();
     let txn = context.create_parent_vasp(&account);
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let ledger_version_1_resources = context
         .get(&account_resources(
@@ -546,7 +547,7 @@ async fn test_get_account_modules_by_ledger_version() {
             .transaction_factory()
             .module(hex::decode(code).unwrap()),
     );
-    context.commit_block(&vec![txn.clone()]);
+    context.commit_block(&vec![txn.clone()]).await;
 
     let modules = context
         .get(&account_modules(

@@ -5561,6 +5561,7 @@ a reconfiguration of the system.
 -  [`0x1::Hash`](../../../../../../../DPN/releases/artifacts/current/build/MoveStdlib/docs/Hash.md#0x1_Hash)
 -  [`0x1::NetworkIdentity`](NetworkIdentity.md#0x1_NetworkIdentity)
 -  [`0x1::Option`](../../../../../../../DPN/releases/artifacts/current/build/MoveStdlib/docs/Option.md#0x1_Option)
+-  [`0x1::ParallelExecutionConfig`](ParallelExecutionConfig.md#0x1_ParallelExecutionConfig)
 -  [`0x1::PaymentScripts`](script_documentation.md#0x1_PaymentScripts)
 -  [`0x1::RecoveryAddress`](RecoveryAddress.md#0x1_RecoveryAddress)
 -  [`0x1::RegisteredCurrencies`](RegisteredCurrencies.md#0x1_RegisteredCurrencies)
@@ -5578,7 +5579,6 @@ a reconfiguration of the system.
 -  [`0x1::ValidatorConfig`](ValidatorConfig.md#0x1_ValidatorConfig)
 -  [`0x1::ValidatorOperatorConfig`](ValidatorOperatorConfig.md#0x1_ValidatorOperatorConfig)
 -  [`0x1::Vector`](../../../../../../../DPN/releases/artifacts/current/build/MoveStdlib/docs/Vector.md#0x1_Vector)
--  [`0x1::Vote`](Vote.md#0x1_Vote)
 -  [`0x1::XDX`](XDX.md#0x1_XDX)
 -  [`0x1::XUS`](XUS.md#0x1_XUS)
 

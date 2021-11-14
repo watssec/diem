@@ -142,7 +142,7 @@ paths:
   /ledger/{ledger_version}/accounts/{address}/resources:
     get:
       summary: Get account resources by ledger version
-      operationId: get_account_resources_by_version
+      operationId: get_account_resources_by_ledger_version
       description: >-
         This API returns account resources for a specific ledger version (AKA transaction version).
 
@@ -183,7 +183,7 @@ paths:
 
 
         When the data is pruned, server responds 404.
-      operationId: get_account_modules_by_version
+      operationId: get_account_modules_by_ledger_version
       tags:
         - accounts
       parameters:
@@ -225,6 +225,8 @@ paths:
                   $ref: '#/components/schemas/OnChainTransaction'
         "400":
           $ref: '#/components/responses/400'
+        "404":
+          $ref: '#/components/responses/404'
         "500":
           $ref: '#/components/responses/500'
     post:
@@ -240,7 +242,7 @@ paths:
         **Submit transaction using signed transaction BCS bytes**
 
           * Generate Diem core types and transaction script functions for the client application langauge
-            by [Tranaction Builder](https://github.com/diem/diem/tree/main/language/transaction-builder/generator)
+            by [Tranaction Builder](https://github.com/diem/diem/tree/main/diem-move/transaction-builder-generator)
           * Create [RawTransaction](https://diem.github.io/diem/diem_types/transaction/struct.RawTransaction.html).
           * Create transaction signing message: bytes("DIEM::RawTransaction") + BCS bytes of the RawTransaction.
             See [Crypto Spec](https://github.com/diem/diem/blob/main/specifications/crypto/README.md) for more details.
@@ -273,6 +275,33 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PendingTransaction'
+        "400":
+          $ref: '#/components/responses/400'
+        "413":
+          $ref: '#/components/responses/413'
+        "415":
+          $ref: '#/components/responses/415'
+        "500":
+          $ref: '#/components/responses/500'
+  /accounts/{address}/transactions:
+    get:
+      summary: Get account transactions
+      operationId: get_account_transactions
+      tags:
+        - transactions
+      parameters:
+        - $ref: '#/components/parameters/AccountAddress'
+        - $ref: '#/components/parameters/StartVersion'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        "200":
+          description: Returns on-chain transactions, paginated.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OnChainTransaction'
         "400":
           $ref: '#/components/responses/400'
         "500":
@@ -368,12 +397,16 @@ paths:
           $ref: '#/components/responses/400'
         "404":
           $ref: '#/components/responses/404'
+        "413":
+          $ref: '#/components/responses/413'
+        "415":
+          $ref: '#/components/responses/415'
         "500":
           $ref: '#/components/responses/500'
   /events/{event_key}:
     get:
       summary: Get events by event key
-      operationId: get_events
+      operationId: get_events_by_event_key
       tags:
         - events
       parameters:
@@ -404,7 +437,7 @@ paths:
   /accounts/{address}/events/{event_handle_struct}/{field_name}:
     get:
       summary: Get events by event handle
-      operationId: get_account_events
+      operationId: get_events_by_event_handle
       description: >-
         This API extracts event key from the account resource identified
         by the `event_handle_struct` and `field_name`, then returns
@@ -486,6 +519,20 @@ components:
       description: >-
         Resource or data not found.
         Client may retry the request if it is waiting for transaction execution or ledger synchronization.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    "413":
+      description: >-
+        The request payload is too large.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    "415":
+      description: >-
+        The request's content-type is not supported.
       content:
         application/json:
           schema:
@@ -1067,14 +1114,14 @@ components:
       oneOf:
         - $ref: '#/components/schemas/ScriptFunctionPayload'
         - $ref: '#/components/schemas/ScriptPayload'
-        - $ref: '#/components/schemas/MoveModuleBytecodePayload'
+        - $ref: '#/components/schemas/ModuleBundlePayload'
         - $ref: '#/components/schemas/WriteSetPayload'
       discriminator:
         propertyName: type
         mapping:
           script_function_payload: '#/components/schemas/ScriptFunctionPayload'
           script_payload: '#/components/schemas/ScriptPayload'
-          move_module_bytecode_payload: '#/components/schemas/MoveModuleBytecodePayload'
+          module_bundle_payload: '#/components/schemas/ModuleBundlePayload'
           write_set_payload: '#/components/schemas/WriteSetPayload'
     ScriptFunctionPayload:
       type: object
@@ -1136,19 +1183,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MoveValue'
-    MoveModuleBytecodePayload:
+    ModuleBundlePayload:
       type: object
       required:
         - type
-        - bytecode
+        - modules
       properties:
         type:
           type: string
-          example: move_module_bytecode_payload
-        bytecode:
-          $ref: '#/components/schemas/HexEncodedBytes'
-        abi:
-          $ref: '#/components/schemas/MoveModule'
+          example: module_bundle_payload
+        modules:
+          type: array
+          items:
+            $ref: '#/components/schemas/MoveModuleBytecode'
     WriteSetPayload:
       type: object
       required:

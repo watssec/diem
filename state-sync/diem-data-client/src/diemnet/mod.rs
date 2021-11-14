@@ -3,10 +3,10 @@
 
 use crate::{
     AdvertisedData, DiemDataClient, Error, GlobalDataSummary, OptimalChunkSizes, Response,
-    ResponseError, Result,
+    ResponseCallback, ResponseContext, ResponseError, ResponseId, Result,
 };
 use async_trait::async_trait;
-use diem_config::network_id::PeerNetworkId;
+use diem_config::{config::StorageServiceConfig, network_id::PeerNetworkId};
 use diem_id_generator::{IdGenerator, U64IdGenerator};
 use diem_infallible::RwLock;
 use diem_logger::trace;
@@ -26,7 +26,7 @@ use network::{
     protocols::{rpc::error::RpcError, wire::handshake::v1::ProtocolId},
 };
 use rand::seq::SliceRandom;
-use std::{collections::HashMap, convert::TryFrom, sync::Arc, time::Duration};
+use std::{collections::HashMap, convert::TryFrom, fmt, sync::Arc, time::Duration};
 use storage_service_client::StorageServiceClient;
 use storage_service_types::{
     AccountStatesChunkWithProofRequest, Epoch, EpochEndingLedgerInfoRequest, StorageServerSummary,
@@ -76,12 +76,13 @@ pub struct DiemNetDataClient {
 
 impl DiemNetDataClient {
     pub fn new(
+        config: StorageServiceConfig,
         time_service: TimeService,
         network_client: StorageServiceClient,
     ) -> (Self, DataSummaryPoller) {
         let client = Self {
             network_client,
-            peer_states: Arc::new(RwLock::new(PeerStates::new())),
+            peer_states: Arc::new(RwLock::new(PeerStates::new(config))),
             global_summary_cache: Arc::new(RwLock::new(GlobalDataSummary::empty())),
             response_id_generator: Arc::new(U64IdGenerator::new()),
         };
@@ -169,17 +170,19 @@ impl DiemNetDataClient {
     {
         let response = self.send_request_to_peer(peer, request).await?;
 
-        let id = response.id;
+        let (context, payload) = response.into_parts();
 
         // try to convert the storage service enum into the exact variant we're expecting.
-        let result = response.and_then(T::try_from).map_err(Into::into);
-
-        // if the variant doesn't match what we're expecting, report the issue.
-        if result.is_err() {
-            self.notify_bad_response(id, ResponseError::InvalidPayloadDataType);
+        match T::try_from(payload) {
+            Ok(new_payload) => Ok(Response::new(context, new_payload)),
+            // if the variant doesn't match what we're expecting, report the issue.
+            Err(err) => {
+                context
+                    .response_callback
+                    .notify_bad_response(ResponseError::InvalidPayloadDataType);
+                Err(err.into())
+            }
         }
-
-        result
     }
 
     async fn send_request_to_peer(
@@ -187,48 +190,66 @@ impl DiemNetDataClient {
         peer: PeerNetworkId,
         request: StorageServiceRequest,
     ) -> Result<Response<StorageServiceResponse>, Error> {
-        let response_id = self.next_response_id();
+        let id = self.next_response_id();
         let result = self
             .network_client
-            .send_request(peer, request, DEFAULT_TIMEOUT)
+            .send_request(peer, request.clone(), DEFAULT_TIMEOUT)
             .await;
-        let storage_response = match result {
-            Ok(response) => Ok(response),
-            Err(storage_service_client::Error::RpcError(err)) => match err {
-                RpcError::NotConnected(_) => Err(Error::DataIsUnavailable(err.to_string())),
-                RpcError::TimedOut => Err(Error::TimeoutWaitingForResponse(err.to_string())),
-                _ => Err(Error::UnexpectedErrorEncountered(err.to_string())),
-            },
-            Err(storage_service_client::Error::StorageServiceError(err)) => {
-                Err(Error::UnexpectedErrorEncountered(err.to_string()))
-            }
-        }?;
-        // TODO(philiphayes): update peer scores on error
-        Ok(Response::new(response_id, storage_response))
-    }
-}
 
-/// Calculate `(start..=end).len()`. Returns an error if `end < start` or
-/// `end == u64::MAX`.
-fn range_len(start: u64, end: u64) -> Result<u64, Error> {
-    // len = end - start + 1
-    let len = end.checked_sub(start).ok_or_else(|| {
-        Error::InvalidRequest(format!("end ({}) must be >= start ({})", end, start))
-    })?;
-    let len = len
-        .checked_add(1)
-        .ok_or_else(|| Error::InvalidRequest(format!("end ({}) must not be u64::MAX", end)))?;
-    Ok(len)
+        // convert network error and storage service error types into data client
+        // errors.
+        let result = result.map_err(|err| match err {
+            storage_service_client::Error::RpcError(err) => match err {
+                RpcError::NotConnected(_) => Error::DataIsUnavailable(err.to_string()),
+                RpcError::TimedOut => Error::TimeoutWaitingForResponse(err.to_string()),
+                _ => Error::UnexpectedErrorEncountered(err.to_string()),
+            },
+            storage_service_client::Error::StorageServiceError(err) => {
+                Error::UnexpectedErrorEncountered(err.to_string())
+            }
+        });
+
+        match result {
+            Ok(response) => {
+                let data_client = self.clone();
+                // package up all of the context needed to fully report an error
+                // with this RPC.
+                let response_callback = DiemNetResponseCallback {
+                    data_client,
+                    id,
+                    peer,
+                    request,
+                };
+                let context = ResponseContext {
+                    id,
+                    response_callback: Box::new(response_callback),
+                };
+                Ok(Response::new(context, response))
+            }
+            Err(err) => {
+                // TODO(philiphayes): convert `err` into `ResponseError`
+                let error_type = ResponseError::InvalidData;
+                self.notify_bad_response(id, peer, &request, error_type);
+                Err(err)
+            }
+        }
+    }
+
+    fn notify_bad_response(
+        &self,
+        _id: ResponseId,
+        _peer: PeerNetworkId,
+        _request: &StorageServiceRequest,
+        _error: ResponseError,
+    ) {
+        // TODO(philiphayes): update peer score
+    }
 }
 
 #[async_trait]
 impl DiemDataClient for DiemNetDataClient {
     fn get_global_data_summary(&self) -> GlobalDataSummary {
         self.global_summary_cache.read().clone()
-    }
-
-    fn notify_bad_response(&self, _response_id: u64, _response_error: ResponseError) {
-        todo!()
     }
 
     async fn get_account_states_with_proof(
@@ -241,7 +262,7 @@ impl DiemDataClient for DiemNetDataClient {
             AccountStatesChunkWithProofRequest {
                 version,
                 start_account_index,
-                expected_num_account_states: range_len(start_account_index, end_account_index)?,
+                end_account_index,
             },
         );
         self.send_request_and_decode(request).await
@@ -276,7 +297,7 @@ impl DiemDataClient for DiemNetDataClient {
             TransactionOutputsWithProofRequest {
                 proof_version,
                 start_version,
-                expected_num_outputs: range_len(start_version, end_version)?,
+                end_version,
             },
         );
         self.send_request_and_decode(request).await
@@ -293,10 +314,36 @@ impl DiemDataClient for DiemNetDataClient {
             StorageServiceRequest::GetTransactionsWithProof(TransactionsWithProofRequest {
                 proof_version,
                 start_version,
-                expected_num_transactions: range_len(start_version, end_version)?,
+                end_version,
                 include_events,
             });
         self.send_request_and_decode(request).await
+    }
+}
+
+/// The DiemNet-specific request context needed to update a peer's scoring.
+struct DiemNetResponseCallback {
+    data_client: DiemNetDataClient,
+    id: ResponseId,
+    peer: PeerNetworkId,
+    request: StorageServiceRequest,
+}
+
+impl ResponseCallback for DiemNetResponseCallback {
+    fn notify_bad_response(&self, error: ResponseError) {
+        self.data_client
+            .notify_bad_response(self.id, self.peer, &self.request, error);
+    }
+}
+
+impl fmt::Debug for DiemNetResponseCallback {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("DiemNetResponseCallback")
+            .field("data_client", &"..")
+            .field("id", &self.id)
+            .field("peer", &self.peer)
+            .field("request", &self.request)
+            .finish()
     }
 }
 
@@ -387,12 +434,14 @@ struct PeerState {
 /// advertisements and data-client internal metadata for scoring.
 #[derive(Debug)]
 struct PeerStates {
+    config: StorageServiceConfig,
     inner: HashMap<PeerNetworkId, PeerState>,
 }
 
 impl PeerStates {
-    fn new() -> Self {
+    fn new(config: StorageServiceConfig) -> Self {
         Self {
+            config,
             inner: HashMap::new(),
         }
     }
@@ -470,13 +519,13 @@ impl PeerStates {
         // TODO(philiphayes): move these constants somewhere?
         let aggregate_chunk_sizes = OptimalChunkSizes {
             account_states_chunk_size: median(&mut max_account_states_chunk_sizes)
-                .unwrap_or(storage_service_server::MAX_ACCOUNT_STATES_CHUNK_SIZE),
+                .unwrap_or(self.config.max_account_states_chunk_sizes),
             epoch_chunk_size: median(&mut max_epoch_chunk_sizes)
-                .unwrap_or(storage_service_server::MAX_EPOCH_CHUNK_SIZE),
+                .unwrap_or(self.config.max_epoch_chunk_size),
             transaction_chunk_size: median(&mut max_transaction_chunk_sizes)
-                .unwrap_or(storage_service_server::MAX_TRANSACTION_CHUNK_SIZE),
+                .unwrap_or(self.config.max_transaction_chunk_size),
             transaction_output_chunk_size: median(&mut max_transaction_output_chunk_sizes)
-                .unwrap_or(storage_service_server::MAX_TRANSACTION_OUTPUT_CHUNK_SIZE),
+                .unwrap_or(self.config.max_transaction_output_chunk_size),
         };
 
         GlobalDataSummary {

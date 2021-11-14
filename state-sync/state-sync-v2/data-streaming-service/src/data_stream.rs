@@ -3,17 +3,17 @@
 
 use crate::{
     data_notification,
-    data_notification::{
-        DataClientRequest, DataClientResponse, DataNotification, DataPayload, NotificationId,
-    },
+    data_notification::{DataClientRequest, DataNotification, DataPayload, NotificationId},
     error::Error,
     logging::{LogEntry, LogEvent, LogSchema},
-    stream_progress_tracker::{DataStreamTracker, StreamProgressTracker},
+    stream_engine::{DataStreamEngine, StreamEngine},
     streaming_client::{NotificationFeedback, StreamRequest},
 };
 use channel::{diem_channel, message_queues::QueueStyle};
+use diem_config::config::DataStreamingServiceConfig;
 use diem_data_client::{
-    AdvertisedData, DiemDataClient, GlobalDataSummary, ResponseError, ResponseId, ResponsePayload,
+    AdvertisedData, DiemDataClient, GlobalDataSummary, Response, ResponseContext, ResponseError,
+    ResponsePayload,
 };
 use diem_id_generator::{IdGenerator, U64IdGenerator};
 use diem_infallible::Mutex;
@@ -26,21 +26,6 @@ use std::{
     task::{Context, Poll},
 };
 use tokio::task::JoinHandle;
-
-// Maximum channel sizes for each stream listener. If messages are not
-// consumed, they will be dropped (oldest messages first). The remaining
-// messages will be retrieved using FIFO ordering.
-const DATA_STREAM_CHANNEL_SIZE: usize = 1000;
-
-// Maximum number of concurrent data client requests (per stream)
-const MAX_CONCURRENT_REQUESTS: u64 = 3;
-
-// Maximum number of retries for a single client request before the stream terminates
-pub const MAX_REQUEST_RETRY: u64 = 10;
-
-// Maximum number of notification ID to response ID mappings held in memory.
-// Once the number of mappings grow beyond this value, garbage collection occurs.
-pub const MAX_NOTIFICATION_ID_MAPPINGS: u64 = 2000;
 
 /// A unique ID used to identify each stream.
 pub type DataStreamId = u64;
@@ -58,14 +43,17 @@ pub type PendingClientResponse = Arc<Mutex<Box<data_notification::PendingClientR
 /// proofs must be sent with monotonically increasing versions).
 #[derive(Debug)]
 pub struct DataStream<T> {
+    // The configuration for this data stream
+    config: DataStreamingServiceConfig,
+
     // The unique ID for this data stream. This is useful for logging.
     data_stream_id: DataStreamId,
 
     // The data client through which to fetch data from the Diem network
     diem_data_client: T,
 
-    // The fulfillment progress tracker for this data stream
-    stream_progress_tracker: StreamProgressTracker,
+    // The engine for this data stream
+    stream_engine: StreamEngine,
 
     // The current queue of data client requests and pending responses. When the
     // request at the head of the queue completes (i.e., we receive a response),
@@ -76,9 +64,8 @@ pub struct DataStream<T> {
     // the case the stream is terminated prematurely.
     spawned_tasks: Vec<JoinHandle<()>>,
 
-    // Maps a notification ID (sent along the data stream) to a response ID
-    // received from the data client. This is useful for providing feedback.
-    notifications_to_responses: BTreeMap<NotificationId, ResponseId>,
+    // Maps a notification ID (sent along the data stream) to a response context.
+    notifications_to_responses: BTreeMap<NotificationId, ResponseContext>,
 
     // The channel on which to send data notifications when they are ready.
     notification_sender: channel::diem_channel::Sender<(), DataNotification>,
@@ -97,6 +84,7 @@ pub struct DataStream<T> {
 
 impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
     pub fn new(
+        config: DataStreamingServiceConfig,
         data_stream_id: DataStreamId,
         stream_request: &StreamRequest,
         diem_data_client: T,
@@ -104,18 +92,22 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
         advertised_data: &AdvertisedData,
     ) -> Result<(Self, DataStreamListener), Error> {
         // Create a new data stream listener
-        let (notification_sender, notification_receiver) =
-            diem_channel::new(QueueStyle::KLAST, DATA_STREAM_CHANNEL_SIZE, None);
+        let (notification_sender, notification_receiver) = diem_channel::new(
+            QueueStyle::KLAST,
+            config.max_data_stream_channel_sizes as usize,
+            None,
+        );
         let data_stream_listener = DataStreamListener::new(notification_receiver);
 
-        // Create a new stream progress tracker
-        let stream_progress_tracker = StreamProgressTracker::new(stream_request, advertised_data)?;
+        // Create a new stream engine
+        let stream_engine = StreamEngine::new(stream_request, advertised_data)?;
 
         // Create a new data stream
         let data_stream = Self {
+            config,
             data_stream_id,
             diem_data_client,
-            stream_progress_tracker,
+            stream_engine,
             sent_data_requests: None,
             spawned_tasks: vec![],
             notifications_to_responses: BTreeMap::new(),
@@ -160,7 +152,7 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
 
     /// Notifies the Diem data client of a bad client response
     pub fn handle_notification_feedback(
-        &mut self,
+        &self,
         notification_id: &NotificationId,
         notification_feedback: &NotificationFeedback,
     ) -> Result<(), Error> {
@@ -175,17 +167,17 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
             };
         }
 
-        let response_id = *self
+        let response_context = self
             .notifications_to_responses
             .get(notification_id)
             .ok_or_else(|| {
                 Error::UnexpectedErrorEncountered(format!(
-                    "Response ID missing for notification ID: {:?}",
+                    "Response context missing for notification ID: {:?}",
                     notification_id
                 ))
             })?;
         let response_error = extract_response_error(notification_feedback);
-        self.notify_bad_response(response_id, response_error);
+        self.notify_bad_response(response_context, response_error);
 
         Ok(())
     }
@@ -197,7 +189,9 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
     ) -> Result<(), Error> {
         // Determine how many requests (at most) can be sent to the network
         let num_sent_requests = self.get_sent_data_requests().len() as u64;
-        let max_num_requests_to_send = MAX_CONCURRENT_REQUESTS
+        let max_num_requests_to_send = self
+            .config
+            .max_concurrent_requests
             .checked_sub(num_sent_requests)
             .ok_or_else(|| {
                 Error::IntegerOverflow("Max number of requests to send has overflown!".into())
@@ -205,7 +199,7 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
 
         if max_num_requests_to_send > 0 {
             for client_request in self
-                .stream_progress_tracker
+                .stream_engine
                 .create_data_client_requests(max_num_requests_to_send, global_data_summary)?
             {
                 // Send the client request
@@ -333,8 +327,8 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
         &mut self,
         global_data_summary: GlobalDataSummary,
     ) -> Result<(), Error> {
-        if self.stream_progress_tracker.is_stream_complete()
-            || self.request_failure_count >= MAX_REQUEST_RETRY
+        if self.stream_engine.is_stream_complete()
+            || self.request_failure_count >= self.config.max_request_retry
         {
             if self.stream_end_notification_id.is_none() {
                 self.send_end_of_stream_notification()?;
@@ -343,33 +337,29 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
         }
 
         // Process any ready data responses
-        for _ in 0..MAX_CONCURRENT_REQUESTS {
+        for _ in 0..self.config.max_concurrent_requests {
             if let Some(pending_response) = self.pop_pending_response_queue() {
-                let pending_response = pending_response.lock();
+                let mut pending_response = pending_response.lock();
                 let client_response = pending_response
                     .client_response
-                    .as_ref()
+                    .take()
                     .expect("The client response should be ready!");
+                let client_request = &pending_response.client_request;
+
                 match client_response {
                     Ok(client_response) => {
-                        if sanity_check_client_response(
-                            &pending_response.client_request,
-                            client_response,
-                        ) {
-                            self.send_data_notification_to_client(
-                                &pending_response.client_request,
-                                client_response,
-                            )?;
+                        if sanity_check_client_response(client_request, &client_response) {
+                            self.send_data_notification_to_client(client_request, client_response)?;
                         } else {
                             self.handle_sanity_check_failure(
-                                &pending_response.client_request,
-                                client_response,
+                                client_request,
+                                &client_response.context,
                             )?;
                             break;
                         }
                     }
                     Err(error) => {
-                        self.handle_data_client_error(&pending_response.client_request, error)?;
+                        self.handle_data_client_error(client_request, &error)?;
                         break;
                     }
                 }
@@ -403,17 +393,14 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
     fn handle_sanity_check_failure(
         &mut self,
         data_client_request: &DataClientRequest,
-        data_client_response: &DataClientResponse,
+        response_context: &ResponseContext,
     ) -> Result<(), Error> {
         error!(LogSchema::new(LogEntry::ReceivedDataResponse)
             .stream_id(self.data_stream_id)
             .event(LogEvent::Error)
             .message("Encountered a client response that failed the sanity checks!"));
 
-        self.notify_bad_response(
-            data_client_response.id,
-            ResponseError::InvalidPayloadDataType,
-        );
+        self.notify_bad_response(response_context, ResponseError::InvalidPayloadDataType);
         self.resend_data_client_request(data_client_request)
     }
 
@@ -453,7 +440,12 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
     }
 
     /// Notifies the Diem data client of a bad client response
-    fn notify_bad_response(&self, response_id: ResponseId, response_error: ResponseError) {
+    fn notify_bad_response(
+        &self,
+        response_context: &ResponseContext,
+        response_error: ResponseError,
+    ) {
+        let response_id = response_context.id;
         info!(LogSchema::new(LogEntry::ReceivedDataResponse)
             .stream_id(self.data_stream_id)
             .event(LogEvent::Error)
@@ -462,28 +454,31 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
                 response_id, response_error
             )));
 
-        self.diem_data_client
-            .notify_bad_response(response_id, response_error);
+        response_context
+            .response_callback
+            .notify_bad_response(response_error);
     }
 
     /// Sends a data notification to the client along the stream
     fn send_data_notification_to_client(
         &mut self,
         data_client_request: &DataClientRequest,
-        data_client_response: &DataClientResponse,
+        data_client_response: Response<ResponsePayload>,
     ) -> Result<(), Error> {
+        let (response_context, response_payload) = data_client_response.into_parts();
+
         // Create a new data notification
         if let Some(data_notification) = self
-            .stream_progress_tracker
+            .stream_engine
             .transform_client_response_into_notification(
                 data_client_request,
-                data_client_response,
+                response_payload,
                 self.notification_id_generator.clone(),
             )?
         {
-            // Save the data notification ID and response ID
+            // Save the response context for this notification ID
             let notification_id = data_notification.notification_id;
-            self.insert_notification_response_mapping(notification_id, data_client_response.id)?;
+            self.insert_notification_response_mapping(notification_id, response_context)?;
 
             // Send the notification along the stream
             debug!(
@@ -507,25 +502,28 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
     fn insert_notification_response_mapping(
         &mut self,
         notification_id: NotificationId,
-        response_id: ResponseId,
+        response_context: ResponseContext,
     ) -> Result<(), Error> {
-        if let Some(response_id) = self
+        if let Some(response_context) = self
             .notifications_to_responses
-            .insert(notification_id, response_id)
+            .insert(notification_id, response_context)
         {
             panic!(
-                "Duplicate sent notification ID found! Notification ID: {:?}, Response ID: {:?}",
-                notification_id, response_id,
+                "Duplicate sent notification ID found! \
+                 Notification ID: {:?}, \
+                 previous Response context: {:?}",
+                notification_id, response_context,
             );
         }
         self.garbage_collect_notification_response_map()
     }
 
     fn garbage_collect_notification_response_map(&mut self) -> Result<(), Error> {
+        let max_notification_id_mappings = self.config.max_notification_id_mappings;
         let map_length = self.notifications_to_responses.len() as u64;
-        if map_length > MAX_NOTIFICATION_ID_MAPPINGS {
+        if map_length > max_notification_id_mappings {
             let num_entries_to_remove = map_length
-                .checked_sub(MAX_NOTIFICATION_ID_MAPPINGS)
+                .checked_sub(max_notification_id_mappings)
                 .ok_or_else(|| {
                     Error::IntegerOverflow("Number of entries to remove has overflown!".into())
                 })?;
@@ -564,12 +562,12 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
     /// currently advertised data in the network. If not, returns an error.
     pub fn ensure_data_is_available(&self, advertised_data: &AdvertisedData) -> Result<(), Error> {
         if !self
-            .stream_progress_tracker
+            .stream_engine
             .is_remaining_data_available(advertised_data)
         {
             return Err(Error::DataIsUnavailable(format!(
-                "Unable to satisfy stream progress tracker: {:?}, with advertised data: {:?}",
-                self.stream_progress_tracker, advertised_data
+                "Unable to satisfy stream engine: {:?}, with advertised data: {:?}",
+                self.stream_engine, advertised_data
             )));
         }
         Ok(())
@@ -589,7 +587,7 @@ impl<T: DiemDataClient + Send + Clone + 'static> DataStream<T> {
         &mut self,
     ) -> (
         &mut Option<VecDeque<PendingClientResponse>>,
-        &mut BTreeMap<NotificationId, ResponseId>,
+        &mut BTreeMap<NotificationId, ResponseContext>,
     ) {
         let sent_requests = &mut self.sent_data_requests;
         let sent_notifications = &mut self.notifications_to_responses;
@@ -641,7 +639,7 @@ impl FusedStream for DataStreamListener {
 /// of the original request. No other sanity checks are done.
 fn sanity_check_client_response(
     data_client_request: &DataClientRequest,
-    data_client_response: &DataClientResponse,
+    data_client_response: &Response<ResponsePayload>,
 ) -> bool {
     match data_client_request {
         DataClientRequest::AccountsWithProof(_) => {

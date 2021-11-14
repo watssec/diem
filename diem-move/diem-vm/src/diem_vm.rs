@@ -8,7 +8,7 @@ use crate::{
         validate_signed_transaction, PreprocessedTransaction, VMAdapter,
     },
     counters::*,
-    data_cache::StateViewCache,
+    data_cache::{RemoteStorage, StateViewCache},
     diem_vm_impl::{
         charge_global_write_gas_usage, convert_changeset_and_events, get_currency_info,
         get_gas_currency_code, get_transaction_output, DiemVMImpl, DiemVMInternals,
@@ -26,9 +26,12 @@ use diem_state_view::StateView;
 use diem_types::{
     account_config,
     block_metadata::BlockMetadata,
-    on_chain_config::{DiemVersion, VMConfig, VMPublishingOption, DIEM_VERSION_2, DIEM_VERSION_3},
+    on_chain_config::{
+        DiemVersion, OnChainConfig, ParallelExecutionConfig, VMConfig, VMPublishingOption,
+        DIEM_VERSION_2, DIEM_VERSION_3,
+    },
     transaction::{
-        ChangeSet, Module, SignatureCheckedTransaction, SignedTransaction, Transaction,
+        ChangeSet, ModuleBundle, SignatureCheckedTransaction, SignedTransaction, Transaction,
         TransactionOutput, TransactionPayload, TransactionStatus, VMValidatorResult,
         WriteSetPayload,
     },
@@ -46,6 +49,7 @@ use move_core_types::{
 };
 use move_vm_runtime::session::Session;
 use move_vm_types::gas_schedule::GasStatus;
+use read_write_set_dynamic::NormalizedReadWriteSetAnalysis;
 use std::{
     collections::HashSet,
     convert::{AsMut, AsRef},
@@ -248,7 +252,7 @@ impl DiemVM {
                         gas_status,
                     )
                 }
-                TransactionPayload::Module(_) | TransactionPayload::WriteSet(_) => {
+                TransactionPayload::ModuleBundle(_) | TransactionPayload::WriteSet(_) => {
                     return Err(VMStatus::Error(StatusCode::UNREACHABLE));
                 }
             }
@@ -266,12 +270,12 @@ impl DiemVM {
         }
     }
 
-    fn execute_module<S: MoveResolver>(
+    fn execute_modules<S: MoveResolver>(
         &self,
         mut session: Session<S>,
         gas_status: &mut GasStatus,
         txn_data: &TransactionMetadata,
-        module: &Module,
+        modules: &ModuleBundle,
         account_currency_symbol: &IdentStr,
         log_context: &AdapterLogSchema,
     ) -> Result<(VMStatus, TransactionOutput), VMStatus> {
@@ -293,7 +297,7 @@ impl DiemVM {
             .map_err(|e| e.into_vm_status())?;
 
         session
-            .publish_module(module.code().to_vec(), module_address, gas_status)
+            .publish_module_bundle(modules.clone().into_inner(), module_address, gas_status)
             .map_err(|e| e.into_vm_status())?;
 
         charge_global_write_gas_usage(gas_status, &session, &txn_data.sender())?;
@@ -360,7 +364,7 @@ impl DiemVM {
                     &account_currency_symbol,
                     log_context,
                 ),
-            TransactionPayload::Module(m) => self.execute_module(
+            TransactionPayload::ModuleBundle(m) => self.execute_modules(
                 session,
                 &mut gas_status,
                 &txn_data,
@@ -579,7 +583,7 @@ impl DiemVM {
             storage,
             match txn.payload() {
                 TransactionPayload::WriteSet(writeset_payload) => writeset_payload,
-                TransactionPayload::Module(_)
+                TransactionPayload::ModuleBundle(_)
                 | TransactionPayload::Script(_)
                 | TransactionPayload::ScriptFunction(_) => {
                     log_context.alert();
@@ -717,11 +721,29 @@ impl VMExecutor for DiemVM {
             ))
         });
 
-        let output = Self::execute_block_and_keep_vm_status(transactions, state_view)?;
-        Ok(output
-            .into_iter()
-            .map(|(_vm_status, txn_output)| txn_output)
-            .collect())
+        // Execute transactions in parallel if on chain config is set and loaded.
+        if let Some(read_write_set_analysis) =
+            ParallelExecutionConfig::fetch_config(&RemoteStorage::new(state_view))
+                .and_then(|config| config.read_write_analysis_result)
+                .map(|config| config.into_inner())
+        {
+            let analysis_reuslt = NormalizedReadWriteSetAnalysis::new(read_write_set_analysis);
+
+            // Note that writeset transactions will be executed sequentially as it won't be inferred
+            // by the read write set analysis and thus fall into the sequential path.
+            let (result, _) = crate::parallel_executor::ParallelDiemVM::execute_block(
+                &analysis_reuslt,
+                transactions,
+                state_view,
+            )?;
+            Ok(result)
+        } else {
+            let output = Self::execute_block_and_keep_vm_status(transactions, state_view)?;
+            Ok(output
+                .into_iter()
+                .map(|(_vm_status, txn_output)| txn_output)
+                .collect())
+        }
     }
 }
 
@@ -810,7 +832,7 @@ impl VMAdapter for DiemVM {
                 self.0
                     .run_script_prologue(session, &txn_data, &currency_code, log_context)
             }
-            TransactionPayload::Module(_module) => {
+            TransactionPayload::ModuleBundle(_module) => {
                 self.0.check_gas(&txn_data, log_context)?;
                 self.0
                     .run_module_prologue(session, &txn_data, &currency_code, log_context)

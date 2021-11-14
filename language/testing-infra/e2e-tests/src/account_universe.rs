@@ -29,7 +29,7 @@ use crate::{
 };
 use diem_crypto::ed25519::{Ed25519PrivateKey, Ed25519PublicKey};
 use diem_types::{
-    transaction::{SignedTransaction, Transaction, TransactionStatus},
+    transaction::{SignedTransaction, TransactionStatus},
     vm_status::{known_locations, KeptVMStatus, StatusCode},
 };
 use once_cell::sync::Lazy;
@@ -382,18 +382,9 @@ pub fn run_and_assert_universe(
         .iter()
         .map(|transaction_gen| transaction_gen.clone().apply(&mut universe))
         .unzip();
-    let outputs = executor.execute_block(transactions.clone()).unwrap();
-    let outputs_parallel = executor
-        .execute_transaction_block_parallel(
-            transactions
-                .into_iter()
-                .map(Transaction::UserTransaction)
-                .collect(),
-        )
-        .unwrap();
+    let outputs = executor.execute_block(transactions).unwrap();
 
     prop_assert_eq!(outputs.len(), expected_values.len());
-    prop_assert_eq!(outputs.clone(), outputs_parallel);
 
     for (idx, (output, expected)) in outputs.iter().zip(&expected_values).enumerate() {
         prop_assert!(

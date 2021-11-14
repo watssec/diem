@@ -10,6 +10,9 @@ compiled_package_info:
     VMReserved: "00000000000000000000000000000000"
   module_resolution_metadata:
     ? address: "00000000000000000000000000000001"
+      name: ASCII
+    : Std
+    ? address: "00000000000000000000000000000001"
       name: AccountAdministrationScripts
     : DiemFramework
     ? address: "00000000000000000000000000000001"
@@ -100,11 +103,23 @@ compiled_package_info:
       name: Hash
     : Std
     ? address: "00000000000000000000000000000001"
+      name: MultiToken
+    : DiemFramework
+    ? address: "00000000000000000000000000000001"
+      name: MultiTokenBalance
+    : DiemFramework
+    ? address: "00000000000000000000000000000001"
+      name: NFT
+    : DiemFramework
+    ? address: "00000000000000000000000000000001"
       name: NetworkIdentity
     : DiemFramework
     ? address: "00000000000000000000000000000001"
       name: Option
     : Std
+    ? address: "00000000000000000000000000000001"
+      name: ParallelExecutionConfig
+    : DiemFramework
     ? address: "00000000000000000000000000000001"
       name: PaymentScripts
     : DiemFramework
@@ -162,13 +177,13 @@ compiled_package_info:
     ? address: "00000000000000000000000000000001"
       name: XUS
     : DiemFramework
-  source_digest: ABFBD2F233D4F76C092094C0FA1CDF391912C687555AA1D3229E36E760EC149B
+  source_digest: D1CC658BBA61AA8670B36176B656A4EA045C3025A39FA1B7F736A4D23710748A
   build_flags:
     dev_mode: false
     test_mode: false
     generate_docs: true
     generate_abis: true
     install_dir: experimental/releases/artifacts/current
+    force_recompilation: false
 dependencies:
   - MoveStdlib
-  - DiemCoreFramework

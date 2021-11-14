@@ -3,12 +3,9 @@
 
 use crate::{
     data_notification::{
-        DataClientRequest, DataClientResponse, DataPayload, EpochEndingLedgerInfosRequest,
-        PendingClientResponse,
+        DataClientRequest, DataPayload, EpochEndingLedgerInfosRequest, PendingClientResponse,
     },
-    data_stream::{
-        DataStream, DataStreamListener, MAX_NOTIFICATION_ID_MAPPINGS, MAX_REQUEST_RETRY,
-    },
+    data_stream::{DataStream, DataStreamListener},
     streaming_client::{
         GetAllAccountsRequest, GetAllEpochEndingLedgerInfosRequest, GetAllTransactionsRequest,
         NotificationFeedback, StreamRequest,
@@ -16,14 +13,16 @@ use crate::{
     tests::utils::{
         create_data_client_response, create_ledger_info, create_random_u64,
         create_transaction_list_with_proof, get_data_notification, initialize_logger,
-        MockDiemDataClient, MAX_ADVERTISED_ACCOUNTS, MAX_ADVERTISED_EPOCH,
+        MockDiemDataClient, NoopResponseCallback, MAX_ADVERTISED_ACCOUNTS, MAX_ADVERTISED_EPOCH,
         MAX_ADVERTISED_TRANSACTION_OUTPUT, MAX_NOTIFICATION_TIMEOUT_SECS, MIN_ADVERTISED_ACCOUNTS,
         MIN_ADVERTISED_EPOCH, MIN_ADVERTISED_TRANSACTION_OUTPUT,
     },
 };
 use claim::{assert_err, assert_ge, assert_none, assert_ok};
+use diem_config::config::DataStreamingServiceConfig;
 use diem_data_client::{
-    AdvertisedData, GlobalDataSummary, OptimalChunkSizes, Response, ResponsePayload,
+    AdvertisedData, GlobalDataSummary, OptimalChunkSizes, Response, ResponseContext,
+    ResponsePayload,
 };
 use diem_id_generator::U64IdGenerator;
 use diem_infallible::Mutex;
@@ -36,7 +35,9 @@ use tokio::time::timeout;
 #[tokio::test]
 async fn test_stream_blocked() {
     // Create an account stream
-    let (mut data_stream, mut stream_listener) = create_account_stream(MIN_ADVERTISED_ACCOUNTS);
+    let streaming_service_config = DataStreamingServiceConfig::default();
+    let (mut data_stream, mut stream_listener) =
+        create_account_stream(streaming_service_config, MIN_ADVERTISED_ACCOUNTS);
 
     // Initialize the data stream
     let global_data_summary = create_global_data_summary(100);
@@ -52,10 +53,14 @@ async fn test_stream_blocked() {
                 start_epoch: 0,
                 end_epoch: 0,
             });
+        let context = ResponseContext {
+            id: 0,
+            response_callback: Box::new(NoopResponseCallback),
+        };
         let pending_response = PendingClientResponse {
             client_request: client_request.clone(),
-            client_response: Some(Ok(DataClientResponse {
-                id: 0,
+            client_response: Some(Ok(Response {
+                context,
                 payload: ResponsePayload::NumberOfAccountStates(10),
             })),
         };
@@ -75,7 +80,10 @@ async fn test_stream_blocked() {
         {
             match data_notification.data_payload {
                 DataPayload::EndOfStream => {
-                    assert_eq!(number_of_refetches, MAX_REQUEST_RETRY);
+                    assert_eq!(
+                        number_of_refetches,
+                        streaming_service_config.max_request_retry
+                    );
 
                     // Provide incorrect feedback for the notification
                     assert_err!(data_stream.handle_notification_feedback(
@@ -100,7 +108,9 @@ async fn test_stream_blocked() {
 #[tokio::test]
 async fn test_stream_garbage_collection() {
     // Create a transaction stream
+    let streaming_service_config = DataStreamingServiceConfig::default();
     let (mut data_stream, mut stream_listener) = create_transaction_stream(
+        streaming_service_config,
         MIN_ADVERTISED_TRANSACTION_OUTPUT,
         MAX_ADVERTISED_TRANSACTION_OUTPUT,
     );
@@ -128,14 +138,19 @@ async fn test_stream_garbage_collection() {
 
         // Verify the notification to response map is garbage collected
         let (_, sent_notifications) = data_stream.get_sent_requests_and_notifications();
-        assert!((sent_notifications.len() as u64) <= MAX_NOTIFICATION_ID_MAPPINGS);
+        assert!(
+            (sent_notifications.len() as u64)
+                <= streaming_service_config.max_notification_id_mappings
+        );
     }
 }
 
 #[tokio::test]
 async fn test_stream_initialization() {
     // Create an epoch ending data stream
-    let (mut data_stream, _) = create_epoch_ending_stream(MIN_ADVERTISED_EPOCH);
+    let streaming_service_config = DataStreamingServiceConfig::default();
+    let (mut data_stream, _) =
+        create_epoch_ending_stream(streaming_service_config, MIN_ADVERTISED_EPOCH);
 
     // Verify the data stream is not initialized
     assert!(!data_stream.data_requests_initialized());
@@ -156,7 +171,9 @@ async fn test_stream_initialization() {
 #[tokio::test]
 async fn test_stream_data_error() {
     // Create an epoch ending data stream
-    let (mut data_stream, mut stream_listener) = create_epoch_ending_stream(MIN_ADVERTISED_EPOCH);
+    let streaming_service_config = DataStreamingServiceConfig::default();
+    let (mut data_stream, mut stream_listener) =
+        create_epoch_ending_stream(streaming_service_config, MIN_ADVERTISED_EPOCH);
 
     // Initialize the data stream
     let global_data_summary = create_global_data_summary(100);
@@ -188,7 +205,9 @@ async fn test_stream_data_error() {
 #[tokio::test]
 async fn test_stream_invalid_response() {
     // Create an epoch ending data stream
-    let (mut data_stream, mut stream_listener) = create_epoch_ending_stream(MIN_ADVERTISED_EPOCH);
+    let streaming_service_config = DataStreamingServiceConfig::default();
+    let (mut data_stream, mut stream_listener) =
+        create_epoch_ending_stream(streaming_service_config, MIN_ADVERTISED_EPOCH);
 
     // Initialize the data stream
     let global_data_summary = create_global_data_summary(100);
@@ -201,12 +220,14 @@ async fn test_stream_invalid_response() {
         start_epoch: MIN_ADVERTISED_EPOCH,
         end_epoch: MIN_ADVERTISED_EPOCH + 1,
     });
+    let context = ResponseContext {
+        id: 0,
+        response_callback: Box::new(NoopResponseCallback),
+    };
+    let client_response = Response::new(context, ResponsePayload::NumberOfAccountStates(10));
     let pending_response = PendingClientResponse {
         client_request: client_request.clone(),
-        client_response: Some(Ok(Response::new(
-            0,
-            ResponsePayload::NumberOfAccountStates(10),
-        ))),
+        client_response: Some(Ok(client_response)),
     };
     insert_response_into_pending_queue(&mut data_stream, pending_response);
 
@@ -221,7 +242,9 @@ async fn test_stream_invalid_response() {
 #[tokio::test]
 async fn test_stream_out_of_order_responses() {
     // Create an epoch ending data stream
-    let (mut data_stream, mut stream_listener) = create_epoch_ending_stream(MIN_ADVERTISED_EPOCH);
+    let streaming_service_config = DataStreamingServiceConfig::default();
+    let (mut data_stream, mut stream_listener) =
+        create_epoch_ending_stream(streaming_service_config, MIN_ADVERTISED_EPOCH);
 
     // Initialize the data stream
     let global_data_summary = create_global_data_summary(1);
@@ -284,17 +307,21 @@ async fn test_stream_out_of_order_responses() {
 }
 
 /// Creates an account stream for the given `version`.
-fn create_account_stream(version: Version) -> (DataStream<MockDiemDataClient>, DataStreamListener) {
+fn create_account_stream(
+    streaming_service_config: DataStreamingServiceConfig,
+    version: Version,
+) -> (DataStream<MockDiemDataClient>, DataStreamListener) {
     // Create an account stream request
     let stream_request = StreamRequest::GetAllAccounts(GetAllAccountsRequest {
         version,
         start_index: 0,
     });
-    create_data_stream(stream_request)
+    create_data_stream(streaming_service_config, stream_request)
 }
 
 /// Creates an epoch ending stream starting at `start_epoch`
 fn create_epoch_ending_stream(
+    streaming_service_config: DataStreamingServiceConfig,
     start_epoch: u64,
 ) -> (DataStream<MockDiemDataClient>, DataStreamListener) {
     // Create an epoch ending stream request
@@ -302,11 +329,12 @@ fn create_epoch_ending_stream(
         StreamRequest::GetAllEpochEndingLedgerInfos(GetAllEpochEndingLedgerInfosRequest {
             start_epoch,
         });
-    create_data_stream(stream_request)
+    create_data_stream(streaming_service_config, stream_request)
 }
 
 /// Creates a transaction output stream for the given `version`.
 fn create_transaction_stream(
+    streaming_service_config: DataStreamingServiceConfig,
     start_version: Version,
     end_version: Version,
 ) -> (DataStream<MockDiemDataClient>, DataStreamListener) {
@@ -317,10 +345,11 @@ fn create_transaction_stream(
         max_proof_version: end_version,
         include_events: false,
     });
-    create_data_stream(stream_request)
+    create_data_stream(streaming_service_config, stream_request)
 }
 
 fn create_data_stream(
+    streaming_service_config: DataStreamingServiceConfig,
     stream_request: StreamRequest,
 ) -> (DataStream<MockDiemDataClient>, DataStreamListener) {
     initialize_logger();
@@ -352,6 +381,7 @@ fn create_data_stream(
 
     // Return the data stream and listener pair
     DataStream::new(
+        streaming_service_config,
         create_random_u64(10000),
         &stream_request,
         diem_data_client,

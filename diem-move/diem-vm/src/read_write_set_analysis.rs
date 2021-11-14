@@ -13,7 +13,7 @@ use diem_types::{
     account_config,
     transaction::{SignedTransaction, TransactionPayload},
 };
-use move_binary_format::layout::ModuleCache;
+use move_bytecode_utils::module_cache::SyncModuleCache;
 use move_core_types::{
     ident_str,
     identifier::{IdentStr, Identifier},
@@ -27,7 +27,7 @@ use std::ops::Deref;
 
 pub struct ReadWriteSetAnalysis<'a, R: ModuleResolver> {
     normalized_analysis_result: &'a NormalizedReadWriteSetAnalysis,
-    module_cache: ModuleCache<&'a R>,
+    module_cache: SyncModuleCache<&'a R>,
     blockchain_view: &'a R,
 }
 
@@ -53,7 +53,7 @@ impl<'a, R: MoveResolver> ReadWriteSetAnalysis<'a, R> {
     pub fn new(rw: &'a NormalizedReadWriteSetAnalysis, blockchain_view: &'a R) -> Self {
         ReadWriteSetAnalysis {
             normalized_analysis_result: rw,
-            module_cache: ModuleCache::new(blockchain_view),
+            module_cache: SyncModuleCache::new(blockchain_view),
             blockchain_view,
         }
     }
@@ -245,14 +245,19 @@ impl<'a, R: MoveResolver> ReadWriteSetAnalysis<'a, R> {
             &[gas_currency.clone()],
             &self.module_cache,
         )?;
-        let script_accesses = self.get_partially_concretized_summary(
-            module_name,
-            script_name,
-            &signers,
-            actuals,
-            type_actuals,
-            &self.module_cache,
-        )?;
+
+        // If any error occurs while analyzing the body, skip the read/writeset result as only the
+        // prologue and epilogue will be run by this transaction.
+        let script_accesses = self
+            .get_partially_concretized_summary(
+                module_name,
+                script_name,
+                &signers,
+                actuals,
+                type_actuals,
+                &self.module_cache,
+            )
+            .unwrap_or_else(|_| ConcretizedFormals::empty());
 
         let mut keys_read = vec![];
         let mut keys_written = vec![];

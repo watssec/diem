@@ -2,8 +2,9 @@
 version = "0.8.2"
 
 [system-tests]
-smoke-test = { path = "smoke-test" }
 jsonrpc-integration-tests = { path = "json-rpc/integration-tests" }
+shuffle-integration-tests = { path = "shuffle/integration-tests" }
+smoke-test = { path = "smoke-test" }
 testcases = { path = "testsuite/testcases" }
 
 [cargo.sccache]
@@ -222,14 +223,12 @@ members = [
     "move-vm-integration-tests",
     "move-vm-transactional-tests",
     "offchain",
-    "public-script-helper",
     "scratchpad-benchmark",
     "sdk-compatibility",
     "serializer-tests",
     "shuffle",
     "shuffle-custom-move-code",
-    "shuffle-custom-node",
-    "shuffle-transaction-builder",
+    "shuffle-integration-tests",
     "smoke-test",
     "socket-bench-server",
     "state-sync-v2", # Will be removed once state sync v2 is plugged into diem-node.
@@ -254,13 +253,10 @@ members = [
 # dependency, instead of adding the crate to this list and silencing the lint.
 diem_crates_in_language = [
     "diem-transactional-test-harness",
-    "diem-transaction-benchmarks",
     "language-e2e-testsuite",
     "ir-testsuite",
     "language-e2e-tests",
     "functional-tests",
-    "transaction-builder",
-    "transaction-builder-generator",
     "move-lang-functional-tests",
 ]
 # A special set of diem crates Move crates are allowed to depend on.
