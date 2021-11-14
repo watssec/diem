@@ -39,9 +39,9 @@ pub struct Compiler<'a, 'b> {
     named_address_mapping: BTreeMap<Symbol, NumericalAddress>,
     flags: Flags,
 }
-
+#[derive(Debug)]
 pub struct SteppedCompiler<'a, const P: Pass> {
-    compilation_env: CompilationEnv,
+    pub compilation_env: CompilationEnv,
     pre_compiled_lib: Option<&'a FullyCompiledProgram>,
     program: Option<PassResult>,
 }
@@ -67,7 +67,7 @@ enum PassResult {
     Compilation(Vec<AnnotatedCompiledUnit>, /* warnings */ Diagnostics),
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct FullyCompiledProgram {
     // TODO don't store this...
     pub files: FilesSourceText,

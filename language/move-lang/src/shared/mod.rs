@@ -23,6 +23,7 @@ pub mod remembering_unique_map;
 pub mod unique_map;
 pub mod unique_set;
 
+use crate::naming::ast as N;
 //**************************************************************************************************
 // Numbers
 //**************************************************************************************************
@@ -339,6 +340,9 @@ pub struct CompilationEnv {
     pub flags: Flags,
     diags: Diagnostics,
     named_address_mapping: BTreeMap<Symbol, NumericalAddress>,
+    pub mutation_counter: Vec<Loc>,
+
+
     // TODO(tzakian): Remove the global counter and use this counter instead
     // pub counter: u64,
 }
@@ -349,6 +353,8 @@ impl CompilationEnv {
             flags,
             diags: Diagnostics::new(),
             named_address_mapping,
+            mutation_counter: Vec::new(),
+
         }
     }
 
@@ -455,6 +461,10 @@ pub struct Flags {
     )]
 
     pub mutation: bool,
+
+    #[structopt(long="mutated")]
+    pub mutated: bool,
+
 }
 
 impl Flags {
@@ -463,6 +473,7 @@ impl Flags {
             test: false,
             no_shadow: false,
             mutation: false,
+            mutated: false,
         }
     }
 
@@ -471,6 +482,7 @@ impl Flags {
             test: true,
             no_shadow: false,
             mutation: false,
+            mutated: false,
         }
     }
 

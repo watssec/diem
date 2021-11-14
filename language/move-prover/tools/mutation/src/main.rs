@@ -9,6 +9,7 @@ use mutation::MutationOptions;
 
 fn main() -> Result<()> {
     let options = MutationOptions::from_args();
+
     run(&options)
 }
 

@@ -40,6 +40,7 @@ use crate::{
     model::{FunId, FunctionData, GlobalEnv, Loc, ModuleData, ModuleId, StructId},
     options::ModelBuilderOptions,
 };
+use std::fs;
 
 pub mod ast;
 mod builder;
@@ -117,7 +118,12 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         }
         Ok(res) => res,
     };
+    // Pass the mutation_counter into global env, initialize the BTreeMap
+
+
+
     let (compiler, parsed_prog) = compiler.into_ast();
+
     // Add source files for targets and dependencies
     let dep_files: BTreeSet<_> = parsed_prog
         .lib_definitions
@@ -212,6 +218,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         });
         E::Program { modules, scripts }
     };
+
     // Run the compiler fully to the compiled units
     let units = match compiler
         .at_expansion(expansion_ast.clone())
@@ -222,6 +229,10 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             return Ok(env);
         }
         Ok(compiler) => {
+            // from the mutation_counter into mutation_result in global env
+            for loc in &compiler.compilation_env.mutation_counter{
+                env.mutation_result.insert(*loc, true);
+            }
             let (units, warnings) = compiler.into_compiled_units();
             if !warnings.is_empty() {
                 // NOTE: these diagnostics are just warnings. it should be feasible to continue the
@@ -241,6 +252,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
 
     // Now that it is known that the program has no errors, run the spec checker on verified units
     // plus expanded AST. This will populate the environment including any errors.
+
     run_spec_checker(&mut env, addresses, verified_units, expansion_ast);
     Ok(env)
 }

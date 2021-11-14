@@ -19,7 +19,7 @@ use move_lang::Flags;
 
 // pub(crate) means the function is private within the crate
 // prepare gets back the GlobalEnv and FunctionTargetsHolder
-pub(crate) fn prepare(options: &MutationOptions) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
+pub(crate) fn  prepare(options: &MutationOptions, init_flag: &bool) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
 
     let mut named_addresses = BTreeMap::new();
     if !options.no_default_named_addresses {
@@ -39,7 +39,12 @@ pub(crate) fn prepare(options: &MutationOptions) -> Result<(GlobalEnv, FunctionT
     }
 
     let mut flags = Flags::empty();
-    flags.mutation = true;
+    // if this is the init process
+    if *init_flag{
+    flags.mutation = false; }
+    else{
+        flags.mutation=  true; }
+
     let env = run_model_builder_with_options_and_compilation_flags(
         &options.srcs,
         &options.deps,

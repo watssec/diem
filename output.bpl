@@ -1161,7 +1161,7 @@ procedure {:timeLimit 40} $2_Test_sort$verify(_$t0: $Mutation (Vec (int))) retur
 
     // bytecode translation starts here
     // assume WellFormed($t0) at swap/src/modules/module.move:5:5+1
-    assume {:print "$at(5,52,53)"} true;
+    assume {:print "$at(13,52,53)"} true;
     assume $IsValid'vec'u64''($Dereference($t0));
 
     // $t4 := read_ref($t0) at swap/src/modules/module.move:5:5+1
@@ -1187,7 +1187,7 @@ procedure {:timeLimit 40} $2_Test_sort$verify(_$t0: $Mutation (Vec (int))) retur
     assume {:print "$track_local(1,0,0):", $temp_0'vec'u64''} $temp_0'vec'u64'' == $temp_0'vec'u64'';
 
     // $t10 := 0 at swap/src/modules/module.move:6:17+1
-    assume {:print "$at(5,99,100)"} true;
+    assume {:print "$at(13,99,100)"} true;
     $t10 := 0;
     assume $IsValid'u64'($t10);
 
@@ -1195,13 +1195,13 @@ procedure {:timeLimit 40} $2_Test_sort$verify(_$t0: $Mutation (Vec (int))) retur
     assume {:print "$track_local(1,0,1):", $t10} $t10 == $t10;
 
     // $t11 := read_ref($t0) at swap/src/modules/module.move:7:32+1
-    assume {:print "$at(5,133,134)"} true;
+    assume {:print "$at(13,133,134)"} true;
     $t11 := $Dereference($t0);
 
     // $t12 := Vector::length<u64>($t11) on_abort goto L17 with $t13 at swap/src/modules/module.move:7:17+17
     call $t12 := $1_Vector_length'u64'($t11);
     if ($abort_flag) {
-        assume {:print "$at(5,118,135)"} true;
+        assume {:print "$at(13,118,135)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1211,7 +1211,7 @@ procedure {:timeLimit 40} $2_Test_sort$verify(_$t0: $Mutation (Vec (int))) retur
     assume {:print "$track_local(1,0,3):", $t12} $t12 == $t12;
 
     // $t14 := 0 at swap/src/modules/module.move:8:18+1
-    assume {:print "$at(5,154,155)"} true;
+    assume {:print "$at(13,154,155)"} true;
     $t14 := 0;
     assume $IsValid'u64'($t14);
 
@@ -1228,29 +1228,29 @@ L1:
     goto L2;
 
     // label L0 at swap/src/modules/module.move:10:17+374
-    assume {:print "$at(5,195,569)"} true;
+    assume {:print "$at(13,195,569)"} true;
 L0:
 
     // assert Eq<num>(Len<u64>($t0), Len<u64>($t6)) at swap/src/modules/module.move:11:21+32
-    assume {:print "$at(5,221,253)"} true;
-    assert {:msg "assert_failed(5,221,253): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,221,253)"} true;
+    assert {:msg "assert_failed(13,221,253): base case of the loop invariant does not hold"}
       $IsEqual'num'(LenVec($Dereference($t0)), LenVec($t6));
 
     // assert Le($t10, Len<u64>($t0)) at swap/src/modules/module.move:12:21+22
-    assume {:print "$at(5,274,296)"} true;
-    assert {:msg "assert_failed(5,274,296): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,274,296)"} true;
+    assert {:msg "assert_failed(13,274,296): base case of the loop invariant does not hold"}
       ($t10 <= LenVec($Dereference($t0)));
 
     // assert forall p: Range(0, Sub($t12, $t10)), q: Range(Sub($t12, $t10), $t12): Le(Index($t0, p), Index($t0, q)) at swap/src/modules/module.move:13:21+56
-    assume {:print "$at(5,317,373)"} true;
-    assert {:msg "assert_failed(5,317,373): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,317,373)"} true;
+    assert {:msg "assert_failed(13,317,373): base case of the loop invariant does not hold"}
       (var $range_0 := $Range(0, ($t12 - $t10)); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var p := $i_2;
     (var q := $i_3;
     ((ReadVec($Dereference($t0), p) <= ReadVec($Dereference($t0), q))))))));
 
     // assert forall m: Range(Sub($t12, $t10), $t12), n: Range(Sub($t12, $t10), $t12): Implies(Le(m, n), Le(Index($t0, m), Index($t0, n))) at swap/src/modules/module.move:14:21+67
-    assume {:print "$at(5,394,461)"} true;
-    assert {:msg "assert_failed(5,394,461): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,394,461)"} true;
+    assert {:msg "assert_failed(13,394,461): base case of the loop invariant does not hold"}
       (var $range_0 := $Range(($t12 - $t10), $t12); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var m := $i_2;
     (var n := $i_3;
     (((m <= n) ==> (ReadVec($Dereference($t0), m) <= ReadVec($Dereference($t0), n)))))))));
@@ -1356,34 +1356,34 @@ L0:
     assume !$abort_flag;
 
     // assume Eq<num>(Len<u64>($t0), Len<u64>($t4)) at swap/src/modules/module.move:11:21+32
-    assume {:print "$at(5,221,253)"} true;
+    assume {:print "$at(13,221,253)"} true;
     assume $IsEqual'num'(LenVec($Dereference($t0)), LenVec($t4));
 
     // assume Le($t10, Len<u64>($t0)) at swap/src/modules/module.move:12:21+22
-    assume {:print "$at(5,274,296)"} true;
+    assume {:print "$at(13,274,296)"} true;
     assume ($t10 <= LenVec($Dereference($t0)));
 
     // assume forall p: Range(0, Sub($t12, $t10)), q: Range(Sub($t12, $t10), $t12): Le(Index($t0, p), Index($t0, q)) at swap/src/modules/module.move:13:21+56
-    assume {:print "$at(5,317,373)"} true;
+    assume {:print "$at(13,317,373)"} true;
     assume (var $range_0 := $Range(0, ($t12 - $t10)); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var p := $i_2;
     (var q := $i_3;
     ((ReadVec($Dereference($t0), p) <= ReadVec($Dereference($t0), q))))))));
 
     // assume forall m: Range(Sub($t12, $t10), $t12), n: Range(Sub($t12, $t10), $t12): Implies(Le(m, n), Le(Index($t0, m), Index($t0, n))) at swap/src/modules/module.move:14:21+67
-    assume {:print "$at(5,394,461)"} true;
+    assume {:print "$at(13,394,461)"} true;
     assume (var $range_0 := $Range(($t12 - $t10), $t12); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var m := $i_2;
     (var n := $i_3;
     (((m <= n) ==> (ReadVec($Dereference($t0), m) <= ReadVec($Dereference($t0), n)))))))));
 
     // $t16 := 1 at swap/src/modules/module.move:18:24+1
-    assume {:print "$at(5,594,595)"} true;
+    assume {:print "$at(13,594,595)"} true;
     $t16 := 1;
     assume $IsValid'u64'($t16);
 
     // $t17 := -($t12, $t16) on_abort goto L17 with $t13 at swap/src/modules/module.move:18:23+1
     call $t17 := $Sub($t12, $t16);
     if ($abort_flag) {
-        assume {:print "$at(5,593,594)"} true;
+        assume {:print "$at(13,593,594)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1393,7 +1393,7 @@ L0:
     call $t18 := $Lt($t10, $t17);
 
     // if ($t18) goto L3 else goto L19 at swap/src/modules/module.move:9:13+1259
-    assume {:print "$at(5,171,1430)"} true;
+    assume {:print "$at(13,171,1430)"} true;
     if ($t18) { goto L3; } else { goto L19; }
 
     // label L4 at swap/src/modules/module.move:9:13+1259
@@ -1403,7 +1403,7 @@ L4:
     goto L5;
 
     // label L3 at swap/src/modules/module.move:21:25+1
-    assume {:print "$at(5,639,640)"} true;
+    assume {:print "$at(13,639,640)"} true;
 L3:
 
     // $t19 := 0 at swap/src/modules/module.move:21:25+1
@@ -1414,35 +1414,35 @@ L3:
     assume {:print "$track_local(1,0,2):", $t19} $t19 == $t19;
 
     // label L12 at swap/src/modules/module.move:23:21+471
-    assume {:print "$at(5,686,1157)"} true;
+    assume {:print "$at(13,686,1157)"} true;
 L12:
 
     // assert Eq<num>(Len<u64>($t0), Len<u64>($t7)) at swap/src/modules/module.move:24:25+32
-    assume {:print "$at(5,716,748)"} true;
-    assert {:msg "assert_failed(5,716,748): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,716,748)"} true;
+    assert {:msg "assert_failed(13,716,748): base case of the loop invariant does not hold"}
       $IsEqual'num'(LenVec($Dereference($t0)), LenVec($t7));
 
     // assert Le($t19, Sub(Sub($t12, $t10), 1)) at swap/src/modules/module.move:25:25+21
-    assume {:print "$at(5,773,794)"} true;
-    assert {:msg "assert_failed(5,773,794): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,773,794)"} true;
+    assert {:msg "assert_failed(13,773,794): base case of the loop invariant does not hold"}
       ($t19 <= (($t12 - $t10) - 1));
 
     // assert forall k: Range(0, $t19): Le(Index($t0, k), Index($t0, $t19)) at swap/src/modules/module.move:26:25+41
-    assume {:print "$at(5,819,860)"} true;
-    assert {:msg "assert_failed(5,819,860): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,819,860)"} true;
+    assert {:msg "assert_failed(13,819,860): base case of the loop invariant does not hold"}
       (var $range_0 := $Range(0, $t19); (forall $i_1: int :: $InRange($range_0, $i_1) ==> (var k := $i_1;
     ((ReadVec($Dereference($t0), k) <= ReadVec($Dereference($t0), $t19))))));
 
     // assert forall p: Range(0, Sub($t12, $t10)), q: Range(Sub($t12, $t10), $t12): Le(Index($t0, p), Index($t0, q)) at swap/src/modules/module.move:28:25+56
-    assume {:print "$at(5,987,1043)"} true;
-    assert {:msg "assert_failed(5,987,1043): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,987,1043)"} true;
+    assert {:msg "assert_failed(13,987,1043): base case of the loop invariant does not hold"}
       (var $range_0 := $Range(0, ($t12 - $t10)); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var p := $i_2;
     (var q := $i_3;
     ((ReadVec($Dereference($t0), p) <= ReadVec($Dereference($t0), q))))))));
 
     // assert forall m: Range(Sub($t12, $t10), $t12), n: Range(Sub($t12, $t10), $t12): Implies(Le(m, n), Le(Index($t0, m), Index($t0, n))) at swap/src/modules/module.move:29:25+67
-    assume {:print "$at(5,1068,1135)"} true;
-    assert {:msg "assert_failed(5,1068,1135): base case of the loop invariant does not hold"}
+    assume {:print "$at(13,1068,1135)"} true;
+    assert {:msg "assert_failed(13,1068,1135): base case of the loop invariant does not hold"}
       (var $range_0 := $Range(($t12 - $t10), $t12); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var m := $i_2;
     (var n := $i_3;
     (((m <= n) ==> (ReadVec($Dereference($t0), m) <= ReadVec($Dereference($t0), n)))))))));
@@ -1520,35 +1520,35 @@ L12:
     assume !$abort_flag;
 
     // assume Eq<num>(Len<u64>($t0), Len<u64>($t5)) at swap/src/modules/module.move:24:25+32
-    assume {:print "$at(5,716,748)"} true;
+    assume {:print "$at(13,716,748)"} true;
     assume $IsEqual'num'(LenVec($Dereference($t0)), LenVec($t5));
 
     // assume Le($t19, Sub(Sub($t12, $t10), 1)) at swap/src/modules/module.move:25:25+21
-    assume {:print "$at(5,773,794)"} true;
+    assume {:print "$at(13,773,794)"} true;
     assume ($t19 <= (($t12 - $t10) - 1));
 
     // assume forall k: Range(0, $t19): Le(Index($t0, k), Index($t0, $t19)) at swap/src/modules/module.move:26:25+41
-    assume {:print "$at(5,819,860)"} true;
+    assume {:print "$at(13,819,860)"} true;
     assume (var $range_0 := $Range(0, $t19); (forall $i_1: int :: $InRange($range_0, $i_1) ==> (var k := $i_1;
     ((ReadVec($Dereference($t0), k) <= ReadVec($Dereference($t0), $t19))))));
 
     // assume forall p: Range(0, Sub($t12, $t10)), q: Range(Sub($t12, $t10), $t12): Le(Index($t0, p), Index($t0, q)) at swap/src/modules/module.move:28:25+56
-    assume {:print "$at(5,987,1043)"} true;
+    assume {:print "$at(13,987,1043)"} true;
     assume (var $range_0 := $Range(0, ($t12 - $t10)); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var p := $i_2;
     (var q := $i_3;
     ((ReadVec($Dereference($t0), p) <= ReadVec($Dereference($t0), q))))))));
 
     // assume forall m: Range(Sub($t12, $t10), $t12), n: Range(Sub($t12, $t10), $t12): Implies(Le(m, n), Le(Index($t0, m), Index($t0, n))) at swap/src/modules/module.move:29:25+67
-    assume {:print "$at(5,1068,1135)"} true;
+    assume {:print "$at(13,1068,1135)"} true;
     assume (var $range_0 := $Range(($t12 - $t10), $t12); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var m := $i_2;
     (var n := $i_3;
     (((m <= n) ==> (ReadVec($Dereference($t0), m) <= ReadVec($Dereference($t0), n)))))))));
 
     // $t20 := -($t12, $t10) on_abort goto L17 with $t13 at swap/src/modules/module.move:31:27+1
-    assume {:print "$at(5,1185,1186)"} true;
+    assume {:print "$at(13,1185,1186)"} true;
     call $t20 := $Sub($t12, $t10);
     if ($abort_flag) {
-        assume {:print "$at(5,1185,1186)"} true;
+        assume {:print "$at(13,1185,1186)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1561,7 +1561,7 @@ L12:
     // $t22 := -($t20, $t21) on_abort goto L17 with $t13 at swap/src/modules/module.move:31:29+1
     call $t22 := $Sub($t20, $t21);
     if ($abort_flag) {
-        assume {:print "$at(5,1187,1188)"} true;
+        assume {:print "$at(13,1187,1188)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1571,7 +1571,7 @@ L12:
     call $t23 := $Lt($t19, $t22);
 
     // if ($t23) goto L6 else goto L7 at swap/src/modules/module.move:22:17+730
-    assume {:print "$at(5,658,1388)"} true;
+    assume {:print "$at(13,658,1388)"} true;
     if ($t23) { goto L6; } else { goto L7; }
 
     // label L7 at swap/src/modules/module.move:22:17+730
@@ -1581,13 +1581,13 @@ L7:
     goto L8;
 
     // label L6 at swap/src/modules/module.move:33:45+1
-    assume {:print "$at(5,1256,1257)"} true;
+    assume {:print "$at(13,1256,1257)"} true;
 L6:
 
     // $t35 := Vector::borrow_mut<u64>($t0, $t19) on_abort goto L17 with $t13 at swap/src/modules/module.move:33:26+23
     call $t35,$t0 := $1_Vector_borrow_mut'u64'($t0, $t19);
     if ($abort_flag) {
-        assume {:print "$at(5,1237,1260)"} true;
+        assume {:print "$at(13,1237,1260)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1603,7 +1603,7 @@ L6:
     // $t26 := +($t19, $t25) on_abort goto L17 with $t13 at swap/src/modules/module.move:33:75+1
     call $t26 := $AddU64($t19, $t25);
     if ($abort_flag) {
-        assume {:print "$at(5,1286,1287)"} true;
+        assume {:print "$at(13,1286,1287)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1612,7 +1612,7 @@ L6:
     // $t36 := Vector::borrow_mut<u64>($t0, $t26) on_abort goto L17 with $t13 at swap/src/modules/module.move:33:53+25
     call $t36,$t0 := $1_Vector_borrow_mut'u64'($t0, $t26);
     if ($abort_flag) {
-        assume {:print "$at(5,1264,1289)"} true;
+        assume {:print "$at(13,1264,1289)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1634,7 +1634,7 @@ L10:
     goto L11;
 
     // label L9 at swap/src/modules/module.move:34:38+1
-    assume {:print "$at(5,1329,1330)"} true;
+    assume {:print "$at(13,1329,1330)"} true;
 L9:
 
     // $t29 := 1 at swap/src/modules/module.move:34:44+1
@@ -1644,7 +1644,7 @@ L9:
     // $t30 := +($t19, $t29) on_abort goto L17 with $t13 at swap/src/modules/module.move:34:43+1
     call $t30 := $AddU64($t19, $t29);
     if ($abort_flag) {
-        assume {:print "$at(5,1334,1335)"} true;
+        assume {:print "$at(13,1334,1335)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1653,14 +1653,14 @@ L9:
     // Vector::swap<u64>($t0, $t19, $t30) on_abort goto L17 with $t13 at swap/src/modules/module.move:34:25+21
     call $t0 := $1_Vector_swap'u64'($t0, $t19, $t30);
     if ($abort_flag) {
-        assume {:print "$at(5,1316,1337)"} true;
+        assume {:print "$at(13,1316,1337)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
     }
 
     // label L11 at swap/src/modules/module.move:35:25+1
-    assume {:print "$at(5,1365,1366)"} true;
+    assume {:print "$at(13,1365,1366)"} true;
 L11:
 
     // $t31 := 1 at swap/src/modules/module.move:35:28+1
@@ -1670,7 +1670,7 @@ L11:
     // $t32 := +($t19, $t31) on_abort goto L17 with $t13 at swap/src/modules/module.move:35:27+1
     call $t32 := $AddU64($t19, $t31);
     if ($abort_flag) {
-        assume {:print "$at(5,1367,1368)"} true;
+        assume {:print "$at(13,1367,1368)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1683,7 +1683,7 @@ L11:
     goto L15;
 
     // label L8 at swap/src/modules/module.move:37:21+1
-    assume {:print "$at(5,1410,1411)"} true;
+    assume {:print "$at(13,1410,1411)"} true;
 L8:
 
     // $t33 := 1 at swap/src/modules/module.move:37:25+1
@@ -1693,7 +1693,7 @@ L8:
     // $t34 := +($t10, $t33) on_abort goto L17 with $t13 at swap/src/modules/module.move:37:23+1
     call $t34 := $AddU64($t10, $t33);
     if ($abort_flag) {
-        assume {:print "$at(5,1412,1413)"} true;
+        assume {:print "$at(13,1412,1413)"} true;
         $t13 := $abort_code;
         assume {:print "$track_abort(1,0):", $t13} $t13 == $t13;
         goto L17;
@@ -1706,7 +1706,7 @@ L8:
     goto L14;
 
     // label L5 at swap/src/modules/module.move:8:9+1295
-    assume {:print "$at(5,145,1440)"} true;
+    assume {:print "$at(13,145,1440)"} true;
 L5:
 
     // destroy($t0) at swap/src/modules/module.move:8:9+1295
@@ -1734,25 +1734,25 @@ L13:
 L14:
 
     // assert Eq<num>(Len<u64>($t0), Len<u64>($t8)) at swap/src/modules/module.move:11:21+32
-    assume {:print "$at(5,221,253)"} true;
-    assert {:msg "assert_failed(5,221,253): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,221,253)"} true;
+    assert {:msg "assert_failed(13,221,253): induction case of the loop invariant does not hold"}
       $IsEqual'num'(LenVec($Dereference($t0)), LenVec($t8));
 
     // assert Le($t34, Len<u64>($t0)) at swap/src/modules/module.move:12:21+22
-    assume {:print "$at(5,274,296)"} true;
-    assert {:msg "assert_failed(5,274,296): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,274,296)"} true;
+    assert {:msg "assert_failed(13,274,296): induction case of the loop invariant does not hold"}
       ($t34 <= LenVec($Dereference($t0)));
 
     // assert forall p: Range(0, Sub($t12, $t34)), q: Range(Sub($t12, $t34), $t12): Le(Index($t0, p), Index($t0, q)) at swap/src/modules/module.move:13:21+56
-    assume {:print "$at(5,317,373)"} true;
-    assert {:msg "assert_failed(5,317,373): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,317,373)"} true;
+    assert {:msg "assert_failed(13,317,373): induction case of the loop invariant does not hold"}
       (var $range_0 := $Range(0, ($t12 - $t34)); (var $range_1 := $Range(($t12 - $t34), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var p := $i_2;
     (var q := $i_3;
     ((ReadVec($Dereference($t0), p) <= ReadVec($Dereference($t0), q))))))));
 
     // assert forall m: Range(Sub($t12, $t34), $t12), n: Range(Sub($t12, $t34), $t12): Implies(Le(m, n), Le(Index($t0, m), Index($t0, n))) at swap/src/modules/module.move:14:21+67
-    assume {:print "$at(5,394,461)"} true;
-    assert {:msg "assert_failed(5,394,461): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,394,461)"} true;
+    assert {:msg "assert_failed(13,394,461): induction case of the loop invariant does not hold"}
       (var $range_0 := $Range(($t12 - $t34), $t12); (var $range_1 := $Range(($t12 - $t34), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var m := $i_2;
     (var n := $i_3;
     (((m <= n) ==> (ReadVec($Dereference($t0), m) <= ReadVec($Dereference($t0), n)))))))));
@@ -1766,31 +1766,31 @@ L14:
 L15:
 
     // assert Eq<num>(Len<u64>($t0), Len<u64>($t9)) at swap/src/modules/module.move:24:25+32
-    assume {:print "$at(5,716,748)"} true;
-    assert {:msg "assert_failed(5,716,748): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,716,748)"} true;
+    assert {:msg "assert_failed(13,716,748): induction case of the loop invariant does not hold"}
       $IsEqual'num'(LenVec($Dereference($t0)), LenVec($t9));
 
     // assert Le($t32, Sub(Sub($t12, $t10), 1)) at swap/src/modules/module.move:25:25+21
-    assume {:print "$at(5,773,794)"} true;
-    assert {:msg "assert_failed(5,773,794): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,773,794)"} true;
+    assert {:msg "assert_failed(13,773,794): induction case of the loop invariant does not hold"}
       ($t32 <= (($t12 - $t10) - 1));
 
     // assert forall k: Range(0, $t32): Le(Index($t0, k), Index($t0, $t32)) at swap/src/modules/module.move:26:25+41
-    assume {:print "$at(5,819,860)"} true;
-    assert {:msg "assert_failed(5,819,860): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,819,860)"} true;
+    assert {:msg "assert_failed(13,819,860): induction case of the loop invariant does not hold"}
       (var $range_0 := $Range(0, $t32); (forall $i_1: int :: $InRange($range_0, $i_1) ==> (var k := $i_1;
     ((ReadVec($Dereference($t0), k) <= ReadVec($Dereference($t0), $t32))))));
 
     // assert forall p: Range(0, Sub($t12, $t10)), q: Range(Sub($t12, $t10), $t12): Le(Index($t0, p), Index($t0, q)) at swap/src/modules/module.move:28:25+56
-    assume {:print "$at(5,987,1043)"} true;
-    assert {:msg "assert_failed(5,987,1043): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,987,1043)"} true;
+    assert {:msg "assert_failed(13,987,1043): induction case of the loop invariant does not hold"}
       (var $range_0 := $Range(0, ($t12 - $t10)); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var p := $i_2;
     (var q := $i_3;
     ((ReadVec($Dereference($t0), p) <= ReadVec($Dereference($t0), q))))))));
 
     // assert forall m: Range(Sub($t12, $t10), $t12), n: Range(Sub($t12, $t10), $t12): Implies(Le(m, n), Le(Index($t0, m), Index($t0, n))) at swap/src/modules/module.move:29:25+67
-    assume {:print "$at(5,1068,1135)"} true;
-    assert {:msg "assert_failed(5,1068,1135): induction case of the loop invariant does not hold"}
+    assume {:print "$at(13,1068,1135)"} true;
+    assert {:msg "assert_failed(13,1068,1135): induction case of the loop invariant does not hold"}
       (var $range_0 := $Range(($t12 - $t10), $t12); (var $range_1 := $Range(($t12 - $t10), $t12); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var m := $i_2;
     (var n := $i_3;
     (((m <= n) ==> (ReadVec($Dereference($t0), m) <= ReadVec($Dereference($t0), n)))))))));
@@ -1800,12 +1800,12 @@ L15:
     return;
 
     // label L16 at swap/src/modules/module.move:40:5+1
-    assume {:print "$at(5,1445,1446)"} true;
+    assume {:print "$at(13,1445,1446)"} true;
 L16:
 
     // assert forall i: Range(0, Len<u64>($t0)), j: Range(0, Len<u64>($t0)): Implies(Le(i, j), Le(Index($t0, i), Index($t0, j))) at swap/src/modules/module.move:43:9+71
-    assume {:print "$at(5,1487,1558)"} true;
-    assert {:msg "assert_failed(5,1487,1558): post-condition does not hold"}
+    assume {:print "$at(13,1487,1558)"} true;
+    assert {:msg "assert_failed(13,1487,1558): post-condition does not hold"}
       (var $range_0 := $Range(0, LenVec($Dereference($t0))); (var $range_1 := $Range(0, LenVec($Dereference($t0))); (forall $i_2: int, $i_3: int :: $InRange($range_0, $i_2) ==> $InRange($range_1, $i_3) ==> (var i := $i_2;
     (var j := $i_3;
     (((i <= j) ==> (ReadVec($Dereference($t0), i) <= ReadVec($Dereference($t0), j)))))))));
@@ -1815,7 +1815,7 @@ L16:
     return;
 
     // label L17 at swap/src/modules/module.move:40:5+1
-    assume {:print "$at(5,1445,1446)"} true;
+    assume {:print "$at(13,1445,1446)"} true;
 L17:
 
     // abort($t13) at swap/src/modules/module.move:40:5+1

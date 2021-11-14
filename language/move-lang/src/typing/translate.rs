@@ -1045,8 +1045,8 @@ fn sequence(context: &mut Context, seq: N::Sequence) -> T::Sequence {
             }
         }
     }
-
     resulting_sequence
+
 }
 
 fn sequence_type(seq: &T::Sequence) -> &Type {
@@ -1082,11 +1082,18 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
     }
 
     fn exp_loop(stack: &mut Stack, sp!(loc, cur_): N::Exp) {
-        let flag = &stack.context.env.flags.mutation;
 
+        // this flag is for initialization of mutation, if it's on, add the expression location to mutation_counter
+        let flag = stack.context.env.flags.mutation;
+        let mut mutated_flag = stack.context.env.flags.mutated;
+        if !flag{
+        stack.context.env.mutation_counter.push(loc);}
         match cur_ {
             NE::BinopExp(nlhs, obop, nrhs) => {
-                let bop = if *flag{
+                if(flag == false && mutated_flag == false){
+                    mutated_flag = true;
+                }
+                let bop = if(flag == true && mutated_flag == false) {
                 mutation::mutation_workflow::expression_mutation(obop)
             }else{
             obop

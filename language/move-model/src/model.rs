@@ -69,6 +69,8 @@ use crate::{
     ty::{PrimitiveType, Type, TypeDisplayContext, TypeUnificationAdapter, Variance},
 };
 
+use move_ir_types::location;
+
 // import and re-expose symbols
 pub use move_binary_format::file_format::{AbilitySet, Visibility as FunctionVisibility};
 
@@ -488,6 +490,8 @@ pub struct GlobalEnv {
     pub used_spec_funs: BTreeSet<QualifiedId<SpecFunId>>,
     /// A type-indexed container for storing extension data in the environment.
     extensions: RefCell<BTreeMap<TypeId, Box<dyn Any>>>,
+    /// return the mutation result for source files.
+    pub mutation_result: BTreeMap<location::Loc, bool>,
 }
 
 /// Struct a helper type for implementing fmt::Display depending on GlobalEnv
@@ -538,6 +542,7 @@ impl GlobalEnv {
             global_invariants_for_memory: Default::default(),
             used_spec_funs: BTreeSet::new(),
             extensions: Default::default(),
+            mutation_result: BTreeMap::new(),
         }
     }
 
