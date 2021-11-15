@@ -20,7 +20,7 @@ use move_lang::Flags;
 // pub(crate) means the function is private within the crate
 // prepare gets back the GlobalEnv and FunctionTargetsHolder
 pub(crate) fn  prepare(options: &MutationOptions, init_flag: &bool) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
-
+    println!("in prepare");
     let mut named_addresses = BTreeMap::new();
     if !options.no_default_named_addresses {
         let default_mapping = [

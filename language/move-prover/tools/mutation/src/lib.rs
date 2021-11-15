@@ -19,12 +19,21 @@ pub fn run(options: &MutationOptions) -> Result<()> {
     let mut init_flag = true;
     // return env and target from
     let (env, targets) = workflow::prepare(options, &init_flag)?;
+    let mut file_path = options.srcs[0].clone();
+    let mut file_path_vec = file_path.split("/").collect::<Vec<&str>>();
+    file_path = file_path_vec[file_path_vec.len()-1].to_string();
+    file_path = file_path[0..file_path.len()-5].to_string();
     let mut result_map = BTreeMap::new();
     // if the report file does not exist, create the file
-    let mut file = if Path::new("../mutation_result.txt").exists(){
-        OpenOptions::new().append(true).open("../mutation_result.txt")?
+    file_path += &"_".to_string();
+    file_path += &"mutation.txt".to_string();
+    file_path = "./mutation_result/".to_string()+&file_path.to_string();
+
+
+    let mut file = if Path::new(&file_path).exists(){
+        OpenOptions::new().append(true).open(&file_path)?
     }else{
-        OpenOptions::new().write(true).create(true).open("../mutation_result.txt")?
+        OpenOptions::new().write(true).create(true).open(&file_path)?
     };
 
     init_flag = false;
@@ -36,8 +45,9 @@ pub fn run(options: &MutationOptions) -> Result<()> {
             result_map.insert(loc, true);
         }else{
             result_map.insert(loc, false);
-            write!(&mut file,"loc{:?}, arithmatic expression mutation",loc)?;
+            write!(&mut file,"{:?}, arithmatic expression mutation",loc)?;
         }
+        break
     }
 
 
