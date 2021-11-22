@@ -17,7 +17,7 @@
 use std::{
     any::{Any, TypeId},
     cell::RefCell,
-    collections::{BTreeMap, BTreeSet, VecDeque},
+    collections::{BTreeMap, HashMap, BTreeSet, VecDeque},
     ffi::OsStr,
     fmt::{self, Formatter},
     rc::Rc,
@@ -70,9 +70,10 @@ use crate::{
 };
 
 use move_ir_types::location;
-
+use move_symbol_pool::Symbol as MoveStringSymbol;
 // import and re-expose symbols
 pub use move_binary_format::file_format::{AbilitySet, Visibility as FunctionVisibility};
+
 
 // =================================================================================================
 /// # Constants
@@ -492,6 +493,9 @@ pub struct GlobalEnv {
     extensions: RefCell<BTreeMap<TypeId, Box<dyn Any>>>,
     /// return the mutation result for source files.
     pub mutation_result: BTreeMap<location::Loc, bool>,
+    pub files: HashMap<FileHash, (MoveStringSymbol, String)>,
+    pub mutated: bool,
+
 }
 
 /// Struct a helper type for implementing fmt::Display depending on GlobalEnv
@@ -543,6 +547,8 @@ impl GlobalEnv {
             used_spec_funs: BTreeSet::new(),
             extensions: Default::default(),
             mutation_result: BTreeMap::new(),
+            files: HashMap::new(),
+            mutated: false,
         }
     }
 

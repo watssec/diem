@@ -340,7 +340,7 @@ pub struct CompilationEnv {
     diags: Diagnostics,
     named_address_mapping: BTreeMap<Symbol, NumericalAddress>,
     pub mutation_counter: Vec<Loc>,
-
+    pub mutated: bool,
 
     // TODO(tzakian): Remove the global counter and use this counter instead
     // pub counter: u64,
@@ -353,6 +353,7 @@ impl CompilationEnv {
             diags: Diagnostics::new(),
             named_address_mapping,
             mutation_counter: Vec::new(),
+            mutated: false,
 
         }
     }
@@ -461,8 +462,11 @@ pub struct Flags {
 
     pub mutation: bool,
 
-    #[structopt(long="mutated")]
-    pub mutated: bool,
+    pub current_file_hash: String,
+
+    pub current_start: u32,
+
+    pub current_end: u32,
 
 }
 
@@ -472,7 +476,9 @@ impl Flags {
             test: false,
             no_shadow: false,
             mutation: false,
-            mutated: false,
+            current_file_hash: "0f53266ef56c599770fa270b73a918e33d698eb164f3387450c49b9e33d89676".to_string(),
+            current_start:0,
+            current_end:0,
         }
     }
 
@@ -481,7 +487,9 @@ impl Flags {
             test: true,
             no_shadow: false,
             mutation: false,
-            mutated: false,
+            current_file_hash: "0f53266ef56c599770fa270b73a918e33d698eb164f3387450c49b9e33d89676".to_string(),
+            current_start:0,
+            current_end:0,
         }
     }
 

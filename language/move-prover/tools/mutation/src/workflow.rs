@@ -16,11 +16,11 @@ use move_model::{
 use move_prover::{cli::Options as CliOptions, generate_boogie, verify_boogie};
 use crate::options::MutationOptions;
 use move_lang::Flags;
+use move_ir_types::location::*;
 
 // pub(crate) means the function is private within the crate
 // prepare gets back the GlobalEnv and FunctionTargetsHolder
-pub(crate) fn  prepare(options: &MutationOptions, init_flag: &bool) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
-    println!("in prepare");
+pub(crate) fn  prepare(options: &MutationOptions, init_flag: &bool, loc: Option<Loc>) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
     let mut named_addresses = BTreeMap::new();
     if !options.no_default_named_addresses {
         let default_mapping = [
@@ -43,7 +43,16 @@ pub(crate) fn  prepare(options: &MutationOptions, init_flag: &bool) -> Result<(G
     if *init_flag{
     flags.mutation = false; }
     else{
-        flags.mutation=  true; }
+        flags.mutation= true;
+        let current_loc = loc.unwrap();
+        flags.current_file_hash = current_loc.file_hash.to_string();
+        flags.current_start = current_loc.start;
+        flags.current_end = current_loc.end;
+    }
+
+
+
+
 
     let env = run_model_builder_with_options_and_compilation_flags(
         &options.srcs,

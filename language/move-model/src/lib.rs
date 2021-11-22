@@ -128,6 +128,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         .iter()
         .map(|def| def.file_hash())
         .collect();
+
     for (fhash, (fname, fsrc)) in &files {
         env.add_source(*fhash, fname.as_str(), fsrc, dep_files.contains(fhash));
     }
@@ -230,7 +231,12 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             // from the mutation_counter into mutation_result in global env
             for loc in &compiler.compilation_env.mutation_counter{
                 env.mutation_result.insert(*loc, true);
+                env.files = files.clone();
             }
+            // pass the mutated flag into global env
+            env.mutated  = compiler.compilation_env.mutated;
+
+            // tag whether mutated
             let (units, warnings) = compiler.into_compiled_units();
             if !warnings.is_empty() {
                 // NOTE: these diagnostics are just warnings. it should be feasible to continue the

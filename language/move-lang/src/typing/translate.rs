@@ -19,6 +19,7 @@ use move_ir_types::location::*;
 use move_symbol_pool::Symbol;
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use crate::mutation;
+
 //**************************************************************************************************
 // Entry
 //**************************************************************************************************
@@ -1089,19 +1090,32 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
 
         // this flag is for initialization of mutation, if it's on, add the expression location to mutation_counter
         let flag = stack.context.env.flags.mutation;
-        let mut mutated_flag = stack.context.env.flags.mutated;
-        if !flag{
-        stack.context.env.mutation_counter.push(loc);}
         match cur_ {
             NE::BinopExp(nlhs, obop, nrhs) => {
-                if flag == false && mutated_flag == false{
-                    mutated_flag = true;
+                //it not in the mutation process -> in the init process, push the loc into the mutation_counter
+                if !flag{
+                    stack.context.env.mutation_counter.push(loc);}
+                // not in init process & not mutated
+                if obop.value ==BinOp_::Add ||
+                    obop.value == BinOp_::Sub ||
+                    obop.value == BinOp_::Mul ||
+                    obop.value == BinOp_::Div {
+                //println!("nlhs{:?}\n, obop{:?}\n, nrhs{:?}\n", &nlhs, &obop, &nrhs);
                 }
-                let bop = if flag == true && mutated_flag == false {
+
+                if stack.context.env.flags.current_start == loc.start
+                    && stack.context.env.flags.current_end == loc.end
+                    && stack.context.env.flags.current_file_hash == loc.file_hash.to_string() {
+                    stack.context.env.mutated = true;
+                }
+                let bop = if stack.context.env.flags.current_start == loc.start
+                    && stack.context.env.flags.current_end == loc.end
+                    && stack.context.env.flags.current_file_hash == loc.file_hash.to_string() {
                 mutation::mutation_workflow::expression_mutation(obop)
             }else{
             obop
             };
+
             let f_lhs = inner!(*nlhs);
             let f_rhs = inner!(*nrhs);
             let f_binop = move | s: &mut Stack | {
@@ -1289,9 +1303,11 @@ fn exp_inner(context: &mut Context, sp!(eloc, ne_): N::Exp) -> T::Exp {
         }
 
         NE::IfElse(nb, ont, onf) => {
-            let flag = &context.env.flags.mutation;
-            let nt = if *flag{onf.clone()}else{ont.clone()};
-            let nf = if *flag{ont.clone()}else{onf.clone()};
+            //let flag = &context.env.flags.mutation;
+            //let nt = if *flag{onf.clone()}else{ont.clone()};
+            //let nf = if *flag{ont.clone()}else{onf.clone()};
+            let nt = ont;
+            let nf = onf;
             let eb = exp(context, nb);
             let bloc = eb.exp.loc;
             subtype(

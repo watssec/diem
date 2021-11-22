@@ -6,10 +6,9 @@ use structopt::StructOpt;
 use mutation::run;
 use mutation::MutationOptions;
 
-
 fn main() -> Result<()> {
     let options = MutationOptions::from_args();
-
-    run(&options)
+    run(&options)?;
+    Ok(())
 }
 
