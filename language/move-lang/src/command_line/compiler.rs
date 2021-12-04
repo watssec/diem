@@ -387,7 +387,6 @@ pub fn construct_pre_compiled_lib(
         Err(errors) => return Ok(Err((files, errors))),
         Ok(res) => res,
     };
-
     let (empty_compiler, ast) = stepped.into_ast();
     let mut compilation_env = empty_compiler.compilation_env;
     let start = PassResult::Parser(ast);

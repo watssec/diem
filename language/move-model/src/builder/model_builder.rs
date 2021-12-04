@@ -135,6 +135,7 @@ impl<'env> ModelBuilder<'env> {
         env: &'env mut GlobalEnv,
         named_address_mapping: BTreeMap<MoveStringSymbol, NumericalAddress>,
     ) -> Self {
+
         let mut translator = ModelBuilder {
             env,
             named_address_mapping,
@@ -149,6 +150,7 @@ impl<'env> ModelBuilder<'env> {
             move_fun_call_graph: BTreeMap::new(),
         };
         spec_builtins::declare_spec_builtins(&mut translator);
+
         translator
     }
 

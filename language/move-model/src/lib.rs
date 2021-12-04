@@ -116,12 +116,9 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         }
         Ok(res) => res,
     };
-    // Pass the mutation_counter into global env, initialize the BTreeMap
-
-
 
     let (compiler, parsed_prog) = compiler.into_ast();
-
+    //println!("lib_definitions{:?}",&parsed_prog.lib_definitions);
     // Add source files for targets and dependencies
     let dep_files: BTreeSet<_> = parsed_prog
         .lib_definitions
@@ -132,7 +129,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
     for (fhash, (fname, fsrc)) in &files {
         env.add_source(*fhash, fname.as_str(), fsrc, dep_files.contains(fhash));
     }
-
+    //println!("dep_files{:?}",&dep_files);
     // Add any documentation comments found by the Move compiler to the env.
     for (fhash, documentation) in comment_map {
         let file_id = env.get_file_id(fhash).expect("file name defined");
@@ -144,7 +141,6 @@ pub fn run_model_builder_with_options_and_compilation_flags(
                 .collect(),
         )
     }
-
     // Step 2: run the compiler up to expansion
     let parsed_prog = {
         let P::Program {
@@ -157,6 +153,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             lib_definitions: vec![],
         }
     };
+    //println!("lib{:?}",&parsed_prog.lib_definitions);
     let (compiler, expansion_ast) = match compiler.at_parser(parsed_prog).run::<PASS_EXPANSION>() {
         Err(diags) => {
             add_move_lang_diagnostics(&mut env, diags);
@@ -167,9 +164,15 @@ pub fn run_model_builder_with_options_and_compilation_flags(
     // Extract the module/script closure
     let mut visited_addresses = BTreeSet::new();
     let mut visited_modules = BTreeSet::new();
+    let mut source_file_vec = Vec::new();
     for (_, mident, mdef) in &expansion_ast.modules {
         let src_file_hash = mdef.loc.file_hash();
+        //println!("mident{:?}",&mident);
+        //println!("file_hash{:?}",&dep_files.contains(&src_file_hash));
+        // Need review
+
         if !dep_files.contains(&src_file_hash) {
+            source_file_vec.push(mident.clone());
             collect_related_modules_recursive(
                 mident,
                 &expansion_ast.modules,
@@ -178,6 +181,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             );
         }
     }
+
     for sdef in expansion_ast.scripts.values() {
         let src_file_hash = sdef.loc.file_hash();
         if !dep_files.contains(&src_file_hash) {
@@ -205,17 +209,29 @@ pub fn run_model_builder_with_options_and_compilation_flags(
                 .then(|| (n.into(), val))
         })
         .collect();
-
+    let mut modules_ref = UniqueMap::new();
     // Step 3: selective compilation.
-    let expansion_ast = {
+
+
+    let mut expansion_ast = {
+
         let E::Program { modules, scripts } = expansion_ast;
-        let modules = modules.filter_map(|mident, mut mdef| {
+        let modules = modules.filter_map(|mident, mdef| {
             visited_modules.contains(&mident.value).then(|| {
-                mdef.is_source_module = true;
                 mdef
             })
         });
+        modules_ref = modules.clone();
         E::Program { modules, scripts }
+    };
+
+    for (_, ident, mdef) in &mut expansion_ast.modules{
+        let ident_clone = ident.clone();
+        if source_file_vec.contains(&ident_clone){
+            mdef.is_mutation_source = true;
+        }else{
+            mdef.is_mutation_source = false;
+        }
     };
 
     // Run the compiler fully to the compiled units
@@ -229,13 +245,14 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         }
         Ok(compiler) => {
             // from the mutation_counter into mutation_result in global env
-            for loc in &compiler.compilation_env.mutation_counter{
-                env.mutation_result.insert(*loc, true);
+            for (loc,result) in &compiler.compilation_env.mutation_counter{
+                env.mutation_result.insert(*loc,*result);
                 env.files = files.clone();
             }
             // pass the mutated flag into global env
             env.mutated  = compiler.compilation_env.mutated;
-
+            // pass the is_source_module flag into global env
+            env.is_source_module = compiler.compilation_env.is_source_module_flag;
             // tag whether mutated
             let (units, warnings) = compiler.into_compiled_units();
             if !warnings.is_empty() {
@@ -249,6 +266,7 @@ pub fn run_model_builder_with_options_and_compilation_flags(
     };
     // Check for bytecode verifier errors (there should not be any)
     let (verified_units, diags) = compiled_unit::verify_units(units);
+
     if !diags.is_empty() {
         add_move_lang_diagnostics(&mut env, diags);
         return Ok(env);
@@ -475,9 +493,12 @@ fn run_spec_checker(
     units: Vec<AnnotatedCompiledUnit>,
     mut eprog: E::Program,
 ) {
+
     let mut builder = ModelBuilder::new(env, named_address_mapping);
+
     // Merge the compiled units with the expanded program, preserving the order of the compiled
     // units which is topological w.r.t. use relation.
+
     let modules = units
         .into_iter()
         .flat_map(|unit| {
@@ -545,6 +566,7 @@ fn run_spec_checker(
                         immediate_neighbors,
                         used_addresses,
                         is_source_module: true,
+                        is_mutation_source: true,
                         friends: UniqueMap::new(),
                         structs: UniqueMap::new(),
                         constants,
@@ -575,8 +597,11 @@ fn run_spec_checker(
                 .symbol_pool()
                 .make(&module_id.value.module.0.value),
         );
+
         let module_id = ModuleId::new(module_count);
+
         let mut module_translator = ModuleBuilder::new(&mut builder, module_id, module_name);
+
         module_translator.translate(
             loc,
             expanded_module,
@@ -584,9 +609,13 @@ fn run_spec_checker(
             source_map,
             function_infos,
         );
+        //println!("{:?}",&env.diags);
+
     }
+
     // After all specs have been processed, warn about any unused schemas.
     builder.warn_unused_schemas();
+
 }
 
 // =================================================================================================

@@ -1377,6 +1377,7 @@ impl<'env, 'translator, 'module_translator> ExpTranslator<'env, 'translator, 'mo
                 cands.extend_from_slice(list);
             }
         }
+
         if cands.is_empty() {
             let display = self.display_call_target(module, name);
             self.error(loc, &format!("no function named `{}` found", display));

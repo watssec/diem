@@ -1898,6 +1898,7 @@ impl<'env, 'translator> ModuleBuilder<'env, 'translator> {
                 // A schema in the module we are currently analyzing. We need to check
                 // for cycles before recursively analyzing it.
                 if visiting.contains(&included_name) {
+
                     self.parent.error(
                         &included_loc,
                         &format!(
@@ -1912,6 +1913,7 @@ impl<'env, 'translator> ModuleBuilder<'env, 'translator> {
                 } else if let Some(included_block) = schema_defs.get(&included_name) {
                     // Recursively analyze it, if its defined. If not, we report an undeclared
                     // error in 2nd phase.
+
                     self.def_ana_schema(
                         schema_defs,
                         visited,
@@ -1921,6 +1923,8 @@ impl<'env, 'translator> ModuleBuilder<'env, 'translator> {
                     );
                 }
             }
+
+
         }
 
         // Now actually analyze this schema.
@@ -1932,6 +1936,7 @@ impl<'env, 'translator> ModuleBuilder<'env, 'translator> {
 
     /// Analysis of schema after it is ensured that all included schemas are fully analyzed.
     fn def_ana_schema_content(&mut self, name: QualifiedSymbol, block: &EA::SpecBlock) {
+
         let loc = self.parent.env.to_loc(&block.loc);
         let entry = self
             .parent
@@ -1954,6 +1959,7 @@ impl<'env, 'translator> ModuleBuilder<'env, 'translator> {
                 )
             })
             .collect();
+
         let mut included_spec = Spec::default();
 
         // Store back all_vars computed so far (which does not include those coming from
@@ -2048,6 +2054,7 @@ impl<'env, 'translator> ModuleBuilder<'env, 'translator> {
             };
         }
         self.spec_block_lets.clear();
+
     }
 
     /// Extracts all schema inclusions from a list of spec block members.

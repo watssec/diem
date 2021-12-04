@@ -34,9 +34,10 @@ pub fn program(
         modules: nmodules,
         scripts: nscripts,
     } = prog;
-    let modules = modules(&mut context, nmodules);
-    let scripts = scripts(&mut context, nscripts);
 
+    let modules = modules(&mut context, nmodules);
+
+    let scripts = scripts(&mut context, nscripts);
     assert!(context.constraints.is_empty());
     recursive_structs::modules(context.env, &modules);
     infinite_instantiations::modules(context.env, &modules);
@@ -60,21 +61,33 @@ fn module(
     let N::ModuleDefinition {
         attributes,
         is_source_module,
+        is_mutation_source,
         dependency_order,
         friends,
         mut structs,
         functions: nfunctions,
         constants: nconstants,
     } = mdef;
+    if context.env.flags.mutation{
+        if mdef.is_mutation_source{
+            context.env.is_source_module.insert(context.current_module.unwrap(), true);
+        }else{
+            context.env.is_source_module.insert(context.current_module.unwrap(), false);
+        }
+    };
     structs
         .iter_mut()
         .for_each(|(_, _, s)| struct_def(context, s));
     let constants = nconstants.map(|name, c| constant(context, name, c));
     let functions = nfunctions.map(|name, f| function(context, name, f, false));
     assert!(context.constraints.is_empty());
+    // insert is_source_module
+
+
     T::ModuleDefinition {
         attributes,
         is_source_module,
+        is_mutation_source,
         dependency_order,
         friends,
         structs,
@@ -1087,34 +1100,48 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
     }
 
     fn exp_loop(stack: &mut Stack, sp!(loc, cur_): N::Exp) {
+        let flag = stack.context.env.flags.mutation;
 
         // this flag is for initialization of mutation, if it's on, add the expression location to mutation_counter
-        let flag = stack.context.env.flags.mutation;
+
         match cur_ {
+
             NE::BinopExp(nlhs, obop, nrhs) => {
+                //
                 //it not in the mutation process -> in the init process, push the loc into the mutation_counter
-                if !flag{
-                    stack.context.env.mutation_counter.push(loc);}
-                // not in init process & not mutated
-                if obop.value ==BinOp_::Add ||
+                if !flag&&(obop.value ==BinOp_::Add ||
                     obop.value == BinOp_::Sub ||
                     obop.value == BinOp_::Mul ||
-                    obop.value == BinOp_::Div {
-                //println!("nlhs{:?}\n, obop{:?}\n, nrhs{:?}\n", &nlhs, &obop, &nrhs);
+                    obop.value == BinOp_::Div){
+                    stack.context.env.is_source_module.insert(stack.context.current_module.unwrap(),false);
+                    stack.context.env.mutation_counter.insert(loc,false);
+                    stack.context.env.moduleIdent.push(stack.context.current_module.unwrap());
                 }
 
+                // not in init process & not mutated
+                    let bop = if stack.context.env.flags.current_start == loc.start
+                        && stack.context.env.flags.current_end == loc.end
+                        && stack.context.env.flags.current_file_hash == loc.file_hash.to_string() &&(
+                        obop.value ==BinOp_::Add ||
+                        obop.value == BinOp_::Sub ||
+                        obop.value == BinOp_::Mul ||
+                        obop.value == BinOp_::Div) {
+                        mutation::mutation_workflow::expression_mutation(obop)
+
+                    }else{
+                        obop
+                    };
                 if stack.context.env.flags.current_start == loc.start
                     && stack.context.env.flags.current_end == loc.end
-                    && stack.context.env.flags.current_file_hash == loc.file_hash.to_string() {
+                    && stack.context.env.flags.current_file_hash == loc.file_hash.to_string() &&(obop.value ==BinOp_::Add ||
+                    obop.value == BinOp_::Sub ||
+                    obop.value == BinOp_::Mul ||
+                    obop.value == BinOp_::Div){
+
                     stack.context.env.mutated = true;
+                    stack.context.env.mutated_ident.push(stack.context.current_module.unwrap());
+
                 }
-                let bop = if stack.context.env.flags.current_start == loc.start
-                    && stack.context.env.flags.current_end == loc.end
-                    && stack.context.env.flags.current_file_hash == loc.file_hash.to_string() {
-                mutation::mutation_workflow::expression_mutation(obop)
-            }else{
-            obop
-            };
 
             let f_lhs = inner!(*nlhs);
             let f_rhs = inner!(*nrhs);
@@ -1231,6 +1258,15 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
         }
 
             cur_ => stack.operands.push(exp_inner(stack.context, sp(loc, cur_))),
+        };
+
+        if (flag && !stack.context.env.mutated_ident.is_empty()){
+
+            match stack.context.env.is_source_module.get(&stack.context.env.mutated_ident[0])
+            {
+                None => (),
+                _ => stack.context.env.is_source_module_flag = *stack.context.env.is_source_module.get(&stack.context.current_module.unwrap()).unwrap(),
+            }
         }
     }
 
@@ -1252,6 +1288,7 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
 fn exp_inner(context: &mut Context, sp!(eloc, ne_): N::Exp) -> T::Exp {
     use N::Exp_ as NE;
     use T::UnannotatedExp_ as TE;
+
     let (ty, e_) = match ne_ {
         NE::Unit { trailing } => (sp(eloc, Type_::Unit), TE::Unit { trailing }),
         NE::Value(sp!(vloc, Value_::InferredNum(v))) => (

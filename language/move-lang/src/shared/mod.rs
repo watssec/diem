@@ -17,11 +17,12 @@ use std::{
     sync::atomic::{AtomicUsize, Ordering as AtomicOrdering},
 };
 use structopt::*;
-
+use crate::expansion::ast::ModuleIdent;
 pub mod ast_debug;
 pub mod remembering_unique_map;
 pub mod unique_map;
 pub mod unique_set;
+use crate::naming::ast as N;
 
 //**************************************************************************************************
 // Numbers
@@ -339,11 +340,15 @@ pub struct CompilationEnv {
     pub flags: Flags,
     diags: Diagnostics,
     named_address_mapping: BTreeMap<Symbol, NumericalAddress>,
-    pub mutation_counter: Vec<Loc>,
+    pub mutation_counter: BTreeMap<Loc, bool>,
     pub mutated: bool,
+    pub moduleIdent: Vec<ModuleIdent>,
+    pub is_source_module: BTreeMap<ModuleIdent,bool>,
+    pub is_source_module_flag: bool,
+    pub mutated_ident: Vec<ModuleIdent>,
 
     // TODO(tzakian): Remove the global counter and use this counter instead
-    // pub counter: u64,
+
 }
 
 impl CompilationEnv {
@@ -352,9 +357,12 @@ impl CompilationEnv {
             flags,
             diags: Diagnostics::new(),
             named_address_mapping,
-            mutation_counter: Vec::new(),
+            mutation_counter: BTreeMap::new(),
             mutated: false,
-
+            moduleIdent: Vec::new(),
+            is_source_module: BTreeMap::new(),
+            is_source_module_flag: false,
+            mutated_ident:Vec::new(),
         }
     }
 
@@ -467,6 +475,8 @@ pub struct Flags {
     pub current_start: u32,
 
     pub current_end: u32,
+
+
 
 }
 

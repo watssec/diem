@@ -95,6 +95,7 @@ pub fn program(
     pre_compiled_lib: Option<&FullyCompiledProgram>,
     prog: P::Program,
 ) -> E::Program {
+
     let module_members = {
         let mut members = UniqueMap::new();
         all_module_members(
@@ -124,13 +125,13 @@ pub fn program(
         source_definitions,
         lib_definitions,
     } = prog;
-
     context.is_source_definition = true;
     for def in source_definitions {
         definition(&mut context, &mut module_map, &mut scripts, def)
     }
 
     context.is_source_definition = false;
+
     for def in lib_definitions {
         definition(&mut context, &mut module_map, &mut scripts, def)
     }
@@ -167,6 +168,7 @@ pub fn program(
 
     super::unique_modules_after_mapping::verify(context.env, &module_map);
     super::dependency_ordering::verify(context.env, &mut module_map, &mut scripts);
+
     E::Program {
         modules: module_map,
         scripts,
@@ -389,6 +391,7 @@ fn module_(
     let def = E::ModuleDefinition {
         attributes,
         loc,
+        is_mutation_source: false,
         is_source_module: context.is_source_definition,
         dependency_order: 0,
         immediate_neighbors: UniqueMap::new(),

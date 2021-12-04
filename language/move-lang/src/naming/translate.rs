@@ -362,6 +362,7 @@ fn module(
         attributes,
         loc: _loc,
         is_source_module,
+        is_mutation_source,
         dependency_order,
         immediate_neighbors: _,
         used_addresses: _,
@@ -389,6 +390,7 @@ fn module(
     N::ModuleDefinition {
         attributes,
         is_source_module,
+        is_mutation_source,
         dependency_order,
         friends,
         structs,

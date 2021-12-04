@@ -20,7 +20,7 @@ use move_ir_types::location::*;
 
 // pub(crate) means the function is private within the crate
 // prepare gets back the GlobalEnv and FunctionTargetsHolder
-pub(crate) fn  prepare(options: &MutationOptions, init_flag: &bool, loc: Option<Loc>) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
+pub(crate) fn prepare(options: &MutationOptions, init_flag: &bool, loc: Option<Loc>) -> Result<(GlobalEnv, FunctionTargetsHolder)> {
     let mut named_addresses = BTreeMap::new();
     if !options.no_default_named_addresses {
         let default_mapping = [

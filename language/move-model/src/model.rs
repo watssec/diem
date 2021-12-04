@@ -68,7 +68,6 @@ use crate::{
     symbol::{Symbol, SymbolPool},
     ty::{PrimitiveType, Type, TypeDisplayContext, TypeUnificationAdapter, Variance},
 };
-
 use move_ir_types::location;
 use move_symbol_pool::Symbol as MoveStringSymbol;
 // import and re-expose symbols
@@ -470,7 +469,7 @@ pub struct GlobalEnv {
     internal_loc: Loc,
     /// Accumulated diagnosis. In a RefCell so we can add to it without needing a mutable GlobalEnv.
     /// The boolean indicates whether the diag was reported.
-    diags: RefCell<Vec<(Diagnostic<FileId>, bool)>>,
+    pub diags: RefCell<Vec<(Diagnostic<FileId>, bool)>>,
     /// Pool of symbols -- internalized strings.
     symbol_pool: SymbolPool,
     /// A counter for allocating node ids.
@@ -495,6 +494,7 @@ pub struct GlobalEnv {
     pub mutation_result: BTreeMap<location::Loc, bool>,
     pub files: HashMap<FileHash, (MoveStringSymbol, String)>,
     pub mutated: bool,
+    pub is_source_module: bool,
 
 }
 
@@ -549,6 +549,7 @@ impl GlobalEnv {
             mutation_result: BTreeMap::new(),
             files: HashMap::new(),
             mutated: false,
+            is_source_module: false,
         }
     }
 

@@ -275,6 +275,6 @@ pub fn verify_units(
         let (unit, ds) = unit.verify();
         new_units.push(unit);
         diags.extend(ds);
-    }
+    };
     (new_units, diags)
 }
