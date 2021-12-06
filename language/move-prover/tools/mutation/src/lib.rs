@@ -11,7 +11,8 @@ pub use options::MutationOptions;
 use std::path::Path;
 use move_lang::{diag, diagnostics::{self, Diagnostics}};
 use std::time::Instant;
-
+use rand::{Rng, SeedableRng};
+use rand::prelude::*;
 extern crate pbr;
 use pbr::ProgressBar;
 //**************************************************************************************************
@@ -47,16 +48,23 @@ pub fn run(options: &MutationOptions) -> Result<()> {
     let files = env.files;
     let mut cnt = 0;
     let mut pb = ProgressBar::new(env.mutation_result.keys().len() as u64);
-    for (loc, _result) in env.mutation_result {
+
+    //let mut rng = rand_chacha::ChaCha8Rng::seed_from_u64(10);
+    // create the random number generator
+    //TODO: Consider changing the env.is_source_module to map<loc, bool>
+
+    let mut rng = rand::thread_rng();
+    for (loc,_result) in env.mutation_result {
         pb.inc();
 
         let (env, targets) = workflow::prepare(options, &init_flag, Some(loc))?;
         // if mutation is not from source files, then pass this one
+
         if !env.is_source_module{
             continue;
         }
         let proved = workflow::prove(options, &env, &targets)?;
-        //println!("proved{:?}", &proved);
+        println!("proved{:?}", &proved);
         // if the mutated result passed the
         if !proved {
             result_map.insert(loc, false);

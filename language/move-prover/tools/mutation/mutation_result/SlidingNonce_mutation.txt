@@ -1,0 +1,48 @@
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:206:13
+    │
+206 │         if (t.min_nonce + jump_limit <= seq_nonce) {
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:210:23
+    │
+210 │         let bit_pos = seq_nonce - t.min_nonce;
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:217:25
+    │
+217 │             let shift = (bit_pos - NONCE_MASK_SIZE + 1);
+    │                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:217:26
+    │
+217 │             let shift = (bit_pos - NONCE_MASK_SIZE + 1);
+    │                          ^^^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:225:31
+    │
+225 │                 t.min_nonce = seq_nonce + 1 - NONCE_MASK_SIZE;
+    │                               ^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:225:31
+    │
+225 │                 t.min_nonce = seq_nonce + 1 - NONCE_MASK_SIZE;
+    │                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:230:31
+    │
+230 │                 t.min_nonce = t.min_nonce + shift;
+    │                               ^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/SlidingNonce.move:236:23
+    │
+236 │         let bit_pos = seq_nonce - t.min_nonce;
+    │                       ^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+

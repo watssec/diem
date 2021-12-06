@@ -224,7 +224,6 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         modules_ref = modules.clone();
         E::Program { modules, scripts }
     };
-
     for (_, ident, mdef) in &mut expansion_ast.modules{
         let ident_clone = ident.clone();
         if source_file_vec.contains(&ident_clone){
@@ -239,11 +238,13 @@ pub fn run_model_builder_with_options_and_compilation_flags(
         .at_expansion(expansion_ast.clone())
         .run::<PASS_COMPILATION>()
     {
+
         Err(diags) => {
             add_move_lang_diagnostics(&mut env, diags);
             return Ok(env);
         }
         Ok(compiler) => {
+            println!("in move-model-lib.rs");
             // from the mutation_counter into mutation_result in global env
             for (loc,result) in &compiler.compilation_env.mutation_counter{
                 env.mutation_result.insert(*loc,*result);
@@ -252,8 +253,12 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             // pass the mutated flag into global env
             env.mutated  = compiler.compilation_env.mutated;
             // pass the is_source_module flag into global env
+            println!("is_source_module_flag{:?}",&compiler.compilation_env.is_source_module_flag);
+            if compiler.compilation_env.is_source_module_flag{
+                println!("is_source_module_flag = true");
+            }
             env.is_source_module = compiler.compilation_env.is_source_module_flag;
-            // tag whether mutated
+               // tag whether mutated
             let (units, warnings) = compiler.into_compiled_units();
             if !warnings.is_empty() {
                 // NOTE: these diagnostics are just warnings. it should be feasible to continue the
@@ -264,9 +269,9 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             units
         }
     };
+
     // Check for bytecode verifier errors (there should not be any)
     let (verified_units, diags) = compiled_unit::verify_units(units);
-
     if !diags.is_empty() {
         add_move_lang_diagnostics(&mut env, diags);
         return Ok(env);

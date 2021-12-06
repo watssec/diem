@@ -29,6 +29,7 @@ pub fn program(
     pre_compiled_lib: Option<&FullyCompiledProgram>,
     prog: N::Program,
 ) -> T::Program {
+    println!("in translate");
     let mut context = Context::new(compilation_env, pre_compiled_lib, &prog);
     let N::Program {
         modules: nmodules,
@@ -1142,7 +1143,6 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
                     stack.context.env.mutated_ident.push(stack.context.current_module.unwrap());
 
                 }
-
             let f_lhs = inner!(*nlhs);
             let f_rhs = inner!(*nrhs);
             let f_binop = move | s: &mut Stack | {
@@ -1265,9 +1265,11 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
             match stack.context.env.is_source_module.get(&stack.context.env.mutated_ident[0])
             {
                 None => (),
-                _ => stack.context.env.is_source_module_flag = *stack.context.env.is_source_module.get(&stack.context.current_module.unwrap()).unwrap(),
-            }
-        }
+                _ => stack.context.env.is_source_module_flag = *stack.context.env.is_source_module.get(&stack.context.env.mutated_ident[0]).unwrap(),
+            };
+
+        };
+
     }
 
     let mut stack = Stack {
@@ -1279,6 +1281,7 @@ fn exp_(context: &mut Context, initial_ne: N::Exp) -> T::Exp {
     while let Some(f) = stack.frames.pop() {
         f(&mut stack)
     }
+
     let e_res = stack.operands.pop().unwrap();
     assert!(stack.frames.is_empty());
     assert!(stack.operands.is_empty());

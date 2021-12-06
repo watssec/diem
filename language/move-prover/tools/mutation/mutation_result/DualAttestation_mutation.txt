@@ -1,0 +1,6 @@
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:487:29
+    │
+487 │         let initial_limit = (INITIAL_DUAL_ATTESTATION_LIMIT as u128) * (Diem::scaling_factor<XDX>() as u128);
+    │                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+

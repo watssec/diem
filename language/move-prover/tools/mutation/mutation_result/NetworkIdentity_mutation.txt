@@ -1,0 +1,12 @@
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/NetworkIdentity.move:102:13
+    │
+102 │             Vector::length(identities) + num_to_add <= MAX_ADDR_IDENTITIES,
+    │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ prover passed after mutation
+
+warning[W13001]: Mutation passed after arithmetic operation
+    ┌─ ../../../../diem-move/diem-framework/core/sources/NetworkIdentity.move:314:17
+    │
+314 │             i = i + 1;
+    │                 ^^^^^ prover passed after mutation
+
