@@ -72,7 +72,7 @@ use move_ir_types::location;
 use move_symbol_pool::Symbol as MoveStringSymbol;
 // import and re-expose symbols
 pub use move_binary_format::file_format::{AbilitySet, Visibility as FunctionVisibility};
-
+use move_lang::expansion::ast::ModuleIdent;
 
 // =================================================================================================
 /// # Constants
@@ -491,10 +491,13 @@ pub struct GlobalEnv {
     /// A type-indexed container for storing extension data in the environment.
     extensions: RefCell<BTreeMap<TypeId, Box<dyn Any>>>,
     /// return the mutation result for source files.
-    pub mutation_result: BTreeMap<location::Loc, bool>,
+    pub mutation_counter: BTreeMap<location::Loc, bool>,
     pub files: HashMap<FileHash, (MoveStringSymbol, String)>,
     pub mutated: bool,
-    pub is_source_module: bool,
+    pub is_source_module: BTreeMap<ModuleIdent,bool>,
+    pub is_source_module_flag: bool,
+    pub module_ident: BTreeMap<location::Loc,ModuleIdent>,
+    pub diags_map: BTreeMap<location::Loc, String>,
 
 }
 
@@ -546,10 +549,13 @@ impl GlobalEnv {
             global_invariants_for_memory: Default::default(),
             used_spec_funs: BTreeSet::new(),
             extensions: Default::default(),
-            mutation_result: BTreeMap::new(),
+            mutation_counter: BTreeMap::new(),
+            module_ident: BTreeMap::new(),
             files: HashMap::new(),
             mutated: false,
-            is_source_module: false,
+            is_source_module: BTreeMap::new(),
+            is_source_module_flag: false,
+            diags_map: BTreeMap::new(),
         }
     }
 
@@ -838,6 +844,7 @@ impl GlobalEnv {
 
     /// Returns the number of diagnostics.
     pub fn diag_count(&self, min_severity: Severity) -> usize {
+        //println!("self.diags{:?}",&self.diags);
         self.diags
             .borrow()
             .iter()

@@ -7,8 +7,8 @@ use mutation::run;
 use mutation::MutationOptions;
 
 fn main() -> Result<()> {
-    let options = MutationOptions::from_args();
-    run(&options)?;
+    let mut options = MutationOptions::from_args();
+    run(&mut options)?;
     Ok(())
 }
 

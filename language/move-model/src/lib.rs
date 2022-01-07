@@ -244,20 +244,24 @@ pub fn run_model_builder_with_options_and_compilation_flags(
             return Ok(env);
         }
         Ok(compiler) => {
-            println!("in move-model-lib.rs");
             // from the mutation_counter into mutation_result in global env
             for (loc,result) in &compiler.compilation_env.mutation_counter{
-                env.mutation_result.insert(*loc,*result);
-                env.files = files.clone();
+                env.mutation_counter.insert(*loc,*result);
+            }
+            for (loc, ident) in &compiler.compilation_env.moduleIdent{
+                env.module_ident.insert(*loc, *ident);
+            }
+            for(loc, diag_str) in &compiler.compilation_env.diag_map{
+                env.diags_map.insert(*loc, diag_str.to_string());
             }
             // pass the mutated flag into global env
             env.mutated  = compiler.compilation_env.mutated;
             // pass the is_source_module flag into global env
-            println!("is_source_module_flag{:?}",&compiler.compilation_env.is_source_module_flag);
-            if compiler.compilation_env.is_source_module_flag{
-                println!("is_source_module_flag = true");
+            for(loc,result) in &compiler.compilation_env.is_source_module{
+                env.is_source_module.insert(*loc, *result);
             }
-            env.is_source_module = compiler.compilation_env.is_source_module_flag;
+            env.is_source_module_flag = compiler.compilation_env.is_source_module_flag;
+
                // tag whether mutated
             let (units, warnings) = compiler.into_compiled_units();
             if !warnings.is_empty() {

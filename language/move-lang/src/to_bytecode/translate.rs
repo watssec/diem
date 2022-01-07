@@ -495,6 +495,7 @@ fn constant(
 ) -> IR::Constant {
     let name = context.constant_definition_name(m, n);
     let signature = base_type(context, c.signature);
+
     let value = c.value.unwrap();
     IR::Constant {
         name,

@@ -4,6 +4,7 @@ module Test{
 
     fun sort(v: &mut vector<u64>){
         let i = 0;
+
         let l = Vector::length(v);
         if (l != 0) {
             while({

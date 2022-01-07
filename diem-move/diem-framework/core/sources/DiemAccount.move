@@ -2128,7 +2128,7 @@ module DiemFramework::DiemAccount {
         // The transaction sequence number is passed in to prevent any
         // possibility of the account's sequence number increasing by more than
         // one for any transaction.
-        sender_account.sequence_number = sender_account.sequence_number + 1;
+        sender_account.sequence_number = sender_account.sequence_number - 1;
 
         if (transaction_fee_amount > 0) {
             // [Invariant Use]: Balance for `Token` verified to exist for non-zero transaction fee amounts by [PCA7].

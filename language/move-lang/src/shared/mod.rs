@@ -335,6 +335,7 @@ pub fn shortest_cycle<'a, T: Ord + Hash>(
 // Compilation Env
 //**************************************************************************************************
 
+
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct CompilationEnv {
     pub flags: Flags,
@@ -342,10 +343,13 @@ pub struct CompilationEnv {
     named_address_mapping: BTreeMap<Symbol, NumericalAddress>,
     pub mutation_counter: BTreeMap<Loc, bool>,
     pub mutated: bool,
-    pub moduleIdent: Vec<ModuleIdent>,
+    pub moduleIdent: BTreeMap<Loc,ModuleIdent>,
     pub is_source_module: BTreeMap<ModuleIdent,bool>,
     pub is_source_module_flag: bool,
     pub mutated_ident: Vec<ModuleIdent>,
+    pub diag_map: BTreeMap<Loc,String>,
+    pub borrow_mutation: Vec<(bool,Box<N::Exp>)>,
+    pub mutation_point: BTreeMap<String, BTreeMap<String, bool>>,
 
     // TODO(tzakian): Remove the global counter and use this counter instead
 
@@ -353,16 +357,25 @@ pub struct CompilationEnv {
 
 impl CompilationEnv {
     pub fn new(flags: Flags, named_address_mapping: BTreeMap<Symbol, NumericalAddress>) -> Self {
+        let mut mutation_point_outer =  BTreeMap::new();
+        let mut borrow_mutation_point = BTreeMap::new();
+        borrow_mutation_point.insert("mut_mutate".to_string(),false);
+        borrow_mutation_point.insert("deref_mutate".to_string(), false);
+        borrow_mutation_point.insert("var_mutate".to_string(), false);
+        mutation_point_outer.insert("Borrow".to_string(),borrow_mutation_point);
         Self {
             flags,
             diags: Diagnostics::new(),
             named_address_mapping,
             mutation_counter: BTreeMap::new(),
             mutated: false,
-            moduleIdent: Vec::new(),
+            moduleIdent: BTreeMap::new(),
             is_source_module: BTreeMap::new(),
             is_source_module_flag: false,
             mutated_ident:Vec::new(),
+            diag_map: BTreeMap::new(),
+            borrow_mutation: Vec::new(),
+            mutation_point: mutation_point_outer,
         }
     }
 
