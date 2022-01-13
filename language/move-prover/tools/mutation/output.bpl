@@ -4508,14 +4508,14 @@ procedure {:inline 1} $1_Signer_address_of(_$t0: $signer) returns ($ret0: int)
 
     // bytecode translation starts here
     // trace_local[s]($t0) at ../../../../language/move-stdlib/sources/Signer.move:12:5+1
-    assume {:print "$at(46,389,390)"} true;
+    assume {:print "$at(16,389,390)"} true;
     assume {:print "$track_local(0,0,0):", $t0} $t0 == $t0;
 
     // $t1 := Signer::borrow_address($t0) on_abort goto L2 with $t2 at ../../../../language/move-stdlib/sources/Signer.move:13:10+17
-    assume {:print "$at(46,443,460)"} true;
+    assume {:print "$at(16,443,460)"} true;
     call $t1 := $1_Signer_borrow_address($t0);
     if ($abort_flag) {
-        assume {:print "$at(46,443,460)"} true;
+        assume {:print "$at(16,443,460)"} true;
         $t2 := $abort_code;
         assume {:print "$track_abort(0,0):", $t2} $t2 == $t2;
         goto L2;
@@ -4525,7 +4525,7 @@ procedure {:inline 1} $1_Signer_address_of(_$t0: $signer) returns ($ret0: int)
     assume {:print "$track_return(0,0,0):", $t1} $t1 == $t1;
 
     // label L1 at ../../../../language/move-stdlib/sources/Signer.move:14:5+1
-    assume {:print "$at(46,465,466)"} true;
+    assume {:print "$at(16,465,466)"} true;
 L1:
 
     // return $t1 at ../../../../language/move-stdlib/sources/Signer.move:14:5+1
@@ -4582,7 +4582,7 @@ procedure {:inline 1} $1_DiemTimestamp_is_genesis() returns ($ret0: bool)
 
     // bytecode translation starts here
     // $t0 := 0xa550c18 at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:139:42+9
-    assume {:print "$at(42,5899,5908)"} true;
+    assume {:print "$at(10,5899,5908)"} true;
     $t0 := 173345816;
     assume $IsValid'address'($t0);
 
@@ -4596,7 +4596,7 @@ procedure {:inline 1} $1_DiemTimestamp_is_genesis() returns ($ret0: bool)
     assume {:print "$track_return(3,2,0):", $t2} $t2 == $t2;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:140:5+1
-    assume {:print "$at(42,5914,5915)"} true;
+    assume {:print "$at(10,5914,5915)"} true;
 L1:
 
     // return $t2 at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:140:5+1
@@ -4707,7 +4707,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role$verify(_$t0: $signer, _$t1: int) r
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -4884,36 +4884,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role$verify(_$t0: $signer, _$t1: int) r
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -4948,7 +4948,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -4958,19 +4958,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -4992,14 +4992,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -5007,211 +5007,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -5254,7 +5254,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'$1_XUS_XUS_#1_#2_#3_#4_#5_#6'$veri
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -5431,36 +5431,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'$1_XUS_XUS_#1_#2_#3_#4_#5_#6'$veri
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -5495,7 +5495,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -5505,19 +5505,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -5539,14 +5539,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -5554,211 +5554,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'$1_XUS_XUS'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -5801,7 +5801,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_$1_XUS_XUS_#2_#3_#4_#5_#6'$veri
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -5978,36 +5978,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_$1_XUS_XUS_#2_#3_#4_#5_#6'$veri
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -6042,7 +6042,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -6052,19 +6052,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -6086,14 +6086,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -6101,211 +6101,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -6348,7 +6348,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_$1_XUS_XUS_#3_#4_#5_#6'$veri
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -6525,36 +6525,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_$1_XUS_XUS_#3_#4_#5_#6'$veri
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -6589,7 +6589,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -6599,19 +6599,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -6633,14 +6633,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -6648,211 +6648,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'$1_XUS_XUS'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -6895,7 +6895,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#3_#5_#6'$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -7072,36 +7072,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#3_#5_#6'$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -7136,7 +7136,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -7146,19 +7146,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -7180,14 +7180,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -7195,211 +7195,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_can_mint'#3'($1_Diem_CurrencyInfo'#3'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -7442,7 +7442,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#4_#3_#6'$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -7619,36 +7619,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#4_#3_#6'$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -7683,7 +7683,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -7693,19 +7693,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -7727,14 +7727,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -7742,211 +7742,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#175) && $1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -7989,7 +7989,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#4_#4_#6'$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -8166,36 +8166,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#4_#4_#6'$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -8230,7 +8230,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -8240,19 +8240,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -8274,14 +8274,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -8289,211 +8289,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#175) && $1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -8536,7 +8536,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#5_#5_#6'$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -8713,36 +8713,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#3_#5_#5_#6'$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -8777,7 +8777,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -8787,19 +8787,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -8821,14 +8821,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -8836,211 +8836,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#3'($1_Diem_CurrencyInfo'#3'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory), $1_Diem_spec_xdx_exchange_rate'#3'($1_Diem_CurrencyInfo'#3'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#5'($1_Diem_CurrencyInfo'#5'_$memory), $1_Diem_spec_can_mint'#5'($1_Diem_CurrencyInfo'#5'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -9083,7 +9083,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#4_#4_#5_#6'$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -9260,36 +9260,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#4_#4_#5_#6'$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -9324,7 +9324,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -9334,19 +9334,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -9368,14 +9368,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -9383,211 +9383,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_xdx_exchange_rate'#4'($1_Diem_CurrencyInfo'#4'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -9630,7 +9630,7 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#5_#4_#5_#6'$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
@@ -9807,36 +9807,36 @@ procedure {:timeLimit 40} $1_Roles_grant_role'#0_#1_#2_#5_#4_#5_#6'$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t2, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:177:9+39
-    assume {:print "$at(39,7455,7494)"} true;
+    assume {:print "$at(40,7455,7494)"} true;
     assume ($t2 == $1_Signer_$address_of($t0));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, a550c18)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:179:9+60
-    assume {:print "$at(39,7553,7613)"} true;
+    assume {:print "$at(40,7553,7613)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 173345816));
 
     // assume Implies(Eq<u64>($t1, 0), Eq<address>($t2, b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:180:9+80
-    assume {:print "$at(39,7622,7702)"} true;
+    assume {:print "$at(40,7622,7702)"} true;
     assume ($IsEqual'u64'($t1, 0) ==> $IsEqual'address'($t2, 186537453));
 
     // assume CanModify<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
-    assume {:print "$at(39,7956,7986)"} true;
+    assume {:print "$at(40,7956,7986)"} true;
     assume $1_Roles_RoleId_$modifies[$1_Signer_$address_of($t0)];
 
     // @146 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:188:9+30
     $1_Roles_RoleId_$memory#146 := $1_Roles_RoleId_$memory;
 
     // trace_local[account]($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
-    assume {:print "$at(39,7139,7140)"} true;
+    assume {:print "$at(40,7139,7140)"} true;
     assume {:print "$track_local(4,12,0):", $t0} $t0 == $t0;
 
     // trace_local[role_id]($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+1
     assume {:print "$track_local(4,12,1):", $t1} $t1 == $t1;
 
     // $t3 := Signer::address_of($t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:33+27
-    assume {:print "$at(39,7220,7247)"} true;
+    assume {:print "$at(40,7220,7247)"} true;
     call $t3 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(39,7220,7247)"} true;
+        assume {:print "$at(40,7220,7247)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -9871,7 +9871,7 @@ L1:
     // $t8 := opaque end: Errors::already_published($t7) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:63+35
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
-    assume {:print "$at(39,7196,7286)"} true;
+    assume {:print "$at(40,7196,7286)"} true;
     assume {:print "$track_abort(4,12):", $t8} $t8 == $t8;
 
     // $t4 := move($t8) at ../../../../diem-move/diem-framework/core/sources/Roles.move:171:9+90
@@ -9881,19 +9881,19 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:17+7
-    assume {:print "$at(39,7304,7311)"} true;
+    assume {:print "$at(40,7304,7311)"} true;
 L0:
 
     // $t9 := pack Roles::RoleId($t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:26+18
     $t9 := $1_Roles_RoleId($t1);
 
     // assert CanModify<Roles::RoleId>($t0) at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assert {:msg "assert_failed(39,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
+    assert {:msg "assert_failed(40,7296,7303): caller does not have permission to modify `Roles::RoleId` at given address"}
       $1_Roles_RoleId_$modifies[$addr#$signer($t0)];
 
     // @171 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
     // state save for global update invariants
-    assume {:print "$at(39,7139,7339)"} true;
+    assume {:print "$at(40,7139,7339)"} true;
     $1_Roles_RoleId_$memory#171 := $1_Roles_RoleId_$memory;
 
     // @172 := save_mem(ValidatorConfig::ValidatorConfig) at ../../../../diem-move/diem-framework/core/sources/Roles.move:170:5+200
@@ -9915,14 +9915,14 @@ L0:
     $1_AccountFreezing_FreezingBit_$memory#177 := $1_AccountFreezing_FreezingBit_$memory;
 
     // move_to<Roles::RoleId>($t9, $t0) on_abort goto L3 with $t4 at ../../../../diem-move/diem-framework/core/sources/Roles.move:172:9+7
-    assume {:print "$at(39,7296,7303)"} true;
+    assume {:print "$at(40,7296,7303)"} true;
     if ($ResourceExists($1_Roles_RoleId_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_Roles_RoleId_$memory := $ResourceUpdate($1_Roles_RoleId_$memory, $addr#$signer($t0), $t9);
     }
     if ($abort_flag) {
-        assume {:print "$at(39,7296,7303)"} true;
+        assume {:print "$at(40,7296,7303)"} true;
         $t4 := $abort_code;
         assume {:print "$track_abort(4,12):", $t4} $t4 == $t4;
         goto L3;
@@ -9930,211 +9930,211 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@171]<Roles::RoleId>(addr): And(exists<Roles::RoleId>(addr), Eq<u64>(select Roles::RoleId.role_id(global[@171]<Roles::RoleId>(addr)), select Roles::RoleId.role_id(global<Roles::RoleId>(addr)))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:382:9+189
-    assume {:print "$at(39,15415,15604)"} true;
-    assert {:msg "assert_failed(39,15415,15604): global memory invariant does not hold"}
+    assume {:print "$at(40,15415,15604)"} true;
+    assert {:msg "assert_failed(40,15415,15604): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_Roles_RoleId_$memory#171, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#171, addr)), $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr))))));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:436:9+91
-    assume {:print "$at(39,19525,19616)"} true;
-    assert {:msg "assert_failed(39,19525,19616): global memory invariant does not hold"}
+    assume {:print "$at(40,19525,19616)"} true;
+    assert {:msg "assert_failed(40,19525,19616): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Eq<address>(addr, b1e55ed) at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:442:9+121
-    assume {:print "$at(39,20004,20125)"} true;
-    assert {:msg "assert_failed(39,20004,20125): global memory invariant does not hold"}
+    assume {:print "$at(40,20004,20125)"} true;
+    assert {:msg "assert_failed(40,20004,20125): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($IsEqual'address'(addr, 186537453)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_diem_root_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:450:9+119
-    assume {:print "$at(39,20510,20629)"} true;
-    assert {:msg "assert_failed(39,20510,20629): global memory invariant does not hold"}
+    assume {:print "$at(40,20510,20629)"} true;
+    assert {:msg "assert_failed(40,20510,20629): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_diem_root_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_treasury_compliance_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:454:9+129
-    assume {:print "$at(39,20705,20834)"} true;
-    assert {:msg "assert_failed(39,20705,20834): global memory invariant does not hold"}
+    assume {:print "$at(40,20705,20834)"} true;
+    assert {:msg "assert_failed(40,20705,20834): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:458:9+119
-    assume {:print "$at(39,20901,21020)"} true;
-    assert {:msg "assert_failed(39,20901,21020): global memory invariant does not hold"}
+    assume {:print "$at(40,20901,21020)"} true;
+    assert {:msg "assert_failed(40,20901,21020): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_validator_operator_role_addr(addr): Not(Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:462:9+128
-    assume {:print "$at(39,21095,21223)"} true;
-    assert {:msg "assert_failed(39,21095,21223): global memory invariant does not hold"}
+    assume {:print "$at(40,21095,21223)"} true;
+    assert {:msg "assert_failed(40,21095,21223): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr))  ==> (!$1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_designated_dealer_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:466:9+126
-    assume {:print "$at(39,21290,21416)"} true;
-    assert {:msg "assert_failed(39,21290,21416): global memory invariant does not hold"}
+    assume {:print "$at(40,21290,21416)"} true;
+    assert {:msg "assert_failed(40,21290,21416): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_parent_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:470:9+120
-    assume {:print "$at(39,21477,21597)"} true;
-    assert {:msg "assert_failed(39,21477,21597): global memory invariant does not hold"}
+    assume {:print "$at(40,21477,21597)"} true;
+    assert {:msg "assert_failed(40,21477,21597): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where Roles::spec_has_child_VASP_role_addr(addr): Roles::spec_can_hold_balance_addr(addr) at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Roles.move:474:9+119
-    assume {:print "$at(39,21657,21776)"} true;
-    assert {:msg "assert_failed(39,21657,21776): global memory invariant does not hold"}
+    assume {:print "$at(40,21657,21776)"} true;
+    assert {:msg "assert_failed(40,21657,21776): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))  ==> ($1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorOperatorConfig::$has_validator_operator_config(addr): Roles::spec_has_validator_operator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorOperatorConfig.move:82:9+137
-    assume {:print "$at(16,3286,3423)"} true;
-    assert {:msg "assert_failed(16,3286,3423): global memory invariant does not hold"}
+    assume {:print "$at(9,3286,3423)"} true;
+    assert {:msg "assert_failed(9,3286,3423): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorOperatorConfig_$has_validator_operator_config($1_ValidatorOperatorConfig_ValidatorOperatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_operator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall a: TypeDomain<address>() where And(exists[@172]<ValidatorConfig::ValidatorConfig>(a), exists<ValidatorConfig::ValidatorConfig>(a)): Implies(Neq<Option::Option<address>>(select ValidatorConfig::ValidatorConfig.operator_account(global[@172]<ValidatorConfig::ValidatorConfig>(a)), select ValidatorConfig::ValidatorConfig.operator_account(global<ValidatorConfig::ValidatorConfig>(a))), And(Signer::is_txn_signer_addr(a), Roles::spec_has_validator_role_addr(a))) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:321:9+304
-    assume {:print "$at(44,13781,14085)"} true;
-    assert {:msg "assert_failed(44,13781,14085): global memory invariant does not hold"}
+    assume {:print "$at(54,13781,14085)"} true;
+    assert {:msg "assert_failed(54,13781,14085): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory#172, a) && $ResourceExists($1_ValidatorConfig_ValidatorConfig_$memory, a)))  ==> ((!$IsEqual'$1_Option_Option'address''($operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory#172, a)), $operator_account#$1_ValidatorConfig_ValidatorConfig($ResourceValue($1_ValidatorConfig_ValidatorConfig_$memory, a))) ==> ($1_Signer_is_txn_signer_addr(a) && $1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, a)))));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:340:9+112
-    assume {:print "$at(44,14569,14681)"} true;
-    assert {:msg "assert_failed(44,14569,14681): global memory invariant does not hold"}
+    assume {:print "$at(54,14569,14681)"} true;
+    assert {:msg "assert_failed(54,14569,14681): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$exists_config(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:345:9+112
-    assume {:print "$at(44,14910,15022)"} true;
-    assert {:msg "assert_failed(44,14910,15022): global memory invariant does not hold"}
+    assume {:print "$at(54,14910,15022)"} true;
+    assert {:msg "assert_failed(54,14910,15022): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$exists_config($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall addr: TypeDomain<address>() where ValidatorConfig::$is_valid(addr): Roles::spec_has_validator_role_addr(addr) at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
     // global invariant at ../../../../diem-move/diem-framework/core/sources/ValidatorConfig.move:352:9+107
-    assume {:print "$at(44,15356,15463)"} true;
-    assert {:msg "assert_failed(44,15356,15463): global memory invariant does not hold"}
+    assume {:print "$at(54,15356,15463)"} true;
+    assert {:msg "assert_failed(54,15356,15463): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($1_ValidatorConfig_$is_valid($1_ValidatorConfig_ValidatorConfig_$memory, addr))  ==> ($1_Roles_spec_has_validator_role_addr($1_Roles_RoleId_$memory, addr)));
 
     // assert forall mint_cap_owner: TypeDomain<address>() where exists<Diem::MintCapability<#0>>(mint_cap_owner): Roles::spec_has_treasury_compliance_role_addr(mint_cap_owner) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1612:9+197
-    assume {:print "$at(8,75192,75389)"} true;
-    assert {:msg "assert_failed(8,75192,75389): global memory invariant does not hold"}
+    assume {:print "$at(50,75192,75389)"} true;
+    assert {:msg "assert_failed(50,75192,75389): global memory invariant does not hold"}
       (forall mint_cap_owner: int :: $IsValid'address'(mint_cap_owner) ==> ($ResourceExists($1_Diem_MintCapability'#0'_$memory, mint_cap_owner))  ==> ($1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, mint_cap_owner)));
 
     // assert forall addr1: TypeDomain<address>(): Implies(exists<Diem::BurnCapability<#1>>(addr1), Roles::spec_has_treasury_compliance_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1691:9+188
-    assume {:print "$at(8,79168,79356)"} true;
-    assert {:msg "assert_failed(8,79168,79356): global memory invariant does not hold"}
+    assume {:print "$at(50,79168,79356)"} true;
+    assert {:msg "assert_failed(50,79168,79356): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($ResourceExists($1_Diem_BurnCapability'#1'_$memory, addr1) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(Or(exists<Diem::PreburnQueue<#2>>(addr1), exists<Diem::Preburn<#2>>(addr1)), Roles::spec_has_designated_dealer_role_addr(addr1)) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1758:9+220
-    assume {:print "$at(8,83123,83343)"} true;
-    assert {:msg "assert_failed(8,83123,83343): global memory invariant does not hold"}
+    assume {:print "$at(50,83123,83343)"} true;
+    assert {:msg "assert_failed(50,83123,83343): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> ((($ResourceExists($1_Diem_PreburnQueue'#2'_$memory, addr1) || $ResourceExists($1_Diem_Preburn'#2'_$memory, addr1)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1))));
 
     // assert Implies(Diem::spec_is_currency[@173]<#3>(), Implies(Neq<FixedPoint32::FixedPoint32>(Diem::spec_xdx_exchange_rate<#3>(), Diem::spec_xdx_exchange_rate[@173]<#3>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1817:9+228
-    assume {:print "$at(8,85999,86227)"} true;
-    assert {:msg "assert_failed(8,85999,86227): global memory invariant does not hold"}
+    assume {:print "$at(50,85999,86227)"} true;
+    assert {:msg "assert_failed(50,85999,86227): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#173) ==> (!$IsEqual'$1_FixedPoint32_FixedPoint32'($1_Diem_spec_xdx_exchange_rate'#5'($1_Diem_CurrencyInfo'#5'_$memory), $1_Diem_spec_xdx_exchange_rate'#5'($1_Diem_CurrencyInfo'#5'_$memory#173)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(Diem::spec_is_currency[@174]<#4>(), Implies(Neq<bool>(Diem::spec_can_mint<#4>(), Diem::spec_can_mint[@174]<#4>()), Roles::spec_signed_by_treasury_compliance_role())) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1825:9+210
-    assume {:print "$at(8,86378,86588)"} true;
-    assert {:msg "assert_failed(8,86378,86588): global memory invariant does not hold"}
+    assume {:print "$at(50,86378,86588)"} true;
+    assert {:msg "assert_failed(50,86378,86588): global memory invariant does not hold"}
       ($1_Diem_spec_is_currency'#4'($1_Diem_CurrencyInfo'#4'_$memory#174) ==> (!$IsEqual'bool'($1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory), $1_Diem_spec_can_mint'#4'($1_Diem_CurrencyInfo'#4'_$memory#174)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory)));
 
     // assert Implies(And(Not(Diem::spec_is_currency[@175]<#5>()), Diem::spec_is_currency<#5>()), Roles::spec_signed_by_diem_root_role()) at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
     // global invariant at ../../../../diem-move/diem-framework/core/sources/Diem.move:1833:9+165
-    assume {:print "$at(8,86729,86894)"} true;
-    assert {:msg "assert_failed(8,86729,86894): global memory invariant does not hold"}
+    assume {:print "$at(50,86729,86894)"} true;
+    assert {:msg "assert_failed(50,86729,86894): global memory invariant does not hold"}
       ((!$1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory#175) && $1_Diem_spec_is_currency'#5'($1_Diem_CurrencyInfo'#5'_$memory)) ==> $1_Roles_spec_signed_by_diem_root_role($1_Roles_RoleId_$memory));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#6>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#6'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_mint_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:92:9+169
-    assume {:print "$at(52,4049,4218)"} true;
-    assert {:msg "assert_failed(52,4049,4218): global memory invariant does not hold"}
+    assume {:print "$at(8,4049,4218)"} true;
+    assert {:msg "assert_failed(8,4049,4218): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_mint_capability'$1_XUS_XUS'($1_Diem_MintCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Diem::spec_has_burn_capability<XUS::XUS>(a), Roles::spec_has_treasury_compliance_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:125:9+169
-    assume {:print "$at(52,5635,5804)"} true;
-    assert {:msg "assert_failed(52,5635,5804): global memory invariant does not hold"}
+    assume {:print "$at(8,5635,5804)"} true;
+    assert {:msg "assert_failed(8,5635,5804): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> (($1_Diem_spec_has_burn_capability'$1_XUS_XUS'($1_Diem_BurnCapability'$1_XUS_XUS'_$memory, a) ==> $1_Roles_spec_has_treasury_compliance_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>(): Implies(Or(Diem::spec_has_preburn_queue<XUS::XUS>(a), Diem::spec_has_preburn<XUS::XUS>(a)), Roles::spec_has_designated_dealer_role_addr(a)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:163:9+201
-    assume {:print "$at(52,7604,7805)"} true;
-    assert {:msg "assert_failed(52,7604,7805): global memory invariant does not hold"}
+    assume {:print "$at(8,7604,7805)"} true;
+    assert {:msg "assert_failed(8,7604,7805): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ((($1_Diem_spec_has_preburn_queue'$1_XUS_XUS'($1_Diem_PreburnQueue'$1_XUS_XUS'_$memory, a) || $1_Diem_spec_has_preburn'$1_XUS_XUS'($1_Diem_Preburn'$1_XUS_XUS'_$memory, a)) ==> $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, a))));
 
     // assert forall a: TypeDomain<address>() where exists[@176]<DualAttestation::Limit>(a550c18): Implies(Neq<u64>(DualAttestation::spec_get_cur_microdiem_limit(), DualAttestation::spec_get_cur_microdiem_limit[@176]()), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:558:9+214
-    assume {:print "$at(40,24689,24903)"} true;
-    assert {:msg "assert_failed(40,24689,24903): global memory invariant does not hold"}
+    assume {:print "$at(11,24689,24903)"} true;
+    assert {:msg "assert_failed(11,24689,24903): global memory invariant does not hold"}
       (forall a: int :: $IsValid'address'(a) ==> ($ResourceExists($1_DualAttestation_Limit_$memory#176, 173345816))  ==> ((!$IsEqual'u64'($1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory), $1_DualAttestation_spec_get_cur_microdiem_limit($1_DualAttestation_Limit_$memory#176)) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr1: TypeDomain<address>(): Implies(DualAttestation::spec_has_credential(addr1), Or(Roles::spec_has_parent_VASP_role_addr(addr1), Roles::spec_has_designated_dealer_role_addr(addr1))) at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DualAttestation.move:564:9+209
-    assume {:print "$at(40,25118,25327)"} true;
-    assert {:msg "assert_failed(40,25118,25327): global memory invariant does not hold"}
+    assume {:print "$at(11,25118,25327)"} true;
+    assert {:msg "assert_failed(11,25118,25327): global memory invariant does not hold"}
       (forall addr1: int :: $IsValid'address'(addr1) ==> (($1_DualAttestation_spec_has_credential($1_DualAttestation_Credential_$memory, addr1) ==> ($1_Roles_spec_has_parent_VASP_role_addr($1_Roles_RoleId_$memory, addr1) || $1_Roles_spec_has_designated_dealer_role_addr($1_Roles_RoleId_$memory, addr1)))));
 
     // assert forall addr: TypeDomain<address>() where exists[@177]<AccountFreezing::FreezingBit>(addr): Implies(Neq<bool>(select AccountFreezing::FreezingBit.is_frozen(global<AccountFreezing::FreezingBit>(addr)), select AccountFreezing::FreezingBit.is_frozen(global[@177]<AccountFreezing::FreezingBit>(addr))), Roles::spec_signed_by_treasury_compliance_role()) at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountFreezing.move:219:9+237
-    assume {:print "$at(43,8689,8926)"} true;
-    assert {:msg "assert_failed(43,8689,8926): global memory invariant does not hold"}
+    assume {:print "$at(3,8689,8926)"} true;
+    assert {:msg "assert_failed(3,8689,8926): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountFreezing_FreezingBit_$memory#177, addr))  ==> ((!$IsEqual'bool'($is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory, addr)), $is_frozen#$1_AccountFreezing_FreezingBit($ResourceValue($1_AccountFreezing_FreezingBit_$memory#177, addr))) ==> $1_Roles_spec_signed_by_treasury_compliance_role($1_Roles_RoleId_$memory))));
 
     // assert forall addr: TypeDomain<address>(): Implies(Or(exists<DiemAccount::Balance<XUS::XUS>>(addr), exists<DiemAccount::Balance<XDX::XDX>>(addr)), Roles::spec_can_hold_balance_addr(addr)) at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
     // global invariant at ../../../../diem-move/diem-framework/core/sources/DiemAccount.move:2422:9+147
-    assume {:print "$at(54,110174,110321)"} true;
-    assert {:msg "assert_failed(54,110174,110321): global memory invariant does not hold"}
+    assume {:print "$at(21,110174,110321)"} true;
+    assert {:msg "assert_failed(21,110174,110321): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L2:
 
     // assert Not(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:185:9+62
-    assume {:print "$at(39,7790,7852)"} true;
-    assert {:msg "assert_failed(39,7790,7852): function does not abort under this condition"}
+    assume {:print "$at(40,7790,7852)"} true;
+    assert {:msg "assert_failed(40,7790,7852): function does not abort under this condition"}
       !$ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert exists<Roles::RoleId>(Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:186:9+29
-    assume {:print "$at(39,7861,7890)"} true;
-    assert {:msg "assert_failed(39,7861,7890): post-condition does not hold"}
+    assume {:print "$at(40,7861,7890)"} true;
+    assert {:msg "assert_failed(40,7861,7890): post-condition does not hold"}
       $ResourceExists($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0));
 
     // assert Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(Signer::$address_of($t0))), $t1) at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
-    assume {:print "$at(39,7899,7947)"} true;
-    assert {:msg "assert_failed(39,7899,7947): post-condition does not hold"}
+    assume {:print "$at(40,7899,7947)"} true;
+    assert {:msg "assert_failed(40,7899,7947): post-condition does not hold"}
       $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $1_Signer_$address_of($t0))), $t1);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/Roles.move:187:9+48
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/Roles.move:173:5+1
-    assume {:print "$at(39,7338,7339)"} true;
+    assume {:print "$at(40,7338,7339)"} true;
 L3:
 
     // assert exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assume {:print "$at(39,7344,7708)"} true;
-    assert {:msg "assert_failed(39,7344,7708): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(40,7344,7708)"} true;
+    assert {:msg "assert_failed(40,7344,7708): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0));
 
     // assert And(exists[@146]<Roles::RoleId>(Signer::$address_of[]($t0)), Eq(0, $t4)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
-    assert {:msg "assert_failed(39,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(40,7344,7708): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_Roles_RoleId_$memory#146, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t4));
 
     // abort($t4) at ../../../../diem-move/diem-framework/core/sources/Roles.move:174:5+364
@@ -11777,10 +11777,10 @@ procedure {:inline 1} $1_AccountLimits_current_time() returns ($ret0: int)
 
     // bytecode translation starts here
     // $t1 := DiemTimestamp::is_genesis() on_abort goto L5 with $t2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:561:13+27
-    assume {:print "$at(31,26740,26767)"} true;
+    assume {:print "$at(35,26740,26767)"} true;
     call $t1 := $1_DiemTimestamp_is_genesis();
     if ($abort_flag) {
-        assume {:print "$at(31,26740,26767)"} true;
+        assume {:print "$at(35,26740,26767)"} true;
         $t2 := $abort_code;
         assume {:print "$track_abort(20,2):", $t2} $t2 == $t2;
         goto L5;
@@ -11813,7 +11813,7 @@ L7:
     assume (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t2));
 
     // trace_abort($t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:561:49+33
-    assume {:print "$at(31,26776,26809)"} true;
+    assume {:print "$at(35,26776,26809)"} true;
     assume {:print "$track_abort(20,2):", $t2} $t2 == $t2;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:561:49+33
@@ -11859,7 +11859,7 @@ L3:
     assume {:print "$track_return(20,2,0):", $t0} $t0 == $t0;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:562:5+1
-    assume {:print "$at(31,26814,26815)"} true;
+    assume {:print "$at(35,26814,26815)"} true;
 L4:
 
     // return $t0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:562:5+1
@@ -11893,7 +11893,7 @@ procedure {:timeLimit 40} $1_AccountLimits_current_time$verify() returns ($ret0:
 
     // bytecode translation starts here
     // assume forall $rsc: ResourceDomain<DiemTimestamp::CurrentTimeMicroseconds>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:560:5+1
-    assume {:print "$at(31,26702,26703)"} true;
+    assume {:print "$at(35,26702,26703)"} true;
     assume (forall $a_0: int :: {$ResourceValue($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $a_0)}(var $rsc := $ResourceValue($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $a_0);
     ($IsValid'$1_DiemTimestamp_CurrentTimeMicroseconds'($rsc))));
 
@@ -12128,10 +12128,10 @@ procedure {:timeLimit 40} $1_AccountLimits_current_time$verify() returns ($ret0:
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // $t1 := DiemTimestamp::is_genesis() on_abort goto L5 with $t2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:561:13+27
-    assume {:print "$at(31,26740,26767)"} true;
+    assume {:print "$at(35,26740,26767)"} true;
     call $t1 := $1_DiemTimestamp_is_genesis();
     if ($abort_flag) {
-        assume {:print "$at(31,26740,26767)"} true;
+        assume {:print "$at(35,26740,26767)"} true;
         $t2 := $abort_code;
         assume {:print "$track_abort(20,2):", $t2} $t2 == $t2;
         goto L5;
@@ -12164,7 +12164,7 @@ L7:
     assume (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t2));
 
     // trace_abort($t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:561:49+33
-    assume {:print "$at(31,26776,26809)"} true;
+    assume {:print "$at(35,26776,26809)"} true;
     assume {:print "$track_abort(20,2):", $t2} $t2 == $t2;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:561:49+33
@@ -12210,7 +12210,7 @@ L3:
     assume {:print "$track_return(20,2,0):", $t0} $t0 == $t0;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:562:5+1
-    assume {:print "$at(31,26814,26815)"} true;
+    assume {:print "$at(35,26814,26815)"} true;
 L4:
 
     // return $t0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:562:5+1
@@ -12295,7 +12295,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_receive_and_update_window$verify(
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:366:5+1
-    assume {:print "$at(31,17328,17329)"} true;
+    assume {:print "$at(35,17328,17329)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:366:5+1
@@ -12572,7 +12572,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_receive_and_update_window$verify(
     assume {:print "$track_local(20,0,1):", $temp_0'$1_AccountLimits_Window'#0''} $temp_0'$1_AccountLimits_Window'#0'' == $temp_0'$1_AccountLimits_Window'#0'';
 
     // $t6 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:52+23
-    assume {:print "$at(31,17527,17550)"} true;
+    assume {:print "$at(35,17527,17550)"} true;
     $t6 := $limit_address#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t7 := exists<AccountLimits::LimitsDefinition<#0>>($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:17+6
@@ -12601,7 +12601,7 @@ L1:
     // $t9 := opaque end: Errors::not_published($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:78+41
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:9+111
-    assume {:print "$at(31,17484,17595)"} true;
+    assume {:print "$at(35,17484,17595)"} true;
     assume {:print "$track_abort(20,0):", $t9} $t9 == $t9;
 
     // $t10 := move($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:9+111
@@ -12611,7 +12611,7 @@ L1:
     goto L13;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:371:75+9
-    assume {:print "$at(31,17671,17680)"} true;
+    assume {:print "$at(35,17671,17680)"} true;
 L0:
 
     // $t11 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:371:75+23
@@ -12624,7 +12624,7 @@ L0:
         $t12 := $ResourceValue($1_AccountLimits_LimitsDefinition'#0'_$memory, $t11);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,17629,17642)"} true;
+        assume {:print "$at(35,17629,17642)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12634,7 +12634,7 @@ L0:
     assume {:print "$track_local(20,0,4):", $t12} $t12 == $t12;
 
     // $t13 := opaque begin: AccountLimits::is_unrestricted<#0>($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:373:13+34
-    assume {:print "$at(31,17780,17814)"} true;
+    assume {:print "$at(35,17780,17814)"} true;
 
     // assume WellFormed($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:373:13+34
     assume $IsValid'bool'($t13);
@@ -12672,7 +12672,7 @@ L3:
     goto L12;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:22+9
-    assume {:print "$at(31,17851,17860)"} true;
+    assume {:print "$at(35,17851,17860)"} true;
 L2:
 
     // opaque begin: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
@@ -12693,7 +12693,7 @@ L15:
     assume (((($window_start#$1_AccountLimits_Window'#0'($Dereference($t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($t12)) > $MAX_U64) && $IsEqual'num'(0, $t10)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t10)));
 
     // trace_abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
-    assume {:print "$at(31,17838,17880)"} true;
+    assume {:print "$at(35,17838,17880)"} true;
     assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
 
     // goto L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
@@ -12719,7 +12719,7 @@ L14:
     // opaque end: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
 
     // $t18 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:17+23
-    assume {:print "$at(31,18051,18074)"} true;
+    assume {:print "$at(35,18051,18074)"} true;
     $t18 := $window_inflow#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t19 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:44+7
@@ -12729,7 +12729,7 @@ L14:
     // $t20 := -($t19, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:52+1
     call $t20 := $Sub($t19, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18086,18087)"} true;
+        assume {:print "$at(35,18086,18087)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12763,7 +12763,7 @@ L5:
     // $t23 := opaque end: Errors::limit_exceeded($t22) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:62+31
 
     // trace_abort($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:9+85
-    assume {:print "$at(31,18043,18128)"} true;
+    assume {:print "$at(35,18043,18128)"} true;
     assume {:print "$track_abort(20,0):", $t23} $t23 == $t23;
 
     // $t10 := move($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:9+85
@@ -12773,7 +12773,7 @@ L5:
     goto L13;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:26+9
-    assume {:print "$at(31,18155,18164)"} true;
+    assume {:print "$at(35,18155,18164)"} true;
 L4:
 
     // $t24 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:26+23
@@ -12782,7 +12782,7 @@ L4:
     // $t25 := +($t24, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:50+1
     call $t25 := $AddU64($t24, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18179,18180)"} true;
+        assume {:print "$at(35,18179,18180)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12798,7 +12798,7 @@ L4:
     assume {:print "$track_local(20,0,3):", $t27} $t27 == $t27;
 
     // $t28 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:17+25
-    assume {:print "$at(31,18296,18321)"} true;
+    assume {:print "$at(35,18296,18321)"} true;
     $t28 := $tracked_balance#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t29 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:46+7
@@ -12808,7 +12808,7 @@ L4:
     // $t30 := -($t29, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:54+1
     call $t30 := $Sub($t29, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18333,18334)"} true;
+        assume {:print "$at(35,18333,18334)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12842,7 +12842,7 @@ L7:
     // $t33 := opaque end: Errors::limit_exceeded($t32) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:64+31
 
     // trace_abort($t33) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:9+87
-    assume {:print "$at(31,18288,18375)"} true;
+    assume {:print "$at(35,18288,18375)"} true;
     assume {:print "$track_abort(20,0):", $t33} $t33 == $t33;
 
     // $t10 := move($t33) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:9+87
@@ -12852,7 +12852,7 @@ L7:
     goto L13;
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:27+9
-    assume {:print "$at(31,18403,18412)"} true;
+    assume {:print "$at(35,18403,18412)"} true;
 L6:
 
     // $t34 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:27+25
@@ -12861,7 +12861,7 @@ L6:
     // $t35 := +($t34, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:53+1
     call $t35 := $AddU64($t34, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18429,18430)"} true;
+        assume {:print "$at(35,18429,18430)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12877,7 +12877,7 @@ L6:
     assume {:print "$track_local(20,0,2):", $t37} $t37 == $t37;
 
     // $t38 := &&($t27, $t37) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:384:23+2
-    assume {:print "$at(31,18580,18582)"} true;
+    assume {:print "$at(35,18580,18582)"} true;
     call $t38 := $And($t27, $t37);
 
     // if ($t38) goto L8 else goto L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:384:9+188
@@ -12898,7 +12898,7 @@ L8:
     goto L11;
 
     // label L10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:39+9
-    assume {:print "$at(31,18635,18644)"} true;
+    assume {:print "$at(35,18635,18644)"} true;
 L10:
 
     // $t39 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:39+23
@@ -12907,7 +12907,7 @@ L10:
     // $t40 := +($t39, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:63+1
     call $t40 := $AddU64($t39, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18659,18660)"} true;
+        assume {:print "$at(35,18659,18660)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12923,13 +12923,13 @@ L10:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'#0''_window_inflow($Dereference($t1), $Dereference($t41)));
 
     // $t42 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:386:41+25
-    assume {:print "$at(31,18709,18734)"} true;
+    assume {:print "$at(35,18709,18734)"} true;
     $t42 := $tracked_balance#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t43 := +($t42, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:386:67+1
     call $t43 := $AddU64($t42, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18735,18736)"} true;
+        assume {:print "$at(35,18735,18736)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -12945,7 +12945,7 @@ L10:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'#0''_tracked_balance($Dereference($t1), $Dereference($t44)));
 
     // label L11 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:388:9+9
-    assume {:print "$at(31,18764,18773)"} true;
+    assume {:print "$at(35,18764,18773)"} true;
 L11:
 
     // $t45 := &&($t27, $t37) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:388:19+2
@@ -12962,42 +12962,42 @@ L11:
     $t15 := $t45;
 
     // label L12 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:389:5+1
-    assume {:print "$at(31,18792,18793)"} true;
+    assume {:print "$at(35,18792,18793)"} true;
 L12:
 
     // assert Not(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:398:9+98
-    assume {:print "$at(31,19068,19166)"} true;
-    assert {:msg "assert_failed(31,19068,19166): function does not abort under this condition"}
+    assume {:print "$at(35,19068,19166)"} true;
+    assert {:msg "assert_failed(35,19068,19166): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $limit_address#$1_AccountLimits_Window'#0'($t5));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:408:9+102
-    assume {:print "$at(31,19563,19665)"} true;
-    assert {:msg "assert_failed(31,19563,19665): function does not abort under this condition"}
+    assume {:print "$at(35,19563,19665)"} true;
+    assert {:msg "assert_failed(35,19563,19665): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5)) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:409:9+104
-    assume {:print "$at(31,19674,19778)"} true;
-    assert {:msg "assert_failed(31,19674,19778): function does not abort under this condition"}
+    assume {:print "$at(35,19674,19778)"} true;
+    assert {:msg "assert_failed(35,19674,19778): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5)) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'#0'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159));
 
     // assert Eq<bool>($t15, AccountLimits::spec_receiving_limits_ok<#0>($t5, $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:415:9+67
-    assume {:print "$at(31,19919,19986)"} true;
-    assert {:msg "assert_failed(31,19919,19986): post-condition does not hold"}
+    assume {:print "$at(35,19919,19986)"} true;
+    assert {:msg "assert_failed(35,19919,19986): post-condition does not hold"}
       $IsEqual'bool'($t15, $1_AccountLimits_spec_receiving_limits_ok'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $t5, $t0));
 
     // assert (if And($t15, Not(AccountLimits::spec_window_unrestricted<#0>($t5))) {Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_update_inflow<#0>(AccountLimits::spec_window_reset<#0>($t5), $t0))} else {Or(Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_window_reset<#0>($t5)), Eq<AccountLimits::Window<#0>>($t1, $t5))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
-    assume {:print "$at(31,19995,20274)"} true;
-    assert {:msg "assert_failed(31,19995,20274): post-condition does not hold"}
+    assume {:print "$at(35,19995,20274)"} true;
+    assert {:msg "assert_failed(35,19995,20274): post-condition does not hold"}
       (if (($t15 && !$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $t5))) then ($IsEqual'$1_AccountLimits_Window'#0''($Dereference($t1), $1_AccountLimits_spec_update_inflow'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $t5), $t0))) else (($IsEqual'$1_AccountLimits_Window'#0''($Dereference($t1), $1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $t5)) || $IsEqual'$1_AccountLimits_Window'#0''($Dereference($t1), $t5))));
 
     // return $t15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
@@ -13006,16 +13006,16 @@ L12:
     return;
 
     // label L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:389:5+1
-    assume {:print "$at(31,18792,18793)"} true;
+    assume {:print "$at(35,18792,18793)"} true;
 L13:
 
     // assert Or(Or(Or(Or(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
-    assume {:print "$at(31,18798,18954)"} true;
-    assert {:msg "assert_failed(31,18798,18954): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,18798,18954)"} true;
+    assert {:msg "assert_failed(35,18798,18954): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $limit_address#$1_AccountLimits_Window'#0'($t5)) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5)) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5)) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'#0'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159)));
 
     // assert Or(Or(Or(Or(And(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), Eq(0, $t10)), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]())), Eq(0, $t10))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
-    assert {:msg "assert_failed(31,18798,18954): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,18798,18954): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $limit_address#$1_AccountLimits_Window'#0'($t5)) && $IsEqual'num'(0, $t10)) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5)) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5)) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'#0'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5))) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159)) && $IsEqual'num'(0, $t10)));
 
     // abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
@@ -13093,7 +13093,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_receive_and_update_window'$1_XUS_
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:366:5+1
-    assume {:print "$at(31,17328,17329)"} true;
+    assume {:print "$at(35,17328,17329)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:366:5+1
@@ -13370,7 +13370,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_receive_and_update_window'$1_XUS_
     assume {:print "$track_local(20,0,1):", $temp_0'$1_AccountLimits_Window'$1_XUS_XUS''} $temp_0'$1_AccountLimits_Window'$1_XUS_XUS'' == $temp_0'$1_AccountLimits_Window'$1_XUS_XUS'';
 
     // $t6 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:52+23
-    assume {:print "$at(31,17527,17550)"} true;
+    assume {:print "$at(35,17527,17550)"} true;
     $t6 := $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t7 := exists<AccountLimits::LimitsDefinition<#0>>($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:17+6
@@ -13399,7 +13399,7 @@ L1:
     // $t9 := opaque end: Errors::not_published($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:78+41
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:9+111
-    assume {:print "$at(31,17484,17595)"} true;
+    assume {:print "$at(35,17484,17595)"} true;
     assume {:print "$track_abort(20,0):", $t9} $t9 == $t9;
 
     // $t10 := move($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:9+111
@@ -13409,7 +13409,7 @@ L1:
     goto L13;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:371:75+9
-    assume {:print "$at(31,17671,17680)"} true;
+    assume {:print "$at(35,17671,17680)"} true;
 L0:
 
     // $t11 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:371:75+23
@@ -13422,7 +13422,7 @@ L0:
         $t12 := $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t11);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,17629,17642)"} true;
+        assume {:print "$at(35,17629,17642)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13432,7 +13432,7 @@ L0:
     assume {:print "$track_local(20,0,4):", $t12} $t12 == $t12;
 
     // $t13 := opaque begin: AccountLimits::is_unrestricted<#0>($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:373:13+34
-    assume {:print "$at(31,17780,17814)"} true;
+    assume {:print "$at(35,17780,17814)"} true;
 
     // assume WellFormed($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:373:13+34
     assume $IsValid'bool'($t13);
@@ -13470,7 +13470,7 @@ L3:
     goto L12;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:22+9
-    assume {:print "$at(31,17851,17860)"} true;
+    assume {:print "$at(35,17851,17860)"} true;
 L2:
 
     // opaque begin: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
@@ -13491,7 +13491,7 @@ L15:
     assume (((($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t12)) > $MAX_U64) && $IsEqual'num'(0, $t10)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t10)));
 
     // trace_abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
-    assume {:print "$at(31,17838,17880)"} true;
+    assume {:print "$at(35,17838,17880)"} true;
     assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
 
     // goto L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
@@ -13517,7 +13517,7 @@ L14:
     // opaque end: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
 
     // $t18 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:17+23
-    assume {:print "$at(31,18051,18074)"} true;
+    assume {:print "$at(35,18051,18074)"} true;
     $t18 := $window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t19 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:44+7
@@ -13527,7 +13527,7 @@ L14:
     // $t20 := -($t19, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:52+1
     call $t20 := $Sub($t19, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18086,18087)"} true;
+        assume {:print "$at(35,18086,18087)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13561,7 +13561,7 @@ L5:
     // $t23 := opaque end: Errors::limit_exceeded($t22) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:62+31
 
     // trace_abort($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:9+85
-    assume {:print "$at(31,18043,18128)"} true;
+    assume {:print "$at(35,18043,18128)"} true;
     assume {:print "$track_abort(20,0):", $t23} $t23 == $t23;
 
     // $t10 := move($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:9+85
@@ -13571,7 +13571,7 @@ L5:
     goto L13;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:26+9
-    assume {:print "$at(31,18155,18164)"} true;
+    assume {:print "$at(35,18155,18164)"} true;
 L4:
 
     // $t24 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:26+23
@@ -13580,7 +13580,7 @@ L4:
     // $t25 := +($t24, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:50+1
     call $t25 := $AddU64($t24, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18179,18180)"} true;
+        assume {:print "$at(35,18179,18180)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13596,7 +13596,7 @@ L4:
     assume {:print "$track_local(20,0,3):", $t27} $t27 == $t27;
 
     // $t28 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:17+25
-    assume {:print "$at(31,18296,18321)"} true;
+    assume {:print "$at(35,18296,18321)"} true;
     $t28 := $tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t29 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:46+7
@@ -13606,7 +13606,7 @@ L4:
     // $t30 := -($t29, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:54+1
     call $t30 := $Sub($t29, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18333,18334)"} true;
+        assume {:print "$at(35,18333,18334)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13640,7 +13640,7 @@ L7:
     // $t33 := opaque end: Errors::limit_exceeded($t32) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:64+31
 
     // trace_abort($t33) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:9+87
-    assume {:print "$at(31,18288,18375)"} true;
+    assume {:print "$at(35,18288,18375)"} true;
     assume {:print "$track_abort(20,0):", $t33} $t33 == $t33;
 
     // $t10 := move($t33) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:9+87
@@ -13650,7 +13650,7 @@ L7:
     goto L13;
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:27+9
-    assume {:print "$at(31,18403,18412)"} true;
+    assume {:print "$at(35,18403,18412)"} true;
 L6:
 
     // $t34 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:27+25
@@ -13659,7 +13659,7 @@ L6:
     // $t35 := +($t34, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:53+1
     call $t35 := $AddU64($t34, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18429,18430)"} true;
+        assume {:print "$at(35,18429,18430)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13675,7 +13675,7 @@ L6:
     assume {:print "$track_local(20,0,2):", $t37} $t37 == $t37;
 
     // $t38 := &&($t27, $t37) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:384:23+2
-    assume {:print "$at(31,18580,18582)"} true;
+    assume {:print "$at(35,18580,18582)"} true;
     call $t38 := $And($t27, $t37);
 
     // if ($t38) goto L8 else goto L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:384:9+188
@@ -13696,7 +13696,7 @@ L8:
     goto L11;
 
     // label L10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:39+9
-    assume {:print "$at(31,18635,18644)"} true;
+    assume {:print "$at(35,18635,18644)"} true;
 L10:
 
     // $t39 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:39+23
@@ -13705,7 +13705,7 @@ L10:
     // $t40 := +($t39, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:63+1
     call $t40 := $AddU64($t39, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18659,18660)"} true;
+        assume {:print "$at(35,18659,18660)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13721,13 +13721,13 @@ L10:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XUS_XUS''_window_inflow($Dereference($t1), $Dereference($t41)));
 
     // $t42 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:386:41+25
-    assume {:print "$at(31,18709,18734)"} true;
+    assume {:print "$at(35,18709,18734)"} true;
     $t42 := $tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t43 := +($t42, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:386:67+1
     call $t43 := $AddU64($t42, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18735,18736)"} true;
+        assume {:print "$at(35,18735,18736)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -13743,7 +13743,7 @@ L10:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XUS_XUS''_tracked_balance($Dereference($t1), $Dereference($t44)));
 
     // label L11 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:388:9+9
-    assume {:print "$at(31,18764,18773)"} true;
+    assume {:print "$at(35,18764,18773)"} true;
 L11:
 
     // $t45 := &&($t27, $t37) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:388:19+2
@@ -13760,42 +13760,42 @@ L11:
     $t15 := $t45;
 
     // label L12 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:389:5+1
-    assume {:print "$at(31,18792,18793)"} true;
+    assume {:print "$at(35,18792,18793)"} true;
 L12:
 
     // assert Not(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:398:9+98
-    assume {:print "$at(31,19068,19166)"} true;
-    assert {:msg "assert_failed(31,19068,19166): function does not abort under this condition"}
+    assume {:print "$at(35,19068,19166)"} true;
+    assert {:msg "assert_failed(35,19068,19166): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t5));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:408:9+102
-    assume {:print "$at(31,19563,19665)"} true;
-    assert {:msg "assert_failed(31,19563,19665): function does not abort under this condition"}
+    assume {:print "$at(35,19563,19665)"} true;
+    assert {:msg "assert_failed(35,19563,19665): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5)) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:409:9+104
-    assume {:print "$at(31,19674,19778)"} true;
-    assert {:msg "assert_failed(31,19674,19778): function does not abort under this condition"}
+    assume {:print "$at(35,19674,19778)"} true;
+    assert {:msg "assert_failed(35,19674,19778): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5)) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159));
 
     // assert Eq<bool>($t15, AccountLimits::spec_receiving_limits_ok<#0>($t5, $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:415:9+67
-    assume {:print "$at(31,19919,19986)"} true;
-    assert {:msg "assert_failed(31,19919,19986): post-condition does not hold"}
+    assume {:print "$at(35,19919,19986)"} true;
+    assert {:msg "assert_failed(35,19919,19986): post-condition does not hold"}
       $IsEqual'bool'($t15, $1_AccountLimits_spec_receiving_limits_ok'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5, $t0));
 
     // assert (if And($t15, Not(AccountLimits::spec_window_unrestricted<#0>($t5))) {Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_update_inflow<#0>(AccountLimits::spec_window_reset<#0>($t5), $t0))} else {Or(Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_window_reset<#0>($t5)), Eq<AccountLimits::Window<#0>>($t1, $t5))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
-    assume {:print "$at(31,19995,20274)"} true;
-    assert {:msg "assert_failed(31,19995,20274): post-condition does not hold"}
+    assume {:print "$at(35,19995,20274)"} true;
+    assert {:msg "assert_failed(35,19995,20274): post-condition does not hold"}
       (if (($t15 && !$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5))) then ($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($Dereference($t1), $1_AccountLimits_spec_update_inflow'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($Dereference($t1), $1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5)) || $IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($Dereference($t1), $t5))));
 
     // return $t15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
@@ -13804,16 +13804,16 @@ L12:
     return;
 
     // label L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:389:5+1
-    assume {:print "$at(31,18792,18793)"} true;
+    assume {:print "$at(35,18792,18793)"} true;
 L13:
 
     // assert Or(Or(Or(Or(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
-    assume {:print "$at(31,18798,18954)"} true;
-    assert {:msg "assert_failed(31,18798,18954): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,18798,18954)"} true;
+    assert {:msg "assert_failed(35,18798,18954): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t5)) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5)) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5)) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159)));
 
     // assert Or(Or(Or(Or(And(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), Eq(0, $t10)), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]())), Eq(0, $t10))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
-    assert {:msg "assert_failed(31,18798,18954): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,18798,18954): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t5)) && $IsEqual'num'(0, $t10)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5)) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5)) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5))) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159)) && $IsEqual'num'(0, $t10)));
 
     // abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
@@ -13891,7 +13891,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_receive_and_update_window'$1_XDX_
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:366:5+1
-    assume {:print "$at(31,17328,17329)"} true;
+    assume {:print "$at(35,17328,17329)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:366:5+1
@@ -14168,7 +14168,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_receive_and_update_window'$1_XDX_
     assume {:print "$track_local(20,0,1):", $temp_0'$1_AccountLimits_Window'$1_XDX_XDX''} $temp_0'$1_AccountLimits_Window'$1_XDX_XDX'' == $temp_0'$1_AccountLimits_Window'$1_XDX_XDX'';
 
     // $t6 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:52+23
-    assume {:print "$at(31,17527,17550)"} true;
+    assume {:print "$at(35,17527,17550)"} true;
     $t6 := $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t7 := exists<AccountLimits::LimitsDefinition<#0>>($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:17+6
@@ -14197,7 +14197,7 @@ L1:
     // $t9 := opaque end: Errors::not_published($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:78+41
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:9+111
-    assume {:print "$at(31,17484,17595)"} true;
+    assume {:print "$at(35,17484,17595)"} true;
     assume {:print "$track_abort(20,0):", $t9} $t9 == $t9;
 
     // $t10 := move($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:370:9+111
@@ -14207,7 +14207,7 @@ L1:
     goto L13;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:371:75+9
-    assume {:print "$at(31,17671,17680)"} true;
+    assume {:print "$at(35,17671,17680)"} true;
 L0:
 
     // $t11 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:371:75+23
@@ -14220,7 +14220,7 @@ L0:
         $t12 := $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t11);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,17629,17642)"} true;
+        assume {:print "$at(35,17629,17642)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14230,7 +14230,7 @@ L0:
     assume {:print "$track_local(20,0,4):", $t12} $t12 == $t12;
 
     // $t13 := opaque begin: AccountLimits::is_unrestricted<#0>($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:373:13+34
-    assume {:print "$at(31,17780,17814)"} true;
+    assume {:print "$at(35,17780,17814)"} true;
 
     // assume WellFormed($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:373:13+34
     assume $IsValid'bool'($t13);
@@ -14268,7 +14268,7 @@ L3:
     goto L12;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:22+9
-    assume {:print "$at(31,17851,17860)"} true;
+    assume {:print "$at(35,17851,17860)"} true;
 L2:
 
     // opaque begin: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
@@ -14289,7 +14289,7 @@ L15:
     assume (((($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t12)) > $MAX_U64) && $IsEqual'num'(0, $t10)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t10)));
 
     // trace_abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
-    assume {:print "$at(31,17838,17880)"} true;
+    assume {:print "$at(35,17838,17880)"} true;
     assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
 
     // goto L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
@@ -14315,7 +14315,7 @@ L14:
     // opaque end: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:375:9+42
 
     // $t18 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:17+23
-    assume {:print "$at(31,18051,18074)"} true;
+    assume {:print "$at(35,18051,18074)"} true;
     $t18 := $window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t19 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:44+7
@@ -14325,7 +14325,7 @@ L14:
     // $t20 := -($t19, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:52+1
     call $t20 := $Sub($t19, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18086,18087)"} true;
+        assume {:print "$at(35,18086,18087)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14359,7 +14359,7 @@ L5:
     // $t23 := opaque end: Errors::limit_exceeded($t22) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:62+31
 
     // trace_abort($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:9+85
-    assume {:print "$at(31,18043,18128)"} true;
+    assume {:print "$at(35,18043,18128)"} true;
     assume {:print "$track_abort(20,0):", $t23} $t23 == $t23;
 
     // $t10 := move($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:378:9+85
@@ -14369,7 +14369,7 @@ L5:
     goto L13;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:26+9
-    assume {:print "$at(31,18155,18164)"} true;
+    assume {:print "$at(35,18155,18164)"} true;
 L4:
 
     // $t24 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:26+23
@@ -14378,7 +14378,7 @@ L4:
     // $t25 := +($t24, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:379:50+1
     call $t25 := $AddU64($t24, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18179,18180)"} true;
+        assume {:print "$at(35,18179,18180)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14394,7 +14394,7 @@ L4:
     assume {:print "$track_local(20,0,3):", $t27} $t27 == $t27;
 
     // $t28 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:17+25
-    assume {:print "$at(31,18296,18321)"} true;
+    assume {:print "$at(35,18296,18321)"} true;
     $t28 := $tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t29 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:46+7
@@ -14404,7 +14404,7 @@ L4:
     // $t30 := -($t29, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:54+1
     call $t30 := $Sub($t29, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18333,18334)"} true;
+        assume {:print "$at(35,18333,18334)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14438,7 +14438,7 @@ L7:
     // $t33 := opaque end: Errors::limit_exceeded($t32) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:64+31
 
     // trace_abort($t33) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:9+87
-    assume {:print "$at(31,18288,18375)"} true;
+    assume {:print "$at(35,18288,18375)"} true;
     assume {:print "$track_abort(20,0):", $t33} $t33 == $t33;
 
     // $t10 := move($t33) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:381:9+87
@@ -14448,7 +14448,7 @@ L7:
     goto L13;
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:27+9
-    assume {:print "$at(31,18403,18412)"} true;
+    assume {:print "$at(35,18403,18412)"} true;
 L6:
 
     // $t34 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:27+25
@@ -14457,7 +14457,7 @@ L6:
     // $t35 := +($t34, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:382:53+1
     call $t35 := $AddU64($t34, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18429,18430)"} true;
+        assume {:print "$at(35,18429,18430)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14473,7 +14473,7 @@ L6:
     assume {:print "$track_local(20,0,2):", $t37} $t37 == $t37;
 
     // $t38 := &&($t27, $t37) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:384:23+2
-    assume {:print "$at(31,18580,18582)"} true;
+    assume {:print "$at(35,18580,18582)"} true;
     call $t38 := $And($t27, $t37);
 
     // if ($t38) goto L8 else goto L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:384:9+188
@@ -14494,7 +14494,7 @@ L8:
     goto L11;
 
     // label L10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:39+9
-    assume {:print "$at(31,18635,18644)"} true;
+    assume {:print "$at(35,18635,18644)"} true;
 L10:
 
     // $t39 := get_field<AccountLimits::Window<#0>>.window_inflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:39+23
@@ -14503,7 +14503,7 @@ L10:
     // $t40 := +($t39, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:385:63+1
     call $t40 := $AddU64($t39, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18659,18660)"} true;
+        assume {:print "$at(35,18659,18660)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14519,13 +14519,13 @@ L10:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XDX_XDX''_window_inflow($Dereference($t1), $Dereference($t41)));
 
     // $t42 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:386:41+25
-    assume {:print "$at(31,18709,18734)"} true;
+    assume {:print "$at(35,18709,18734)"} true;
     $t42 := $tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t43 := +($t42, $t0) on_abort goto L13 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:386:67+1
     call $t43 := $AddU64($t42, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,18735,18736)"} true;
+        assume {:print "$at(35,18735,18736)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,0):", $t10} $t10 == $t10;
         goto L13;
@@ -14541,7 +14541,7 @@ L10:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XDX_XDX''_tracked_balance($Dereference($t1), $Dereference($t44)));
 
     // label L11 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:388:9+9
-    assume {:print "$at(31,18764,18773)"} true;
+    assume {:print "$at(35,18764,18773)"} true;
 L11:
 
     // $t45 := &&($t27, $t37) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:388:19+2
@@ -14558,42 +14558,42 @@ L11:
     $t15 := $t45;
 
     // label L12 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:389:5+1
-    assume {:print "$at(31,18792,18793)"} true;
+    assume {:print "$at(35,18792,18793)"} true;
 L12:
 
     // assert Not(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:398:9+98
-    assume {:print "$at(31,19068,19166)"} true;
-    assert {:msg "assert_failed(31,19068,19166): function does not abort under this condition"}
+    assume {:print "$at(35,19068,19166)"} true;
+    assert {:msg "assert_failed(35,19068,19166): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t5));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:408:9+102
-    assume {:print "$at(31,19563,19665)"} true;
-    assert {:msg "assert_failed(31,19563,19665): function does not abort under this condition"}
+    assume {:print "$at(35,19563,19665)"} true;
+    assert {:msg "assert_failed(35,19563,19665): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5)) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:409:9+104
-    assume {:print "$at(31,19674,19778)"} true;
-    assert {:msg "assert_failed(31,19674,19778): function does not abort under this condition"}
+    assume {:print "$at(35,19674,19778)"} true;
+    assert {:msg "assert_failed(35,19674,19778): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5)) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159));
 
     // assert Eq<bool>($t15, AccountLimits::spec_receiving_limits_ok<#0>($t5, $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:415:9+67
-    assume {:print "$at(31,19919,19986)"} true;
-    assert {:msg "assert_failed(31,19919,19986): post-condition does not hold"}
+    assume {:print "$at(35,19919,19986)"} true;
+    assert {:msg "assert_failed(35,19919,19986): post-condition does not hold"}
       $IsEqual'bool'($t15, $1_AccountLimits_spec_receiving_limits_ok'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5, $t0));
 
     // assert (if And($t15, Not(AccountLimits::spec_window_unrestricted<#0>($t5))) {Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_update_inflow<#0>(AccountLimits::spec_window_reset<#0>($t5), $t0))} else {Or(Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_window_reset<#0>($t5)), Eq<AccountLimits::Window<#0>>($t1, $t5))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
-    assume {:print "$at(31,19995,20274)"} true;
-    assert {:msg "assert_failed(31,19995,20274): post-condition does not hold"}
+    assume {:print "$at(35,19995,20274)"} true;
+    assert {:msg "assert_failed(35,19995,20274): post-condition does not hold"}
       (if (($t15 && !$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5))) then ($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($Dereference($t1), $1_AccountLimits_spec_update_inflow'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($Dereference($t1), $1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5)) || $IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($Dereference($t1), $t5))));
 
     // return $t15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
@@ -14602,16 +14602,16 @@ L12:
     return;
 
     // label L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:389:5+1
-    assume {:print "$at(31,18792,18793)"} true;
+    assume {:print "$at(35,18792,18793)"} true;
 L13:
 
     // assert Or(Or(Or(Or(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
-    assume {:print "$at(31,18798,18954)"} true;
-    assert {:msg "assert_failed(31,18798,18954): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,18798,18954)"} true;
+    assert {:msg "assert_failed(35,18798,18954): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t5)) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5)) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5)) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159)));
 
     // assert Or(Or(Or(Or(And(Not(exists[@158]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), Eq(0, $t10)), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@159, @158]<#0>($t5)), $t0), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@158]<#0>($t5))), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@158]<#0>($t5)), Not(DiemTimestamp::$is_operating[@159]())), Eq(0, $t10))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
-    assert {:msg "assert_failed(31,18798,18954): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,18798,18954): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t5)) && $IsEqual'num'(0, $t10)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5)) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5)) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5))) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#158, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#159)) && $IsEqual'num'(0, $t10)));
 
     // abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:390:5+156
@@ -14680,7 +14680,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_withdraw_and_update_window$verify
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:453:5+1
-    assume {:print "$at(31,22038,22039)"} true;
+    assume {:print "$at(35,22038,22039)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:453:5+1
@@ -14957,7 +14957,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_withdraw_and_update_window$verify
     assume {:print "$track_local(20,1,1):", $temp_0'$1_AccountLimits_Window'#0''} $temp_0'$1_AccountLimits_Window'#0'' == $temp_0'$1_AccountLimits_Window'#0'';
 
     // $t6 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:52+21
-    assume {:print "$at(31,22236,22257)"} true;
+    assume {:print "$at(35,22236,22257)"} true;
     $t6 := $limit_address#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t7 := exists<AccountLimits::LimitsDefinition<#0>>($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:17+6
@@ -14986,7 +14986,7 @@ L1:
     // $t9 := opaque end: Errors::not_published($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:76+41
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:9+109
-    assume {:print "$at(31,22193,22302)"} true;
+    assume {:print "$at(35,22193,22302)"} true;
     assume {:print "$track_abort(20,1):", $t9} $t9 == $t9;
 
     // $t10 := move($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:9+109
@@ -14996,7 +14996,7 @@ L1:
     goto L15;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:458:75+7
-    assume {:print "$at(31,22378,22385)"} true;
+    assume {:print "$at(35,22378,22385)"} true;
 L0:
 
     // $t11 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:458:75+21
@@ -15009,7 +15009,7 @@ L0:
         $t12 := $ResourceValue($1_AccountLimits_LimitsDefinition'#0'_$memory, $t11);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,22336,22349)"} true;
+        assume {:print "$at(35,22336,22349)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15019,7 +15019,7 @@ L0:
     assume {:print "$track_local(20,1,3):", $t12} $t12 == $t12;
 
     // $t13 := opaque begin: AccountLimits::is_unrestricted<#0>($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:460:13+34
-    assume {:print "$at(31,22485,22519)"} true;
+    assume {:print "$at(35,22485,22519)"} true;
 
     // assume WellFormed($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:460:13+34
     assume $IsValid'bool'($t13);
@@ -15057,7 +15057,7 @@ L3:
     goto L14;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:22+7
-    assume {:print "$at(31,22556,22563)"} true;
+    assume {:print "$at(35,22556,22563)"} true;
 L2:
 
     // opaque begin: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
@@ -15078,7 +15078,7 @@ L17:
     assume (((($window_start#$1_AccountLimits_Window'#0'($Dereference($t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($t12)) > $MAX_U64) && $IsEqual'num'(0, $t10)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t10)));
 
     // trace_abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
-    assume {:print "$at(31,22543,22583)"} true;
+    assume {:print "$at(35,22543,22583)"} true;
     assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
 
     // goto L15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
@@ -15104,7 +15104,7 @@ L16:
     // opaque end: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
 
     // $t18 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:17+22
-    assume {:print "$at(31,22632,22654)"} true;
+    assume {:print "$at(35,22632,22654)"} true;
     $t18 := $window_outflow#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t19 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:43+7
@@ -15114,7 +15114,7 @@ L16:
     // $t20 := -($t19, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:51+1
     call $t20 := $Sub($t19, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22666,22667)"} true;
+        assume {:print "$at(35,22666,22667)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15148,7 +15148,7 @@ L5:
     // $t23 := opaque end: Errors::limit_exceeded($t22) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:61+31
 
     // trace_abort($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:9+84
-    assume {:print "$at(31,22624,22708)"} true;
+    assume {:print "$at(35,22624,22708)"} true;
     assume {:print "$track_abort(20,1):", $t23} $t23 == $t23;
 
     // $t10 := move($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:9+84
@@ -15158,7 +15158,7 @@ L5:
     goto L15;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:26+7
-    assume {:print "$at(31,22735,22742)"} true;
+    assume {:print "$at(35,22735,22742)"} true;
 L4:
 
     // $t24 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:26+22
@@ -15167,7 +15167,7 @@ L4:
     // $t25 := +($t24, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:49+1
     call $t25 := $AddU64($t24, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22758,22759)"} true;
+        assume {:print "$at(35,22758,22759)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15183,7 +15183,7 @@ L4:
     assume {:print "$track_local(20,1,4):", $t27} $t27 == $t27;
 
     // if ($t27) goto L6 else goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:467:9+254
-    assume {:print "$at(31,22846,23100)"} true;
+    assume {:print "$at(35,22846,23100)"} true;
     if ($t27) { goto L6; } else { goto L7; }
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:467:9+254
@@ -15201,7 +15201,7 @@ L6:
     goto L9;
 
     // label L8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:38+7
-    assume {:print "$at(31,22901,22908)"} true;
+    assume {:print "$at(35,22901,22908)"} true;
 L8:
 
     // $t28 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:38+22
@@ -15210,7 +15210,7 @@ L8:
     // $t29 := +($t28, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:61+1
     call $t29 := $AddU64($t28, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22924,22925)"} true;
+        assume {:print "$at(35,22924,22925)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15226,7 +15226,7 @@ L8:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'#0''_window_outflow($Dereference($t1), $Dereference($t30)));
 
     // $t31 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:53+23
-    assume {:print "$at(31,22986,23009)"} true;
+    assume {:print "$at(35,22986,23009)"} true;
     $t31 := $tracked_balance#$1_AccountLimits_Window'#0'($Dereference($t1));
 
     // $t32 := >=($t0, $t31) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:50+2
@@ -15242,7 +15242,7 @@ L11:
     goto L12;
 
     // label L10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:45+7
-    assume {:print "$at(31,23057,23064)"} true;
+    assume {:print "$at(35,23057,23064)"} true;
 L10:
 
     // $t33 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:45+23
@@ -15251,14 +15251,14 @@ L10:
     // $t34 := -($t33, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:69+1
     call $t34 := $Sub($t33, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,23081,23082)"} true;
+        assume {:print "$at(35,23081,23082)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
     }
 
     // $t2 := $t34 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:39+117
-    assume {:print "$at(31,22972,23089)"} true;
+    assume {:print "$at(35,22972,23089)"} true;
     $t2 := $t34;
 
     // trace_local[tmp#$2]($t34) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:39+117
@@ -15293,7 +15293,7 @@ L13:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'#0''_tracked_balance($Dereference($t1), $Dereference($t36)));
 
     // label L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:472:9+10
-    assume {:print "$at(31,23110,23120)"} true;
+    assume {:print "$at(35,23110,23120)"} true;
 L9:
 
     // trace_return[0]($t27) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:472:9+10
@@ -15307,37 +15307,37 @@ L9:
     $t15 := $t27;
 
     // label L14 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:473:5+1
-    assume {:print "$at(31,23125,23126)"} true;
+    assume {:print "$at(35,23125,23126)"} true;
 L14:
 
     // assert Not(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:482:9+96
-    assume {:print "$at(31,23408,23504)"} true;
-    assert {:msg "assert_failed(31,23408,23504): function does not abort under this condition"}
+    assume {:print "$at(35,23408,23504)"} true;
+    assert {:msg "assert_failed(35,23408,23504): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $limit_address#$1_AccountLimits_Window'#0'($t5));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:492:9+99
-    assume {:print "$at(31,23890,23989)"} true;
-    assert {:msg "assert_failed(31,23890,23989): function does not abort under this condition"}
+    assume {:print "$at(35,23890,23989)"} true;
+    assert {:msg "assert_failed(35,23890,23989): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5)) + $t0) > 18446744073709551615));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'#0'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156));
 
     // assert Eq<bool>($t15, AccountLimits::spec_withdrawal_limits_ok<#0>($t5, $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:498:9+66
-    assume {:print "$at(31,24134,24200)"} true;
-    assert {:msg "assert_failed(31,24134,24200): post-condition does not hold"}
+    assume {:print "$at(35,24134,24200)"} true;
+    assert {:msg "assert_failed(35,24134,24200): post-condition does not hold"}
       $IsEqual'bool'($t15, $1_AccountLimits_spec_withdrawal_limits_ok'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $t5, $t0));
 
     // assert (if And($t15, Not(AccountLimits::spec_window_unrestricted<#0>($t5))) {Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_update_outflow<#0>(AccountLimits::spec_window_reset<#0>($t5), $t0))} else {Or(Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_window_reset<#0>($t5)), Eq<AccountLimits::Window<#0>>($t1, $t5))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
-    assume {:print "$at(31,24209,24475)"} true;
-    assert {:msg "assert_failed(31,24209,24475): post-condition does not hold"}
+    assume {:print "$at(35,24209,24475)"} true;
+    assert {:msg "assert_failed(35,24209,24475): post-condition does not hold"}
       (if (($t15 && !$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $t5))) then ($IsEqual'$1_AccountLimits_Window'#0''($Dereference($t1), $1_AccountLimits_spec_update_outflow'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $t5), $t0))) else (($IsEqual'$1_AccountLimits_Window'#0''($Dereference($t1), $1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $t5)) || $IsEqual'$1_AccountLimits_Window'#0''($Dereference($t1), $t5))));
 
     // return $t15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
@@ -15346,16 +15346,16 @@ L14:
     return;
 
     // label L15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:473:5+1
-    assume {:print "$at(31,23125,23126)"} true;
+    assume {:print "$at(35,23125,23126)"} true;
 L15:
 
     // assert Or(Or(Or(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
-    assume {:print "$at(31,23131,23290)"} true;
-    assert {:msg "assert_failed(31,23131,23290): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,23131,23290)"} true;
+    assert {:msg "assert_failed(35,23131,23290): abort not covered by any of the `aborts_if` clauses"}
       (((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $limit_address#$1_AccountLimits_Window'#0'($t5)) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5)) + $t0) > 18446744073709551615))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'#0'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156)));
 
     // assert Or(Or(Or(And(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), Eq(0, $t10)), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615)), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]())), Eq(0, $t10))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
-    assert {:msg "assert_failed(31,23131,23290): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,23131,23290): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $limit_address#$1_AccountLimits_Window'#0'($t5)) && $IsEqual'num'(0, $t10)) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5)) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'#0'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5))) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156)) && $IsEqual'num'(0, $t10)));
 
     // abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
@@ -15424,7 +15424,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_withdraw_and_update_window'$1_XUS
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:453:5+1
-    assume {:print "$at(31,22038,22039)"} true;
+    assume {:print "$at(35,22038,22039)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:453:5+1
@@ -15701,7 +15701,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_withdraw_and_update_window'$1_XUS
     assume {:print "$track_local(20,1,1):", $temp_0'$1_AccountLimits_Window'$1_XUS_XUS''} $temp_0'$1_AccountLimits_Window'$1_XUS_XUS'' == $temp_0'$1_AccountLimits_Window'$1_XUS_XUS'';
 
     // $t6 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:52+21
-    assume {:print "$at(31,22236,22257)"} true;
+    assume {:print "$at(35,22236,22257)"} true;
     $t6 := $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t7 := exists<AccountLimits::LimitsDefinition<#0>>($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:17+6
@@ -15730,7 +15730,7 @@ L1:
     // $t9 := opaque end: Errors::not_published($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:76+41
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:9+109
-    assume {:print "$at(31,22193,22302)"} true;
+    assume {:print "$at(35,22193,22302)"} true;
     assume {:print "$track_abort(20,1):", $t9} $t9 == $t9;
 
     // $t10 := move($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:9+109
@@ -15740,7 +15740,7 @@ L1:
     goto L15;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:458:75+7
-    assume {:print "$at(31,22378,22385)"} true;
+    assume {:print "$at(35,22378,22385)"} true;
 L0:
 
     // $t11 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:458:75+21
@@ -15753,7 +15753,7 @@ L0:
         $t12 := $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t11);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,22336,22349)"} true;
+        assume {:print "$at(35,22336,22349)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15763,7 +15763,7 @@ L0:
     assume {:print "$track_local(20,1,3):", $t12} $t12 == $t12;
 
     // $t13 := opaque begin: AccountLimits::is_unrestricted<#0>($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:460:13+34
-    assume {:print "$at(31,22485,22519)"} true;
+    assume {:print "$at(35,22485,22519)"} true;
 
     // assume WellFormed($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:460:13+34
     assume $IsValid'bool'($t13);
@@ -15801,7 +15801,7 @@ L3:
     goto L14;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:22+7
-    assume {:print "$at(31,22556,22563)"} true;
+    assume {:print "$at(35,22556,22563)"} true;
 L2:
 
     // opaque begin: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
@@ -15822,7 +15822,7 @@ L17:
     assume (((($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t12)) > $MAX_U64) && $IsEqual'num'(0, $t10)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t10)));
 
     // trace_abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
-    assume {:print "$at(31,22543,22583)"} true;
+    assume {:print "$at(35,22543,22583)"} true;
     assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
 
     // goto L15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
@@ -15848,7 +15848,7 @@ L16:
     // opaque end: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
 
     // $t18 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:17+22
-    assume {:print "$at(31,22632,22654)"} true;
+    assume {:print "$at(35,22632,22654)"} true;
     $t18 := $window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t19 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:43+7
@@ -15858,7 +15858,7 @@ L16:
     // $t20 := -($t19, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:51+1
     call $t20 := $Sub($t19, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22666,22667)"} true;
+        assume {:print "$at(35,22666,22667)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15892,7 +15892,7 @@ L5:
     // $t23 := opaque end: Errors::limit_exceeded($t22) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:61+31
 
     // trace_abort($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:9+84
-    assume {:print "$at(31,22624,22708)"} true;
+    assume {:print "$at(35,22624,22708)"} true;
     assume {:print "$track_abort(20,1):", $t23} $t23 == $t23;
 
     // $t10 := move($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:9+84
@@ -15902,7 +15902,7 @@ L5:
     goto L15;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:26+7
-    assume {:print "$at(31,22735,22742)"} true;
+    assume {:print "$at(35,22735,22742)"} true;
 L4:
 
     // $t24 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:26+22
@@ -15911,7 +15911,7 @@ L4:
     // $t25 := +($t24, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:49+1
     call $t25 := $AddU64($t24, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22758,22759)"} true;
+        assume {:print "$at(35,22758,22759)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15927,7 +15927,7 @@ L4:
     assume {:print "$track_local(20,1,4):", $t27} $t27 == $t27;
 
     // if ($t27) goto L6 else goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:467:9+254
-    assume {:print "$at(31,22846,23100)"} true;
+    assume {:print "$at(35,22846,23100)"} true;
     if ($t27) { goto L6; } else { goto L7; }
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:467:9+254
@@ -15945,7 +15945,7 @@ L6:
     goto L9;
 
     // label L8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:38+7
-    assume {:print "$at(31,22901,22908)"} true;
+    assume {:print "$at(35,22901,22908)"} true;
 L8:
 
     // $t28 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:38+22
@@ -15954,7 +15954,7 @@ L8:
     // $t29 := +($t28, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:61+1
     call $t29 := $AddU64($t28, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22924,22925)"} true;
+        assume {:print "$at(35,22924,22925)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -15970,7 +15970,7 @@ L8:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XUS_XUS''_window_outflow($Dereference($t1), $Dereference($t30)));
 
     // $t31 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:53+23
-    assume {:print "$at(31,22986,23009)"} true;
+    assume {:print "$at(35,22986,23009)"} true;
     $t31 := $tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t1));
 
     // $t32 := >=($t0, $t31) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:50+2
@@ -15986,7 +15986,7 @@ L11:
     goto L12;
 
     // label L10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:45+7
-    assume {:print "$at(31,23057,23064)"} true;
+    assume {:print "$at(35,23057,23064)"} true;
 L10:
 
     // $t33 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:45+23
@@ -15995,14 +15995,14 @@ L10:
     // $t34 := -($t33, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:69+1
     call $t34 := $Sub($t33, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,23081,23082)"} true;
+        assume {:print "$at(35,23081,23082)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
     }
 
     // $t2 := $t34 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:39+117
-    assume {:print "$at(31,22972,23089)"} true;
+    assume {:print "$at(35,22972,23089)"} true;
     $t2 := $t34;
 
     // trace_local[tmp#$2]($t34) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:39+117
@@ -16037,7 +16037,7 @@ L13:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XUS_XUS''_tracked_balance($Dereference($t1), $Dereference($t36)));
 
     // label L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:472:9+10
-    assume {:print "$at(31,23110,23120)"} true;
+    assume {:print "$at(35,23110,23120)"} true;
 L9:
 
     // trace_return[0]($t27) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:472:9+10
@@ -16051,37 +16051,37 @@ L9:
     $t15 := $t27;
 
     // label L14 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:473:5+1
-    assume {:print "$at(31,23125,23126)"} true;
+    assume {:print "$at(35,23125,23126)"} true;
 L14:
 
     // assert Not(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:482:9+96
-    assume {:print "$at(31,23408,23504)"} true;
-    assert {:msg "assert_failed(31,23408,23504): function does not abort under this condition"}
+    assume {:print "$at(35,23408,23504)"} true;
+    assert {:msg "assert_failed(35,23408,23504): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t5));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:492:9+99
-    assume {:print "$at(31,23890,23989)"} true;
-    assert {:msg "assert_failed(31,23890,23989): function does not abort under this condition"}
+    assume {:print "$at(35,23890,23989)"} true;
+    assert {:msg "assert_failed(35,23890,23989): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5)) + $t0) > 18446744073709551615));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156));
 
     // assert Eq<bool>($t15, AccountLimits::spec_withdrawal_limits_ok<#0>($t5, $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:498:9+66
-    assume {:print "$at(31,24134,24200)"} true;
-    assert {:msg "assert_failed(31,24134,24200): post-condition does not hold"}
+    assume {:print "$at(35,24134,24200)"} true;
+    assert {:msg "assert_failed(35,24134,24200): post-condition does not hold"}
       $IsEqual'bool'($t15, $1_AccountLimits_spec_withdrawal_limits_ok'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5, $t0));
 
     // assert (if And($t15, Not(AccountLimits::spec_window_unrestricted<#0>($t5))) {Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_update_outflow<#0>(AccountLimits::spec_window_reset<#0>($t5), $t0))} else {Or(Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_window_reset<#0>($t5)), Eq<AccountLimits::Window<#0>>($t1, $t5))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
-    assume {:print "$at(31,24209,24475)"} true;
-    assert {:msg "assert_failed(31,24209,24475): post-condition does not hold"}
+    assume {:print "$at(35,24209,24475)"} true;
+    assert {:msg "assert_failed(35,24209,24475): post-condition does not hold"}
       (if (($t15 && !$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5))) then ($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($Dereference($t1), $1_AccountLimits_spec_update_outflow'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($Dereference($t1), $1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t5)) || $IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($Dereference($t1), $t5))));
 
     // return $t15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
@@ -16090,16 +16090,16 @@ L14:
     return;
 
     // label L15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:473:5+1
-    assume {:print "$at(31,23125,23126)"} true;
+    assume {:print "$at(35,23125,23126)"} true;
 L15:
 
     // assert Or(Or(Or(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
-    assume {:print "$at(31,23131,23290)"} true;
-    assert {:msg "assert_failed(31,23131,23290): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,23131,23290)"} true;
+    assert {:msg "assert_failed(35,23131,23290): abort not covered by any of the `aborts_if` clauses"}
       (((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t5)) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5)) + $t0) > 18446744073709551615))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156)));
 
     // assert Or(Or(Or(And(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), Eq(0, $t10)), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615)), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]())), Eq(0, $t10))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
-    assert {:msg "assert_failed(31,23131,23290): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,23131,23290): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t5)) && $IsEqual'num'(0, $t10)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5)) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5))) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156)) && $IsEqual'num'(0, $t10)));
 
     // abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
@@ -16168,7 +16168,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_withdraw_and_update_window'$1_XDX
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:453:5+1
-    assume {:print "$at(31,22038,22039)"} true;
+    assume {:print "$at(35,22038,22039)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:453:5+1
@@ -16445,7 +16445,7 @@ procedure {:timeLimit 40} $1_AccountLimits_can_withdraw_and_update_window'$1_XDX
     assume {:print "$track_local(20,1,1):", $temp_0'$1_AccountLimits_Window'$1_XDX_XDX''} $temp_0'$1_AccountLimits_Window'$1_XDX_XDX'' == $temp_0'$1_AccountLimits_Window'$1_XDX_XDX'';
 
     // $t6 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:52+21
-    assume {:print "$at(31,22236,22257)"} true;
+    assume {:print "$at(35,22236,22257)"} true;
     $t6 := $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t7 := exists<AccountLimits::LimitsDefinition<#0>>($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:17+6
@@ -16474,7 +16474,7 @@ L1:
     // $t9 := opaque end: Errors::not_published($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:76+41
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:9+109
-    assume {:print "$at(31,22193,22302)"} true;
+    assume {:print "$at(35,22193,22302)"} true;
     assume {:print "$track_abort(20,1):", $t9} $t9 == $t9;
 
     // $t10 := move($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:457:9+109
@@ -16484,7 +16484,7 @@ L1:
     goto L15;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:458:75+7
-    assume {:print "$at(31,22378,22385)"} true;
+    assume {:print "$at(35,22378,22385)"} true;
 L0:
 
     // $t11 := get_field<AccountLimits::Window<#0>>.limit_address($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:458:75+21
@@ -16497,7 +16497,7 @@ L0:
         $t12 := $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t11);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,22336,22349)"} true;
+        assume {:print "$at(35,22336,22349)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -16507,7 +16507,7 @@ L0:
     assume {:print "$track_local(20,1,3):", $t12} $t12 == $t12;
 
     // $t13 := opaque begin: AccountLimits::is_unrestricted<#0>($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:460:13+34
-    assume {:print "$at(31,22485,22519)"} true;
+    assume {:print "$at(35,22485,22519)"} true;
 
     // assume WellFormed($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:460:13+34
     assume $IsValid'bool'($t13);
@@ -16545,7 +16545,7 @@ L3:
     goto L14;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:22+7
-    assume {:print "$at(31,22556,22563)"} true;
+    assume {:print "$at(35,22556,22563)"} true;
 L2:
 
     // opaque begin: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
@@ -16566,7 +16566,7 @@ L17:
     assume (((($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t12)) > $MAX_U64) && $IsEqual'num'(0, $t10)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t10)));
 
     // trace_abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
-    assume {:print "$at(31,22543,22583)"} true;
+    assume {:print "$at(35,22543,22583)"} true;
     assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
 
     // goto L15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
@@ -16592,7 +16592,7 @@ L16:
     // opaque end: AccountLimits::reset_window<#0>($t1, $t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:462:9+40
 
     // $t18 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:17+22
-    assume {:print "$at(31,22632,22654)"} true;
+    assume {:print "$at(35,22632,22654)"} true;
     $t18 := $window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t19 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:43+7
@@ -16602,7 +16602,7 @@ L16:
     // $t20 := -($t19, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:51+1
     call $t20 := $Sub($t19, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22666,22667)"} true;
+        assume {:print "$at(35,22666,22667)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -16636,7 +16636,7 @@ L5:
     // $t23 := opaque end: Errors::limit_exceeded($t22) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:61+31
 
     // trace_abort($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:9+84
-    assume {:print "$at(31,22624,22708)"} true;
+    assume {:print "$at(35,22624,22708)"} true;
     assume {:print "$track_abort(20,1):", $t23} $t23 == $t23;
 
     // $t10 := move($t23) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:464:9+84
@@ -16646,7 +16646,7 @@ L5:
     goto L15;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:26+7
-    assume {:print "$at(31,22735,22742)"} true;
+    assume {:print "$at(35,22735,22742)"} true;
 L4:
 
     // $t24 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:26+22
@@ -16655,7 +16655,7 @@ L4:
     // $t25 := +($t24, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:465:49+1
     call $t25 := $AddU64($t24, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22758,22759)"} true;
+        assume {:print "$at(35,22758,22759)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -16671,7 +16671,7 @@ L4:
     assume {:print "$track_local(20,1,4):", $t27} $t27 == $t27;
 
     // if ($t27) goto L6 else goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:467:9+254
-    assume {:print "$at(31,22846,23100)"} true;
+    assume {:print "$at(35,22846,23100)"} true;
     if ($t27) { goto L6; } else { goto L7; }
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:467:9+254
@@ -16689,7 +16689,7 @@ L6:
     goto L9;
 
     // label L8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:38+7
-    assume {:print "$at(31,22901,22908)"} true;
+    assume {:print "$at(35,22901,22908)"} true;
 L8:
 
     // $t28 := get_field<AccountLimits::Window<#0>>.window_outflow($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:38+22
@@ -16698,7 +16698,7 @@ L8:
     // $t29 := +($t28, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:468:61+1
     call $t29 := $AddU64($t28, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,22924,22925)"} true;
+        assume {:print "$at(35,22924,22925)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
@@ -16714,7 +16714,7 @@ L8:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XDX_XDX''_window_outflow($Dereference($t1), $Dereference($t30)));
 
     // $t31 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:53+23
-    assume {:print "$at(31,22986,23009)"} true;
+    assume {:print "$at(35,22986,23009)"} true;
     $t31 := $tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t1));
 
     // $t32 := >=($t0, $t31) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:50+2
@@ -16730,7 +16730,7 @@ L11:
     goto L12;
 
     // label L10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:45+7
-    assume {:print "$at(31,23057,23064)"} true;
+    assume {:print "$at(35,23057,23064)"} true;
 L10:
 
     // $t33 := get_field<AccountLimits::Window<#0>>.tracked_balance($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:45+23
@@ -16739,14 +16739,14 @@ L10:
     // $t34 := -($t33, $t0) on_abort goto L15 with $t10 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:470:69+1
     call $t34 := $Sub($t33, $t0);
     if ($abort_flag) {
-        assume {:print "$at(31,23081,23082)"} true;
+        assume {:print "$at(35,23081,23082)"} true;
         $t10 := $abort_code;
         assume {:print "$track_abort(20,1):", $t10} $t10 == $t10;
         goto L15;
     }
 
     // $t2 := $t34 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:39+117
-    assume {:print "$at(31,22972,23089)"} true;
+    assume {:print "$at(35,22972,23089)"} true;
     $t2 := $t34;
 
     // trace_local[tmp#$2]($t34) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:469:39+117
@@ -16781,7 +16781,7 @@ L13:
     $t1 := $UpdateMutation($t1, $Update'$1_AccountLimits_Window'$1_XDX_XDX''_tracked_balance($Dereference($t1), $Dereference($t36)));
 
     // label L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:472:9+10
-    assume {:print "$at(31,23110,23120)"} true;
+    assume {:print "$at(35,23110,23120)"} true;
 L9:
 
     // trace_return[0]($t27) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:472:9+10
@@ -16795,37 +16795,37 @@ L9:
     $t15 := $t27;
 
     // label L14 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:473:5+1
-    assume {:print "$at(31,23125,23126)"} true;
+    assume {:print "$at(35,23125,23126)"} true;
 L14:
 
     // assert Not(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:482:9+96
-    assume {:print "$at(31,23408,23504)"} true;
-    assert {:msg "assert_failed(31,23408,23504): function does not abort under this condition"}
+    assume {:print "$at(35,23408,23504)"} true;
+    assert {:msg "assert_failed(35,23408,23504): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t5));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:492:9+99
-    assume {:print "$at(31,23890,23989)"} true;
-    assert {:msg "assert_failed(31,23890,23989): function does not abort under this condition"}
+    assume {:print "$at(35,23890,23989)"} true;
+    assert {:msg "assert_failed(35,23890,23989): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5)) + $t0) > 18446744073709551615));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156));
 
     // assert Eq<bool>($t15, AccountLimits::spec_withdrawal_limits_ok<#0>($t5, $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:498:9+66
-    assume {:print "$at(31,24134,24200)"} true;
-    assert {:msg "assert_failed(31,24134,24200): post-condition does not hold"}
+    assume {:print "$at(35,24134,24200)"} true;
+    assert {:msg "assert_failed(35,24134,24200): post-condition does not hold"}
       $IsEqual'bool'($t15, $1_AccountLimits_spec_withdrawal_limits_ok'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5, $t0));
 
     // assert (if And($t15, Not(AccountLimits::spec_window_unrestricted<#0>($t5))) {Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_update_outflow<#0>(AccountLimits::spec_window_reset<#0>($t5), $t0))} else {Or(Eq<AccountLimits::Window<#0>>($t1, AccountLimits::spec_window_reset<#0>($t5)), Eq<AccountLimits::Window<#0>>($t1, $t5))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
-    assume {:print "$at(31,24209,24475)"} true;
-    assert {:msg "assert_failed(31,24209,24475): post-condition does not hold"}
+    assume {:print "$at(35,24209,24475)"} true;
+    assert {:msg "assert_failed(35,24209,24475): post-condition does not hold"}
       (if (($t15 && !$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5))) then ($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($Dereference($t1), $1_AccountLimits_spec_update_outflow'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($Dereference($t1), $1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t5)) || $IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($Dereference($t1), $t5))));
 
     // return $t15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
@@ -16834,16 +16834,16 @@ L14:
     return;
 
     // label L15 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:473:5+1
-    assume {:print "$at(31,23125,23126)"} true;
+    assume {:print "$at(35,23125,23126)"} true;
 L15:
 
     // assert Or(Or(Or(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
-    assume {:print "$at(31,23131,23290)"} true;
-    assert {:msg "assert_failed(31,23131,23290): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,23131,23290)"} true;
+    assert {:msg "assert_failed(35,23131,23290): abort not covered by any of the `aborts_if` clauses"}
       (((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t5)) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5)) + $t0) > 18446744073709551615))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156)));
 
     // assert Or(Or(Or(And(Not(exists[@155]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address($t5))), Eq(0, $t10)), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@156, @155]<#0>($t5)), $t0), 18446744073709551615)), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Gt(Add(select AccountLimits::Window.window_start($t5), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@155]<#0>($t5))), MaxU64())), Eq(0, $t10))), And(And(Not(AccountLimits::spec_window_unrestricted[@155]<#0>($t5)), Not(DiemTimestamp::$is_operating[@156]())), Eq(0, $t10))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
-    assert {:msg "assert_failed(31,23131,23290): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,23131,23290): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t5)) && $IsEqual'num'(0, $t10)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5)) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5))) > $MAX_U64)) && $IsEqual'num'(0, $t10))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#155, $t5) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#156)) && $IsEqual'num'(0, $t10)));
 
     // abort($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:474:5+159
@@ -16876,7 +16876,7 @@ procedure {:timeLimit 40} $1_AccountLimits_grant_mutation_capability$verify(_$t0
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:63:5+1
-    assume {:print "$at(31,2572,2573)"} true;
+    assume {:print "$at(35,2572,2573)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume forall $rsc: ResourceDomain<DiemTimestamp::CurrentTimeMicroseconds>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:63:5+1
@@ -17001,11 +17001,11 @@ procedure {:timeLimit 40} $1_AccountLimits_grant_mutation_capability$verify(_$t0
     assume (forall addr: int :: $IsValid'address'(addr) ==> ((($ResourceExists($1_DiemAccount_Balance'$1_XUS_XUS'_$memory, addr) || $ResourceExists($1_DiemAccount_Balance'$1_XDX_XDX'_$memory, addr)) ==> $1_Roles_spec_can_hold_balance_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t1, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t1 == $1_Signer_$address_of($t0));
 
     // @153 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:63:5+1
-    assume {:print "$at(31,2572,2573)"} true;
+    assume {:print "$at(35,2572,2573)"} true;
     $1_DiemTimestamp_CurrentTimeMicroseconds_$memory#153 := $1_DiemTimestamp_CurrentTimeMicroseconds_$memory;
 
     // @154 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:63:5+1
@@ -17015,7 +17015,7 @@ procedure {:timeLimit 40} $1_AccountLimits_grant_mutation_capability$verify(_$t0
     assume {:print "$track_local(20,3,0):", $t0} $t0 == $t0;
 
     // opaque begin: DiemTimestamp::assert_genesis() at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:64:9+31
-    assume {:print "$at(31,2672,2703)"} true;
+    assume {:print "$at(35,2672,2703)"} true;
 
     // assume Identical($t2, Not(DiemTimestamp::$is_genesis())) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:64:9+31
     assume ($t2 == !$1_DiemTimestamp_$is_genesis($1_DiemTimestamp_CurrentTimeMicroseconds_$memory));
@@ -17030,7 +17030,7 @@ L4:
     assume (!$1_DiemTimestamp_$is_genesis($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t3));
 
     // trace_abort($t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:64:9+31
-    assume {:print "$at(31,2672,2703)"} true;
+    assume {:print "$at(35,2672,2703)"} true;
     assume {:print "$track_abort(20,3):", $t3} $t3 == $t3;
 
     // goto L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:64:9+31
@@ -17042,11 +17042,11 @@ L3:
     // opaque end: DiemTimestamp::assert_genesis() at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:64:9+31
 
     // assume Identical($t4, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t4 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:65:9+35
-    assume {:print "$at(31,2713,2748)"} true;
+    assume {:print "$at(35,2713,2748)"} true;
 
     // assume Identical($t5, Or(Or(Or(Neq<address>(Signer::$address_of($t0), a550c18), Not(exists<Roles::RoleId>($t4))), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t4)), 0)), Neq<address>(Signer::$address_of($t0), a550c18))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:65:9+35
     assume ($t5 == (((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) || !$ResourceExists($1_Roles_RoleId_$memory, $t4)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t4)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816)));
@@ -17061,7 +17061,7 @@ L6:
     assume ((((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t3)) || (!$ResourceExists($1_Roles_RoleId_$memory, $t4) && $IsEqual'num'(0, $t3))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t4)), 0) && $IsEqual'num'(0, $t3))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t3)));
 
     // trace_abort($t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:65:9+35
-    assume {:print "$at(31,2713,2748)"} true;
+    assume {:print "$at(35,2713,2748)"} true;
     assume {:print "$track_abort(20,3):", $t3} $t3 == $t3;
 
     // goto L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:65:9+35
@@ -17073,7 +17073,7 @@ L5:
     // opaque end: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:65:9+35
 
     // $t6 := false at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:66:9+32
-    assume {:print "$at(31,2758,2790)"} true;
+    assume {:print "$at(35,2758,2790)"} true;
     $t6 := false;
     assume $IsValid'bool'($t6);
 
@@ -17084,27 +17084,27 @@ L5:
     assume {:print "$track_return(20,3,0):", $t7} $t7 == $t7;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:67:5+1
-    assume {:print "$at(31,2795,2796)"} true;
+    assume {:print "$at(35,2795,2796)"} true;
 L1:
 
     // assert Not(Not(DiemTimestamp::$is_genesis[@153]())) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:153:9+51
-    assume {:print "$at(42,6293,6344)"} true;
-    assert {:msg "assert_failed(42,6293,6344): function does not abort under this condition"}
+    assume {:print "$at(10,6293,6344)"} true;
+    assert {:msg "assert_failed(10,6293,6344): function does not abort under this condition"}
       !!$1_DiemTimestamp_$is_genesis($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#153);
 
     // assert Not(Not(exists[@154]<Roles::RoleId>($t1))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:542:9+59
-    assume {:print "$at(39,24116,24175)"} true;
-    assert {:msg "assert_failed(39,24116,24175): function does not abort under this condition"}
+    assume {:print "$at(40,24116,24175)"} true;
+    assert {:msg "assert_failed(40,24116,24175): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#154, $t1);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@154]<Roles::RoleId>($t1)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:543:9+87
-    assume {:print "$at(39,24184,24271)"} true;
-    assert {:msg "assert_failed(39,24184,24271): function does not abort under this condition"}
+    assume {:print "$at(40,24184,24271)"} true;
+    assert {:msg "assert_failed(40,24184,24271): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#154, $t1)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
-    assume {:print "$at(10,1380,1461)"} true;
-    assert {:msg "assert_failed(10,1380,1461): function does not abort under this condition"}
+    assume {:print "$at(28,1380,1461)"} true;
+    assert {:msg "assert_failed(28,1380,1461): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 173345816);
 
     // return $t7 at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
@@ -17112,16 +17112,16 @@ L1:
     return;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:67:5+1
-    assume {:print "$at(31,2795,2796)"} true;
+    assume {:print "$at(35,2795,2796)"} true;
 L2:
 
     // assert Or(Or(Or(Not(DiemTimestamp::$is_genesis[@153]()), Not(exists[@154]<Roles::RoleId>($t1))), Neq<u64>(select Roles::RoleId.role_id(global[@154]<Roles::RoleId>($t1)), 0)), Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:68:5+154
-    assume {:print "$at(31,2801,2955)"} true;
-    assert {:msg "assert_failed(31,2801,2955): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,2801,2955)"} true;
+    assert {:msg "assert_failed(35,2801,2955): abort not covered by any of the `aborts_if` clauses"}
       (((!$1_DiemTimestamp_$is_genesis($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#153) || !$ResourceExists($1_Roles_RoleId_$memory#154, $t1)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#154, $t1)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816));
 
     // assert Or(Or(Or(And(Not(DiemTimestamp::$is_genesis[@153]()), Eq(0, $t3)), And(Not(exists[@154]<Roles::RoleId>($t1)), Eq(0, $t3))), And(Neq<u64>(select Roles::RoleId.role_id(global[@154]<Roles::RoleId>($t1)), 0), Eq(0, $t3))), And(Neq<address>(Signer::$address_of[]($t0), a550c18), Eq(0, $t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:68:5+154
-    assert {:msg "assert_failed(31,2801,2955): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,2801,2955): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$1_DiemTimestamp_$is_genesis($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#153) && $IsEqual'num'(0, $t3)) || (!$ResourceExists($1_Roles_RoleId_$memory#154, $t1) && $IsEqual'num'(0, $t3))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#154, $t1)), 0) && $IsEqual'num'(0, $t3))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t3)));
 
     // abort($t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:68:5+154
@@ -17146,7 +17146,7 @@ procedure {:timeLimit 40} $1_AccountLimits_has_limits_published$verify(_$t0: int
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:544:5+1
-    assume {:print "$at(31,26207,26208)"} true;
+    assume {:print "$at(35,26207,26208)"} true;
     assume $IsValid'address'($t0);
 
     // assume forall $rsc: ResourceDomain<DiemTimestamp::CurrentTimeMicroseconds>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:544:5+1
@@ -17193,14 +17193,14 @@ procedure {:timeLimit 40} $1_AccountLimits_has_limits_published$verify(_$t0: int
     assume {:print "$track_local(20,4,0):", $t0} $t0 == $t0;
 
     // $t1 := exists<AccountLimits::LimitsDefinition<#0>>($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:545:9+6
-    assume {:print "$at(31,26280,26286)"} true;
+    assume {:print "$at(35,26280,26286)"} true;
     $t1 := $ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $t0);
 
     // trace_return[0]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:545:9+40
     assume {:print "$track_return(20,4,0):", $t1} $t1 == $t1;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:546:5+1
-    assume {:print "$at(31,26325,26326)"} true;
+    assume {:print "$at(35,26325,26326)"} true;
 L1:
 
     // return $t1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:546:5+1
@@ -17224,7 +17224,7 @@ procedure {:timeLimit 40} $1_AccountLimits_has_limits_published'$1_XUS_XUS'$veri
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:544:5+1
-    assume {:print "$at(31,26207,26208)"} true;
+    assume {:print "$at(35,26207,26208)"} true;
     assume $IsValid'address'($t0);
 
     // assume forall $rsc: ResourceDomain<DiemTimestamp::CurrentTimeMicroseconds>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:544:5+1
@@ -17271,14 +17271,14 @@ procedure {:timeLimit 40} $1_AccountLimits_has_limits_published'$1_XUS_XUS'$veri
     assume {:print "$track_local(20,4,0):", $t0} $t0 == $t0;
 
     // $t1 := exists<AccountLimits::LimitsDefinition<#0>>($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:545:9+6
-    assume {:print "$at(31,26280,26286)"} true;
+    assume {:print "$at(35,26280,26286)"} true;
     $t1 := $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t0);
 
     // trace_return[0]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:545:9+40
     assume {:print "$track_return(20,4,0):", $t1} $t1 == $t1;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:546:5+1
-    assume {:print "$at(31,26325,26326)"} true;
+    assume {:print "$at(35,26325,26326)"} true;
 L1:
 
     // return $t1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:546:5+1
@@ -17302,7 +17302,7 @@ procedure {:timeLimit 40} $1_AccountLimits_has_limits_published'$1_XDX_XDX'$veri
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:544:5+1
-    assume {:print "$at(31,26207,26208)"} true;
+    assume {:print "$at(35,26207,26208)"} true;
     assume $IsValid'address'($t0);
 
     // assume forall $rsc: ResourceDomain<DiemTimestamp::CurrentTimeMicroseconds>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:544:5+1
@@ -17349,14 +17349,14 @@ procedure {:timeLimit 40} $1_AccountLimits_has_limits_published'$1_XDX_XDX'$veri
     assume {:print "$track_local(20,4,0):", $t0} $t0 == $t0;
 
     // $t1 := exists<AccountLimits::LimitsDefinition<#0>>($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:545:9+6
-    assume {:print "$at(31,26280,26286)"} true;
+    assume {:print "$at(35,26280,26286)"} true;
     $t1 := $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t0);
 
     // trace_return[0]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:545:9+40
     assume {:print "$track_return(20,4,0):", $t1} $t1 == $t1;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:546:5+1
-    assume {:print "$at(31,26325,26326)"} true;
+    assume {:print "$at(35,26325,26326)"} true;
 L1:
 
     // return $t1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:546:5+1
@@ -17380,7 +17380,7 @@ procedure {:timeLimit 40} $1_AccountLimits_has_window_published$verify(_$t0: int
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:548:5+1
-    assume {:print "$at(31,26332,26333)"} true;
+    assume {:print "$at(35,26332,26333)"} true;
     assume $IsValid'address'($t0);
 
     // assume forall $rsc: ResourceDomain<Roles::RoleId>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:548:5+1
@@ -17407,19 +17407,19 @@ procedure {:timeLimit 40} $1_AccountLimits_has_window_published$verify(_$t0: int
     assume {:print "$track_local(20,5,0):", $t0} $t0 == $t0;
 
     // $t1 := exists<AccountLimits::Window<#0>>($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:549:9+6
-    assume {:print "$at(31,26405,26411)"} true;
+    assume {:print "$at(35,26405,26411)"} true;
     $t1 := $ResourceExists($1_AccountLimits_Window'#0'_$memory, $t0);
 
     // trace_return[0]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:549:9+30
     assume {:print "$track_return(20,5,0):", $t1} $t1 == $t1;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:550:5+1
-    assume {:print "$at(31,26440,26441)"} true;
+    assume {:print "$at(35,26440,26441)"} true;
 L1:
 
     // assert Eq<bool>($t1, AccountLimits::spec_has_window_published<#0>($t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:552:9+60
-    assume {:print "$at(31,26482,26542)"} true;
-    assert {:msg "assert_failed(31,26482,26542): post-condition does not hold"}
+    assume {:print "$at(35,26482,26542)"} true;
+    assert {:msg "assert_failed(35,26482,26542): post-condition does not hold"}
       $IsEqual'bool'($t1, $1_AccountLimits_spec_has_window_published'#0'($1_AccountLimits_Window'#0'_$memory, $t0));
 
     // return $t1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:552:9+60
@@ -17460,14 +17460,14 @@ procedure {:timeLimit 40} $1_AccountLimits_is_unrestricted$verify(_$t0: $1_Accou
 
     // bytecode translation starts here
     // assume And(WellFormed($t0), And(And(And(Gt(select AccountLimits::LimitsDefinition.max_inflow($t0), 0), Gt(select AccountLimits::LimitsDefinition.max_outflow($t0), 0)), Gt(select AccountLimits::LimitsDefinition.time_period($t0), 0)), Gt(select AccountLimits::LimitsDefinition.max_holding($t0), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:519:5+1
-    assume {:print "$at(31,25247,25248)"} true;
+    assume {:print "$at(35,25247,25248)"} true;
     assume ($IsValid'$1_AccountLimits_LimitsDefinition'#0''($t0) && (((($max_inflow#$1_AccountLimits_LimitsDefinition'#0'($t0) > 0) && ($max_outflow#$1_AccountLimits_LimitsDefinition'#0'($t0) > 0)) && ($time_period#$1_AccountLimits_LimitsDefinition'#0'($t0) > 0)) && ($max_holding#$1_AccountLimits_LimitsDefinition'#0'($t0) > 0)));
 
     // trace_local[limits_def]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:519:5+1
     assume {:print "$track_local(20,6,0):", $t0} $t0 == $t0;
 
     // $t4 := get_field<AccountLimits::LimitsDefinition<#0>>.max_inflow($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+21
-    assume {:print "$at(31,25334,25355)"} true;
+    assume {:print "$at(35,25334,25355)"} true;
     $t4 := $max_inflow#$1_AccountLimits_LimitsDefinition'#0'($t0);
 
     // $t5 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:34+7
@@ -17487,7 +17487,7 @@ L1:
     goto L2;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:521:9+10
-    assume {:print "$at(31,25378,25388)"} true;
+    assume {:print "$at(35,25378,25388)"} true;
 L0:
 
     // $t7 := get_field<AccountLimits::LimitsDefinition<#0>>.max_outflow($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:521:9+22
@@ -17501,7 +17501,7 @@ L0:
     $t9 := $IsEqual'u64'($t7, $t8);
 
     // $t1 := $t9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+77
-    assume {:print "$at(31,25334,25411)"} true;
+    assume {:print "$at(35,25334,25411)"} true;
     $t1 := $t9;
 
     // trace_local[tmp#$1]($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+77
@@ -17536,7 +17536,7 @@ L5:
     goto L6;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:522:9+10
-    assume {:print "$at(31,25423,25433)"} true;
+    assume {:print "$at(35,25423,25433)"} true;
 L4:
 
     // $t11 := get_field<AccountLimits::LimitsDefinition<#0>>.max_holding($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:522:9+22
@@ -17550,7 +17550,7 @@ L4:
     $t13 := $IsEqual'u64'($t11, $t12);
 
     // $t2 := $t13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+122
-    assume {:print "$at(31,25334,25456)"} true;
+    assume {:print "$at(35,25334,25456)"} true;
     $t2 := $t13;
 
     // trace_local[tmp#$2]($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+122
@@ -17585,7 +17585,7 @@ L9:
     goto L10;
 
     // label L8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:523:9+10
-    assume {:print "$at(31,25468,25478)"} true;
+    assume {:print "$at(35,25468,25478)"} true;
 L8:
 
     // $t15 := get_field<AccountLimits::LimitsDefinition<#0>>.time_period($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:523:9+22
@@ -17599,7 +17599,7 @@ L8:
     $t17 := $IsEqual'u64'($t15, $t16);
 
     // $t3 := $t17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+167
-    assume {:print "$at(31,25334,25501)"} true;
+    assume {:print "$at(35,25334,25501)"} true;
     $t3 := $t17;
 
     // trace_local[tmp#$3]($t17) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:520:9+167
@@ -17630,17 +17630,17 @@ L11:
     assume {:print "$track_return(20,6,0):", $t3} $t3 == $t3;
 
     // label L12 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:524:5+1
-    assume {:print "$at(31,25506,25507)"} true;
+    assume {:print "$at(35,25506,25507)"} true;
 L12:
 
     // assert Not(false) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:527:9+16
-    assume {:print "$at(31,25566,25582)"} true;
-    assert {:msg "assert_failed(31,25566,25582): function does not abort under this condition"}
+    assume {:print "$at(35,25566,25582)"} true;
+    assert {:msg "assert_failed(35,25566,25582): function does not abort under this condition"}
       !false;
 
     // assert Eq<bool>($t3, AccountLimits::spec_is_unrestricted<#0>($t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:528:9+51
-    assume {:print "$at(31,25591,25642)"} true;
-    assert {:msg "assert_failed(31,25591,25642): post-condition does not hold"}
+    assume {:print "$at(35,25591,25642)"} true;
+    assert {:msg "assert_failed(35,25591,25642): post-condition does not hold"}
       $IsEqual'bool'($t3, $1_AccountLimits_spec_is_unrestricted'#0'($t0));
 
     // return $t3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:528:9+51
@@ -17665,7 +17665,7 @@ procedure {:timeLimit 40} $1_AccountLimits_limits_definition_address$verify(_$t0
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:540:5+1
-    assume {:print "$at(31,26047,26048)"} true;
+    assume {:print "$at(35,26047,26048)"} true;
     assume $IsValid'address'($t0);
 
     // assume forall $rsc: ResourceDomain<Roles::RoleId>(): WellFormed($rsc) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:540:5+1
@@ -17692,14 +17692,14 @@ procedure {:timeLimit 40} $1_AccountLimits_limits_definition_address$verify(_$t0
     assume {:print "$track_local(20,7,0):", $t0} $t0 == $t0;
 
     // $t1 := get_global<AccountLimits::Window<#0>>($t0) on_abort goto L2 with $t2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:541:9+13
-    assume {:print "$at(31,26144,26157)"} true;
+    assume {:print "$at(35,26144,26157)"} true;
     if (!$ResourceExists($1_AccountLimits_Window'#0'_$memory, $t0)) {
         call $ExecFailureAbort();
     } else {
         $t1 := $ResourceValue($1_AccountLimits_Window'#0'_$memory, $t0);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,26144,26157)"} true;
+        assume {:print "$at(35,26144,26157)"} true;
         $t2 := $abort_code;
         assume {:print "$track_abort(20,7):", $t2} $t2 == $t2;
         goto L2;
@@ -17712,7 +17712,7 @@ procedure {:timeLimit 40} $1_AccountLimits_limits_definition_address$verify(_$t0
     assume {:print "$track_return(20,7,0):", $t3} $t3 == $t3;
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:542:5+1
-    assume {:print "$at(31,26200,26201)"} true;
+    assume {:print "$at(35,26200,26201)"} true;
 L1:
 
     // return $t3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:542:5+1
@@ -17760,7 +17760,7 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_unrestricted_limits$verify(_$
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:189:5+1
-    assume {:print "$at(31,8105,8106)"} true;
+    assume {:print "$at(35,8105,8106)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume forall $rsc: ResourceDomain<AccountLimits::LimitsDefinition<#0>>(): And(WellFormed($rsc), And(And(And(Gt(select AccountLimits::LimitsDefinition.max_inflow($rsc), 0), Gt(select AccountLimits::LimitsDefinition.max_outflow($rsc), 0)), Gt(select AccountLimits::LimitsDefinition.time_period($rsc), 0)), Gt(select AccountLimits::LimitsDefinition.max_holding($rsc), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:189:5+1
@@ -17782,10 +17782,10 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_unrestricted_limits$verify(_$
     assume {:print "$track_local(20,8,0):", $t0} $t0 == $t0;
 
     // $t6 := Signer::address_of($t0) on_abort goto L3 with $t7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:191:49+35
-    assume {:print "$at(31,8255,8290)"} true;
+    assume {:print "$at(35,8255,8290)"} true;
     call $t6 := $1_Signer_address_of($t0);
     if ($abort_flag) {
-        assume {:print "$at(31,8255,8290)"} true;
+        assume {:print "$at(35,8255,8290)"} true;
         $t7 := $abort_code;
         assume {:print "$track_abort(20,8):", $t7} $t7 == $t7;
         goto L3;
@@ -17798,7 +17798,7 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_unrestricted_limits$verify(_$
     call $t9 := $Not($t8);
 
     // if ($t9) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:190:9+162
-    assume {:print "$at(31,8198,8360)"} true;
+    assume {:print "$at(35,8198,8360)"} true;
     if ($t9) { goto L0; } else { goto L1; }
 
     // label L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:190:9+162
@@ -17807,7 +17807,7 @@ L1:
     // destroy($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:190:9+162
 
     // $t10 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:192:39+18
-    assume {:print "$at(31,8331,8349)"} true;
+    assume {:print "$at(35,8331,8349)"} true;
     $t10 := 0;
     assume $IsValid'u64'($t10);
 
@@ -17822,7 +17822,7 @@ L1:
     // $t11 := opaque end: Errors::already_published($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:192:13+45
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:190:9+162
-    assume {:print "$at(31,8198,8360)"} true;
+    assume {:print "$at(35,8198,8360)"} true;
     assume {:print "$track_abort(20,8):", $t11} $t11 == $t11;
 
     // $t7 := move($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:190:9+162
@@ -17832,74 +17832,74 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:195:13+15
-    assume {:print "$at(31,8391,8406)"} true;
+    assume {:print "$at(35,8391,8406)"} true;
 L0:
 
     // trace_local[tmp#$5]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:195:13+15
     assume {:print "$track_local(20,8,5):", $t0} $t0 == $t0;
 
     // $t12 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:197:29+7
-    assume {:print "$at(31,8477,8484)"} true;
+    assume {:print "$at(35,8477,8484)"} true;
     $t12 := 18446744073709551615;
     assume $IsValid'u64'($t12);
 
     // $t13 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:198:30+7
-    assume {:print "$at(31,8515,8522)"} true;
+    assume {:print "$at(35,8515,8522)"} true;
     $t13 := 18446744073709551615;
     assume $IsValid'u64'($t13);
 
     // $t14 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:200:30+7
-    assume {:print "$at(31,8591,8598)"} true;
+    assume {:print "$at(35,8591,8598)"} true;
     $t14 := 0;
     assume $IsValid'u64'($t14);
 
     // $t15 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:199:30+7
-    assume {:print "$at(31,8553,8560)"} true;
+    assume {:print "$at(35,8553,8560)"} true;
     $t15 := 18446744073709551615;
     assume $IsValid'u64'($t15);
 
     // $t16 := pack AccountLimits::LimitsDefinition<#0>($t12, $t13, $t14, $t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:196:13+193
-    assume {:print "$at(31,8420,8613)"} true;
+    assume {:print "$at(35,8420,8613)"} true;
     $t16 := $1_AccountLimits_LimitsDefinition'#0'($t12, $t13, $t14, $t15);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t16), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'#0'($t16) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t16), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'#0'($t16) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t16), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'#0'($t16) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t16), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'#0'($t16) > 0);
 
     // @170 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:189:5+524
     // state save for global update invariants
-    assume {:print "$at(31,8105,8629)"} true;
+    assume {:print "$at(35,8105,8629)"} true;
     $1_AccountLimits_LimitsDefinition'#0'_$memory#170 := $1_AccountLimits_LimitsDefinition'#0'_$memory;
 
     // move_to<AccountLimits::LimitsDefinition<#0>>($t16, $t0) on_abort goto L3 with $t7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:194:9+7
-    assume {:print "$at(31,8370,8377)"} true;
+    assume {:print "$at(35,8370,8377)"} true;
     if ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $addr#$signer($t0))) {
         call $ExecFailureAbort();
     } else {
         $1_AccountLimits_LimitsDefinition'#0'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'#0'_$memory, $addr#$signer($t0), $t16);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,8370,8377)"} true;
+        assume {:print "$at(35,8370,8377)"} true;
         $t7 := $abort_code;
         assume {:print "$track_abort(20,8):", $t7} $t7 == $t7;
         goto L3;
@@ -17907,39 +17907,39 @@ L0:
 
     // assert forall addr: TypeDomain<address>() where exists[@170]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#170, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:203:5+1
-    assume {:print "$at(31,8628,8629)"} true;
+    assume {:print "$at(35,8628,8629)"} true;
 L2:
 
     // assert Not(exists[@145]<AccountLimits::LimitsDefinition<#0>>(Signer::$address_of[]($t0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:210:9+125
-    assume {:print "$at(31,8885,9010)"} true;
-    assert {:msg "assert_failed(31,8885,9010): function does not abort under this condition"}
+    assume {:print "$at(35,8885,9010)"} true;
+    assert {:msg "assert_failed(35,8885,9010): function does not abort under this condition"}
       !$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#145, $1_Signer_$address_of($t0));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:210:9+125
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:203:5+1
-    assume {:print "$at(31,8628,8629)"} true;
+    assume {:print "$at(35,8628,8629)"} true;
 L3:
 
     // assert exists[@145]<AccountLimits::LimitsDefinition<#0>>(Signer::$address_of[]($t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:204:5+147
-    assume {:print "$at(31,8634,8781)"} true;
-    assert {:msg "assert_failed(31,8634,8781): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,8634,8781)"} true;
+    assert {:msg "assert_failed(35,8634,8781): abort not covered by any of the `aborts_if` clauses"}
       $ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#145, $1_Signer_$address_of($t0));
 
     // assert And(exists[@145]<AccountLimits::LimitsDefinition<#0>>(Signer::$address_of[]($t0)), Eq(0, $t7)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:204:5+147
-    assert {:msg "assert_failed(31,8634,8781): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,8634,8781): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#145, $1_Signer_$address_of($t0)) && $IsEqual'num'(0, $t7));
 
     // abort($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:204:5+147
@@ -17993,7 +17993,7 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window$verify(_$t0: $signer, 
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
-    assume {:print "$at(31,6165,6166)"} true;
+    assume {:print "$at(35,6165,6166)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
@@ -18443,19 +18443,19 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window$verify(_$t0: $signer, 
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume Identical($t3, Signer::$address_of($t1)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:585:9+39
-    assume {:print "$at(39,25941,25980)"} true;
+    assume {:print "$at(40,25941,25980)"} true;
     assume ($t3 == $1_Signer_$address_of($t1));
 
     // assume Identical($t4, select Roles::RoleId.role_id(global<Roles::RoleId>($t3))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:587:9+43
-    assume {:print "$at(39,26057,26100)"} true;
+    assume {:print "$at(40,26057,26100)"} true;
     assume ($t4 == $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t3)));
 
     // assume Identical($t5, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t5 == $1_Signer_$address_of($t0));
 
     // @163 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
-    assume {:print "$at(31,6165,6166)"} true;
+    assume {:print "$at(35,6165,6166)"} true;
     $1_Roles_RoleId_$memory#163 := $1_Roles_RoleId_$memory;
 
     // @161 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
@@ -18474,11 +18474,11 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window$verify(_$t0: $signer, 
     assume {:print "$track_local(20,10,2):", $t2} $t2 == $t2;
 
     // assume Identical($t6, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t6 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
-    assume {:print "$at(31,6306,6341)"} true;
+    assume {:print "$at(35,6306,6341)"} true;
 
     // assume Identical($t7, Or(Or(Or(Neq<address>(Signer::$address_of($t0), a550c18), Not(exists<Roles::RoleId>($t6))), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t6)), 0)), Neq<address>(Signer::$address_of($t0), a550c18))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
     assume ($t7 == (((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) || !$ResourceExists($1_Roles_RoleId_$memory, $t6)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t6)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816)));
@@ -18493,7 +18493,7 @@ L7:
     assume ((((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)) || (!$ResourceExists($1_Roles_RoleId_$memory, $t6) && $IsEqual'num'(0, $t8))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t6)), 0) && $IsEqual'num'(0, $t8))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)));
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
-    assume {:print "$at(31,6306,6341)"} true;
+    assume {:print "$at(35,6306,6341)"} true;
     assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
@@ -18505,7 +18505,7 @@ L6:
     // opaque end: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
 
     // $t9 := exists<AccountLimits::LimitsDefinition<#0>>($t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:17+6
-    assume {:print "$at(31,6359,6365)"} true;
+    assume {:print "$at(35,6359,6365)"} true;
     $t9 := $ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $t2);
 
     // if ($t9) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
@@ -18531,7 +18531,7 @@ L1:
     // $t11 := opaque end: Errors::not_published($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:68+41
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
-    assume {:print "$at(31,6351,6452)"} true;
+    assume {:print "$at(35,6351,6452)"} true;
     assume {:print "$track_abort(20,10):", $t11} $t11 == $t11;
 
     // $t8 := move($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
@@ -18541,19 +18541,19 @@ L1:
     goto L5;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:49+8
-    assume {:print "$at(31,6502,6510)"} true;
+    assume {:print "$at(35,6502,6510)"} true;
 L0:
 
     // assume Identical($t12, Signer::$address_of($t1)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:585:9+39
-    assume {:print "$at(39,25941,25980)"} true;
+    assume {:print "$at(40,25941,25980)"} true;
     assume ($t12 == $1_Signer_$address_of($t1));
 
     // assume Identical($t13, select Roles::RoleId.role_id(global<Roles::RoleId>($t12))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:587:9+43
-    assume {:print "$at(39,26057,26100)"} true;
+    assume {:print "$at(40,26057,26100)"} true;
     assume ($t13 == $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t12)));
 
     // opaque begin: Roles::assert_parent_vasp_or_child_vasp($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
-    assume {:print "$at(31,6462,6511)"} true;
+    assume {:print "$at(35,6462,6511)"} true;
 
     // assume Identical($t14, Or(Not(exists<Roles::RoleId>($t12)), And(Neq<u64>($t13, 0), Neq<u64>($t13, 0)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
     assume ($t14 == (!$ResourceExists($1_Roles_RoleId_$memory, $t12) || (!$IsEqual'u64'($t13, 0) && !$IsEqual'u64'($t13, 0))));
@@ -18568,7 +18568,7 @@ L9:
     assume ((!$ResourceExists($1_Roles_RoleId_$memory, $t12) && $IsEqual'num'(0, $t8)) || ((!$IsEqual'u64'($t13, 0) && !$IsEqual'u64'($t13, 0)) && $IsEqual'num'(0, $t8)));
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
-    assume {:print "$at(31,6462,6511)"} true;
+    assume {:print "$at(35,6462,6511)"} true;
     assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
@@ -18580,10 +18580,10 @@ L8:
     // opaque end: Roles::assert_parent_vasp_or_child_vasp($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
 
     // $t15 := Signer::address_of($t1) on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:154:39+28
-    assume {:print "$at(31,6568,6596)"} true;
+    assume {:print "$at(35,6568,6596)"} true;
     call $t15 := $1_Signer_address_of($t1);
     if ($abort_flag) {
-        assume {:print "$at(31,6568,6596)"} true;
+        assume {:print "$at(35,6568,6596)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
@@ -18596,7 +18596,7 @@ L8:
     call $t17 := $Not($t16);
 
     // if ($t17) goto L2 else goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
-    assume {:print "$at(31,6521,6655)"} true;
+    assume {:print "$at(35,6521,6655)"} true;
     if ($t17) { goto L2; } else { goto L3; }
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
@@ -18605,7 +18605,7 @@ L3:
     // destroy($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
 
     // $t18 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:155:39+7
-    assume {:print "$at(31,6637,6644)"} true;
+    assume {:print "$at(35,6637,6644)"} true;
     $t18 := 0;
     assume $IsValid'u64'($t18);
 
@@ -18620,7 +18620,7 @@ L3:
     // $t19 := opaque end: Errors::already_published($t18) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:155:13+34
 
     // trace_abort($t19) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
-    assume {:print "$at(31,6521,6655)"} true;
+    assume {:print "$at(35,6521,6655)"} true;
     assume {:print "$track_abort(20,10):", $t19} $t19 == $t19;
 
     // $t8 := move($t19) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
@@ -18630,52 +18630,52 @@ L3:
     goto L5;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:158:13+8
-    assume {:print "$at(31,6686,6694)"} true;
+    assume {:print "$at(35,6686,6694)"} true;
 L2:
 
     // $t20 := AccountLimits::current_time() on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:160:31+14
-    assume {:print "$at(31,6757,6771)"} true;
+    assume {:print "$at(35,6757,6771)"} true;
     call $t20 := $1_AccountLimits_current_time();
     if ($abort_flag) {
-        assume {:print "$at(31,6757,6771)"} true;
+        assume {:print "$at(35,6757,6771)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
     }
 
     // $t21 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:161:32+1
-    assume {:print "$at(31,6804,6805)"} true;
+    assume {:print "$at(35,6804,6805)"} true;
     $t21 := 0;
     assume $IsValid'u64'($t21);
 
     // $t22 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:162:33+1
-    assume {:print "$at(31,6839,6840)"} true;
+    assume {:print "$at(35,6839,6840)"} true;
     $t22 := 0;
     assume $IsValid'u64'($t22);
 
     // $t23 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:163:34+1
-    assume {:print "$at(31,6875,6876)"} true;
+    assume {:print "$at(35,6875,6876)"} true;
     $t23 := 0;
     assume $IsValid'u64'($t23);
 
     // $t24 := pack AccountLimits::Window<#0>($t20, $t21, $t22, $t23, $t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:159:13+214
-    assume {:print "$at(31,6708,6922)"} true;
+    assume {:print "$at(35,6708,6922)"} true;
     $t24 := $1_AccountLimits_Window'#0'($t20, $t21, $t22, $t23, $t2);
 
     // @182 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+773
     // state save for global update invariants
-    assume {:print "$at(31,6165,6938)"} true;
+    assume {:print "$at(35,6165,6938)"} true;
     $1_AccountLimits_Window'#0'_$memory#182 := $1_AccountLimits_Window'#0'_$memory;
 
     // move_to<AccountLimits::Window<#0>>($t24, $t1) on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:157:9+7
-    assume {:print "$at(31,6665,6672)"} true;
+    assume {:print "$at(35,6665,6672)"} true;
     if ($ResourceExists($1_AccountLimits_Window'#0'_$memory, $addr#$signer($t1))) {
         call $ExecFailureAbort();
     } else {
         $1_AccountLimits_Window'#0'_$memory := $ResourceUpdate($1_AccountLimits_Window'#0'_$memory, $addr#$signer($t1), $t24);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,6665,6672)"} true;
+        assume {:print "$at(35,6665,6672)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
@@ -18683,75 +18683,75 @@ L2:
 
     // assert forall window_addr: TypeDomain<address>() where exists[@182]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory#182, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:167:5+1
-    assume {:print "$at(31,6937,6938)"} true;
+    assume {:print "$at(35,6937,6938)"} true;
 L4:
 
     // assert Not(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:179:9+88
-    assume {:print "$at(31,7462,7550)"} true;
-    assert {:msg "assert_failed(31,7462,7550): function does not abort under this condition"}
+    assume {:print "$at(35,7462,7550)"} true;
+    assert {:msg "assert_failed(35,7462,7550): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#161, $t2);
 
     // assert Not(exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:180:9+96
-    assume {:print "$at(31,7559,7655)"} true;
-    assert {:msg "assert_failed(31,7559,7655): function does not abort under this condition"}
+    assume {:print "$at(35,7559,7655)"} true;
+    assert {:msg "assert_failed(35,7559,7655): function does not abort under this condition"}
       !$ResourceExists($1_AccountLimits_Window'#0'_$memory#162, $1_Signer_$address_of($t1));
 
     // assert Not(Not(exists[@163]<Roles::RoleId>($t3))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:586:9+59
-    assume {:print "$at(39,25989,26048)"} true;
-    assert {:msg "assert_failed(39,25989,26048): function does not abort under this condition"}
+    assume {:print "$at(40,25989,26048)"} true;
+    assert {:msg "assert_failed(40,25989,26048): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#163, $t3);
 
     // assert Not(And(Neq<u64>($t4, 0), Neq<u64>($t4, 0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:588:9+113
-    assume {:print "$at(39,26109,26222)"} true;
-    assert {:msg "assert_failed(39,26109,26222): function does not abort under this condition"}
+    assume {:print "$at(40,26109,26222)"} true;
+    assert {:msg "assert_failed(40,26109,26222): function does not abort under this condition"}
       !(!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0));
 
     // assert Not(Not(exists[@163]<Roles::RoleId>($t5))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:542:9+59
-    assume {:print "$at(39,24116,24175)"} true;
-    assert {:msg "assert_failed(39,24116,24175): function does not abort under this condition"}
+    assume {:print "$at(40,24116,24175)"} true;
+    assert {:msg "assert_failed(40,24116,24175): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#163, $t5);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:543:9+87
-    assume {:print "$at(39,24184,24271)"} true;
-    assert {:msg "assert_failed(39,24184,24271): function does not abort under this condition"}
+    assume {:print "$at(40,24184,24271)"} true;
+    assert {:msg "assert_failed(40,24184,24271): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
-    assume {:print "$at(10,1380,1461)"} true;
-    assert {:msg "assert_failed(10,1380,1461): function does not abort under this condition"}
+    assume {:print "$at(28,1380,1461)"} true;
+    assert {:msg "assert_failed(28,1380,1461): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 173345816);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
     return;
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:167:5+1
-    assume {:print "$at(31,6937,6938)"} true;
+    assume {:print "$at(35,6937,6938)"} true;
 L5:
 
     // assert Or(Or(Or(Or(Or(Or(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2)), exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1))), Not(exists[@163]<Roles::RoleId>($t3))), And(Neq<u64>($t4, 0), Neq<u64>($t4, 0))), Not(exists[@163]<Roles::RoleId>($t5))), Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0)), Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
-    assume {:print "$at(31,6943,7019)"} true;
-    assert {:msg "assert_failed(31,6943,7019): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,6943,7019)"} true;
+    assert {:msg "assert_failed(35,6943,7019): abort not covered by any of the `aborts_if` clauses"}
       ((((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#161, $t2) || $ResourceExists($1_AccountLimits_Window'#0'_$memory#162, $1_Signer_$address_of($t1))) || !$ResourceExists($1_Roles_RoleId_$memory#163, $t3)) || (!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0))) || !$ResourceExists($1_Roles_RoleId_$memory#163, $t5)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816));
 
     // assert Or(Or(Or(Or(Or(Or(And(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2)), Eq(0, $t8)), And(exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1)), Eq(0, $t8))), And(Not(exists[@163]<Roles::RoleId>($t3)), Eq(0, $t8))), And(And(Neq<u64>($t4, 0), Neq<u64>($t4, 0)), Eq(0, $t8))), And(Not(exists[@163]<Roles::RoleId>($t5)), Eq(0, $t8))), And(Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0), Eq(0, $t8))), And(Neq<address>(Signer::$address_of[]($t0), a550c18), Eq(0, $t8))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
-    assert {:msg "assert_failed(31,6943,7019): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,6943,7019): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#161, $t2) && $IsEqual'num'(0, $t8)) || ($ResourceExists($1_AccountLimits_Window'#0'_$memory#162, $1_Signer_$address_of($t1)) && $IsEqual'num'(0, $t8))) || (!$ResourceExists($1_Roles_RoleId_$memory#163, $t3) && $IsEqual'num'(0, $t8))) || ((!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0)) && $IsEqual'num'(0, $t8))) || (!$ResourceExists($1_Roles_RoleId_$memory#163, $t5) && $IsEqual'num'(0, $t8))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0) && $IsEqual'num'(0, $t8))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)));
 
     // abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
@@ -18805,7 +18805,7 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window'$1_XUS_XUS'$verify(_$t
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
-    assume {:print "$at(31,6165,6166)"} true;
+    assume {:print "$at(35,6165,6166)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
@@ -19255,19 +19255,19 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window'$1_XUS_XUS'$verify(_$t
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume Identical($t3, Signer::$address_of($t1)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:585:9+39
-    assume {:print "$at(39,25941,25980)"} true;
+    assume {:print "$at(40,25941,25980)"} true;
     assume ($t3 == $1_Signer_$address_of($t1));
 
     // assume Identical($t4, select Roles::RoleId.role_id(global<Roles::RoleId>($t3))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:587:9+43
-    assume {:print "$at(39,26057,26100)"} true;
+    assume {:print "$at(40,26057,26100)"} true;
     assume ($t4 == $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t3)));
 
     // assume Identical($t5, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t5 == $1_Signer_$address_of($t0));
 
     // @163 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
-    assume {:print "$at(31,6165,6166)"} true;
+    assume {:print "$at(35,6165,6166)"} true;
     $1_Roles_RoleId_$memory#163 := $1_Roles_RoleId_$memory;
 
     // @161 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
@@ -19286,11 +19286,11 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window'$1_XUS_XUS'$verify(_$t
     assume {:print "$track_local(20,10,2):", $t2} $t2 == $t2;
 
     // assume Identical($t6, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t6 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
-    assume {:print "$at(31,6306,6341)"} true;
+    assume {:print "$at(35,6306,6341)"} true;
 
     // assume Identical($t7, Or(Or(Or(Neq<address>(Signer::$address_of($t0), a550c18), Not(exists<Roles::RoleId>($t6))), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t6)), 0)), Neq<address>(Signer::$address_of($t0), a550c18))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
     assume ($t7 == (((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) || !$ResourceExists($1_Roles_RoleId_$memory, $t6)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t6)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816)));
@@ -19305,7 +19305,7 @@ L7:
     assume ((((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)) || (!$ResourceExists($1_Roles_RoleId_$memory, $t6) && $IsEqual'num'(0, $t8))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t6)), 0) && $IsEqual'num'(0, $t8))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)));
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
-    assume {:print "$at(31,6306,6341)"} true;
+    assume {:print "$at(35,6306,6341)"} true;
     assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
@@ -19317,7 +19317,7 @@ L6:
     // opaque end: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
 
     // $t9 := exists<AccountLimits::LimitsDefinition<#0>>($t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:17+6
-    assume {:print "$at(31,6359,6365)"} true;
+    assume {:print "$at(35,6359,6365)"} true;
     $t9 := $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t2);
 
     // if ($t9) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
@@ -19343,7 +19343,7 @@ L1:
     // $t11 := opaque end: Errors::not_published($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:68+41
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
-    assume {:print "$at(31,6351,6452)"} true;
+    assume {:print "$at(35,6351,6452)"} true;
     assume {:print "$track_abort(20,10):", $t11} $t11 == $t11;
 
     // $t8 := move($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
@@ -19353,19 +19353,19 @@ L1:
     goto L5;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:49+8
-    assume {:print "$at(31,6502,6510)"} true;
+    assume {:print "$at(35,6502,6510)"} true;
 L0:
 
     // assume Identical($t12, Signer::$address_of($t1)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:585:9+39
-    assume {:print "$at(39,25941,25980)"} true;
+    assume {:print "$at(40,25941,25980)"} true;
     assume ($t12 == $1_Signer_$address_of($t1));
 
     // assume Identical($t13, select Roles::RoleId.role_id(global<Roles::RoleId>($t12))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:587:9+43
-    assume {:print "$at(39,26057,26100)"} true;
+    assume {:print "$at(40,26057,26100)"} true;
     assume ($t13 == $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t12)));
 
     // opaque begin: Roles::assert_parent_vasp_or_child_vasp($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
-    assume {:print "$at(31,6462,6511)"} true;
+    assume {:print "$at(35,6462,6511)"} true;
 
     // assume Identical($t14, Or(Not(exists<Roles::RoleId>($t12)), And(Neq<u64>($t13, 0), Neq<u64>($t13, 0)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
     assume ($t14 == (!$ResourceExists($1_Roles_RoleId_$memory, $t12) || (!$IsEqual'u64'($t13, 0) && !$IsEqual'u64'($t13, 0))));
@@ -19380,7 +19380,7 @@ L9:
     assume ((!$ResourceExists($1_Roles_RoleId_$memory, $t12) && $IsEqual'num'(0, $t8)) || ((!$IsEqual'u64'($t13, 0) && !$IsEqual'u64'($t13, 0)) && $IsEqual'num'(0, $t8)));
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
-    assume {:print "$at(31,6462,6511)"} true;
+    assume {:print "$at(35,6462,6511)"} true;
     assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
@@ -19392,10 +19392,10 @@ L8:
     // opaque end: Roles::assert_parent_vasp_or_child_vasp($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
 
     // $t15 := Signer::address_of($t1) on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:154:39+28
-    assume {:print "$at(31,6568,6596)"} true;
+    assume {:print "$at(35,6568,6596)"} true;
     call $t15 := $1_Signer_address_of($t1);
     if ($abort_flag) {
-        assume {:print "$at(31,6568,6596)"} true;
+        assume {:print "$at(35,6568,6596)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
@@ -19408,7 +19408,7 @@ L8:
     call $t17 := $Not($t16);
 
     // if ($t17) goto L2 else goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
-    assume {:print "$at(31,6521,6655)"} true;
+    assume {:print "$at(35,6521,6655)"} true;
     if ($t17) { goto L2; } else { goto L3; }
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
@@ -19417,7 +19417,7 @@ L3:
     // destroy($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
 
     // $t18 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:155:39+7
-    assume {:print "$at(31,6637,6644)"} true;
+    assume {:print "$at(35,6637,6644)"} true;
     $t18 := 0;
     assume $IsValid'u64'($t18);
 
@@ -19432,7 +19432,7 @@ L3:
     // $t19 := opaque end: Errors::already_published($t18) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:155:13+34
 
     // trace_abort($t19) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
-    assume {:print "$at(31,6521,6655)"} true;
+    assume {:print "$at(35,6521,6655)"} true;
     assume {:print "$track_abort(20,10):", $t19} $t19 == $t19;
 
     // $t8 := move($t19) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
@@ -19442,52 +19442,52 @@ L3:
     goto L5;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:158:13+8
-    assume {:print "$at(31,6686,6694)"} true;
+    assume {:print "$at(35,6686,6694)"} true;
 L2:
 
     // $t20 := AccountLimits::current_time() on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:160:31+14
-    assume {:print "$at(31,6757,6771)"} true;
+    assume {:print "$at(35,6757,6771)"} true;
     call $t20 := $1_AccountLimits_current_time();
     if ($abort_flag) {
-        assume {:print "$at(31,6757,6771)"} true;
+        assume {:print "$at(35,6757,6771)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
     }
 
     // $t21 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:161:32+1
-    assume {:print "$at(31,6804,6805)"} true;
+    assume {:print "$at(35,6804,6805)"} true;
     $t21 := 0;
     assume $IsValid'u64'($t21);
 
     // $t22 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:162:33+1
-    assume {:print "$at(31,6839,6840)"} true;
+    assume {:print "$at(35,6839,6840)"} true;
     $t22 := 0;
     assume $IsValid'u64'($t22);
 
     // $t23 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:163:34+1
-    assume {:print "$at(31,6875,6876)"} true;
+    assume {:print "$at(35,6875,6876)"} true;
     $t23 := 0;
     assume $IsValid'u64'($t23);
 
     // $t24 := pack AccountLimits::Window<#0>($t20, $t21, $t22, $t23, $t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:159:13+214
-    assume {:print "$at(31,6708,6922)"} true;
+    assume {:print "$at(35,6708,6922)"} true;
     $t24 := $1_AccountLimits_Window'$1_XUS_XUS'($t20, $t21, $t22, $t23, $t2);
 
     // @182 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+773
     // state save for global update invariants
-    assume {:print "$at(31,6165,6938)"} true;
+    assume {:print "$at(35,6165,6938)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#182 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // move_to<AccountLimits::Window<#0>>($t24, $t1) on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:157:9+7
-    assume {:print "$at(31,6665,6672)"} true;
+    assume {:print "$at(35,6665,6672)"} true;
     if ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $addr#$signer($t1))) {
         call $ExecFailureAbort();
     } else {
         $1_AccountLimits_Window'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $addr#$signer($t1), $t24);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,6665,6672)"} true;
+        assume {:print "$at(35,6665,6672)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
@@ -19495,75 +19495,75 @@ L2:
 
     // assert forall window_addr: TypeDomain<address>() where exists[@182]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#182, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:167:5+1
-    assume {:print "$at(31,6937,6938)"} true;
+    assume {:print "$at(35,6937,6938)"} true;
 L4:
 
     // assert Not(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:179:9+88
-    assume {:print "$at(31,7462,7550)"} true;
-    assert {:msg "assert_failed(31,7462,7550): function does not abort under this condition"}
+    assume {:print "$at(35,7462,7550)"} true;
+    assert {:msg "assert_failed(35,7462,7550): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#161, $t2);
 
     // assert Not(exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:180:9+96
-    assume {:print "$at(31,7559,7655)"} true;
-    assert {:msg "assert_failed(31,7559,7655): function does not abort under this condition"}
+    assume {:print "$at(35,7559,7655)"} true;
+    assert {:msg "assert_failed(35,7559,7655): function does not abort under this condition"}
       !$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#162, $1_Signer_$address_of($t1));
 
     // assert Not(Not(exists[@163]<Roles::RoleId>($t3))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:586:9+59
-    assume {:print "$at(39,25989,26048)"} true;
-    assert {:msg "assert_failed(39,25989,26048): function does not abort under this condition"}
+    assume {:print "$at(40,25989,26048)"} true;
+    assert {:msg "assert_failed(40,25989,26048): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#163, $t3);
 
     // assert Not(And(Neq<u64>($t4, 0), Neq<u64>($t4, 0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:588:9+113
-    assume {:print "$at(39,26109,26222)"} true;
-    assert {:msg "assert_failed(39,26109,26222): function does not abort under this condition"}
+    assume {:print "$at(40,26109,26222)"} true;
+    assert {:msg "assert_failed(40,26109,26222): function does not abort under this condition"}
       !(!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0));
 
     // assert Not(Not(exists[@163]<Roles::RoleId>($t5))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:542:9+59
-    assume {:print "$at(39,24116,24175)"} true;
-    assert {:msg "assert_failed(39,24116,24175): function does not abort under this condition"}
+    assume {:print "$at(40,24116,24175)"} true;
+    assert {:msg "assert_failed(40,24116,24175): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#163, $t5);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:543:9+87
-    assume {:print "$at(39,24184,24271)"} true;
-    assert {:msg "assert_failed(39,24184,24271): function does not abort under this condition"}
+    assume {:print "$at(40,24184,24271)"} true;
+    assert {:msg "assert_failed(40,24184,24271): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
-    assume {:print "$at(10,1380,1461)"} true;
-    assert {:msg "assert_failed(10,1380,1461): function does not abort under this condition"}
+    assume {:print "$at(28,1380,1461)"} true;
+    assert {:msg "assert_failed(28,1380,1461): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 173345816);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
     return;
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:167:5+1
-    assume {:print "$at(31,6937,6938)"} true;
+    assume {:print "$at(35,6937,6938)"} true;
 L5:
 
     // assert Or(Or(Or(Or(Or(Or(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2)), exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1))), Not(exists[@163]<Roles::RoleId>($t3))), And(Neq<u64>($t4, 0), Neq<u64>($t4, 0))), Not(exists[@163]<Roles::RoleId>($t5))), Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0)), Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
-    assume {:print "$at(31,6943,7019)"} true;
-    assert {:msg "assert_failed(31,6943,7019): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,6943,7019)"} true;
+    assert {:msg "assert_failed(35,6943,7019): abort not covered by any of the `aborts_if` clauses"}
       ((((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#161, $t2) || $ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#162, $1_Signer_$address_of($t1))) || !$ResourceExists($1_Roles_RoleId_$memory#163, $t3)) || (!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0))) || !$ResourceExists($1_Roles_RoleId_$memory#163, $t5)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816));
 
     // assert Or(Or(Or(Or(Or(Or(And(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2)), Eq(0, $t8)), And(exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1)), Eq(0, $t8))), And(Not(exists[@163]<Roles::RoleId>($t3)), Eq(0, $t8))), And(And(Neq<u64>($t4, 0), Neq<u64>($t4, 0)), Eq(0, $t8))), And(Not(exists[@163]<Roles::RoleId>($t5)), Eq(0, $t8))), And(Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0), Eq(0, $t8))), And(Neq<address>(Signer::$address_of[]($t0), a550c18), Eq(0, $t8))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
-    assert {:msg "assert_failed(31,6943,7019): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,6943,7019): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#161, $t2) && $IsEqual'num'(0, $t8)) || ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#162, $1_Signer_$address_of($t1)) && $IsEqual'num'(0, $t8))) || (!$ResourceExists($1_Roles_RoleId_$memory#163, $t3) && $IsEqual'num'(0, $t8))) || ((!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0)) && $IsEqual'num'(0, $t8))) || (!$ResourceExists($1_Roles_RoleId_$memory#163, $t5) && $IsEqual'num'(0, $t8))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0) && $IsEqual'num'(0, $t8))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)));
 
     // abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
@@ -19617,7 +19617,7 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window'$1_XDX_XDX'$verify(_$t
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
-    assume {:print "$at(31,6165,6166)"} true;
+    assume {:print "$at(35,6165,6166)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
@@ -20067,19 +20067,19 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window'$1_XDX_XDX'$verify(_$t
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume Identical($t3, Signer::$address_of($t1)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:585:9+39
-    assume {:print "$at(39,25941,25980)"} true;
+    assume {:print "$at(40,25941,25980)"} true;
     assume ($t3 == $1_Signer_$address_of($t1));
 
     // assume Identical($t4, select Roles::RoleId.role_id(global<Roles::RoleId>($t3))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:587:9+43
-    assume {:print "$at(39,26057,26100)"} true;
+    assume {:print "$at(40,26057,26100)"} true;
     assume ($t4 == $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t3)));
 
     // assume Identical($t5, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t5 == $1_Signer_$address_of($t0));
 
     // @163 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
-    assume {:print "$at(31,6165,6166)"} true;
+    assume {:print "$at(35,6165,6166)"} true;
     $1_Roles_RoleId_$memory#163 := $1_Roles_RoleId_$memory;
 
     // @161 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+1
@@ -20098,11 +20098,11 @@ procedure {:timeLimit 40} $1_AccountLimits_publish_window'$1_XDX_XDX'$verify(_$t
     assume {:print "$track_local(20,10,2):", $t2} $t2 == $t2;
 
     // assume Identical($t6, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:541:9+39
-    assume {:print "$at(39,24068,24107)"} true;
+    assume {:print "$at(40,24068,24107)"} true;
     assume ($t6 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
-    assume {:print "$at(31,6306,6341)"} true;
+    assume {:print "$at(35,6306,6341)"} true;
 
     // assume Identical($t7, Or(Or(Or(Neq<address>(Signer::$address_of($t0), a550c18), Not(exists<Roles::RoleId>($t6))), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t6)), 0)), Neq<address>(Signer::$address_of($t0), a550c18))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
     assume ($t7 == (((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) || !$ResourceExists($1_Roles_RoleId_$memory, $t6)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t6)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816)));
@@ -20117,7 +20117,7 @@ L7:
     assume ((((!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)) || (!$ResourceExists($1_Roles_RoleId_$memory, $t6) && $IsEqual'num'(0, $t8))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t6)), 0) && $IsEqual'num'(0, $t8))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)));
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
-    assume {:print "$at(31,6306,6341)"} true;
+    assume {:print "$at(35,6306,6341)"} true;
     assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
@@ -20129,7 +20129,7 @@ L6:
     // opaque end: Roles::assert_diem_root($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:150:9+35
 
     // $t9 := exists<AccountLimits::LimitsDefinition<#0>>($t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:17+6
-    assume {:print "$at(31,6359,6365)"} true;
+    assume {:print "$at(35,6359,6365)"} true;
     $t9 := $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t2);
 
     // if ($t9) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
@@ -20155,7 +20155,7 @@ L1:
     // $t11 := opaque end: Errors::not_published($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:68+41
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
-    assume {:print "$at(31,6351,6452)"} true;
+    assume {:print "$at(35,6351,6452)"} true;
     assume {:print "$track_abort(20,10):", $t11} $t11 == $t11;
 
     // $t8 := move($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:151:9+101
@@ -20165,19 +20165,19 @@ L1:
     goto L5;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:49+8
-    assume {:print "$at(31,6502,6510)"} true;
+    assume {:print "$at(35,6502,6510)"} true;
 L0:
 
     // assume Identical($t12, Signer::$address_of($t1)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:585:9+39
-    assume {:print "$at(39,25941,25980)"} true;
+    assume {:print "$at(40,25941,25980)"} true;
     assume ($t12 == $1_Signer_$address_of($t1));
 
     // assume Identical($t13, select Roles::RoleId.role_id(global<Roles::RoleId>($t12))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:587:9+43
-    assume {:print "$at(39,26057,26100)"} true;
+    assume {:print "$at(40,26057,26100)"} true;
     assume ($t13 == $role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t12)));
 
     // opaque begin: Roles::assert_parent_vasp_or_child_vasp($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
-    assume {:print "$at(31,6462,6511)"} true;
+    assume {:print "$at(35,6462,6511)"} true;
 
     // assume Identical($t14, Or(Not(exists<Roles::RoleId>($t12)), And(Neq<u64>($t13, 0), Neq<u64>($t13, 0)))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
     assume ($t14 == (!$ResourceExists($1_Roles_RoleId_$memory, $t12) || (!$IsEqual'u64'($t13, 0) && !$IsEqual'u64'($t13, 0))));
@@ -20192,7 +20192,7 @@ L9:
     assume ((!$ResourceExists($1_Roles_RoleId_$memory, $t12) && $IsEqual'num'(0, $t8)) || ((!$IsEqual'u64'($t13, 0) && !$IsEqual'u64'($t13, 0)) && $IsEqual'num'(0, $t8)));
 
     // trace_abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
-    assume {:print "$at(31,6462,6511)"} true;
+    assume {:print "$at(35,6462,6511)"} true;
     assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
 
     // goto L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
@@ -20204,10 +20204,10 @@ L8:
     // opaque end: Roles::assert_parent_vasp_or_child_vasp($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:152:9+49
 
     // $t15 := Signer::address_of($t1) on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:154:39+28
-    assume {:print "$at(31,6568,6596)"} true;
+    assume {:print "$at(35,6568,6596)"} true;
     call $t15 := $1_Signer_address_of($t1);
     if ($abort_flag) {
-        assume {:print "$at(31,6568,6596)"} true;
+        assume {:print "$at(35,6568,6596)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
@@ -20220,7 +20220,7 @@ L8:
     call $t17 := $Not($t16);
 
     // if ($t17) goto L2 else goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
-    assume {:print "$at(31,6521,6655)"} true;
+    assume {:print "$at(35,6521,6655)"} true;
     if ($t17) { goto L2; } else { goto L3; }
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
@@ -20229,7 +20229,7 @@ L3:
     // destroy($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
 
     // $t18 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:155:39+7
-    assume {:print "$at(31,6637,6644)"} true;
+    assume {:print "$at(35,6637,6644)"} true;
     $t18 := 0;
     assume $IsValid'u64'($t18);
 
@@ -20244,7 +20244,7 @@ L3:
     // $t19 := opaque end: Errors::already_published($t18) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:155:13+34
 
     // trace_abort($t19) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
-    assume {:print "$at(31,6521,6655)"} true;
+    assume {:print "$at(35,6521,6655)"} true;
     assume {:print "$track_abort(20,10):", $t19} $t19 == $t19;
 
     // $t8 := move($t19) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:153:9+134
@@ -20254,52 +20254,52 @@ L3:
     goto L5;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:158:13+8
-    assume {:print "$at(31,6686,6694)"} true;
+    assume {:print "$at(35,6686,6694)"} true;
 L2:
 
     // $t20 := AccountLimits::current_time() on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:160:31+14
-    assume {:print "$at(31,6757,6771)"} true;
+    assume {:print "$at(35,6757,6771)"} true;
     call $t20 := $1_AccountLimits_current_time();
     if ($abort_flag) {
-        assume {:print "$at(31,6757,6771)"} true;
+        assume {:print "$at(35,6757,6771)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
     }
 
     // $t21 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:161:32+1
-    assume {:print "$at(31,6804,6805)"} true;
+    assume {:print "$at(35,6804,6805)"} true;
     $t21 := 0;
     assume $IsValid'u64'($t21);
 
     // $t22 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:162:33+1
-    assume {:print "$at(31,6839,6840)"} true;
+    assume {:print "$at(35,6839,6840)"} true;
     $t22 := 0;
     assume $IsValid'u64'($t22);
 
     // $t23 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:163:34+1
-    assume {:print "$at(31,6875,6876)"} true;
+    assume {:print "$at(35,6875,6876)"} true;
     $t23 := 0;
     assume $IsValid'u64'($t23);
 
     // $t24 := pack AccountLimits::Window<#0>($t20, $t21, $t22, $t23, $t2) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:159:13+214
-    assume {:print "$at(31,6708,6922)"} true;
+    assume {:print "$at(35,6708,6922)"} true;
     $t24 := $1_AccountLimits_Window'$1_XDX_XDX'($t20, $t21, $t22, $t23, $t2);
 
     // @182 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:145:5+773
     // state save for global update invariants
-    assume {:print "$at(31,6165,6938)"} true;
+    assume {:print "$at(35,6165,6938)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#182 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // move_to<AccountLimits::Window<#0>>($t24, $t1) on_abort goto L5 with $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:157:9+7
-    assume {:print "$at(31,6665,6672)"} true;
+    assume {:print "$at(35,6665,6672)"} true;
     if ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $addr#$signer($t1))) {
         call $ExecFailureAbort();
     } else {
         $1_AccountLimits_Window'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $addr#$signer($t1), $t24);
     }
     if ($abort_flag) {
-        assume {:print "$at(31,6665,6672)"} true;
+        assume {:print "$at(35,6665,6672)"} true;
         $t8 := $abort_code;
         assume {:print "$track_abort(20,10):", $t8} $t8 == $t8;
         goto L5;
@@ -20307,75 +20307,75 @@ L2:
 
     // assert forall window_addr: TypeDomain<address>() where exists[@182]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#182, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:167:5+1
-    assume {:print "$at(31,6937,6938)"} true;
+    assume {:print "$at(35,6937,6938)"} true;
 L4:
 
     // assert Not(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:179:9+88
-    assume {:print "$at(31,7462,7550)"} true;
-    assert {:msg "assert_failed(31,7462,7550): function does not abort under this condition"}
+    assume {:print "$at(35,7462,7550)"} true;
+    assert {:msg "assert_failed(35,7462,7550): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#161, $t2);
 
     // assert Not(exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:180:9+96
-    assume {:print "$at(31,7559,7655)"} true;
-    assert {:msg "assert_failed(31,7559,7655): function does not abort under this condition"}
+    assume {:print "$at(35,7559,7655)"} true;
+    assert {:msg "assert_failed(35,7559,7655): function does not abort under this condition"}
       !$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#162, $1_Signer_$address_of($t1));
 
     // assert Not(Not(exists[@163]<Roles::RoleId>($t3))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:586:9+59
-    assume {:print "$at(39,25989,26048)"} true;
-    assert {:msg "assert_failed(39,25989,26048): function does not abort under this condition"}
+    assume {:print "$at(40,25989,26048)"} true;
+    assert {:msg "assert_failed(40,25989,26048): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#163, $t3);
 
     // assert Not(And(Neq<u64>($t4, 0), Neq<u64>($t4, 0))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:588:9+113
-    assume {:print "$at(39,26109,26222)"} true;
-    assert {:msg "assert_failed(39,26109,26222): function does not abort under this condition"}
+    assume {:print "$at(40,26109,26222)"} true;
+    assert {:msg "assert_failed(40,26109,26222): function does not abort under this condition"}
       !(!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0));
 
     // assert Not(Not(exists[@163]<Roles::RoleId>($t5))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:542:9+59
-    assume {:print "$at(39,24116,24175)"} true;
-    assert {:msg "assert_failed(39,24116,24175): function does not abort under this condition"}
+    assume {:print "$at(40,24116,24175)"} true;
+    assert {:msg "assert_failed(40,24116,24175): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#163, $t5);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:543:9+87
-    assume {:print "$at(39,24184,24271)"} true;
-    assert {:msg "assert_failed(39,24184,24271): function does not abort under this condition"}
+    assume {:print "$at(40,24184,24271)"} true;
+    assert {:msg "assert_failed(40,24184,24271): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
-    assume {:print "$at(10,1380,1461)"} true;
-    assert {:msg "assert_failed(10,1380,1461): function does not abort under this condition"}
+    assume {:print "$at(28,1380,1461)"} true;
+    assert {:msg "assert_failed(28,1380,1461): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 173345816);
 
     // return () at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:31:9+81
     return;
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:167:5+1
-    assume {:print "$at(31,6937,6938)"} true;
+    assume {:print "$at(35,6937,6938)"} true;
 L5:
 
     // assert Or(Or(Or(Or(Or(Or(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2)), exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1))), Not(exists[@163]<Roles::RoleId>($t3))), And(Neq<u64>($t4, 0), Neq<u64>($t4, 0))), Not(exists[@163]<Roles::RoleId>($t5))), Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0)), Neq<address>(Signer::$address_of[]($t0), a550c18)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
-    assume {:print "$at(31,6943,7019)"} true;
-    assert {:msg "assert_failed(31,6943,7019): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,6943,7019)"} true;
+    assert {:msg "assert_failed(35,6943,7019): abort not covered by any of the `aborts_if` clauses"}
       ((((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#161, $t2) || $ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#162, $1_Signer_$address_of($t1))) || !$ResourceExists($1_Roles_RoleId_$memory#163, $t3)) || (!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0))) || !$ResourceExists($1_Roles_RoleId_$memory#163, $t5)) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 173345816));
 
     // assert Or(Or(Or(Or(Or(Or(And(Not(exists[@161]<AccountLimits::LimitsDefinition<#0>>($t2)), Eq(0, $t8)), And(exists[@162]<AccountLimits::Window<#0>>(Signer::$address_of[]($t1)), Eq(0, $t8))), And(Not(exists[@163]<Roles::RoleId>($t3)), Eq(0, $t8))), And(And(Neq<u64>($t4, 0), Neq<u64>($t4, 0)), Eq(0, $t8))), And(Not(exists[@163]<Roles::RoleId>($t5)), Eq(0, $t8))), And(Neq<u64>(select Roles::RoleId.role_id(global[@163]<Roles::RoleId>($t5)), 0), Eq(0, $t8))), And(Neq<address>(Signer::$address_of[]($t0), a550c18), Eq(0, $t8))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
-    assert {:msg "assert_failed(31,6943,7019): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,6943,7019): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#161, $t2) && $IsEqual'num'(0, $t8)) || ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#162, $1_Signer_$address_of($t1)) && $IsEqual'num'(0, $t8))) || (!$ResourceExists($1_Roles_RoleId_$memory#163, $t3) && $IsEqual'num'(0, $t8))) || ((!$IsEqual'u64'($t4, 0) && !$IsEqual'u64'($t4, 0)) && $IsEqual'num'(0, $t8))) || (!$ResourceExists($1_Roles_RoleId_$memory#163, $t5) && $IsEqual'num'(0, $t8))) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#163, $t5)), 0) && $IsEqual'num'(0, $t8))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 173345816) && $IsEqual'num'(0, $t8)));
 
     // abort($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:168:5+76
@@ -20428,7 +20428,7 @@ procedure {:timeLimit 40} $1_AccountLimits_reset_window$verify(_$t0: $Mutation (
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:311:5+1
-    assume {:print "$at(31,14848,14849)"} true;
+    assume {:print "$at(35,14848,14849)"} true;
     assume $IsValid'$1_AccountLimits_Window'#0''($Dereference($t0));
 
     // assume And(WellFormed($t1), And(And(And(Gt(select AccountLimits::LimitsDefinition.max_inflow($t1), 0), Gt(select AccountLimits::LimitsDefinition.max_outflow($t1), 0)), Gt(select AccountLimits::LimitsDefinition.time_period($t1), 0)), Gt(select AccountLimits::LimitsDefinition.max_holding($t1), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:311:5+1
@@ -20682,7 +20682,7 @@ procedure {:timeLimit 40} $1_AccountLimits_reset_window$verify(_$t0: $Mutation (
     assume {:print "$track_local(20,11,1):", $t1} $t1 == $t1;
 
     // $t4 := opaque begin: DiemTimestamp::now_microseconds() at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:312:28+33
-    assume {:print "$at(31,14983,15016)"} true;
+    assume {:print "$at(35,14983,15016)"} true;
 
     // assume Identical($t5, Not(DiemTimestamp::$is_operating())) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:312:28+33
     assume ($t5 == !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory));
@@ -20697,7 +20697,7 @@ L9:
     assume (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) && $IsEqual'num'(0, $t6));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:312:28+33
-    assume {:print "$at(31,14983,15016)"} true;
+    assume {:print "$at(35,14983,15016)"} true;
     assume {:print "$track_abort(20,11):", $t6} $t6 == $t6;
 
     // goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:312:28+33
@@ -20718,7 +20718,7 @@ L8:
     assume {:print "$track_local(20,11,2):", $t4} $t4 == $t4;
 
     // $t7 := get_field<AccountLimits::Window<#0>>.window_start($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:313:17+19
-    assume {:print "$at(31,15034,15053)"} true;
+    assume {:print "$at(35,15034,15053)"} true;
     $t7 := $window_start#$1_AccountLimits_Window'#0'($Dereference($t0));
 
     // $t8 := 18446744073709551615 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:313:40+7
@@ -20731,7 +20731,7 @@ L8:
     // $t10 := -($t8, $t9) on_abort goto L7 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:313:48+1
     call $t10 := $Sub($t8, $t9);
     if ($abort_flag) {
-        assume {:print "$at(31,15065,15066)"} true;
+        assume {:print "$at(35,15065,15066)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,11):", $t6} $t6 == $t6;
         goto L7;
@@ -20765,7 +20765,7 @@ L1:
     // $t13 := opaque end: Errors::limit_exceeded($t12) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:313:81+31
 
     // trace_abort($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:313:9+104
-    assume {:print "$at(31,15026,15130)"} true;
+    assume {:print "$at(35,15026,15130)"} true;
     assume {:print "$track_abort(20,11):", $t13} $t13 == $t13;
 
     // $t6 := move($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:313:9+104
@@ -20775,7 +20775,7 @@ L1:
     goto L7;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:314:13+12
-    assume {:print "$at(31,15144,15156)"} true;
+    assume {:print "$at(35,15144,15156)"} true;
 L0:
 
     // $t14 := get_field<AccountLimits::Window<#0>>.window_start($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:314:28+19
@@ -20787,7 +20787,7 @@ L0:
     // $t16 := +($t14, $t15) on_abort goto L7 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:314:48+1
     call $t16 := $AddU64($t14, $t15);
     if ($abort_flag) {
-        assume {:print "$at(31,15179,15180)"} true;
+        assume {:print "$at(35,15179,15180)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,11):", $t6} $t6 == $t6;
         goto L7;
@@ -20814,7 +20814,7 @@ L2:
     goto L5;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:315:35+12
-    assume {:print "$at(31,15248,15260)"} true;
+    assume {:print "$at(35,15248,15260)"} true;
 L4:
 
     // $t18 := borrow_field<AccountLimits::Window<#0>>.window_start($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:315:13+19
@@ -20827,7 +20827,7 @@ L4:
     $t0 := $UpdateMutation($t0, $Update'$1_AccountLimits_Window'#0''_window_start($Dereference($t0), $Dereference($t18)));
 
     // $t19 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:316:36+1
-    assume {:print "$at(31,15297,15298)"} true;
+    assume {:print "$at(35,15297,15298)"} true;
     $t19 := 0;
     assume $IsValid'u64'($t19);
 
@@ -20841,7 +20841,7 @@ L4:
     $t0 := $UpdateMutation($t0, $Update'$1_AccountLimits_Window'#0''_window_inflow($Dereference($t0), $Dereference($t20)));
 
     // $t21 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:317:37+1
-    assume {:print "$at(31,15336,15337)"} true;
+    assume {:print "$at(35,15336,15337)"} true;
     $t21 := 0;
     assume $IsValid'u64'($t21);
 
@@ -20855,7 +20855,7 @@ L4:
     $t0 := $UpdateMutation($t0, $Update'$1_AccountLimits_Window'#0''_window_outflow($Dereference($t0), $Dereference($t22)));
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:314:9+208
-    assume {:print "$at(31,15140,15348)"} true;
+    assume {:print "$at(35,15140,15348)"} true;
 L5:
 
     // trace_local[window]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:314:9+208
@@ -20863,22 +20863,22 @@ L5:
     assume {:print "$track_local(20,11,0):", $temp_0'$1_AccountLimits_Window'#0''} $temp_0'$1_AccountLimits_Window'#0'' == $temp_0'$1_AccountLimits_Window'#0'';
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:319:5+1
-    assume {:print "$at(31,15353,15354)"} true;
+    assume {:print "$at(35,15353,15354)"} true;
 L6:
 
     // assert Not(Gt(Add(select AccountLimits::Window.window_start($t3), select AccountLimits::LimitsDefinition.time_period($t1)), MaxU64())) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(($window_start#$1_AccountLimits_Window'#0'($t3) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($t1)) > $MAX_U64);
 
     // assert Not(Not(DiemTimestamp::$is_operating[@152]())) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#152);
 
     // assert Eq<AccountLimits::Window<#0>>($t0, AccountLimits::spec_window_reset_with_limits[@152]<#0>($t3, $t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:334:9+80
-    assume {:print "$at(31,15952,16032)"} true;
-    assert {:msg "assert_failed(31,15952,16032): post-condition does not hold"}
+    assume {:print "$at(35,15952,16032)"} true;
+    assert {:msg "assert_failed(35,15952,16032): post-condition does not hold"}
       $IsEqual'$1_AccountLimits_Window'#0''($Dereference($t0), $1_AccountLimits_spec_window_reset_with_limits'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#152, $t3, $t1));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:334:9+80
@@ -20886,16 +20886,16 @@ L6:
     return;
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:319:5+1
-    assume {:print "$at(31,15353,15354)"} true;
+    assume {:print "$at(35,15353,15354)"} true;
 L7:
 
     // assert Or(Gt(Add(select AccountLimits::Window.window_start($t3), select AccountLimits::LimitsDefinition.time_period($t1)), MaxU64()), Not(DiemTimestamp::$is_operating[@152]())) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:320:5+141
-    assume {:print "$at(31,15359,15500)"} true;
-    assert {:msg "assert_failed(31,15359,15500): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,15359,15500)"} true;
+    assert {:msg "assert_failed(35,15359,15500): abort not covered by any of the `aborts_if` clauses"}
       ((($window_start#$1_AccountLimits_Window'#0'($t3) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($t1)) > $MAX_U64) || !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#152));
 
     // assert Or(And(Gt(Add(select AccountLimits::Window.window_start($t3), select AccountLimits::LimitsDefinition.time_period($t1)), MaxU64()), Eq(0, $t6)), And(Not(DiemTimestamp::$is_operating[@152]()), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:320:5+141
-    assert {:msg "assert_failed(31,15359,15500): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,15359,15500): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((($window_start#$1_AccountLimits_Window'#0'($t3) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($t1)) > $MAX_U64) && $IsEqual'num'(0, $t6)) || (!$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#152) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:320:5+141
@@ -20949,7 +20949,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits$verify(_$t0: in
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
-    assume {:print "$at(31,3164,3165)"} true;
+    assume {:print "$at(35,3164,3165)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
@@ -21217,7 +21217,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits$verify(_$t0: in
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:89:9+40
-    assume {:print "$at(31,3632,3672)"} true;
+    assume {:print "$at(35,3632,3672)"} true;
     assume $1_AccountLimits_Window'#0'_$modifies[$t1];
 
     // @169 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:89:9+40
@@ -21230,7 +21230,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits$verify(_$t0: in
     $1_AccountLimits_Window'#0'_$memory#167 := $1_AccountLimits_Window'#0'_$memory;
 
     // trace_local[amount]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
-    assume {:print "$at(31,3164,3165)"} true;
+    assume {:print "$at(35,3164,3165)"} true;
     assume {:print "$track_local(20,12,0):", $t0} $t0 == $t0;
 
     // trace_local[addr]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
@@ -21240,7 +21240,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits$verify(_$t0: in
     assume {:print "$track_local(20,12,2):", $t2} $t2 == $t2;
 
     // $t3 := exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:17+6
-    assume {:print "$at(31,3363,3369)"} true;
+    assume {:print "$at(35,3363,3369)"} true;
     $t3 := $ResourceExists($1_AccountLimits_Window'#0'_$memory, $t1);
 
     // if ($t3) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
@@ -21264,7 +21264,7 @@ L1:
     // $t5 := opaque end: Errors::not_published($t4) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:49+30
 
     // trace_abort($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
-    assume {:print "$at(31,3355,3426)"} true;
+    assume {:print "$at(35,3355,3426)"} true;
     assume {:print "$track_abort(20,12):", $t5} $t5 == $t5;
 
     // $t6 := move($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
@@ -21274,12 +21274,12 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:83:13+6
-    assume {:print "$at(31,3489,3495)"} true;
+    assume {:print "$at(35,3489,3495)"} true;
 L0:
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:84:13+17
-    assume {:print "$at(31,3509,3526)"} true;
-    assert {:msg "assert_failed(31,3509,3526): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,3509,3526)"} true;
+    assert {:msg "assert_failed(35,3509,3526): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'#0'_$modifies[$t1];
 
     // $t7 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L3 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:84:13+17
@@ -21289,14 +21289,14 @@ L0:
         $t7 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,3509,3526)"} true;
+        assume {:print "$at(35,3509,3526)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,12):", $t6} $t6 == $t6;
         goto L3;
     }
 
     // $t8 := opaque begin: AccountLimits::can_receive_and_update_window<#0>($t0, $t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
 
     // $t9 := read_ref($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
     $t9 := $Dereference($t7);
@@ -21314,7 +21314,7 @@ L5:
     assume (((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($Dereference($t7))) && $IsEqual'num'(0, $t6)) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && (($window_start#$1_AccountLimits_Window'#0'($Dereference($t7)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory)) && $IsEqual'num'(0, $t6)));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     assume {:print "$track_abort(20,12):", $t6} $t6 == $t6;
 
     // goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
@@ -21344,88 +21344,88 @@ L4:
 
     // @184 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+403
     // state save for global update invariants
-    assume {:print "$at(31,3164,3567)"} true;
+    assume {:print "$at(35,3164,3567)"} true;
     $1_AccountLimits_Window'#0'_$memory#184 := $1_AccountLimits_Window'#0'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     $1_AccountLimits_Window'#0'_$memory := $ResourceUpdate($1_AccountLimits_Window'#0'_$memory, $GlobalLocationAddress($t7),
         $Dereference($t7));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@184]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory#184, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // trace_return[0]($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     assume {:print "$track_return(20,12,0):", $t8} $t8 == $t8;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:86:5+1
-    assume {:print "$at(31,3566,3567)"} true;
+    assume {:print "$at(35,3566,3567)"} true;
 L2:
 
     // assert Not(Not(exists[@167]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:104:9+69
-    assume {:print "$at(31,4312,4381)"} true;
-    assert {:msg "assert_failed(31,4312,4381): function does not abort under this condition"}
+    assume {:print "$at(35,4312,4381)"} true;
+    assert {:msg "assert_failed(35,4312,4381): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'#0'_$memory#167, $t1);
 
     // assert Not(Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:398:9+98
-    assume {:print "$at(31,19068,19166)"} true;
-    assert {:msg "assert_failed(31,19068,19166): function does not abort under this condition"}
+    assume {:print "$at(35,19068,19166)"} true;
+    assert {:msg "assert_failed(35,19068,19166): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:408:9+102
-    assume {:print "$at(31,19563,19665)"} true;
-    assert {:msg "assert_failed(31,19563,19665): function does not abort under this condition"}
+    assume {:print "$at(35,19563,19665)"} true;
+    assert {:msg "assert_failed(35,19563,19665): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:409:9+104
-    assume {:print "$at(31,19674,19778)"} true;
-    assert {:msg "assert_failed(31,19674,19778): function does not abort under this condition"}
+    assume {:print "$at(35,19674,19778)"} true;
+    assert {:msg "assert_failed(35,19674,19778): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169));
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:90:9+39
-    assume {:print "$at(31,3681,3720)"} true;
-    assert {:msg "assert_failed(31,3681,3720): post-condition does not hold"}
+    assume {:print "$at(35,3681,3720)"} true;
+    assert {:msg "assert_failed(35,3681,3720): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'#0'_$memory, $t1);
 
     // assert Eq<address>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>($t1)), select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:91:9+118
-    assume {:print "$at(31,3729,3847)"} true;
-    assert {:msg "assert_failed(31,3729,3847): post-condition does not hold"}
+    assume {:print "$at(35,3729,3847)"} true;
+    assert {:msg "assert_failed(35,3729,3847): post-condition does not hold"}
       $IsEqual'address'($limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1)), $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)));
 
     // assert Eq<bool>($t8, AccountLimits::spec_receiving_limits_ok<#0>(global[@167]<AccountLimits::Window<#0>>($t1), $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:415:9+67
-    assume {:print "$at(31,19919,19986)"} true;
-    assert {:msg "assert_failed(31,19919,19986): post-condition does not hold"}
+    assume {:print "$at(35,19919,19986)"} true;
+    assert {:msg "assert_failed(35,19919,19986): post-condition does not hold"}
       $IsEqual'bool'($t8, $1_AccountLimits_spec_receiving_limits_ok'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1), $t0));
 
     // assert (if And($t8, Not(AccountLimits::spec_window_unrestricted<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))) {Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_update_inflow<#0>(AccountLimits::spec_window_reset<#0>(global[@167]<AccountLimits::Window<#0>>($t1)), $t0))} else {Or(Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_window_reset<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), global[@167]<AccountLimits::Window<#0>>($t1)))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
-    assume {:print "$at(31,19995,20274)"} true;
-    assert {:msg "assert_failed(31,19995,20274): post-condition does not hold"}
+    assume {:print "$at(35,19995,20274)"} true;
+    assert {:msg "assert_failed(35,19995,20274): post-condition does not hold"}
       (if (($t8 && !$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)))) then ($IsEqual'$1_AccountLimits_Window'#0''($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1), $1_AccountLimits_spec_update_inflow'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)), $t0))) else (($IsEqual'$1_AccountLimits_Window'#0''($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1), $1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) || $IsEqual'$1_AccountLimits_Window'#0''($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1), $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)))));
 
     // return $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
@@ -21433,16 +21433,16 @@ L2:
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:86:5+1
-    assume {:print "$at(31,3566,3567)"} true;
+    assume {:print "$at(35,3566,3567)"} true;
 L3:
 
     // assert Or(Or(Or(Or(Or(Not(exists[@167]<AccountLimits::Window<#0>>($t1)), Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
-    assume {:print "$at(31,3572,3996)"} true;
-    assert {:msg "assert_failed(31,3572,3996): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,3572,3996)"} true;
+    assert {:msg "assert_failed(35,3572,3996): abort not covered by any of the `aborts_if` clauses"}
       (((((!$ResourceExists($1_AccountLimits_Window'#0'_$memory#167, $t1) || !$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169)));
 
     // assert Or(Or(Or(Or(Or(And(Not(exists[@167]<AccountLimits::Window<#0>>($t1)), Eq(0, $t6)), And(Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1)))), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]())), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
-    assert {:msg "assert_failed(31,3572,3996): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,3572,3996): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((((!$ResourceExists($1_AccountLimits_Window'#0'_$memory#167, $t1) && $IsEqual'num'(0, $t6)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#168, $ResourceValue($1_AccountLimits_Window'#0'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169)) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
@@ -21487,7 +21487,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XUS_XUS'$ver
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
-    assume {:print "$at(31,3164,3165)"} true;
+    assume {:print "$at(35,3164,3165)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
@@ -21755,7 +21755,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XUS_XUS'$ver
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:89:9+40
-    assume {:print "$at(31,3632,3672)"} true;
+    assume {:print "$at(35,3632,3672)"} true;
     assume $1_AccountLimits_Window'$1_XUS_XUS'_$modifies[$t1];
 
     // @169 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:89:9+40
@@ -21768,7 +21768,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XUS_XUS'$ver
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#167 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // trace_local[amount]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
-    assume {:print "$at(31,3164,3165)"} true;
+    assume {:print "$at(35,3164,3165)"} true;
     assume {:print "$track_local(20,12,0):", $t0} $t0 == $t0;
 
     // trace_local[addr]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
@@ -21778,7 +21778,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XUS_XUS'$ver
     assume {:print "$track_local(20,12,2):", $t2} $t2 == $t2;
 
     // $t3 := exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:17+6
-    assume {:print "$at(31,3363,3369)"} true;
+    assume {:print "$at(35,3363,3369)"} true;
     $t3 := $ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1);
 
     // if ($t3) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
@@ -21802,7 +21802,7 @@ L1:
     // $t5 := opaque end: Errors::not_published($t4) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:49+30
 
     // trace_abort($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
-    assume {:print "$at(31,3355,3426)"} true;
+    assume {:print "$at(35,3355,3426)"} true;
     assume {:print "$track_abort(20,12):", $t5} $t5 == $t5;
 
     // $t6 := move($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
@@ -21812,12 +21812,12 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:83:13+6
-    assume {:print "$at(31,3489,3495)"} true;
+    assume {:print "$at(35,3489,3495)"} true;
 L0:
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:84:13+17
-    assume {:print "$at(31,3509,3526)"} true;
-    assert {:msg "assert_failed(31,3509,3526): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,3509,3526)"} true;
+    assert {:msg "assert_failed(35,3509,3526): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'$1_XUS_XUS'_$modifies[$t1];
 
     // $t7 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L3 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:84:13+17
@@ -21827,14 +21827,14 @@ L0:
         $t7 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,3509,3526)"} true;
+        assume {:print "$at(35,3509,3526)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,12):", $t6} $t6 == $t6;
         goto L3;
     }
 
     // $t8 := opaque begin: AccountLimits::can_receive_and_update_window<#0>($t0, $t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
 
     // $t9 := read_ref($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
     $t9 := $Dereference($t7);
@@ -21852,7 +21852,7 @@ L5:
     assume (((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t7))) && $IsEqual'num'(0, $t6)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t7)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory)) && $IsEqual'num'(0, $t6)));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     assume {:print "$track_abort(20,12):", $t6} $t6 == $t6;
 
     // goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
@@ -21882,88 +21882,88 @@ L4:
 
     // @184 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+403
     // state save for global update invariants
-    assume {:print "$at(31,3164,3567)"} true;
+    assume {:print "$at(35,3164,3567)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#184 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $GlobalLocationAddress($t7),
         $Dereference($t7));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@184]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#184, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // trace_return[0]($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     assume {:print "$track_return(20,12,0):", $t8} $t8 == $t8;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:86:5+1
-    assume {:print "$at(31,3566,3567)"} true;
+    assume {:print "$at(35,3566,3567)"} true;
 L2:
 
     // assert Not(Not(exists[@167]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:104:9+69
-    assume {:print "$at(31,4312,4381)"} true;
-    assert {:msg "assert_failed(31,4312,4381): function does not abort under this condition"}
+    assume {:print "$at(35,4312,4381)"} true;
+    assert {:msg "assert_failed(35,4312,4381): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1);
 
     // assert Not(Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:398:9+98
-    assume {:print "$at(31,19068,19166)"} true;
-    assert {:msg "assert_failed(31,19068,19166): function does not abort under this condition"}
+    assume {:print "$at(35,19068,19166)"} true;
+    assert {:msg "assert_failed(35,19068,19166): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:408:9+102
-    assume {:print "$at(31,19563,19665)"} true;
-    assert {:msg "assert_failed(31,19563,19665): function does not abort under this condition"}
+    assume {:print "$at(35,19563,19665)"} true;
+    assert {:msg "assert_failed(35,19563,19665): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:409:9+104
-    assume {:print "$at(31,19674,19778)"} true;
-    assert {:msg "assert_failed(31,19674,19778): function does not abort under this condition"}
+    assume {:print "$at(35,19674,19778)"} true;
+    assert {:msg "assert_failed(35,19674,19778): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169));
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:90:9+39
-    assume {:print "$at(31,3681,3720)"} true;
-    assert {:msg "assert_failed(31,3681,3720): post-condition does not hold"}
+    assume {:print "$at(35,3681,3720)"} true;
+    assert {:msg "assert_failed(35,3681,3720): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1);
 
     // assert Eq<address>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>($t1)), select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:91:9+118
-    assume {:print "$at(31,3729,3847)"} true;
-    assert {:msg "assert_failed(31,3729,3847): post-condition does not hold"}
+    assume {:print "$at(35,3729,3847)"} true;
+    assert {:msg "assert_failed(35,3729,3847): post-condition does not hold"}
       $IsEqual'address'($limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1)), $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)));
 
     // assert Eq<bool>($t8, AccountLimits::spec_receiving_limits_ok<#0>(global[@167]<AccountLimits::Window<#0>>($t1), $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:415:9+67
-    assume {:print "$at(31,19919,19986)"} true;
-    assert {:msg "assert_failed(31,19919,19986): post-condition does not hold"}
+    assume {:print "$at(35,19919,19986)"} true;
+    assert {:msg "assert_failed(35,19919,19986): post-condition does not hold"}
       $IsEqual'bool'($t8, $1_AccountLimits_spec_receiving_limits_ok'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1), $t0));
 
     // assert (if And($t8, Not(AccountLimits::spec_window_unrestricted<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))) {Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_update_inflow<#0>(AccountLimits::spec_window_reset<#0>(global[@167]<AccountLimits::Window<#0>>($t1)), $t0))} else {Or(Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_window_reset<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), global[@167]<AccountLimits::Window<#0>>($t1)))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
-    assume {:print "$at(31,19995,20274)"} true;
-    assert {:msg "assert_failed(31,19995,20274): post-condition does not hold"}
+    assume {:print "$at(35,19995,20274)"} true;
+    assert {:msg "assert_failed(35,19995,20274): post-condition does not hold"}
       (if (($t8 && !$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)))) then ($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1), $1_AccountLimits_spec_update_inflow'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1), $1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) || $IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1), $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)))));
 
     // return $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
@@ -21971,16 +21971,16 @@ L2:
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:86:5+1
-    assume {:print "$at(31,3566,3567)"} true;
+    assume {:print "$at(35,3566,3567)"} true;
 L3:
 
     // assert Or(Or(Or(Or(Or(Not(exists[@167]<AccountLimits::Window<#0>>($t1)), Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
-    assume {:print "$at(31,3572,3996)"} true;
-    assert {:msg "assert_failed(31,3572,3996): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,3572,3996)"} true;
+    assert {:msg "assert_failed(35,3572,3996): abort not covered by any of the `aborts_if` clauses"}
       (((((!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169)));
 
     // assert Or(Or(Or(Or(Or(And(Not(exists[@167]<AccountLimits::Window<#0>>($t1)), Eq(0, $t6)), And(Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1)))), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]())), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
-    assert {:msg "assert_failed(31,3572,3996): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,3572,3996): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((((!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1) && $IsEqual'num'(0, $t6)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169)) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
@@ -22025,7 +22025,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XDX_XDX'$ver
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
-    assume {:print "$at(31,3164,3165)"} true;
+    assume {:print "$at(35,3164,3165)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
@@ -22293,7 +22293,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XDX_XDX'$ver
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:89:9+40
-    assume {:print "$at(31,3632,3672)"} true;
+    assume {:print "$at(35,3632,3672)"} true;
     assume $1_AccountLimits_Window'$1_XDX_XDX'_$modifies[$t1];
 
     // @169 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:89:9+40
@@ -22306,7 +22306,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XDX_XDX'$ver
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#167 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // trace_local[amount]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
-    assume {:print "$at(31,3164,3165)"} true;
+    assume {:print "$at(35,3164,3165)"} true;
     assume {:print "$track_local(20,12,0):", $t0} $t0 == $t0;
 
     // trace_local[addr]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+1
@@ -22316,7 +22316,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_deposit_limits'$1_XDX_XDX'$ver
     assume {:print "$track_local(20,12,2):", $t2} $t2 == $t2;
 
     // $t3 := exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:17+6
-    assume {:print "$at(31,3363,3369)"} true;
+    assume {:print "$at(35,3363,3369)"} true;
     $t3 := $ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1);
 
     // if ($t3) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
@@ -22340,7 +22340,7 @@ L1:
     // $t5 := opaque end: Errors::not_published($t4) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:49+30
 
     // trace_abort($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
-    assume {:print "$at(31,3355,3426)"} true;
+    assume {:print "$at(35,3355,3426)"} true;
     assume {:print "$track_abort(20,12):", $t5} $t5 == $t5;
 
     // $t6 := move($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:81:9+71
@@ -22350,12 +22350,12 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:83:13+6
-    assume {:print "$at(31,3489,3495)"} true;
+    assume {:print "$at(35,3489,3495)"} true;
 L0:
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:84:13+17
-    assume {:print "$at(31,3509,3526)"} true;
-    assert {:msg "assert_failed(31,3509,3526): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,3509,3526)"} true;
+    assert {:msg "assert_failed(35,3509,3526): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'$1_XDX_XDX'_$modifies[$t1];
 
     // $t7 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L3 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:84:13+17
@@ -22365,14 +22365,14 @@ L0:
         $t7 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,3509,3526)"} true;
+        assume {:print "$at(35,3509,3526)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,12):", $t6} $t6 == $t6;
         goto L3;
     }
 
     // $t8 := opaque begin: AccountLimits::can_receive_and_update_window<#0>($t0, $t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
 
     // $t9 := read_ref($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
     $t9 := $Dereference($t7);
@@ -22390,7 +22390,7 @@ L5:
     assume (((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t7))) && $IsEqual'num'(0, $t6)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t7)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory)) && $IsEqual'num'(0, $t6)));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     assume {:print "$track_abort(20,12):", $t6} $t6 == $t6;
 
     // goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
@@ -22420,88 +22420,88 @@ L4:
 
     // @184 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:76:5+403
     // state save for global update invariants
-    assume {:print "$at(31,3164,3567)"} true;
+    assume {:print "$at(35,3164,3567)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#184 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $GlobalLocationAddress($t7),
         $Dereference($t7));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@184]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#184, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // trace_return[0]($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:82:9+125
-    assume {:print "$at(31,3436,3561)"} true;
+    assume {:print "$at(35,3436,3561)"} true;
     assume {:print "$track_return(20,12,0):", $t8} $t8 == $t8;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:86:5+1
-    assume {:print "$at(31,3566,3567)"} true;
+    assume {:print "$at(35,3566,3567)"} true;
 L2:
 
     // assert Not(Not(exists[@167]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:104:9+69
-    assume {:print "$at(31,4312,4381)"} true;
-    assert {:msg "assert_failed(31,4312,4381): function does not abort under this condition"}
+    assume {:print "$at(35,4312,4381)"} true;
+    assert {:msg "assert_failed(35,4312,4381): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1);
 
     // assert Not(Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:398:9+98
-    assume {:print "$at(31,19068,19166)"} true;
-    assert {:msg "assert_failed(31,19068,19166): function does not abort under this condition"}
+    assume {:print "$at(35,19068,19166)"} true;
+    assert {:msg "assert_failed(35,19068,19166): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:408:9+102
-    assume {:print "$at(31,19563,19665)"} true;
-    assert {:msg "assert_failed(31,19563,19665): function does not abort under this condition"}
+    assume {:print "$at(35,19563,19665)"} true;
+    assert {:msg "assert_failed(35,19563,19665): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:409:9+104
-    assume {:print "$at(31,19674,19778)"} true;
-    assert {:msg "assert_failed(31,19674,19778): function does not abort under this condition"}
+    assume {:print "$at(35,19674,19778)"} true;
+    assert {:msg "assert_failed(35,19674,19778): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) + $t0) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169));
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:90:9+39
-    assume {:print "$at(31,3681,3720)"} true;
-    assert {:msg "assert_failed(31,3681,3720): post-condition does not hold"}
+    assume {:print "$at(35,3681,3720)"} true;
+    assert {:msg "assert_failed(35,3681,3720): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1);
 
     // assert Eq<address>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>($t1)), select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:91:9+118
-    assume {:print "$at(31,3729,3847)"} true;
-    assert {:msg "assert_failed(31,3729,3847): post-condition does not hold"}
+    assume {:print "$at(35,3729,3847)"} true;
+    assert {:msg "assert_failed(35,3729,3847): post-condition does not hold"}
       $IsEqual'address'($limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1)), $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)));
 
     // assert Eq<bool>($t8, AccountLimits::spec_receiving_limits_ok<#0>(global[@167]<AccountLimits::Window<#0>>($t1), $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:415:9+67
-    assume {:print "$at(31,19919,19986)"} true;
-    assert {:msg "assert_failed(31,19919,19986): post-condition does not hold"}
+    assume {:print "$at(35,19919,19986)"} true;
+    assert {:msg "assert_failed(35,19919,19986): post-condition does not hold"}
       $IsEqual'bool'($t8, $1_AccountLimits_spec_receiving_limits_ok'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1), $t0));
 
     // assert (if And($t8, Not(AccountLimits::spec_window_unrestricted<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))) {Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_update_inflow<#0>(AccountLimits::spec_window_reset<#0>(global[@167]<AccountLimits::Window<#0>>($t1)), $t0))} else {Or(Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_window_reset<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), global[@167]<AccountLimits::Window<#0>>($t1)))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
-    assume {:print "$at(31,19995,20274)"} true;
-    assert {:msg "assert_failed(31,19995,20274): post-condition does not hold"}
+    assume {:print "$at(35,19995,20274)"} true;
+    assert {:msg "assert_failed(35,19995,20274): post-condition does not hold"}
       (if (($t8 && !$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)))) then ($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1), $1_AccountLimits_spec_update_inflow'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1), $1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) || $IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1), $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)))));
 
     // return $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:416:9+279
@@ -22509,16 +22509,16 @@ L2:
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:86:5+1
-    assume {:print "$at(31,3566,3567)"} true;
+    assume {:print "$at(35,3566,3567)"} true;
 L3:
 
     // assert Or(Or(Or(Or(Or(Not(exists[@167]<AccountLimits::Window<#0>>($t1)), Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1))))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
-    assume {:print "$at(31,3572,3996)"} true;
-    assert {:msg "assert_failed(31,3572,3996): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,3572,3996)"} true;
+    assert {:msg "assert_failed(35,3572,3996): abort not covered by any of the `aborts_if` clauses"}
       (((((!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) + $t0) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169)));
 
     // assert Or(Or(Or(Or(Or(And(Not(exists[@167]<AccountLimits::Window<#0>>($t1)), Eq(0, $t6)), And(Not(exists[@168]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@167]<AccountLimits::Window<#0>>($t1)))), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_inflow(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.tracked_balance(AccountLimits::spec_window_reset[@169, @168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), $t0), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@167]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1)))), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@168]<#0>(global[@167]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@169]())), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
-    assert {:msg "assert_failed(31,3572,3996): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,3572,3996): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((((!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1) && $IsEqual'num'(0, $t6)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1))) + $t0) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#168, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#167, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#169)) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:87:5+424
@@ -22588,7 +22588,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
-    assume {:print "$at(31,9793,9794)"} true;
+    assume {:print "$at(35,9793,9794)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
@@ -22851,15 +22851,15 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition$verify(_$t0:
     assume (forall addr: int :: $IsValid'address'(addr) ==> (($1_VASP_$is_child($1_VASP_ChildVASP_$memory, addr) <==> $1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t7, global<AccountLimits::LimitsDefinition<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:254:9+71
-    assume {:print "$at(31,11175,11246)"} true;
+    assume {:print "$at(35,11175,11246)"} true;
     assume ($t7 == $ResourceValue($1_AccountLimits_LimitsDefinition'#0'_$memory, $t1));
 
     // assume Identical($t8, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t8 == $1_Signer_$address_of($t0));
 
     // assume CanModify<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:250:9+59
-    assume {:print "$at(31,10868,10927)"} true;
+    assume {:print "$at(35,10868,10927)"} true;
     assume $1_AccountLimits_LimitsDefinition'#0'_$modifies[$t1];
 
     // @150 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:250:9+59
@@ -22869,7 +22869,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition$verify(_$t0:
     $1_AccountLimits_LimitsDefinition'#0'_$memory#151 := $1_AccountLimits_LimitsDefinition'#0'_$memory;
 
     // trace_local[tc_account]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
-    assume {:print "$at(31,9793,9794)"} true;
+    assume {:print "$at(35,9793,9794)"} true;
     assume {:print "$track_local(20,13,0):", $t0} $t0 == $t0;
 
     // trace_local[limit_address]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
@@ -22888,11 +22888,11 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition$verify(_$t0:
     assume {:print "$track_local(20,13,5):", $t5} $t5 == $t5;
 
     // assume Identical($t9, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t9 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
-    assume {:print "$at(31,10070,10115)"} true;
+    assume {:print "$at(35,10070,10115)"} true;
 
     // assume Identical($t10, Or(Or(Not(exists<Roles::RoleId>($t9)), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t9)), 0)), Neq<address>(Signer::$address_of($t0), b1e55ed))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
     assume ($t10 == ((!$ResourceExists($1_Roles_RoleId_$memory, $t9) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t9)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)));
@@ -22907,7 +22907,7 @@ L21:
     assume (((!$ResourceExists($1_Roles_RoleId_$memory, $t9) && $IsEqual'num'(0, $t11)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t9)), 0) && $IsEqual'num'(0, $t11))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t11)));
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
-    assume {:print "$at(31,10070,10115)"} true;
+    assume {:print "$at(35,10070,10115)"} true;
     assume {:print "$track_abort(20,13):", $t11} $t11 == $t11;
 
     // goto L19 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
@@ -22919,7 +22919,7 @@ L20:
     // opaque end: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
 
     // $t12 := exists<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:17+6
-    assume {:print "$at(31,10133,10139)"} true;
+    assume {:print "$at(35,10133,10139)"} true;
     $t12 := $ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $t1);
 
     // if ($t12) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
@@ -22943,7 +22943,7 @@ L1:
     // $t14 := opaque end: Errors::not_published($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:68+41
 
     // trace_abort($t14) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
-    assume {:print "$at(31,10125,10226)"} true;
+    assume {:print "$at(35,10125,10226)"} true;
     assume {:print "$track_abort(20,13):", $t14} $t14 == $t14;
 
     // $t11 := move($t14) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
@@ -22953,11 +22953,11 @@ L1:
     goto L19;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:72+13
-    assume {:print "$at(31,10473,10486)"} true;
+    assume {:print "$at(35,10473,10486)"} true;
 L0:
 
     // assert CanModify<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:26+17
-    assert {:msg "assert_failed(31,10427,10444): caller does not have permission to modify `AccountLimits::LimitsDefinition<#0>` at given address"}
+    assert {:msg "assert_failed(35,10427,10444): caller does not have permission to modify `AccountLimits::LimitsDefinition<#0>` at given address"}
       $1_AccountLimits_LimitsDefinition'#0'_$modifies[$t1];
 
     // $t15 := borrow_global<AccountLimits::LimitsDefinition<#0>>($t1) on_abort goto L19 with $t11 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:26+17
@@ -22967,7 +22967,7 @@ L0:
         $t15 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_LimitsDefinition'#0'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,10427,10444)"} true;
+        assume {:print "$at(35,10427,10444)"} true;
         $t11 := $abort_code;
         assume {:print "$track_abort(20,13):", $t11} $t11 == $t11;
         goto L19;
@@ -22978,7 +22978,7 @@ L0:
     assume {:print "$track_local(20,13,6):", $temp_0'$1_AccountLimits_LimitsDefinition'#0''} $temp_0'$1_AccountLimits_LimitsDefinition'#0'' == $temp_0'$1_AccountLimits_LimitsDefinition'#0'';
 
     // $t16 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:244:30+1
-    assume {:print "$at(31,10518,10519)"} true;
+    assume {:print "$at(35,10518,10519)"} true;
     $t16 := 0;
     assume $IsValid'u64'($t16);
 
@@ -23013,7 +23013,7 @@ L4:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'#0''_max_inflow($Dereference($t15), $Dereference($t18)));
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:245:13+15
-    assume {:print "$at(31,10577,10592)"} true;
+    assume {:print "$at(35,10577,10592)"} true;
 L5:
 
     // $t19 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:245:31+1
@@ -23051,7 +23051,7 @@ L8:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'#0''_max_outflow($Dereference($t15), $Dereference($t21)));
 
     // label L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:246:13+23
-    assume {:print "$at(31,10656,10679)"} true;
+    assume {:print "$at(35,10656,10679)"} true;
 L9:
 
     // $t22 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:246:39+1
@@ -23089,7 +23089,7 @@ L12:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'#0''_max_holding($Dereference($t15), $Dereference($t24)));
 
     // label L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:13+15
-    assume {:print "$at(31,10751,10766)"} true;
+    assume {:print "$at(35,10751,10766)"} true;
 L13:
 
     // $t25 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:31+1
@@ -23113,76 +23113,76 @@ L14:
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // @180 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1030
     // state save for global update invariants
-    assume {:print "$at(31,9793,10823)"} true;
+    assume {:print "$at(35,9793,10823)"} true;
     $1_AccountLimits_LimitsDefinition'#0'_$memory#180 := $1_AccountLimits_LimitsDefinition'#0'_$memory;
 
     // write_back[AccountLimits::LimitsDefinition<#0>@]($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
-    assume {:print "$at(31,10747,10816)"} true;
+    assume {:print "$at(35,10747,10816)"} true;
     $1_AccountLimits_LimitsDefinition'#0'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'#0'_$memory, $GlobalLocationAddress($t15),
         $Dereference($t15));
 
     // assert forall addr: TypeDomain<address>() where exists[@180]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#180, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XUS::XUS>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
-    assume {:print "$at(52,2643,2769)"} true;
-    assert {:msg "assert_failed(52,2643,2769): global memory invariant does not hold"}
+    assume {:print "$at(8,2643,2769)"} true;
+    assert {:msg "assert_failed(8,2643,2769): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XUS::XUS>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
-    assume {:print "$at(52,2853,2986)"} true;
-    assert {:msg "assert_failed(52,2853,2986): global memory invariant does not hold"}
+    assume {:print "$at(8,2853,2986)"} true;
+    assert {:msg "assert_failed(8,2853,2986): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XDX::XDX>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
-    assume {:print "$at(6,7351,7477)"} true;
-    assert {:msg "assert_failed(6,7351,7477): global memory invariant does not hold"}
+    assume {:print "$at(30,7351,7477)"} true;
+    assert {:msg "assert_failed(30,7351,7477): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XDX::XDX>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
-    assume {:print "$at(6,7561,7694)"} true;
-    assert {:msg "assert_failed(6,7561,7694): global memory invariant does not hold"}
+    assume {:print "$at(30,7561,7694)"} true;
+    assert {:msg "assert_failed(30,7561,7694): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // destroy($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
-    assume {:print "$at(31,10747,10816)"} true;
+    assume {:print "$at(35,10747,10816)"} true;
 
     // goto L17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
     goto L17;
@@ -23201,165 +23201,165 @@ L16:
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'#0'($Dereference($t15)) > 0);
 
     // @181 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // state save for global update invariants
-    assume {:print "$at(6,7561,7694)"} true;
+    assume {:print "$at(30,7561,7694)"} true;
     $1_AccountLimits_LimitsDefinition'#0'_$memory#181 := $1_AccountLimits_LimitsDefinition'#0'_$memory;
 
     // write_back[AccountLimits::LimitsDefinition<#0>@]($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:36+40
-    assume {:print "$at(31,10774,10814)"} true;
+    assume {:print "$at(35,10774,10814)"} true;
     $1_AccountLimits_LimitsDefinition'#0'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'#0'_$memory, $GlobalLocationAddress($t15),
         $Dereference($t15));
 
     // assert forall addr: TypeDomain<address>() where exists[@181]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#181, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XUS::XUS>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
-    assume {:print "$at(52,2643,2769)"} true;
-    assert {:msg "assert_failed(52,2643,2769): global memory invariant does not hold"}
+    assume {:print "$at(8,2643,2769)"} true;
+    assert {:msg "assert_failed(8,2643,2769): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XUS::XUS>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
-    assume {:print "$at(52,2853,2986)"} true;
-    assert {:msg "assert_failed(52,2853,2986): global memory invariant does not hold"}
+    assume {:print "$at(8,2853,2986)"} true;
+    assert {:msg "assert_failed(8,2853,2986): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XDX::XDX>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
-    assume {:print "$at(6,7351,7477)"} true;
-    assert {:msg "assert_failed(6,7351,7477): global memory invariant does not hold"}
+    assume {:print "$at(30,7351,7477)"} true;
+    assert {:msg "assert_failed(30,7351,7477): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XDX::XDX>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
-    assume {:print "$at(6,7561,7694)"} true;
-    assert {:msg "assert_failed(6,7561,7694): global memory invariant does not hold"}
+    assume {:print "$at(30,7561,7694)"} true;
+    assert {:msg "assert_failed(30,7561,7694): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // label L17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:78+1
-    assume {:print "$at(31,10816,10817)"} true;
+    assume {:print "$at(35,10816,10817)"} true;
 L17:
 
     // label L18 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:248:5+1
-    assume {:print "$at(31,10822,10823)"} true;
+    assume {:print "$at(35,10822,10823)"} true;
 L18:
 
     // assume Identical($t28, global<AccountLimits::LimitsDefinition<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:255:9+76
-    assume {:print "$at(31,11255,11331)"} true;
+    assume {:print "$at(35,11255,11331)"} true;
     assume ($t28 == $ResourceValue($1_AccountLimits_LimitsDefinition'#0'_$memory, $t1));
 
     // assert Not(Not(exists[@150]<Roles::RoleId>($t8))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:550:9+59
-    assume {:print "$at(39,24470,24529)"} true;
-    assert {:msg "assert_failed(39,24470,24529): function does not abort under this condition"}
+    assume {:print "$at(40,24470,24529)"} true;
+    assert {:msg "assert_failed(40,24470,24529): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#150, $t8);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:551:9+97
-    assume {:print "$at(39,24538,24635)"} true;
-    assert {:msg "assert_failed(39,24538,24635): function does not abort under this condition"}
+    assume {:print "$at(40,24538,24635)"} true;
+    assert {:msg "assert_failed(40,24538,24635): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:49:9+103
-    assume {:print "$at(10,2054,2157)"} true;
-    assert {:msg "assert_failed(10,2054,2157): function does not abort under this condition"}
+    assume {:print "$at(28,2054,2157)"} true;
+    assert {:msg "assert_failed(28,2054,2157): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 186537453);
 
     // assert Not(Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:252:9+88
-    assume {:print "$at(31,11011,11099)"} true;
-    assert {:msg "assert_failed(31,11011,11099): function does not abort under this condition"}
+    assume {:print "$at(35,11011,11099)"} true;
+    assert {:msg "assert_failed(35,11011,11099): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#151, $t1);
 
     // assert exists<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:253:9+58
-    assume {:print "$at(31,11108,11166)"} true;
-    assert {:msg "assert_failed(31,11108,11166): post-condition does not hold"}
+    assume {:print "$at(35,11108,11166)"} true;
+    assert {:msg "assert_failed(35,11108,11166): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $t1);
 
     // assert Implies(Gt($t2, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_inflow($t28), $t2)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:256:9+75
-    assume {:print "$at(31,11340,11415)"} true;
-    assert {:msg "assert_failed(31,11340,11415): post-condition does not hold"}
+    assume {:print "$at(35,11340,11415)"} true;
+    assert {:msg "assert_failed(35,11340,11415): post-condition does not hold"}
       (($t2 > 0) ==> $IsEqual'u64'($max_inflow#$1_AccountLimits_LimitsDefinition'#0'($t28), $t2));
 
     // assert Implies(Eq<u64>($t2, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_inflow($t28), select AccountLimits::LimitsDefinition.max_inflow($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:257:9+87
-    assume {:print "$at(31,11424,11511)"} true;
-    assert {:msg "assert_failed(31,11424,11511): post-condition does not hold"}
+    assume {:print "$at(35,11424,11511)"} true;
+    assert {:msg "assert_failed(35,11424,11511): post-condition does not hold"}
       ($IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($max_inflow#$1_AccountLimits_LimitsDefinition'#0'($t28), $max_inflow#$1_AccountLimits_LimitsDefinition'#0'($t7)));
 
     // assert Implies(Gt($t3, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_outflow($t28), $t3)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:258:9+78
-    assume {:print "$at(31,11520,11598)"} true;
-    assert {:msg "assert_failed(31,11520,11598): post-condition does not hold"}
+    assume {:print "$at(35,11520,11598)"} true;
+    assert {:msg "assert_failed(35,11520,11598): post-condition does not hold"}
       (($t3 > 0) ==> $IsEqual'u64'($max_outflow#$1_AccountLimits_LimitsDefinition'#0'($t28), $t3));
 
     // assert Implies(Eq<u64>($t3, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_outflow($t28), select AccountLimits::LimitsDefinition.max_outflow($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:259:9+90
-    assume {:print "$at(31,11607,11697)"} true;
-    assert {:msg "assert_failed(31,11607,11697): post-condition does not hold"}
+    assume {:print "$at(35,11607,11697)"} true;
+    assert {:msg "assert_failed(35,11607,11697): post-condition does not hold"}
       ($IsEqual'u64'($t3, 0) ==> $IsEqual'u64'($max_outflow#$1_AccountLimits_LimitsDefinition'#0'($t28), $max_outflow#$1_AccountLimits_LimitsDefinition'#0'($t7)));
 
     // assert Implies(Gt($t4, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_holding($t28), $t4)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:260:9+94
-    assume {:print "$at(31,11706,11800)"} true;
-    assert {:msg "assert_failed(31,11706,11800): post-condition does not hold"}
+    assume {:print "$at(35,11706,11800)"} true;
+    assert {:msg "assert_failed(35,11706,11800): post-condition does not hold"}
       (($t4 > 0) ==> $IsEqual'u64'($max_holding#$1_AccountLimits_LimitsDefinition'#0'($t28), $t4));
 
     // assert Implies(Eq<u64>($t4, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_holding($t28), select AccountLimits::LimitsDefinition.max_holding($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:261:9+98
-    assume {:print "$at(31,11809,11907)"} true;
-    assert {:msg "assert_failed(31,11809,11907): post-condition does not hold"}
+    assume {:print "$at(35,11809,11907)"} true;
+    assert {:msg "assert_failed(35,11809,11907): post-condition does not hold"}
       ($IsEqual'u64'($t4, 0) ==> $IsEqual'u64'($max_holding#$1_AccountLimits_LimitsDefinition'#0'($t28), $max_holding#$1_AccountLimits_LimitsDefinition'#0'($t7)));
 
     // assert Implies(Gt($t5, 0), Eq<u64>(select AccountLimits::LimitsDefinition.time_period($t28), $t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:262:9+78
-    assume {:print "$at(31,11916,11994)"} true;
-    assert {:msg "assert_failed(31,11916,11994): post-condition does not hold"}
+    assume {:print "$at(35,11916,11994)"} true;
+    assert {:msg "assert_failed(35,11916,11994): post-condition does not hold"}
       (($t5 > 0) ==> $IsEqual'u64'($time_period#$1_AccountLimits_LimitsDefinition'#0'($t28), $t5));
 
     // assert Implies(Eq<u64>($t5, 0), Eq<u64>(select AccountLimits::LimitsDefinition.time_period($t28), select AccountLimits::LimitsDefinition.time_period($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:263:9+90
-    assume {:print "$at(31,12003,12093)"} true;
-    assert {:msg "assert_failed(31,12003,12093): post-condition does not hold"}
+    assume {:print "$at(35,12003,12093)"} true;
+    assert {:msg "assert_failed(35,12003,12093): post-condition does not hold"}
       ($IsEqual'u64'($t5, 0) ==> $IsEqual'u64'($time_period#$1_AccountLimits_LimitsDefinition'#0'($t28), $time_period#$1_AccountLimits_LimitsDefinition'#0'($t7)));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:263:9+90
     return;
 
     // label L19 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:248:5+1
-    assume {:print "$at(31,10822,10823)"} true;
+    assume {:print "$at(35,10822,10823)"} true;
 L19:
 
     // assert Or(Or(Or(Not(exists[@150]<Roles::RoleId>($t8)), Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0)), Neq<address>(Signer::$address_of[]($t0), b1e55ed)), Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
-    assume {:print "$at(31,10828,12099)"} true;
-    assert {:msg "assert_failed(31,10828,12099): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,10828,12099)"} true;
+    assert {:msg "assert_failed(35,10828,12099): abort not covered by any of the `aborts_if` clauses"}
       (((!$ResourceExists($1_Roles_RoleId_$memory#150, $t8) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)) || !$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#151, $t1));
 
     // assert Or(Or(Or(And(Not(exists[@150]<Roles::RoleId>($t8)), Eq(0, $t11)), And(Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0), Eq(0, $t11))), And(Neq<address>(Signer::$address_of[]($t0), b1e55ed), Eq(0, $t11))), And(Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1)), Eq(0, $t11))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
-    assert {:msg "assert_failed(31,10828,12099): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,10828,12099): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$ResourceExists($1_Roles_RoleId_$memory#150, $t8) && $IsEqual'num'(0, $t11)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0) && $IsEqual'num'(0, $t11))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t11))) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#151, $t1) && $IsEqual'num'(0, $t11)));
 
     // abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
@@ -23429,7 +23429,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XUS_XUS'$
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
-    assume {:print "$at(31,9793,9794)"} true;
+    assume {:print "$at(35,9793,9794)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
@@ -23692,15 +23692,15 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XUS_XUS'$
     assume (forall addr: int :: $IsValid'address'(addr) ==> (($1_VASP_$is_child($1_VASP_ChildVASP_$memory, addr) <==> $1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t7, global<AccountLimits::LimitsDefinition<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:254:9+71
-    assume {:print "$at(31,11175,11246)"} true;
+    assume {:print "$at(35,11175,11246)"} true;
     assume ($t7 == $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t1));
 
     // assume Identical($t8, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t8 == $1_Signer_$address_of($t0));
 
     // assume CanModify<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:250:9+59
-    assume {:print "$at(31,10868,10927)"} true;
+    assume {:print "$at(35,10868,10927)"} true;
     assume $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$modifies[$t1];
 
     // @150 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:250:9+59
@@ -23710,7 +23710,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XUS_XUS'$
     $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#151 := $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory;
 
     // trace_local[tc_account]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
-    assume {:print "$at(31,9793,9794)"} true;
+    assume {:print "$at(35,9793,9794)"} true;
     assume {:print "$track_local(20,13,0):", $t0} $t0 == $t0;
 
     // trace_local[limit_address]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
@@ -23729,11 +23729,11 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XUS_XUS'$
     assume {:print "$track_local(20,13,5):", $t5} $t5 == $t5;
 
     // assume Identical($t9, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t9 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
-    assume {:print "$at(31,10070,10115)"} true;
+    assume {:print "$at(35,10070,10115)"} true;
 
     // assume Identical($t10, Or(Or(Not(exists<Roles::RoleId>($t9)), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t9)), 0)), Neq<address>(Signer::$address_of($t0), b1e55ed))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
     assume ($t10 == ((!$ResourceExists($1_Roles_RoleId_$memory, $t9) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t9)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)));
@@ -23748,7 +23748,7 @@ L21:
     assume (((!$ResourceExists($1_Roles_RoleId_$memory, $t9) && $IsEqual'num'(0, $t11)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t9)), 0) && $IsEqual'num'(0, $t11))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t11)));
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
-    assume {:print "$at(31,10070,10115)"} true;
+    assume {:print "$at(35,10070,10115)"} true;
     assume {:print "$track_abort(20,13):", $t11} $t11 == $t11;
 
     // goto L19 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
@@ -23760,7 +23760,7 @@ L20:
     // opaque end: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
 
     // $t12 := exists<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:17+6
-    assume {:print "$at(31,10133,10139)"} true;
+    assume {:print "$at(35,10133,10139)"} true;
     $t12 := $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t1);
 
     // if ($t12) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
@@ -23784,7 +23784,7 @@ L1:
     // $t14 := opaque end: Errors::not_published($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:68+41
 
     // trace_abort($t14) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
-    assume {:print "$at(31,10125,10226)"} true;
+    assume {:print "$at(35,10125,10226)"} true;
     assume {:print "$track_abort(20,13):", $t14} $t14 == $t14;
 
     // $t11 := move($t14) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
@@ -23794,11 +23794,11 @@ L1:
     goto L19;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:72+13
-    assume {:print "$at(31,10473,10486)"} true;
+    assume {:print "$at(35,10473,10486)"} true;
 L0:
 
     // assert CanModify<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:26+17
-    assert {:msg "assert_failed(31,10427,10444): caller does not have permission to modify `AccountLimits::LimitsDefinition<#0>` at given address"}
+    assert {:msg "assert_failed(35,10427,10444): caller does not have permission to modify `AccountLimits::LimitsDefinition<#0>` at given address"}
       $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$modifies[$t1];
 
     // $t15 := borrow_global<AccountLimits::LimitsDefinition<#0>>($t1) on_abort goto L19 with $t11 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:26+17
@@ -23808,7 +23808,7 @@ L0:
         $t15 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,10427,10444)"} true;
+        assume {:print "$at(35,10427,10444)"} true;
         $t11 := $abort_code;
         assume {:print "$track_abort(20,13):", $t11} $t11 == $t11;
         goto L19;
@@ -23819,7 +23819,7 @@ L0:
     assume {:print "$track_local(20,13,6):", $temp_0'$1_AccountLimits_LimitsDefinition'$1_XUS_XUS''} $temp_0'$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'' == $temp_0'$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'';
 
     // $t16 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:244:30+1
-    assume {:print "$at(31,10518,10519)"} true;
+    assume {:print "$at(35,10518,10519)"} true;
     $t16 := 0;
     assume $IsValid'u64'($t16);
 
@@ -23854,7 +23854,7 @@ L4:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'$1_XUS_XUS''_max_inflow($Dereference($t15), $Dereference($t18)));
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:245:13+15
-    assume {:print "$at(31,10577,10592)"} true;
+    assume {:print "$at(35,10577,10592)"} true;
 L5:
 
     // $t19 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:245:31+1
@@ -23892,7 +23892,7 @@ L8:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'$1_XUS_XUS''_max_outflow($Dereference($t15), $Dereference($t21)));
 
     // label L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:246:13+23
-    assume {:print "$at(31,10656,10679)"} true;
+    assume {:print "$at(35,10656,10679)"} true;
 L9:
 
     // $t22 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:246:39+1
@@ -23930,7 +23930,7 @@ L12:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'$1_XUS_XUS''_max_holding($Dereference($t15), $Dereference($t24)));
 
     // label L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:13+15
-    assume {:print "$at(31,10751,10766)"} true;
+    assume {:print "$at(35,10751,10766)"} true;
 L13:
 
     // $t25 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:31+1
@@ -23954,76 +23954,76 @@ L14:
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // @180 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1030
     // state save for global update invariants
-    assume {:print "$at(31,9793,10823)"} true;
+    assume {:print "$at(35,9793,10823)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#180 := $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory;
 
     // write_back[AccountLimits::LimitsDefinition<#0>@]($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
-    assume {:print "$at(31,10747,10816)"} true;
+    assume {:print "$at(35,10747,10816)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $GlobalLocationAddress($t15),
         $Dereference($t15));
 
     // assert forall addr: TypeDomain<address>() where exists[@180]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#180, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XUS::XUS>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
-    assume {:print "$at(52,2643,2769)"} true;
-    assert {:msg "assert_failed(52,2643,2769): global memory invariant does not hold"}
+    assume {:print "$at(8,2643,2769)"} true;
+    assert {:msg "assert_failed(8,2643,2769): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XUS::XUS>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
-    assume {:print "$at(52,2853,2986)"} true;
-    assert {:msg "assert_failed(52,2853,2986): global memory invariant does not hold"}
+    assume {:print "$at(8,2853,2986)"} true;
+    assert {:msg "assert_failed(8,2853,2986): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XDX::XDX>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
-    assume {:print "$at(6,7351,7477)"} true;
-    assert {:msg "assert_failed(6,7351,7477): global memory invariant does not hold"}
+    assume {:print "$at(30,7351,7477)"} true;
+    assert {:msg "assert_failed(30,7351,7477): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XDX::XDX>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
-    assume {:print "$at(6,7561,7694)"} true;
-    assert {:msg "assert_failed(6,7561,7694): global memory invariant does not hold"}
+    assume {:print "$at(30,7561,7694)"} true;
+    assert {:msg "assert_failed(30,7561,7694): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // destroy($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
-    assume {:print "$at(31,10747,10816)"} true;
+    assume {:print "$at(35,10747,10816)"} true;
 
     // goto L17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
     goto L17;
@@ -24042,165 +24042,165 @@ L16:
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($Dereference($t15)) > 0);
 
     // @181 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // state save for global update invariants
-    assume {:print "$at(6,7561,7694)"} true;
+    assume {:print "$at(30,7561,7694)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#181 := $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory;
 
     // write_back[AccountLimits::LimitsDefinition<#0>@]($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:36+40
-    assume {:print "$at(31,10774,10814)"} true;
+    assume {:print "$at(35,10774,10814)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $GlobalLocationAddress($t15),
         $Dereference($t15));
 
     // assert forall addr: TypeDomain<address>() where exists[@181]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#181, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XUS::XUS>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
-    assume {:print "$at(52,2643,2769)"} true;
-    assert {:msg "assert_failed(52,2643,2769): global memory invariant does not hold"}
+    assume {:print "$at(8,2643,2769)"} true;
+    assert {:msg "assert_failed(8,2643,2769): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XUS::XUS>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
-    assume {:print "$at(52,2853,2986)"} true;
-    assert {:msg "assert_failed(52,2853,2986): global memory invariant does not hold"}
+    assume {:print "$at(8,2853,2986)"} true;
+    assert {:msg "assert_failed(8,2853,2986): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XDX::XDX>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
-    assume {:print "$at(6,7351,7477)"} true;
-    assert {:msg "assert_failed(6,7351,7477): global memory invariant does not hold"}
+    assume {:print "$at(30,7351,7477)"} true;
+    assert {:msg "assert_failed(30,7351,7477): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XDX::XDX>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
-    assume {:print "$at(6,7561,7694)"} true;
-    assert {:msg "assert_failed(6,7561,7694): global memory invariant does not hold"}
+    assume {:print "$at(30,7561,7694)"} true;
+    assert {:msg "assert_failed(30,7561,7694): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // label L17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:78+1
-    assume {:print "$at(31,10816,10817)"} true;
+    assume {:print "$at(35,10816,10817)"} true;
 L17:
 
     // label L18 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:248:5+1
-    assume {:print "$at(31,10822,10823)"} true;
+    assume {:print "$at(35,10822,10823)"} true;
 L18:
 
     // assume Identical($t28, global<AccountLimits::LimitsDefinition<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:255:9+76
-    assume {:print "$at(31,11255,11331)"} true;
+    assume {:print "$at(35,11255,11331)"} true;
     assume ($t28 == $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t1));
 
     // assert Not(Not(exists[@150]<Roles::RoleId>($t8))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:550:9+59
-    assume {:print "$at(39,24470,24529)"} true;
-    assert {:msg "assert_failed(39,24470,24529): function does not abort under this condition"}
+    assume {:print "$at(40,24470,24529)"} true;
+    assert {:msg "assert_failed(40,24470,24529): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#150, $t8);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:551:9+97
-    assume {:print "$at(39,24538,24635)"} true;
-    assert {:msg "assert_failed(39,24538,24635): function does not abort under this condition"}
+    assume {:print "$at(40,24538,24635)"} true;
+    assert {:msg "assert_failed(40,24538,24635): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:49:9+103
-    assume {:print "$at(10,2054,2157)"} true;
-    assert {:msg "assert_failed(10,2054,2157): function does not abort under this condition"}
+    assume {:print "$at(28,2054,2157)"} true;
+    assert {:msg "assert_failed(28,2054,2157): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 186537453);
 
     // assert Not(Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:252:9+88
-    assume {:print "$at(31,11011,11099)"} true;
-    assert {:msg "assert_failed(31,11011,11099): function does not abort under this condition"}
+    assume {:print "$at(35,11011,11099)"} true;
+    assert {:msg "assert_failed(35,11011,11099): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#151, $t1);
 
     // assert exists<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:253:9+58
-    assume {:print "$at(31,11108,11166)"} true;
-    assert {:msg "assert_failed(31,11108,11166): post-condition does not hold"}
+    assume {:print "$at(35,11108,11166)"} true;
+    assert {:msg "assert_failed(35,11108,11166): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $t1);
 
     // assert Implies(Gt($t2, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_inflow($t28), $t2)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:256:9+75
-    assume {:print "$at(31,11340,11415)"} true;
-    assert {:msg "assert_failed(31,11340,11415): post-condition does not hold"}
+    assume {:print "$at(35,11340,11415)"} true;
+    assert {:msg "assert_failed(35,11340,11415): post-condition does not hold"}
       (($t2 > 0) ==> $IsEqual'u64'($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $t2));
 
     // assert Implies(Eq<u64>($t2, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_inflow($t28), select AccountLimits::LimitsDefinition.max_inflow($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:257:9+87
-    assume {:print "$at(31,11424,11511)"} true;
-    assert {:msg "assert_failed(31,11424,11511): post-condition does not hold"}
+    assume {:print "$at(35,11424,11511)"} true;
+    assert {:msg "assert_failed(35,11424,11511): post-condition does not hold"}
       ($IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $max_inflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t7)));
 
     // assert Implies(Gt($t3, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_outflow($t28), $t3)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:258:9+78
-    assume {:print "$at(31,11520,11598)"} true;
-    assert {:msg "assert_failed(31,11520,11598): post-condition does not hold"}
+    assume {:print "$at(35,11520,11598)"} true;
+    assert {:msg "assert_failed(35,11520,11598): post-condition does not hold"}
       (($t3 > 0) ==> $IsEqual'u64'($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $t3));
 
     // assert Implies(Eq<u64>($t3, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_outflow($t28), select AccountLimits::LimitsDefinition.max_outflow($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:259:9+90
-    assume {:print "$at(31,11607,11697)"} true;
-    assert {:msg "assert_failed(31,11607,11697): post-condition does not hold"}
+    assume {:print "$at(35,11607,11697)"} true;
+    assert {:msg "assert_failed(35,11607,11697): post-condition does not hold"}
       ($IsEqual'u64'($t3, 0) ==> $IsEqual'u64'($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $max_outflow#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t7)));
 
     // assert Implies(Gt($t4, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_holding($t28), $t4)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:260:9+94
-    assume {:print "$at(31,11706,11800)"} true;
-    assert {:msg "assert_failed(31,11706,11800): post-condition does not hold"}
+    assume {:print "$at(35,11706,11800)"} true;
+    assert {:msg "assert_failed(35,11706,11800): post-condition does not hold"}
       (($t4 > 0) ==> $IsEqual'u64'($max_holding#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $t4));
 
     // assert Implies(Eq<u64>($t4, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_holding($t28), select AccountLimits::LimitsDefinition.max_holding($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:261:9+98
-    assume {:print "$at(31,11809,11907)"} true;
-    assert {:msg "assert_failed(31,11809,11907): post-condition does not hold"}
+    assume {:print "$at(35,11809,11907)"} true;
+    assert {:msg "assert_failed(35,11809,11907): post-condition does not hold"}
       ($IsEqual'u64'($t4, 0) ==> $IsEqual'u64'($max_holding#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $max_holding#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t7)));
 
     // assert Implies(Gt($t5, 0), Eq<u64>(select AccountLimits::LimitsDefinition.time_period($t28), $t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:262:9+78
-    assume {:print "$at(31,11916,11994)"} true;
-    assert {:msg "assert_failed(31,11916,11994): post-condition does not hold"}
+    assume {:print "$at(35,11916,11994)"} true;
+    assert {:msg "assert_failed(35,11916,11994): post-condition does not hold"}
       (($t5 > 0) ==> $IsEqual'u64'($time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $t5));
 
     // assert Implies(Eq<u64>($t5, 0), Eq<u64>(select AccountLimits::LimitsDefinition.time_period($t28), select AccountLimits::LimitsDefinition.time_period($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:263:9+90
-    assume {:print "$at(31,12003,12093)"} true;
-    assert {:msg "assert_failed(31,12003,12093): post-condition does not hold"}
+    assume {:print "$at(35,12003,12093)"} true;
+    assert {:msg "assert_failed(35,12003,12093): post-condition does not hold"}
       ($IsEqual'u64'($t5, 0) ==> $IsEqual'u64'($time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t28), $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($t7)));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:263:9+90
     return;
 
     // label L19 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:248:5+1
-    assume {:print "$at(31,10822,10823)"} true;
+    assume {:print "$at(35,10822,10823)"} true;
 L19:
 
     // assert Or(Or(Or(Not(exists[@150]<Roles::RoleId>($t8)), Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0)), Neq<address>(Signer::$address_of[]($t0), b1e55ed)), Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
-    assume {:print "$at(31,10828,12099)"} true;
-    assert {:msg "assert_failed(31,10828,12099): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,10828,12099)"} true;
+    assert {:msg "assert_failed(35,10828,12099): abort not covered by any of the `aborts_if` clauses"}
       (((!$ResourceExists($1_Roles_RoleId_$memory#150, $t8) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#151, $t1));
 
     // assert Or(Or(Or(And(Not(exists[@150]<Roles::RoleId>($t8)), Eq(0, $t11)), And(Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0), Eq(0, $t11))), And(Neq<address>(Signer::$address_of[]($t0), b1e55ed), Eq(0, $t11))), And(Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1)), Eq(0, $t11))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
-    assert {:msg "assert_failed(31,10828,12099): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,10828,12099): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$ResourceExists($1_Roles_RoleId_$memory#150, $t8) && $IsEqual'num'(0, $t11)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0) && $IsEqual'num'(0, $t11))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t11))) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#151, $t1) && $IsEqual'num'(0, $t11)));
 
     // abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
@@ -24270,7 +24270,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XDX_XDX'$
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
-    assume {:print "$at(31,9793,9794)"} true;
+    assume {:print "$at(35,9793,9794)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
@@ -24533,15 +24533,15 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XDX_XDX'$
     assume (forall addr: int :: $IsValid'address'(addr) ==> (($1_VASP_$is_child($1_VASP_ChildVASP_$memory, addr) <==> $1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t7, global<AccountLimits::LimitsDefinition<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:254:9+71
-    assume {:print "$at(31,11175,11246)"} true;
+    assume {:print "$at(35,11175,11246)"} true;
     assume ($t7 == $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t1));
 
     // assume Identical($t8, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t8 == $1_Signer_$address_of($t0));
 
     // assume CanModify<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:250:9+59
-    assume {:print "$at(31,10868,10927)"} true;
+    assume {:print "$at(35,10868,10927)"} true;
     assume $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$modifies[$t1];
 
     // @150 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:250:9+59
@@ -24551,7 +24551,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XDX_XDX'$
     $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#151 := $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory;
 
     // trace_local[tc_account]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
-    assume {:print "$at(31,9793,9794)"} true;
+    assume {:print "$at(35,9793,9794)"} true;
     assume {:print "$track_local(20,13,0):", $t0} $t0 == $t0;
 
     // trace_local[limit_address]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1
@@ -24570,11 +24570,11 @@ procedure {:timeLimit 40} $1_AccountLimits_update_limits_definition'$1_XDX_XDX'$
     assume {:print "$track_local(20,13,5):", $t5} $t5 == $t5;
 
     // assume Identical($t9, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t9 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
-    assume {:print "$at(31,10070,10115)"} true;
+    assume {:print "$at(35,10070,10115)"} true;
 
     // assume Identical($t10, Or(Or(Not(exists<Roles::RoleId>($t9)), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t9)), 0)), Neq<address>(Signer::$address_of($t0), b1e55ed))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
     assume ($t10 == ((!$ResourceExists($1_Roles_RoleId_$memory, $t9) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t9)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)));
@@ -24589,7 +24589,7 @@ L21:
     assume (((!$ResourceExists($1_Roles_RoleId_$memory, $t9) && $IsEqual'num'(0, $t11)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t9)), 0) && $IsEqual'num'(0, $t11))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t11)));
 
     // trace_abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
-    assume {:print "$at(31,10070,10115)"} true;
+    assume {:print "$at(35,10070,10115)"} true;
     assume {:print "$track_abort(20,13):", $t11} $t11 == $t11;
 
     // goto L19 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
@@ -24601,7 +24601,7 @@ L20:
     // opaque end: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:238:9+45
 
     // $t12 := exists<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:17+6
-    assume {:print "$at(31,10133,10139)"} true;
+    assume {:print "$at(35,10133,10139)"} true;
     $t12 := $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t1);
 
     // if ($t12) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
@@ -24625,7 +24625,7 @@ L1:
     // $t14 := opaque end: Errors::not_published($t13) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:68+41
 
     // trace_abort($t14) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
-    assume {:print "$at(31,10125,10226)"} true;
+    assume {:print "$at(35,10125,10226)"} true;
     assume {:print "$track_abort(20,13):", $t14} $t14 == $t14;
 
     // $t11 := move($t14) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:239:9+101
@@ -24635,11 +24635,11 @@ L1:
     goto L19;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:72+13
-    assume {:print "$at(31,10473,10486)"} true;
+    assume {:print "$at(35,10473,10486)"} true;
 L0:
 
     // assert CanModify<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:26+17
-    assert {:msg "assert_failed(31,10427,10444): caller does not have permission to modify `AccountLimits::LimitsDefinition<#0>` at given address"}
+    assert {:msg "assert_failed(35,10427,10444): caller does not have permission to modify `AccountLimits::LimitsDefinition<#0>` at given address"}
       $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$modifies[$t1];
 
     // $t15 := borrow_global<AccountLimits::LimitsDefinition<#0>>($t1) on_abort goto L19 with $t11 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:243:26+17
@@ -24649,7 +24649,7 @@ L0:
         $t15 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,10427,10444)"} true;
+        assume {:print "$at(35,10427,10444)"} true;
         $t11 := $abort_code;
         assume {:print "$track_abort(20,13):", $t11} $t11 == $t11;
         goto L19;
@@ -24660,7 +24660,7 @@ L0:
     assume {:print "$track_local(20,13,6):", $temp_0'$1_AccountLimits_LimitsDefinition'$1_XDX_XDX''} $temp_0'$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'' == $temp_0'$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'';
 
     // $t16 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:244:30+1
-    assume {:print "$at(31,10518,10519)"} true;
+    assume {:print "$at(35,10518,10519)"} true;
     $t16 := 0;
     assume $IsValid'u64'($t16);
 
@@ -24695,7 +24695,7 @@ L4:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'$1_XDX_XDX''_max_inflow($Dereference($t15), $Dereference($t18)));
 
     // label L5 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:245:13+15
-    assume {:print "$at(31,10577,10592)"} true;
+    assume {:print "$at(35,10577,10592)"} true;
 L5:
 
     // $t19 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:245:31+1
@@ -24733,7 +24733,7 @@ L8:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'$1_XDX_XDX''_max_outflow($Dereference($t15), $Dereference($t21)));
 
     // label L9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:246:13+23
-    assume {:print "$at(31,10656,10679)"} true;
+    assume {:print "$at(35,10656,10679)"} true;
 L9:
 
     // $t22 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:246:39+1
@@ -24771,7 +24771,7 @@ L12:
     $t15 := $UpdateMutation($t15, $Update'$1_AccountLimits_LimitsDefinition'$1_XDX_XDX''_max_holding($Dereference($t15), $Dereference($t24)));
 
     // label L13 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:13+15
-    assume {:print "$at(31,10751,10766)"} true;
+    assume {:print "$at(35,10751,10766)"} true;
 L13:
 
     // $t25 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:31+1
@@ -24795,76 +24795,76 @@ L14:
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // @180 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:230:5+1030
     // state save for global update invariants
-    assume {:print "$at(31,9793,10823)"} true;
+    assume {:print "$at(35,9793,10823)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#180 := $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory;
 
     // write_back[AccountLimits::LimitsDefinition<#0>@]($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
-    assume {:print "$at(31,10747,10816)"} true;
+    assume {:print "$at(35,10747,10816)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $GlobalLocationAddress($t15),
         $Dereference($t15));
 
     // assert forall addr: TypeDomain<address>() where exists[@180]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#180, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XUS::XUS>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
-    assume {:print "$at(52,2643,2769)"} true;
-    assert {:msg "assert_failed(52,2643,2769): global memory invariant does not hold"}
+    assume {:print "$at(8,2643,2769)"} true;
+    assert {:msg "assert_failed(8,2643,2769): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XUS::XUS>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
-    assume {:print "$at(52,2853,2986)"} true;
-    assert {:msg "assert_failed(52,2853,2986): global memory invariant does not hold"}
+    assume {:print "$at(8,2853,2986)"} true;
+    assert {:msg "assert_failed(8,2853,2986): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XDX::XDX>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
-    assume {:print "$at(6,7351,7477)"} true;
-    assert {:msg "assert_failed(6,7351,7477): global memory invariant does not hold"}
+    assume {:print "$at(30,7351,7477)"} true;
+    assert {:msg "assert_failed(30,7351,7477): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XDX::XDX>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
-    assume {:print "$at(6,7561,7694)"} true;
-    assert {:msg "assert_failed(6,7561,7694): global memory invariant does not hold"}
+    assume {:print "$at(30,7561,7694)"} true;
+    assert {:msg "assert_failed(30,7561,7694): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // destroy($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
-    assume {:print "$at(31,10747,10816)"} true;
+    assume {:print "$at(35,10747,10816)"} true;
 
     // goto L17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:9+69
     goto L17;
@@ -24883,165 +24883,165 @@ L16:
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_inflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:30:9+25
-    assume {:print "$at(31,1303,1328)"} true;
-    assert {:msg "assert_failed(31,1303,1328): data invariant does not hold"}
+    assume {:print "$at(35,1303,1328)"} true;
+    assert {:msg "assert_failed(35,1303,1328): data invariant does not hold"}
       ($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_outflow($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:31:9+26
-    assume {:print "$at(31,1337,1363)"} true;
-    assert {:msg "assert_failed(31,1337,1363): data invariant does not hold"}
+    assume {:print "$at(35,1337,1363)"} true;
+    assert {:msg "assert_failed(35,1337,1363): data invariant does not hold"}
       ($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.time_period($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:32:9+26
-    assume {:print "$at(31,1372,1398)"} true;
-    assert {:msg "assert_failed(31,1372,1398): data invariant does not hold"}
+    assume {:print "$at(35,1372,1398)"} true;
+    assert {:msg "assert_failed(35,1372,1398): data invariant does not hold"}
       ($time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // assert Gt(select AccountLimits::LimitsDefinition.max_holding($t15), 0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
     // data invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:33:9+26
-    assume {:print "$at(31,1407,1433)"} true;
-    assert {:msg "assert_failed(31,1407,1433): data invariant does not hold"}
+    assume {:print "$at(35,1407,1433)"} true;
+    assert {:msg "assert_failed(35,1407,1433): data invariant does not hold"}
       ($max_holding#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($Dereference($t15)) > 0);
 
     // @181 := save_mem(AccountLimits::LimitsDefinition<#0>) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // state save for global update invariants
-    assume {:print "$at(6,7561,7694)"} true;
+    assume {:print "$at(30,7561,7694)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#181 := $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory;
 
     // write_back[AccountLimits::LimitsDefinition<#0>@]($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:36+40
-    assume {:print "$at(31,10774,10814)"} true;
+    assume {:print "$at(35,10774,10814)"} true;
     $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $GlobalLocationAddress($t15),
         $Dereference($t15));
 
     // assert forall addr: TypeDomain<address>() where exists[@181]<AccountLimits::LimitsDefinition<#0>>(addr): exists<AccountLimits::LimitsDefinition<#0>>(addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:571:9+170
-    assume {:print "$at(31,27076,27246)"} true;
-    assert {:msg "assert_failed(31,27076,27246): global memory invariant does not hold"}
+    assume {:print "$at(35,27076,27246)"} true;
+    assert {:msg "assert_failed(35,27076,27246): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#181, addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XUS::XUS>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:61:9+126
-    assume {:print "$at(52,2643,2769)"} true;
-    assert {:msg "assert_failed(52,2643,2769): global memory invariant does not hold"}
+    assume {:print "$at(8,2643,2769)"} true;
+    assert {:msg "assert_failed(8,2643,2769): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XUS::XUS>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XUS.move:65:9+133
-    assume {:print "$at(52,2853,2986)"} true;
-    assert {:msg "assert_failed(52,2853,2986): global memory invariant does not hold"}
+    assume {:print "$at(8,2853,2986)"} true;
+    assert {:msg "assert_failed(8,2853,2986): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // assert Implies(DiemTimestamp::$is_operating(), exists<AccountLimits::LimitsDefinition<XDX::XDX>>(a550c18)) at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:160:9+126
-    assume {:print "$at(6,7351,7477)"} true;
-    assert {:msg "assert_failed(6,7351,7477): global memory invariant does not hold"}
+    assume {:print "$at(30,7351,7477)"} true;
+    assert {:msg "assert_failed(30,7351,7477): global memory invariant does not hold"}
       ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, 173345816));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::LimitsDefinition<XDX::XDX>>(addr): Eq<address>(addr, a550c18) at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
     // global invariant at ../../../../diem-move/diem-framework/core/sources/XDX.move:164:9+133
-    assume {:print "$at(6,7561,7694)"} true;
-    assert {:msg "assert_failed(6,7561,7694): global memory invariant does not hold"}
+    assume {:print "$at(30,7561,7694)"} true;
+    assert {:msg "assert_failed(30,7561,7694): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, addr))  ==> ($IsEqual'address'(addr, 173345816)));
 
     // label L17 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:247:78+1
-    assume {:print "$at(31,10816,10817)"} true;
+    assume {:print "$at(35,10816,10817)"} true;
 L17:
 
     // label L18 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:248:5+1
-    assume {:print "$at(31,10822,10823)"} true;
+    assume {:print "$at(35,10822,10823)"} true;
 L18:
 
     // assume Identical($t28, global<AccountLimits::LimitsDefinition<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:255:9+76
-    assume {:print "$at(31,11255,11331)"} true;
+    assume {:print "$at(35,11255,11331)"} true;
     assume ($t28 == $ResourceValue($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t1));
 
     // assert Not(Not(exists[@150]<Roles::RoleId>($t8))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:550:9+59
-    assume {:print "$at(39,24470,24529)"} true;
-    assert {:msg "assert_failed(39,24470,24529): function does not abort under this condition"}
+    assume {:print "$at(40,24470,24529)"} true;
+    assert {:msg "assert_failed(40,24470,24529): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#150, $t8);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:551:9+97
-    assume {:print "$at(39,24538,24635)"} true;
-    assert {:msg "assert_failed(39,24538,24635): function does not abort under this condition"}
+    assume {:print "$at(40,24538,24635)"} true;
+    assert {:msg "assert_failed(40,24538,24635): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:49:9+103
-    assume {:print "$at(10,2054,2157)"} true;
-    assert {:msg "assert_failed(10,2054,2157): function does not abort under this condition"}
+    assume {:print "$at(28,2054,2157)"} true;
+    assert {:msg "assert_failed(28,2054,2157): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 186537453);
 
     // assert Not(Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:252:9+88
-    assume {:print "$at(31,11011,11099)"} true;
-    assert {:msg "assert_failed(31,11011,11099): function does not abort under this condition"}
+    assume {:print "$at(35,11011,11099)"} true;
+    assert {:msg "assert_failed(35,11011,11099): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#151, $t1);
 
     // assert exists<AccountLimits::LimitsDefinition<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:253:9+58
-    assume {:print "$at(31,11108,11166)"} true;
-    assert {:msg "assert_failed(31,11108,11166): post-condition does not hold"}
+    assume {:print "$at(35,11108,11166)"} true;
+    assert {:msg "assert_failed(35,11108,11166): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $t1);
 
     // assert Implies(Gt($t2, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_inflow($t28), $t2)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:256:9+75
-    assume {:print "$at(31,11340,11415)"} true;
-    assert {:msg "assert_failed(31,11340,11415): post-condition does not hold"}
+    assume {:print "$at(35,11340,11415)"} true;
+    assert {:msg "assert_failed(35,11340,11415): post-condition does not hold"}
       (($t2 > 0) ==> $IsEqual'u64'($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $t2));
 
     // assert Implies(Eq<u64>($t2, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_inflow($t28), select AccountLimits::LimitsDefinition.max_inflow($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:257:9+87
-    assume {:print "$at(31,11424,11511)"} true;
-    assert {:msg "assert_failed(31,11424,11511): post-condition does not hold"}
+    assume {:print "$at(35,11424,11511)"} true;
+    assert {:msg "assert_failed(35,11424,11511): post-condition does not hold"}
       ($IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($max_inflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $max_inflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t7)));
 
     // assert Implies(Gt($t3, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_outflow($t28), $t3)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:258:9+78
-    assume {:print "$at(31,11520,11598)"} true;
-    assert {:msg "assert_failed(31,11520,11598): post-condition does not hold"}
+    assume {:print "$at(35,11520,11598)"} true;
+    assert {:msg "assert_failed(35,11520,11598): post-condition does not hold"}
       (($t3 > 0) ==> $IsEqual'u64'($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $t3));
 
     // assert Implies(Eq<u64>($t3, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_outflow($t28), select AccountLimits::LimitsDefinition.max_outflow($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:259:9+90
-    assume {:print "$at(31,11607,11697)"} true;
-    assert {:msg "assert_failed(31,11607,11697): post-condition does not hold"}
+    assume {:print "$at(35,11607,11697)"} true;
+    assert {:msg "assert_failed(35,11607,11697): post-condition does not hold"}
       ($IsEqual'u64'($t3, 0) ==> $IsEqual'u64'($max_outflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $max_outflow#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t7)));
 
     // assert Implies(Gt($t4, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_holding($t28), $t4)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:260:9+94
-    assume {:print "$at(31,11706,11800)"} true;
-    assert {:msg "assert_failed(31,11706,11800): post-condition does not hold"}
+    assume {:print "$at(35,11706,11800)"} true;
+    assert {:msg "assert_failed(35,11706,11800): post-condition does not hold"}
       (($t4 > 0) ==> $IsEqual'u64'($max_holding#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $t4));
 
     // assert Implies(Eq<u64>($t4, 0), Eq<u64>(select AccountLimits::LimitsDefinition.max_holding($t28), select AccountLimits::LimitsDefinition.max_holding($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:261:9+98
-    assume {:print "$at(31,11809,11907)"} true;
-    assert {:msg "assert_failed(31,11809,11907): post-condition does not hold"}
+    assume {:print "$at(35,11809,11907)"} true;
+    assert {:msg "assert_failed(35,11809,11907): post-condition does not hold"}
       ($IsEqual'u64'($t4, 0) ==> $IsEqual'u64'($max_holding#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $max_holding#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t7)));
 
     // assert Implies(Gt($t5, 0), Eq<u64>(select AccountLimits::LimitsDefinition.time_period($t28), $t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:262:9+78
-    assume {:print "$at(31,11916,11994)"} true;
-    assert {:msg "assert_failed(31,11916,11994): post-condition does not hold"}
+    assume {:print "$at(35,11916,11994)"} true;
+    assert {:msg "assert_failed(35,11916,11994): post-condition does not hold"}
       (($t5 > 0) ==> $IsEqual'u64'($time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $t5));
 
     // assert Implies(Eq<u64>($t5, 0), Eq<u64>(select AccountLimits::LimitsDefinition.time_period($t28), select AccountLimits::LimitsDefinition.time_period($t7))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:263:9+90
-    assume {:print "$at(31,12003,12093)"} true;
-    assert {:msg "assert_failed(31,12003,12093): post-condition does not hold"}
+    assume {:print "$at(35,12003,12093)"} true;
+    assert {:msg "assert_failed(35,12003,12093): post-condition does not hold"}
       ($IsEqual'u64'($t5, 0) ==> $IsEqual'u64'($time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t28), $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($t7)));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:263:9+90
     return;
 
     // label L19 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:248:5+1
-    assume {:print "$at(31,10822,10823)"} true;
+    assume {:print "$at(35,10822,10823)"} true;
 L19:
 
     // assert Or(Or(Or(Not(exists[@150]<Roles::RoleId>($t8)), Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0)), Neq<address>(Signer::$address_of[]($t0), b1e55ed)), Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
-    assume {:print "$at(31,10828,12099)"} true;
-    assert {:msg "assert_failed(31,10828,12099): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,10828,12099)"} true;
+    assert {:msg "assert_failed(35,10828,12099): abort not covered by any of the `aborts_if` clauses"}
       (((!$ResourceExists($1_Roles_RoleId_$memory#150, $t8) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#151, $t1));
 
     // assert Or(Or(Or(And(Not(exists[@150]<Roles::RoleId>($t8)), Eq(0, $t11)), And(Neq<u64>(select Roles::RoleId.role_id(global[@150]<Roles::RoleId>($t8)), 0), Eq(0, $t11))), And(Neq<address>(Signer::$address_of[]($t0), b1e55ed), Eq(0, $t11))), And(Not(exists[@151]<AccountLimits::LimitsDefinition<#0>>($t1)), Eq(0, $t11))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
-    assert {:msg "assert_failed(31,10828,12099): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,10828,12099): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       ((((!$ResourceExists($1_Roles_RoleId_$memory#150, $t8) && $IsEqual'num'(0, $t11)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#150, $t8)), 0) && $IsEqual'num'(0, $t11))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t11))) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#151, $t1) && $IsEqual'num'(0, $t11)));
 
     // abort($t11) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:249:5+1271
@@ -25098,7 +25098,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info$verify(_$t0: $sign
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
-    assume {:print "$at(31,12880,12881)"} true;
+    assume {:print "$at(35,12880,12881)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
@@ -25359,15 +25359,15 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info$verify(_$t0: $sign
     assume (forall addr: int :: $IsValid'address'(addr) ==> (($1_VASP_$is_child($1_VASP_ChildVASP_$memory, addr) <==> $1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t5, global<AccountLimits::Window<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:294:9+58
-    assume {:print "$at(31,13852,13910)"} true;
+    assume {:print "$at(35,13852,13910)"} true;
     assume ($t5 == $ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1));
 
     // assume Identical($t6, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t6 == $1_Signer_$address_of($t0));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:289:9+50
-    assume {:print "$at(31,13498,13548)"} true;
+    assume {:print "$at(35,13498,13548)"} true;
     assume $1_AccountLimits_Window'#0'_$modifies[$t1];
 
     // @147 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:289:9+50
@@ -25380,7 +25380,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info$verify(_$t0: $sign
     $1_AccountLimits_Window'#0'_$memory#148 := $1_AccountLimits_Window'#0'_$memory;
 
     // trace_local[tc_account]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
-    assume {:print "$at(31,12880,12881)"} true;
+    assume {:print "$at(35,12880,12881)"} true;
     assume {:print "$track_local(20,14,0):", $t0} $t0 == $t0;
 
     // trace_local[window_address]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
@@ -25393,11 +25393,11 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info$verify(_$t0: $sign
     assume {:print "$track_local(20,14,3):", $t3} $t3 == $t3;
 
     // assume Identical($t7, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t7 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
-    assume {:print "$at(31,13083,13128)"} true;
+    assume {:print "$at(35,13083,13128)"} true;
 
     // assume Identical($t8, Or(Or(Not(exists<Roles::RoleId>($t7)), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t7)), 0)), Neq<address>(Signer::$address_of($t0), b1e55ed))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
     assume ($t8 == ((!$ResourceExists($1_Roles_RoleId_$memory, $t7) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t7)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)));
@@ -25412,7 +25412,7 @@ L9:
     assume (((!$ResourceExists($1_Roles_RoleId_$memory, $t7) && $IsEqual'num'(0, $t9)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t7)), 0) && $IsEqual'num'(0, $t9))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t9)));
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
-    assume {:print "$at(31,13083,13128)"} true;
+    assume {:print "$at(35,13083,13128)"} true;
     assume {:print "$track_abort(20,14):", $t9} $t9 == $t9;
 
     // goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
@@ -25424,8 +25424,8 @@ L8:
     // opaque end: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:283:22+17
-    assume {:print "$at(31,13151,13168)"} true;
-    assert {:msg "assert_failed(31,13151,13168): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,13151,13168)"} true;
+    assert {:msg "assert_failed(35,13151,13168): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'#0'_$modifies[$t1];
 
     // $t10 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L7 with $t9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:283:22+17
@@ -25435,7 +25435,7 @@ L8:
         $t10 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,13151,13168)"} true;
+        assume {:print "$at(35,13151,13168)"} true;
         $t9 := $abort_code;
         assume {:print "$track_abort(20,14):", $t9} $t9 == $t9;
         goto L7;
@@ -25446,7 +25446,7 @@ L8:
     assume {:print "$track_local(20,14,4):", $temp_0'$1_AccountLimits_Window'#0''} $temp_0'$1_AccountLimits_Window'#0'' == $temp_0'$1_AccountLimits_Window'#0'';
 
     // $t11 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:284:34+1
-    assume {:print "$at(31,13237,13238)"} true;
+    assume {:print "$at(35,13237,13238)"} true;
     $t11 := 0;
     assume $IsValid'u64'($t11);
 
@@ -25481,7 +25481,7 @@ L2:
     $t10 := $UpdateMutation($t10, $Update'$1_AccountLimits_Window'#0''_tracked_balance($Dereference($t10), $Dereference($t13)));
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:52+17
-    assume {:print "$at(31,13340,13357)"} true;
+    assume {:print "$at(35,13340,13357)"} true;
 L3:
 
     // $t14 := exists<AccountLimits::LimitsDefinition<#0>>($t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:17+6
@@ -25495,34 +25495,34 @@ L5:
 
     // @178 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+579
     // state save for global update invariants
-    assume {:print "$at(31,12880,13459)"} true;
+    assume {:print "$at(35,12880,13459)"} true;
     $1_AccountLimits_Window'#0'_$memory#178 := $1_AccountLimits_Window'#0'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
     $1_AccountLimits_Window'#0'_$memory := $ResourceUpdate($1_AccountLimits_Window'#0'_$memory, $GlobalLocationAddress($t10),
         $Dereference($t10));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@178]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory#178, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // destroy($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
 
     // $t15 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:94+18
     $t15 := 0;
@@ -25539,7 +25539,7 @@ L5:
     // $t16 := opaque end: Errors::not_published($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:72+41
 
     // trace_abort($t16) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
     assume {:print "$track_abort(20,14):", $t16} $t16 == $t16;
 
     // $t9 := move($t16) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
@@ -25549,7 +25549,7 @@ L5:
     goto L7;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:32+17
-    assume {:print "$at(31,13435,13452)"} true;
+    assume {:print "$at(35,13435,13452)"} true;
 L4:
 
     // $t17 := borrow_field<AccountLimits::Window<#0>>.limit_address($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:9+20
@@ -25563,114 +25563,114 @@ L4:
 
     // @179 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // state save for global update invariants
-    assume {:print "$at(31,27994,28304)"} true;
+    assume {:print "$at(35,27994,28304)"} true;
     $1_AccountLimits_Window'#0'_$memory#179 := $1_AccountLimits_Window'#0'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:9+40
-    assume {:print "$at(31,13412,13452)"} true;
+    assume {:print "$at(35,13412,13452)"} true;
     $1_AccountLimits_Window'#0'_$memory := $ResourceUpdate($1_AccountLimits_Window'#0'_$memory, $GlobalLocationAddress($t10),
         $Dereference($t10));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@179]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory#179, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:287:5+1
-    assume {:print "$at(31,13458,13459)"} true;
+    assume {:print "$at(35,13458,13459)"} true;
 L6:
 
     // assume Identical($t18, global<AccountLimits::Window<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:295:9+63
-    assume {:print "$at(31,13919,13982)"} true;
+    assume {:print "$at(35,13919,13982)"} true;
     assume ($t18 == $ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1));
 
     // assert Not(Not(exists[@147]<Roles::RoleId>($t6))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:550:9+59
-    assume {:print "$at(39,24470,24529)"} true;
-    assert {:msg "assert_failed(39,24470,24529): function does not abort under this condition"}
+    assume {:print "$at(40,24470,24529)"} true;
+    assert {:msg "assert_failed(40,24470,24529): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#147, $t6);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:551:9+97
-    assume {:print "$at(39,24538,24635)"} true;
-    assert {:msg "assert_failed(39,24538,24635): function does not abort under this condition"}
+    assume {:print "$at(40,24538,24635)"} true;
+    assert {:msg "assert_failed(40,24538,24635): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:49:9+103
-    assume {:print "$at(10,2054,2157)"} true;
-    assert {:msg "assert_failed(10,2054,2157): function does not abort under this condition"}
+    assume {:print "$at(28,2054,2157)"} true;
+    assert {:msg "assert_failed(28,2054,2157): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 186537453);
 
     // assert Not(Not(exists[@148]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:291:9+52
-    assume {:print "$at(31,13632,13684)"} true;
-    assert {:msg "assert_failed(31,13632,13684): function does not abort under this condition"}
+    assume {:print "$at(35,13632,13684)"} true;
+    assert {:msg "assert_failed(35,13632,13684): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'#0'_$memory#148, $t1);
 
     // assert Not(Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:292:9+92
-    assume {:print "$at(31,13693,13785)"} true;
-    assert {:msg "assert_failed(31,13693,13785): function does not abort under this condition"}
+    assume {:print "$at(35,13693,13785)"} true;
+    assert {:msg "assert_failed(35,13693,13785): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#149, $t3);
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:293:9+49
-    assume {:print "$at(31,13794,13843)"} true;
-    assert {:msg "assert_failed(31,13794,13843): post-condition does not hold"}
+    assume {:print "$at(35,13794,13843)"} true;
+    assert {:msg "assert_failed(35,13794,13843): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'#0'_$memory, $t1);
 
     // assert Implies(Neq<u64>($t2, 0), Eq<u64>(select AccountLimits::Window.tracked_balance($t18), $t2)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:296:9+83
-    assume {:print "$at(31,13991,14074)"} true;
-    assert {:msg "assert_failed(31,13991,14074): post-condition does not hold"}
+    assume {:print "$at(35,13991,14074)"} true;
+    assert {:msg "assert_failed(35,13991,14074): post-condition does not hold"}
       (!$IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($tracked_balance#$1_AccountLimits_Window'#0'($t18), $t2));
 
     // assert Implies(Eq<u64>($t2, 0), Eq<u64>(select AccountLimits::Window.tracked_balance($t18), select AccountLimits::Window.tracked_balance($t5))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:297:9+92
-    assume {:print "$at(31,14083,14175)"} true;
-    assert {:msg "assert_failed(31,14083,14175): post-condition does not hold"}
+    assume {:print "$at(35,14083,14175)"} true;
+    assert {:msg "assert_failed(35,14083,14175): post-condition does not hold"}
       ($IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($tracked_balance#$1_AccountLimits_Window'#0'($t18), $tracked_balance#$1_AccountLimits_Window'#0'($t5)));
 
     // assert Eq<address>(select AccountLimits::Window.limit_address($t18), $t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:298:9+54
-    assume {:print "$at(31,14184,14238)"} true;
-    assert {:msg "assert_failed(31,14184,14238): post-condition does not hold"}
+    assume {:print "$at(35,14184,14238)"} true;
+    assert {:msg "assert_failed(35,14184,14238): post-condition does not hold"}
       $IsEqual'address'($limit_address#$1_AccountLimits_Window'#0'($t18), $t3);
 
     // assert Eq<u64>(select AccountLimits::Window.window_start($t18), select AccountLimits::Window.window_start($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:299:9+59
-    assume {:print "$at(31,14247,14306)"} true;
-    assert {:msg "assert_failed(31,14247,14306): post-condition does not hold"}
+    assume {:print "$at(35,14247,14306)"} true;
+    assert {:msg "assert_failed(35,14247,14306): post-condition does not hold"}
       $IsEqual'u64'($window_start#$1_AccountLimits_Window'#0'($t18), $window_start#$1_AccountLimits_Window'#0'($t5));
 
     // assert Eq<u64>(select AccountLimits::Window.window_inflow($t18), select AccountLimits::Window.window_inflow($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:300:9+61
-    assume {:print "$at(31,14315,14376)"} true;
-    assert {:msg "assert_failed(31,14315,14376): post-condition does not hold"}
+    assume {:print "$at(35,14315,14376)"} true;
+    assert {:msg "assert_failed(35,14315,14376): post-condition does not hold"}
       $IsEqual'u64'($window_inflow#$1_AccountLimits_Window'#0'($t18), $window_inflow#$1_AccountLimits_Window'#0'($t5));
 
     // assert Eq<u64>(select AccountLimits::Window.window_outflow($t18), select AccountLimits::Window.window_outflow($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:301:9+63
-    assume {:print "$at(31,14385,14448)"} true;
-    assert {:msg "assert_failed(31,14385,14448): post-condition does not hold"}
+    assume {:print "$at(35,14385,14448)"} true;
+    assert {:msg "assert_failed(35,14385,14448): post-condition does not hold"}
       $IsEqual'u64'($window_outflow#$1_AccountLimits_Window'#0'($t18), $window_outflow#$1_AccountLimits_Window'#0'($t5));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:301:9+63
     return;
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:287:5+1
-    assume {:print "$at(31,13458,13459)"} true;
+    assume {:print "$at(35,13458,13459)"} true;
 L7:
 
     // assert Or(Or(Or(Or(Not(exists[@147]<Roles::RoleId>($t6)), Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0)), Neq<address>(Signer::$address_of[]($t0), b1e55ed)), Not(exists[@148]<AccountLimits::Window<#0>>($t1))), Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
-    assume {:print "$at(31,13464,14454)"} true;
-    assert {:msg "assert_failed(31,13464,14454): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,13464,14454)"} true;
+    assert {:msg "assert_failed(35,13464,14454): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_Roles_RoleId_$memory#147, $t6) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)) || !$ResourceExists($1_AccountLimits_Window'#0'_$memory#148, $t1)) || !$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#149, $t3));
 
     // assert Or(Or(Or(Or(And(Not(exists[@147]<Roles::RoleId>($t6)), Eq(0, $t9)), And(Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0), Eq(0, $t9))), And(Neq<address>(Signer::$address_of[]($t0), b1e55ed), Eq(0, $t9))), Not(exists[@148]<AccountLimits::Window<#0>>($t1))), And(Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3)), Eq(0, $t9))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
-    assert {:msg "assert_failed(31,13464,14454): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,13464,14454): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_Roles_RoleId_$memory#147, $t6) && $IsEqual'num'(0, $t9)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0) && $IsEqual'num'(0, $t9))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t9))) || !$ResourceExists($1_AccountLimits_Window'#0'_$memory#148, $t1)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#149, $t3) && $IsEqual'num'(0, $t9)));
 
     // abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
@@ -25727,7 +25727,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XUS_XUS'$verify
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
-    assume {:print "$at(31,12880,12881)"} true;
+    assume {:print "$at(35,12880,12881)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
@@ -25988,15 +25988,15 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XUS_XUS'$verify
     assume (forall addr: int :: $IsValid'address'(addr) ==> (($1_VASP_$is_child($1_VASP_ChildVASP_$memory, addr) <==> $1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t5, global<AccountLimits::Window<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:294:9+58
-    assume {:print "$at(31,13852,13910)"} true;
+    assume {:print "$at(35,13852,13910)"} true;
     assume ($t5 == $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1));
 
     // assume Identical($t6, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t6 == $1_Signer_$address_of($t0));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:289:9+50
-    assume {:print "$at(31,13498,13548)"} true;
+    assume {:print "$at(35,13498,13548)"} true;
     assume $1_AccountLimits_Window'$1_XUS_XUS'_$modifies[$t1];
 
     // @147 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:289:9+50
@@ -26009,7 +26009,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XUS_XUS'$verify
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#148 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // trace_local[tc_account]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
-    assume {:print "$at(31,12880,12881)"} true;
+    assume {:print "$at(35,12880,12881)"} true;
     assume {:print "$track_local(20,14,0):", $t0} $t0 == $t0;
 
     // trace_local[window_address]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
@@ -26022,11 +26022,11 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XUS_XUS'$verify
     assume {:print "$track_local(20,14,3):", $t3} $t3 == $t3;
 
     // assume Identical($t7, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t7 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
-    assume {:print "$at(31,13083,13128)"} true;
+    assume {:print "$at(35,13083,13128)"} true;
 
     // assume Identical($t8, Or(Or(Not(exists<Roles::RoleId>($t7)), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t7)), 0)), Neq<address>(Signer::$address_of($t0), b1e55ed))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
     assume ($t8 == ((!$ResourceExists($1_Roles_RoleId_$memory, $t7) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t7)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)));
@@ -26041,7 +26041,7 @@ L9:
     assume (((!$ResourceExists($1_Roles_RoleId_$memory, $t7) && $IsEqual'num'(0, $t9)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t7)), 0) && $IsEqual'num'(0, $t9))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t9)));
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
-    assume {:print "$at(31,13083,13128)"} true;
+    assume {:print "$at(35,13083,13128)"} true;
     assume {:print "$track_abort(20,14):", $t9} $t9 == $t9;
 
     // goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
@@ -26053,8 +26053,8 @@ L8:
     // opaque end: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:283:22+17
-    assume {:print "$at(31,13151,13168)"} true;
-    assert {:msg "assert_failed(31,13151,13168): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,13151,13168)"} true;
+    assert {:msg "assert_failed(35,13151,13168): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'$1_XUS_XUS'_$modifies[$t1];
 
     // $t10 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L7 with $t9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:283:22+17
@@ -26064,7 +26064,7 @@ L8:
         $t10 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,13151,13168)"} true;
+        assume {:print "$at(35,13151,13168)"} true;
         $t9 := $abort_code;
         assume {:print "$track_abort(20,14):", $t9} $t9 == $t9;
         goto L7;
@@ -26075,7 +26075,7 @@ L8:
     assume {:print "$track_local(20,14,4):", $temp_0'$1_AccountLimits_Window'$1_XUS_XUS''} $temp_0'$1_AccountLimits_Window'$1_XUS_XUS'' == $temp_0'$1_AccountLimits_Window'$1_XUS_XUS'';
 
     // $t11 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:284:34+1
-    assume {:print "$at(31,13237,13238)"} true;
+    assume {:print "$at(35,13237,13238)"} true;
     $t11 := 0;
     assume $IsValid'u64'($t11);
 
@@ -26110,7 +26110,7 @@ L2:
     $t10 := $UpdateMutation($t10, $Update'$1_AccountLimits_Window'$1_XUS_XUS''_tracked_balance($Dereference($t10), $Dereference($t13)));
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:52+17
-    assume {:print "$at(31,13340,13357)"} true;
+    assume {:print "$at(35,13340,13357)"} true;
 L3:
 
     // $t14 := exists<AccountLimits::LimitsDefinition<#0>>($t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:17+6
@@ -26124,34 +26124,34 @@ L5:
 
     // @178 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+579
     // state save for global update invariants
-    assume {:print "$at(31,12880,13459)"} true;
+    assume {:print "$at(35,12880,13459)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#178 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $GlobalLocationAddress($t10),
         $Dereference($t10));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@178]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#178, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // destroy($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
 
     // $t15 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:94+18
     $t15 := 0;
@@ -26168,7 +26168,7 @@ L5:
     // $t16 := opaque end: Errors::not_published($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:72+41
 
     // trace_abort($t16) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
     assume {:print "$track_abort(20,14):", $t16} $t16 == $t16;
 
     // $t9 := move($t16) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
@@ -26178,7 +26178,7 @@ L5:
     goto L7;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:32+17
-    assume {:print "$at(31,13435,13452)"} true;
+    assume {:print "$at(35,13435,13452)"} true;
 L4:
 
     // $t17 := borrow_field<AccountLimits::Window<#0>>.limit_address($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:9+20
@@ -26192,114 +26192,114 @@ L4:
 
     // @179 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // state save for global update invariants
-    assume {:print "$at(31,27994,28304)"} true;
+    assume {:print "$at(35,27994,28304)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#179 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:9+40
-    assume {:print "$at(31,13412,13452)"} true;
+    assume {:print "$at(35,13412,13452)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $GlobalLocationAddress($t10),
         $Dereference($t10));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@179]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#179, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:287:5+1
-    assume {:print "$at(31,13458,13459)"} true;
+    assume {:print "$at(35,13458,13459)"} true;
 L6:
 
     // assume Identical($t18, global<AccountLimits::Window<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:295:9+63
-    assume {:print "$at(31,13919,13982)"} true;
+    assume {:print "$at(35,13919,13982)"} true;
     assume ($t18 == $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1));
 
     // assert Not(Not(exists[@147]<Roles::RoleId>($t6))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:550:9+59
-    assume {:print "$at(39,24470,24529)"} true;
-    assert {:msg "assert_failed(39,24470,24529): function does not abort under this condition"}
+    assume {:print "$at(40,24470,24529)"} true;
+    assert {:msg "assert_failed(40,24470,24529): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#147, $t6);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:551:9+97
-    assume {:print "$at(39,24538,24635)"} true;
-    assert {:msg "assert_failed(39,24538,24635): function does not abort under this condition"}
+    assume {:print "$at(40,24538,24635)"} true;
+    assert {:msg "assert_failed(40,24538,24635): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:49:9+103
-    assume {:print "$at(10,2054,2157)"} true;
-    assert {:msg "assert_failed(10,2054,2157): function does not abort under this condition"}
+    assume {:print "$at(28,2054,2157)"} true;
+    assert {:msg "assert_failed(28,2054,2157): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 186537453);
 
     // assert Not(Not(exists[@148]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:291:9+52
-    assume {:print "$at(31,13632,13684)"} true;
-    assert {:msg "assert_failed(31,13632,13684): function does not abort under this condition"}
+    assume {:print "$at(35,13632,13684)"} true;
+    assert {:msg "assert_failed(35,13632,13684): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#148, $t1);
 
     // assert Not(Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:292:9+92
-    assume {:print "$at(31,13693,13785)"} true;
-    assert {:msg "assert_failed(31,13693,13785): function does not abort under this condition"}
+    assume {:print "$at(35,13693,13785)"} true;
+    assert {:msg "assert_failed(35,13693,13785): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#149, $t3);
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:293:9+49
-    assume {:print "$at(31,13794,13843)"} true;
-    assert {:msg "assert_failed(31,13794,13843): post-condition does not hold"}
+    assume {:print "$at(35,13794,13843)"} true;
+    assert {:msg "assert_failed(35,13794,13843): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1);
 
     // assert Implies(Neq<u64>($t2, 0), Eq<u64>(select AccountLimits::Window.tracked_balance($t18), $t2)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:296:9+83
-    assume {:print "$at(31,13991,14074)"} true;
-    assert {:msg "assert_failed(31,13991,14074): post-condition does not hold"}
+    assume {:print "$at(35,13991,14074)"} true;
+    assert {:msg "assert_failed(35,13991,14074): post-condition does not hold"}
       (!$IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($t18), $t2));
 
     // assert Implies(Eq<u64>($t2, 0), Eq<u64>(select AccountLimits::Window.tracked_balance($t18), select AccountLimits::Window.tracked_balance($t5))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:297:9+92
-    assume {:print "$at(31,14083,14175)"} true;
-    assert {:msg "assert_failed(31,14083,14175): post-condition does not hold"}
+    assume {:print "$at(35,14083,14175)"} true;
+    assert {:msg "assert_failed(35,14083,14175): post-condition does not hold"}
       ($IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($t18), $tracked_balance#$1_AccountLimits_Window'$1_XUS_XUS'($t5)));
 
     // assert Eq<address>(select AccountLimits::Window.limit_address($t18), $t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:298:9+54
-    assume {:print "$at(31,14184,14238)"} true;
-    assert {:msg "assert_failed(31,14184,14238): post-condition does not hold"}
+    assume {:print "$at(35,14184,14238)"} true;
+    assert {:msg "assert_failed(35,14184,14238): post-condition does not hold"}
       $IsEqual'address'($limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($t18), $t3);
 
     // assert Eq<u64>(select AccountLimits::Window.window_start($t18), select AccountLimits::Window.window_start($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:299:9+59
-    assume {:print "$at(31,14247,14306)"} true;
-    assert {:msg "assert_failed(31,14247,14306): post-condition does not hold"}
+    assume {:print "$at(35,14247,14306)"} true;
+    assert {:msg "assert_failed(35,14247,14306): post-condition does not hold"}
       $IsEqual'u64'($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t18), $window_start#$1_AccountLimits_Window'$1_XUS_XUS'($t5));
 
     // assert Eq<u64>(select AccountLimits::Window.window_inflow($t18), select AccountLimits::Window.window_inflow($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:300:9+61
-    assume {:print "$at(31,14315,14376)"} true;
-    assert {:msg "assert_failed(31,14315,14376): post-condition does not hold"}
+    assume {:print "$at(35,14315,14376)"} true;
+    assert {:msg "assert_failed(35,14315,14376): post-condition does not hold"}
       $IsEqual'u64'($window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($t18), $window_inflow#$1_AccountLimits_Window'$1_XUS_XUS'($t5));
 
     // assert Eq<u64>(select AccountLimits::Window.window_outflow($t18), select AccountLimits::Window.window_outflow($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:301:9+63
-    assume {:print "$at(31,14385,14448)"} true;
-    assert {:msg "assert_failed(31,14385,14448): post-condition does not hold"}
+    assume {:print "$at(35,14385,14448)"} true;
+    assert {:msg "assert_failed(35,14385,14448): post-condition does not hold"}
       $IsEqual'u64'($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($t18), $window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($t5));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:301:9+63
     return;
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:287:5+1
-    assume {:print "$at(31,13458,13459)"} true;
+    assume {:print "$at(35,13458,13459)"} true;
 L7:
 
     // assert Or(Or(Or(Or(Not(exists[@147]<Roles::RoleId>($t6)), Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0)), Neq<address>(Signer::$address_of[]($t0), b1e55ed)), Not(exists[@148]<AccountLimits::Window<#0>>($t1))), Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
-    assume {:print "$at(31,13464,14454)"} true;
-    assert {:msg "assert_failed(31,13464,14454): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,13464,14454)"} true;
+    assert {:msg "assert_failed(35,13464,14454): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_Roles_RoleId_$memory#147, $t6) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)) || !$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#148, $t1)) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#149, $t3));
 
     // assert Or(Or(Or(Or(And(Not(exists[@147]<Roles::RoleId>($t6)), Eq(0, $t9)), And(Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0), Eq(0, $t9))), And(Neq<address>(Signer::$address_of[]($t0), b1e55ed), Eq(0, $t9))), Not(exists[@148]<AccountLimits::Window<#0>>($t1))), And(Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3)), Eq(0, $t9))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
-    assert {:msg "assert_failed(31,13464,14454): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,13464,14454): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_Roles_RoleId_$memory#147, $t6) && $IsEqual'num'(0, $t9)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0) && $IsEqual'num'(0, $t9))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t9))) || !$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#148, $t1)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#149, $t3) && $IsEqual'num'(0, $t9)));
 
     // abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
@@ -26356,7 +26356,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XDX_XDX'$verify
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
-    assume {:print "$at(31,12880,12881)"} true;
+    assume {:print "$at(35,12880,12881)"} true;
     assume $IsValid'signer'($t0) && $1_Signer_is_txn_signer($t0) && $1_Signer_is_txn_signer_addr($addr#$signer($t0));
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
@@ -26617,15 +26617,15 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XDX_XDX'$verify
     assume (forall addr: int :: $IsValid'address'(addr) ==> (($1_VASP_$is_child($1_VASP_ChildVASP_$memory, addr) <==> $1_Roles_spec_has_child_VASP_role_addr($1_Roles_RoleId_$memory, addr))));
 
     // assume Identical($t5, global<AccountLimits::Window<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:294:9+58
-    assume {:print "$at(31,13852,13910)"} true;
+    assume {:print "$at(35,13852,13910)"} true;
     assume ($t5 == $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1));
 
     // assume Identical($t6, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t6 == $1_Signer_$address_of($t0));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:289:9+50
-    assume {:print "$at(31,13498,13548)"} true;
+    assume {:print "$at(35,13498,13548)"} true;
     assume $1_AccountLimits_Window'$1_XDX_XDX'_$modifies[$t1];
 
     // @147 := save_mem(Roles::RoleId) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:289:9+50
@@ -26638,7 +26638,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XDX_XDX'$verify
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#148 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // trace_local[tc_account]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
-    assume {:print "$at(31,12880,12881)"} true;
+    assume {:print "$at(35,12880,12881)"} true;
     assume {:print "$track_local(20,14,0):", $t0} $t0 == $t0;
 
     // trace_local[window_address]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+1
@@ -26651,11 +26651,11 @@ procedure {:timeLimit 40} $1_AccountLimits_update_window_info'$1_XDX_XDX'$verify
     assume {:print "$track_local(20,14,3):", $t3} $t3 == $t3;
 
     // assume Identical($t7, Signer::$address_of($t0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:549:9+39
-    assume {:print "$at(39,24422,24461)"} true;
+    assume {:print "$at(40,24422,24461)"} true;
     assume ($t7 == $1_Signer_$address_of($t0));
 
     // opaque begin: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
-    assume {:print "$at(31,13083,13128)"} true;
+    assume {:print "$at(35,13083,13128)"} true;
 
     // assume Identical($t8, Or(Or(Not(exists<Roles::RoleId>($t7)), Neq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>($t7)), 0)), Neq<address>(Signer::$address_of($t0), b1e55ed))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
     assume ($t8 == ((!$ResourceExists($1_Roles_RoleId_$memory, $t7) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t7)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)));
@@ -26670,7 +26670,7 @@ L9:
     assume (((!$ResourceExists($1_Roles_RoleId_$memory, $t7) && $IsEqual'num'(0, $t9)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, $t7)), 0) && $IsEqual'num'(0, $t9))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t9)));
 
     // trace_abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
-    assume {:print "$at(31,13083,13128)"} true;
+    assume {:print "$at(35,13083,13128)"} true;
     assume {:print "$track_abort(20,14):", $t9} $t9 == $t9;
 
     // goto L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
@@ -26682,8 +26682,8 @@ L8:
     // opaque end: Roles::assert_treasury_compliance($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:282:9+45
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:283:22+17
-    assume {:print "$at(31,13151,13168)"} true;
-    assert {:msg "assert_failed(31,13151,13168): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,13151,13168)"} true;
+    assert {:msg "assert_failed(35,13151,13168): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'$1_XDX_XDX'_$modifies[$t1];
 
     // $t10 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L7 with $t9 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:283:22+17
@@ -26693,7 +26693,7 @@ L8:
         $t10 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,13151,13168)"} true;
+        assume {:print "$at(35,13151,13168)"} true;
         $t9 := $abort_code;
         assume {:print "$track_abort(20,14):", $t9} $t9 == $t9;
         goto L7;
@@ -26704,7 +26704,7 @@ L8:
     assume {:print "$track_local(20,14,4):", $temp_0'$1_AccountLimits_Window'$1_XDX_XDX''} $temp_0'$1_AccountLimits_Window'$1_XDX_XDX'' == $temp_0'$1_AccountLimits_Window'$1_XDX_XDX'';
 
     // $t11 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:284:34+1
-    assume {:print "$at(31,13237,13238)"} true;
+    assume {:print "$at(35,13237,13238)"} true;
     $t11 := 0;
     assume $IsValid'u64'($t11);
 
@@ -26739,7 +26739,7 @@ L2:
     $t10 := $UpdateMutation($t10, $Update'$1_AccountLimits_Window'$1_XDX_XDX''_tracked_balance($Dereference($t10), $Dereference($t13)));
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:52+17
-    assume {:print "$at(31,13340,13357)"} true;
+    assume {:print "$at(35,13340,13357)"} true;
 L3:
 
     // $t14 := exists<AccountLimits::LimitsDefinition<#0>>($t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:17+6
@@ -26753,34 +26753,34 @@ L5:
 
     // @178 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:276:5+579
     // state save for global update invariants
-    assume {:print "$at(31,12880,13459)"} true;
+    assume {:print "$at(35,12880,13459)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#178 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $GlobalLocationAddress($t10),
         $Dereference($t10));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@178]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#178, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // destroy($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
 
     // $t15 := 0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:94+18
     $t15 := 0;
@@ -26797,7 +26797,7 @@ L5:
     // $t16 := opaque end: Errors::not_published($t15) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:72+41
 
     // trace_abort($t16) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
-    assume {:print "$at(31,13297,13402)"} true;
+    assume {:print "$at(35,13297,13402)"} true;
     assume {:print "$track_abort(20,14):", $t16} $t16 == $t16;
 
     // $t9 := move($t16) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:285:9+105
@@ -26807,7 +26807,7 @@ L5:
     goto L7;
 
     // label L4 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:32+17
-    assume {:print "$at(31,13435,13452)"} true;
+    assume {:print "$at(35,13435,13452)"} true;
 L4:
 
     // $t17 := borrow_field<AccountLimits::Window<#0>>.limit_address($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:9+20
@@ -26821,114 +26821,114 @@ L4:
 
     // @179 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // state save for global update invariants
-    assume {:print "$at(31,27994,28304)"} true;
+    assume {:print "$at(35,27994,28304)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#179 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t10) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:286:9+40
-    assume {:print "$at(31,13412,13452)"} true;
+    assume {:print "$at(35,13412,13452)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $GlobalLocationAddress($t10),
         $Dereference($t10));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@179]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#179, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // label L6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:287:5+1
-    assume {:print "$at(31,13458,13459)"} true;
+    assume {:print "$at(35,13458,13459)"} true;
 L6:
 
     // assume Identical($t18, global<AccountLimits::Window<#0>>($t1)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:295:9+63
-    assume {:print "$at(31,13919,13982)"} true;
+    assume {:print "$at(35,13919,13982)"} true;
     assume ($t18 == $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1));
 
     // assert Not(Not(exists[@147]<Roles::RoleId>($t6))) at ../../../../diem-move/diem-framework/core/sources/Roles.move:550:9+59
-    assume {:print "$at(39,24470,24529)"} true;
-    assert {:msg "assert_failed(39,24470,24529): function does not abort under this condition"}
+    assume {:print "$at(40,24470,24529)"} true;
+    assert {:msg "assert_failed(40,24470,24529): function does not abort under this condition"}
       !!$ResourceExists($1_Roles_RoleId_$memory#147, $t6);
 
     // assert Not(Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0)) at ../../../../diem-move/diem-framework/core/sources/Roles.move:551:9+97
-    assume {:print "$at(39,24538,24635)"} true;
-    assert {:msg "assert_failed(39,24538,24635): function does not abort under this condition"}
+    assume {:print "$at(40,24538,24635)"} true;
+    assert {:msg "assert_failed(40,24538,24635): function does not abort under this condition"}
       !!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0);
 
     // assert Not(Neq<address>(Signer::$address_of[]($t0), b1e55ed)) at ../../../../diem-move/diem-framework/core/sources/CoreAddresses.move:49:9+103
-    assume {:print "$at(10,2054,2157)"} true;
-    assert {:msg "assert_failed(10,2054,2157): function does not abort under this condition"}
+    assume {:print "$at(28,2054,2157)"} true;
+    assert {:msg "assert_failed(28,2054,2157): function does not abort under this condition"}
       !!$IsEqual'address'($1_Signer_$address_of($t0), 186537453);
 
     // assert Not(Not(exists[@148]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:291:9+52
-    assume {:print "$at(31,13632,13684)"} true;
-    assert {:msg "assert_failed(31,13632,13684): function does not abort under this condition"}
+    assume {:print "$at(35,13632,13684)"} true;
+    assert {:msg "assert_failed(35,13632,13684): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#148, $t1);
 
     // assert Not(Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:292:9+92
-    assume {:print "$at(31,13693,13785)"} true;
-    assert {:msg "assert_failed(31,13693,13785): function does not abort under this condition"}
+    assume {:print "$at(35,13693,13785)"} true;
+    assert {:msg "assert_failed(35,13693,13785): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#149, $t3);
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:293:9+49
-    assume {:print "$at(31,13794,13843)"} true;
-    assert {:msg "assert_failed(31,13794,13843): post-condition does not hold"}
+    assume {:print "$at(35,13794,13843)"} true;
+    assert {:msg "assert_failed(35,13794,13843): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1);
 
     // assert Implies(Neq<u64>($t2, 0), Eq<u64>(select AccountLimits::Window.tracked_balance($t18), $t2)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:296:9+83
-    assume {:print "$at(31,13991,14074)"} true;
-    assert {:msg "assert_failed(31,13991,14074): post-condition does not hold"}
+    assume {:print "$at(35,13991,14074)"} true;
+    assert {:msg "assert_failed(35,13991,14074): post-condition does not hold"}
       (!$IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($t18), $t2));
 
     // assert Implies(Eq<u64>($t2, 0), Eq<u64>(select AccountLimits::Window.tracked_balance($t18), select AccountLimits::Window.tracked_balance($t5))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:297:9+92
-    assume {:print "$at(31,14083,14175)"} true;
-    assert {:msg "assert_failed(31,14083,14175): post-condition does not hold"}
+    assume {:print "$at(35,14083,14175)"} true;
+    assert {:msg "assert_failed(35,14083,14175): post-condition does not hold"}
       ($IsEqual'u64'($t2, 0) ==> $IsEqual'u64'($tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($t18), $tracked_balance#$1_AccountLimits_Window'$1_XDX_XDX'($t5)));
 
     // assert Eq<address>(select AccountLimits::Window.limit_address($t18), $t3) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:298:9+54
-    assume {:print "$at(31,14184,14238)"} true;
-    assert {:msg "assert_failed(31,14184,14238): post-condition does not hold"}
+    assume {:print "$at(35,14184,14238)"} true;
+    assert {:msg "assert_failed(35,14184,14238): post-condition does not hold"}
       $IsEqual'address'($limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($t18), $t3);
 
     // assert Eq<u64>(select AccountLimits::Window.window_start($t18), select AccountLimits::Window.window_start($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:299:9+59
-    assume {:print "$at(31,14247,14306)"} true;
-    assert {:msg "assert_failed(31,14247,14306): post-condition does not hold"}
+    assume {:print "$at(35,14247,14306)"} true;
+    assert {:msg "assert_failed(35,14247,14306): post-condition does not hold"}
       $IsEqual'u64'($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t18), $window_start#$1_AccountLimits_Window'$1_XDX_XDX'($t5));
 
     // assert Eq<u64>(select AccountLimits::Window.window_inflow($t18), select AccountLimits::Window.window_inflow($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:300:9+61
-    assume {:print "$at(31,14315,14376)"} true;
-    assert {:msg "assert_failed(31,14315,14376): post-condition does not hold"}
+    assume {:print "$at(35,14315,14376)"} true;
+    assert {:msg "assert_failed(35,14315,14376): post-condition does not hold"}
       $IsEqual'u64'($window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($t18), $window_inflow#$1_AccountLimits_Window'$1_XDX_XDX'($t5));
 
     // assert Eq<u64>(select AccountLimits::Window.window_outflow($t18), select AccountLimits::Window.window_outflow($t5)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:301:9+63
-    assume {:print "$at(31,14385,14448)"} true;
-    assert {:msg "assert_failed(31,14385,14448): post-condition does not hold"}
+    assume {:print "$at(35,14385,14448)"} true;
+    assert {:msg "assert_failed(35,14385,14448): post-condition does not hold"}
       $IsEqual'u64'($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($t18), $window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($t5));
 
     // return () at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:301:9+63
     return;
 
     // label L7 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:287:5+1
-    assume {:print "$at(31,13458,13459)"} true;
+    assume {:print "$at(35,13458,13459)"} true;
 L7:
 
     // assert Or(Or(Or(Or(Not(exists[@147]<Roles::RoleId>($t6)), Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0)), Neq<address>(Signer::$address_of[]($t0), b1e55ed)), Not(exists[@148]<AccountLimits::Window<#0>>($t1))), Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
-    assume {:print "$at(31,13464,14454)"} true;
-    assert {:msg "assert_failed(31,13464,14454): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,13464,14454)"} true;
+    assert {:msg "assert_failed(35,13464,14454): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_Roles_RoleId_$memory#147, $t6) || !$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0)) || !$IsEqual'address'($1_Signer_$address_of($t0), 186537453)) || !$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#148, $t1)) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#149, $t3));
 
     // assert Or(Or(Or(Or(And(Not(exists[@147]<Roles::RoleId>($t6)), Eq(0, $t9)), And(Neq<u64>(select Roles::RoleId.role_id(global[@147]<Roles::RoleId>($t6)), 0), Eq(0, $t9))), And(Neq<address>(Signer::$address_of[]($t0), b1e55ed), Eq(0, $t9))), Not(exists[@148]<AccountLimits::Window<#0>>($t1))), And(Not(exists[@149]<AccountLimits::LimitsDefinition<#0>>($t3)), Eq(0, $t9))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
-    assert {:msg "assert_failed(31,13464,14454): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,13464,14454): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_Roles_RoleId_$memory#147, $t6) && $IsEqual'num'(0, $t9)) || (!$IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory#147, $t6)), 0) && $IsEqual'num'(0, $t9))) || (!$IsEqual'address'($1_Signer_$address_of($t0), 186537453) && $IsEqual'num'(0, $t9))) || !$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#148, $t1)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#149, $t3) && $IsEqual'num'(0, $t9)));
 
     // abort($t9) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:288:5+990
@@ -26973,7 +26973,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits$verify(_$t0:
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
-    assume {:print "$at(31,4774,4775)"} true;
+    assume {:print "$at(35,4774,4775)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
@@ -27241,7 +27241,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits$verify(_$t0:
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:126:9+40
-    assume {:print "$at(31,5249,5289)"} true;
+    assume {:print "$at(35,5249,5289)"} true;
     assume $1_AccountLimits_Window'#0'_$modifies[$t1];
 
     // @166 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:126:9+40
@@ -27254,7 +27254,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits$verify(_$t0:
     $1_AccountLimits_Window'#0'_$memory#164 := $1_AccountLimits_Window'#0'_$memory;
 
     // trace_local[amount]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
-    assume {:print "$at(31,4774,4775)"} true;
+    assume {:print "$at(35,4774,4775)"} true;
     assume {:print "$track_local(20,15,0):", $t0} $t0 == $t0;
 
     // trace_local[addr]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
@@ -27264,7 +27264,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits$verify(_$t0:
     assume {:print "$track_local(20,15,2):", $t2} $t2 == $t2;
 
     // $t3 := exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:17+6
-    assume {:print "$at(31,4976,4982)"} true;
+    assume {:print "$at(35,4976,4982)"} true;
     $t3 := $ResourceExists($1_AccountLimits_Window'#0'_$memory, $t1);
 
     // if ($t3) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
@@ -27288,7 +27288,7 @@ L1:
     // $t5 := opaque end: Errors::not_published($t4) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:49+30
 
     // trace_abort($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
-    assume {:print "$at(31,4968,5039)"} true;
+    assume {:print "$at(35,4968,5039)"} true;
     assume {:print "$track_abort(20,15):", $t5} $t5 == $t5;
 
     // $t6 := move($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
@@ -27298,12 +27298,12 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:120:13+6
-    assume {:print "$at(31,5103,5109)"} true;
+    assume {:print "$at(35,5103,5109)"} true;
 L0:
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:121:13+17
-    assume {:print "$at(31,5123,5140)"} true;
-    assert {:msg "assert_failed(31,5123,5140): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,5123,5140)"} true;
+    assert {:msg "assert_failed(35,5123,5140): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'#0'_$modifies[$t1];
 
     // $t7 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L3 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:121:13+17
@@ -27313,14 +27313,14 @@ L0:
         $t7 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,5123,5140)"} true;
+        assume {:print "$at(35,5123,5140)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,15):", $t6} $t6 == $t6;
         goto L3;
     }
 
     // $t8 := opaque begin: AccountLimits::can_withdraw_and_update_window<#0>($t0, $t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
 
     // $t9 := read_ref($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
     $t9 := $Dereference($t7);
@@ -27338,7 +27338,7 @@ L5:
     assume ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($Dereference($t7))) && $IsEqual'num'(0, $t6)) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7))) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && (($window_start#$1_AccountLimits_Window'#0'($Dereference($t7)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $Dereference($t7)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory)) && $IsEqual'num'(0, $t6)));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     assume {:print "$track_abort(20,15):", $t6} $t6 == $t6;
 
     // goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
@@ -27368,78 +27368,78 @@ L4:
 
     // @183 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+407
     // state save for global update invariants
-    assume {:print "$at(31,4774,5181)"} true;
+    assume {:print "$at(35,4774,5181)"} true;
     $1_AccountLimits_Window'#0'_$memory#183 := $1_AccountLimits_Window'#0'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     $1_AccountLimits_Window'#0'_$memory := $ResourceUpdate($1_AccountLimits_Window'#0'_$memory, $GlobalLocationAddress($t7),
         $Dereference($t7));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@183]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory#183, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'#0'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // trace_return[0]($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     assume {:print "$track_return(20,15,0):", $t8} $t8 == $t8;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:123:5+1
-    assume {:print "$at(31,5180,5181)"} true;
+    assume {:print "$at(35,5180,5181)"} true;
 L2:
 
     // assert Not(Not(exists[@164]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:104:9+69
-    assume {:print "$at(31,4312,4381)"} true;
-    assert {:msg "assert_failed(31,4312,4381): function does not abort under this condition"}
+    assume {:print "$at(35,4312,4381)"} true;
+    assert {:msg "assert_failed(35,4312,4381): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'#0'_$memory#164, $t1);
 
     // assert Not(Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1))))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:482:9+96
-    assume {:print "$at(31,23408,23504)"} true;
-    assert {:msg "assert_failed(31,23408,23504): function does not abort under this condition"}
+    assume {:print "$at(35,23408,23504)"} true;
+    assert {:msg "assert_failed(35,23408,23504): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:492:9+99
-    assume {:print "$at(31,23890,23989)"} true;
-    assert {:msg "assert_failed(31,23890,23989): function does not abort under this condition"}
+    assume {:print "$at(35,23890,23989)"} true;
+    assert {:msg "assert_failed(35,23890,23989): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1))) + $t0) > 18446744073709551615));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166));
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:127:9+39
-    assume {:print "$at(31,5298,5337)"} true;
-    assert {:msg "assert_failed(31,5298,5337): post-condition does not hold"}
+    assume {:print "$at(35,5298,5337)"} true;
+    assert {:msg "assert_failed(35,5298,5337): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'#0'_$memory, $t1);
 
     // assert Eq<bool>($t8, AccountLimits::spec_withdrawal_limits_ok<#0>(global[@164]<AccountLimits::Window<#0>>($t1), $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:498:9+66
-    assume {:print "$at(31,24134,24200)"} true;
-    assert {:msg "assert_failed(31,24134,24200): post-condition does not hold"}
+    assume {:print "$at(35,24134,24200)"} true;
+    assert {:msg "assert_failed(35,24134,24200): post-condition does not hold"}
       $IsEqual'bool'($t8, $1_AccountLimits_spec_withdrawal_limits_ok'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1), $t0));
 
     // assert (if And($t8, Not(AccountLimits::spec_window_unrestricted<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))) {Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_update_outflow<#0>(AccountLimits::spec_window_reset<#0>(global[@164]<AccountLimits::Window<#0>>($t1)), $t0))} else {Or(Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_window_reset<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), global[@164]<AccountLimits::Window<#0>>($t1)))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
-    assume {:print "$at(31,24209,24475)"} true;
-    assert {:msg "assert_failed(31,24209,24475): post-condition does not hold"}
+    assume {:print "$at(35,24209,24475)"} true;
+    assert {:msg "assert_failed(35,24209,24475): post-condition does not hold"}
       (if (($t8 && !$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)))) then ($IsEqual'$1_AccountLimits_Window'#0''($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1), $1_AccountLimits_spec_update_outflow'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)), $t0))) else (($IsEqual'$1_AccountLimits_Window'#0''($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1), $1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'#0'_$memory, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1))) || $IsEqual'$1_AccountLimits_Window'#0''($ResourceValue($1_AccountLimits_Window'#0'_$memory, $t1), $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)))));
 
     // return $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
@@ -27447,16 +27447,16 @@ L2:
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:123:5+1
-    assume {:print "$at(31,5180,5181)"} true;
+    assume {:print "$at(35,5180,5181)"} true;
 L3:
 
     // assert Or(Or(Or(Or(Not(exists[@164]<AccountLimits::Window<#0>>($t1)), Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1))))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
-    assume {:print "$at(31,5186,5488)"} true;
-    assert {:msg "assert_failed(31,5186,5488): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,5186,5488)"} true;
+    assert {:msg "assert_failed(35,5186,5488): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_AccountLimits_Window'#0'_$memory#164, $t1) || !$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1))) + $t0) > 18446744073709551615))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166)));
 
     // assert Or(Or(Or(Or(And(Not(exists[@164]<AccountLimits::Window<#0>>($t1)), Eq(0, $t6)), And(Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1)))), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615)), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]())), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
-    assert {:msg "assert_failed(31,5186,5488): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,5186,5488): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_AccountLimits_Window'#0'_$memory#164, $t1) && $IsEqual'num'(0, $t6)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $limit_address#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1))) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'#0'($1_AccountLimits_spec_window_reset'#0'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1))) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'#0'($ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'#0'($1_AccountLimits_spec_window_limits'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'#0'($1_AccountLimits_LimitsDefinition'#0'_$memory#165, $ResourceValue($1_AccountLimits_Window'#0'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166)) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
@@ -27501,7 +27501,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XUS_XUS'$
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
-    assume {:print "$at(31,4774,4775)"} true;
+    assume {:print "$at(35,4774,4775)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
@@ -27769,7 +27769,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XUS_XUS'$
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:126:9+40
-    assume {:print "$at(31,5249,5289)"} true;
+    assume {:print "$at(35,5249,5289)"} true;
     assume $1_AccountLimits_Window'$1_XUS_XUS'_$modifies[$t1];
 
     // @166 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:126:9+40
@@ -27782,7 +27782,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XUS_XUS'$
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#164 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // trace_local[amount]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
-    assume {:print "$at(31,4774,4775)"} true;
+    assume {:print "$at(35,4774,4775)"} true;
     assume {:print "$track_local(20,15,0):", $t0} $t0 == $t0;
 
     // trace_local[addr]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
@@ -27792,7 +27792,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XUS_XUS'$
     assume {:print "$track_local(20,15,2):", $t2} $t2 == $t2;
 
     // $t3 := exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:17+6
-    assume {:print "$at(31,4976,4982)"} true;
+    assume {:print "$at(35,4976,4982)"} true;
     $t3 := $ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1);
 
     // if ($t3) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
@@ -27816,7 +27816,7 @@ L1:
     // $t5 := opaque end: Errors::not_published($t4) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:49+30
 
     // trace_abort($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
-    assume {:print "$at(31,4968,5039)"} true;
+    assume {:print "$at(35,4968,5039)"} true;
     assume {:print "$track_abort(20,15):", $t5} $t5 == $t5;
 
     // $t6 := move($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
@@ -27826,12 +27826,12 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:120:13+6
-    assume {:print "$at(31,5103,5109)"} true;
+    assume {:print "$at(35,5103,5109)"} true;
 L0:
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:121:13+17
-    assume {:print "$at(31,5123,5140)"} true;
-    assert {:msg "assert_failed(31,5123,5140): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,5123,5140)"} true;
+    assert {:msg "assert_failed(35,5123,5140): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'$1_XUS_XUS'_$modifies[$t1];
 
     // $t7 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L3 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:121:13+17
@@ -27841,14 +27841,14 @@ L0:
         $t7 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,5123,5140)"} true;
+        assume {:print "$at(35,5123,5140)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,15):", $t6} $t6 == $t6;
         goto L3;
     }
 
     // $t8 := opaque begin: AccountLimits::can_withdraw_and_update_window<#0>($t0, $t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
 
     // $t9 := read_ref($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
     $t9 := $Dereference($t7);
@@ -27866,7 +27866,7 @@ L5:
     assume ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t7))) && $IsEqual'num'(0, $t6)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7))) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($Dereference($t7)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $Dereference($t7)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory)) && $IsEqual'num'(0, $t6)));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     assume {:print "$track_abort(20,15):", $t6} $t6 == $t6;
 
     // goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
@@ -27896,78 +27896,78 @@ L4:
 
     // @183 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+407
     // state save for global update invariants
-    assume {:print "$at(31,4774,5181)"} true;
+    assume {:print "$at(35,4774,5181)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory#183 := $1_AccountLimits_Window'$1_XUS_XUS'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     $1_AccountLimits_Window'$1_XUS_XUS'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $GlobalLocationAddress($t7),
         $Dereference($t7));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@183]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#183, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // trace_return[0]($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     assume {:print "$track_return(20,15,0):", $t8} $t8 == $t8;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:123:5+1
-    assume {:print "$at(31,5180,5181)"} true;
+    assume {:print "$at(35,5180,5181)"} true;
 L2:
 
     // assert Not(Not(exists[@164]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:104:9+69
-    assume {:print "$at(31,4312,4381)"} true;
-    assert {:msg "assert_failed(31,4312,4381): function does not abort under this condition"}
+    assume {:print "$at(35,4312,4381)"} true;
+    assert {:msg "assert_failed(35,4312,4381): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1);
 
     // assert Not(Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1))))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:482:9+96
-    assume {:print "$at(31,23408,23504)"} true;
-    assert {:msg "assert_failed(31,23408,23504): function does not abort under this condition"}
+    assume {:print "$at(35,23408,23504)"} true;
+    assert {:msg "assert_failed(35,23408,23504): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:492:9+99
-    assume {:print "$at(31,23890,23989)"} true;
-    assert {:msg "assert_failed(31,23890,23989): function does not abort under this condition"}
+    assume {:print "$at(35,23890,23989)"} true;
+    assert {:msg "assert_failed(35,23890,23989): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1))) + $t0) > 18446744073709551615));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166));
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:127:9+39
-    assume {:print "$at(31,5298,5337)"} true;
-    assert {:msg "assert_failed(31,5298,5337): post-condition does not hold"}
+    assume {:print "$at(35,5298,5337)"} true;
+    assert {:msg "assert_failed(35,5298,5337): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1);
 
     // assert Eq<bool>($t8, AccountLimits::spec_withdrawal_limits_ok<#0>(global[@164]<AccountLimits::Window<#0>>($t1), $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:498:9+66
-    assume {:print "$at(31,24134,24200)"} true;
-    assert {:msg "assert_failed(31,24134,24200): post-condition does not hold"}
+    assume {:print "$at(35,24134,24200)"} true;
+    assert {:msg "assert_failed(35,24134,24200): post-condition does not hold"}
       $IsEqual'bool'($t8, $1_AccountLimits_spec_withdrawal_limits_ok'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1), $t0));
 
     // assert (if And($t8, Not(AccountLimits::spec_window_unrestricted<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))) {Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_update_outflow<#0>(AccountLimits::spec_window_reset<#0>(global[@164]<AccountLimits::Window<#0>>($t1)), $t0))} else {Or(Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_window_reset<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), global[@164]<AccountLimits::Window<#0>>($t1)))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
-    assume {:print "$at(31,24209,24475)"} true;
-    assert {:msg "assert_failed(31,24209,24475): post-condition does not hold"}
+    assume {:print "$at(35,24209,24475)"} true;
+    assert {:msg "assert_failed(35,24209,24475): post-condition does not hold"}
       (if (($t8 && !$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)))) then ($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1), $1_AccountLimits_spec_update_outflow'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1), $1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1))) || $IsEqual'$1_AccountLimits_Window'$1_XUS_XUS''($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory, $t1), $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)))));
 
     // return $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
@@ -27975,16 +27975,16 @@ L2:
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:123:5+1
-    assume {:print "$at(31,5180,5181)"} true;
+    assume {:print "$at(35,5180,5181)"} true;
 L3:
 
     // assert Or(Or(Or(Or(Not(exists[@164]<AccountLimits::Window<#0>>($t1)), Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1))))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
-    assume {:print "$at(31,5186,5488)"} true;
-    assert {:msg "assert_failed(31,5186,5488): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,5186,5488)"} true;
+    assert {:msg "assert_failed(35,5186,5488): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1))) + $t0) > 18446744073709551615))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166)));
 
     // assert Or(Or(Or(Or(And(Not(exists[@164]<AccountLimits::Window<#0>>($t1)), Eq(0, $t6)), And(Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1)))), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615)), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]())), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
-    assert {:msg "assert_failed(31,5186,5488): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,5186,5488): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1) && $IsEqual'num'(0, $t6)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $limit_address#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1))) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'$1_XUS_XUS'($1_AccountLimits_spec_window_reset'$1_XUS_XUS'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1))) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XUS_XUS'($ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XUS_XUS'($1_AccountLimits_spec_window_limits'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XUS_XUS'($1_AccountLimits_LimitsDefinition'$1_XUS_XUS'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XUS_XUS'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166)) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
@@ -28029,7 +28029,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XDX_XDX'$
 
     // bytecode translation starts here
     // assume WellFormed($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
-    assume {:print "$at(31,4774,4775)"} true;
+    assume {:print "$at(35,4774,4775)"} true;
     assume $IsValid'u64'($t0);
 
     // assume WellFormed($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
@@ -28297,7 +28297,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XDX_XDX'$
     assume ($1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory) ==> $1_DiemConfig_spec_is_published'$1_DiemVersion_DiemVersion'($1_DiemConfig_DiemConfig'$1_DiemVersion_DiemVersion'_$memory));
 
     // assume CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:126:9+40
-    assume {:print "$at(31,5249,5289)"} true;
+    assume {:print "$at(35,5249,5289)"} true;
     assume $1_AccountLimits_Window'$1_XDX_XDX'_$modifies[$t1];
 
     // @166 := save_mem(DiemTimestamp::CurrentTimeMicroseconds) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:126:9+40
@@ -28310,7 +28310,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XDX_XDX'$
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#164 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // trace_local[amount]($t0) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
-    assume {:print "$at(31,4774,4775)"} true;
+    assume {:print "$at(35,4774,4775)"} true;
     assume {:print "$track_local(20,15,0):", $t0} $t0 == $t0;
 
     // trace_local[addr]($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+1
@@ -28320,7 +28320,7 @@ procedure {:timeLimit 40} $1_AccountLimits_update_withdrawal_limits'$1_XDX_XDX'$
     assume {:print "$track_local(20,15,2):", $t2} $t2 == $t2;
 
     // $t3 := exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:17+6
-    assume {:print "$at(31,4976,4982)"} true;
+    assume {:print "$at(35,4976,4982)"} true;
     $t3 := $ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1);
 
     // if ($t3) goto L0 else goto L1 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
@@ -28344,7 +28344,7 @@ L1:
     // $t5 := opaque end: Errors::not_published($t4) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:49+30
 
     // trace_abort($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
-    assume {:print "$at(31,4968,5039)"} true;
+    assume {:print "$at(35,4968,5039)"} true;
     assume {:print "$track_abort(20,15):", $t5} $t5 == $t5;
 
     // $t6 := move($t5) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:118:9+71
@@ -28354,12 +28354,12 @@ L1:
     goto L3;
 
     // label L0 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:120:13+6
-    assume {:print "$at(31,5103,5109)"} true;
+    assume {:print "$at(35,5103,5109)"} true;
 L0:
 
     // assert CanModify<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:121:13+17
-    assume {:print "$at(31,5123,5140)"} true;
-    assert {:msg "assert_failed(31,5123,5140): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
+    assume {:print "$at(35,5123,5140)"} true;
+    assert {:msg "assert_failed(35,5123,5140): caller does not have permission to modify `AccountLimits::Window<#0>` at given address"}
       $1_AccountLimits_Window'$1_XDX_XDX'_$modifies[$t1];
 
     // $t7 := borrow_global<AccountLimits::Window<#0>>($t1) on_abort goto L3 with $t6 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:121:13+17
@@ -28369,14 +28369,14 @@ L0:
         $t7 := $Mutation($Global($t1), EmptyVec(), $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1));
     }
     if ($abort_flag) {
-        assume {:print "$at(31,5123,5140)"} true;
+        assume {:print "$at(35,5123,5140)"} true;
         $t6 := $abort_code;
         assume {:print "$track_abort(20,15):", $t6} $t6 == $t6;
         goto L3;
     }
 
     // $t8 := opaque begin: AccountLimits::can_withdraw_and_update_window<#0>($t0, $t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
 
     // $t9 := read_ref($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
     $t9 := $Dereference($t7);
@@ -28394,7 +28394,7 @@ L5:
     assume ((((!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t7))) && $IsEqual'num'(0, $t6)) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7))) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($Dereference($t7)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $Dereference($t7)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory)) && $IsEqual'num'(0, $t6)));
 
     // trace_abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     assume {:print "$track_abort(20,15):", $t6} $t6 == $t6;
 
     // goto L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
@@ -28424,78 +28424,78 @@ L4:
 
     // @183 := save_mem(AccountLimits::Window<#0>) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:113:5+407
     // state save for global update invariants
-    assume {:print "$at(31,4774,5181)"} true;
+    assume {:print "$at(35,4774,5181)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory#183 := $1_AccountLimits_Window'$1_XDX_XDX'_$memory;
 
     // write_back[AccountLimits::Window<#0>@]($t7) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     $1_AccountLimits_Window'$1_XDX_XDX'_$memory := $ResourceUpdate($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $GlobalLocationAddress($t7),
         $Dereference($t7));
 
     // assert forall window_addr: TypeDomain<address>() where exists[@183]<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::Window<#0>>(window_addr) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:576:9+171
-    assume {:print "$at(31,27314,27485)"} true;
-    assert {:msg "assert_failed(31,27314,27485): global memory invariant does not hold"}
+    assume {:print "$at(35,27314,27485)"} true;
+    assert {:msg "assert_failed(35,27314,27485): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#183, window_addr))  ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)));
 
     // assert forall window_addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(window_addr): exists<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global<AccountLimits::Window<#0>>(window_addr))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:581:9+208
-    assume {:print "$at(31,27570,27778)"} true;
-    assert {:msg "assert_failed(31,27570,27778): global memory invariant does not hold"}
+    assume {:print "$at(35,27570,27778)"} true;
+    assert {:msg "assert_failed(35,27570,27778): global memory invariant does not hold"}
       (forall window_addr: int :: $IsValid'address'(window_addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr))  ==> ($ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, window_addr)))));
 
     // assert forall addr: TypeDomain<address>() where exists<AccountLimits::Window<#0>>(addr): And(exists<Roles::RoleId>(addr), Or(Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0), Eq<u64>(select Roles::RoleId.role_id(global<Roles::RoleId>(addr)), 0))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
     // global invariant at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:590:9+310
-    assume {:print "$at(31,27994,28304)"} true;
-    assert {:msg "assert_failed(31,27994,28304): global memory invariant does not hold"}
+    assume {:print "$at(35,27994,28304)"} true;
+    assert {:msg "assert_failed(35,27994,28304): global memory invariant does not hold"}
       (forall addr: int :: $IsValid'address'(addr) ==> ($ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, addr))  ==> (($ResourceExists($1_Roles_RoleId_$memory, addr) && ($IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0) || $IsEqual'u64'($role_id#$1_Roles_RoleId($ResourceValue($1_Roles_RoleId_$memory, addr)), 0)))));
 
     // trace_return[0]($t8) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:119:9+126
-    assume {:print "$at(31,5049,5175)"} true;
+    assume {:print "$at(35,5049,5175)"} true;
     assume {:print "$track_return(20,15,0):", $t8} $t8 == $t8;
 
     // label L2 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:123:5+1
-    assume {:print "$at(31,5180,5181)"} true;
+    assume {:print "$at(35,5180,5181)"} true;
 L2:
 
     // assert Not(Not(exists[@164]<AccountLimits::Window<#0>>($t1))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:104:9+69
-    assume {:print "$at(31,4312,4381)"} true;
-    assert {:msg "assert_failed(31,4312,4381): function does not abort under this condition"}
+    assume {:print "$at(35,4312,4381)"} true;
+    assert {:msg "assert_failed(35,4312,4381): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1);
 
     // assert Not(Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1))))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:482:9+96
-    assume {:print "$at(31,23408,23504)"} true;
-    assert {:msg "assert_failed(31,23408,23504): function does not abort under this condition"}
+    assume {:print "$at(35,23408,23504)"} true;
+    assert {:msg "assert_failed(35,23408,23504): function does not abort under this condition"}
       !!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:492:9+99
-    assume {:print "$at(31,23890,23989)"} true;
-    assert {:msg "assert_failed(31,23890,23989): function does not abort under this condition"}
+    assume {:print "$at(35,23890,23989)"} true;
+    assert {:msg "assert_failed(35,23890,23989): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1))) + $t0) > 18446744073709551615));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:329:9+102
-    assume {:print "$at(31,15699,15801)"} true;
-    assert {:msg "assert_failed(31,15699,15801): function does not abort under this condition"}
+    assume {:print "$at(35,15699,15801)"} true;
+    assert {:msg "assert_failed(35,15699,15801): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)))) > $MAX_U64));
 
     // assert Not(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]()))) at ../../../../diem-move/diem-framework/core/sources/DiemTimestamp.move:173:9+53
-    assume {:print "$at(42,7047,7100)"} true;
-    assert {:msg "assert_failed(42,7047,7100): function does not abort under this condition"}
+    assume {:print "$at(10,7047,7100)"} true;
+    assert {:msg "assert_failed(10,7047,7100): function does not abort under this condition"}
       !(!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166));
 
     // assert exists<AccountLimits::Window<#0>>($t1) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:127:9+39
-    assume {:print "$at(31,5298,5337)"} true;
-    assert {:msg "assert_failed(31,5298,5337): post-condition does not hold"}
+    assume {:print "$at(35,5298,5337)"} true;
+    assert {:msg "assert_failed(35,5298,5337): post-condition does not hold"}
       $ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1);
 
     // assert Eq<bool>($t8, AccountLimits::spec_withdrawal_limits_ok<#0>(global[@164]<AccountLimits::Window<#0>>($t1), $t0)) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:498:9+66
-    assume {:print "$at(31,24134,24200)"} true;
-    assert {:msg "assert_failed(31,24134,24200): post-condition does not hold"}
+    assume {:print "$at(35,24134,24200)"} true;
+    assert {:msg "assert_failed(35,24134,24200): post-condition does not hold"}
       $IsEqual'bool'($t8, $1_AccountLimits_spec_withdrawal_limits_ok'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1), $t0));
 
     // assert (if And($t8, Not(AccountLimits::spec_window_unrestricted<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))) {Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_update_outflow<#0>(AccountLimits::spec_window_reset<#0>(global[@164]<AccountLimits::Window<#0>>($t1)), $t0))} else {Or(Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), AccountLimits::spec_window_reset<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Eq<AccountLimits::Window<#0>>(global<AccountLimits::Window<#0>>($t1), global[@164]<AccountLimits::Window<#0>>($t1)))}) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
-    assume {:print "$at(31,24209,24475)"} true;
-    assert {:msg "assert_failed(31,24209,24475): post-condition does not hold"}
+    assume {:print "$at(35,24209,24475)"} true;
+    assert {:msg "assert_failed(35,24209,24475): post-condition does not hold"}
       (if (($t8 && !$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)))) then ($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1), $1_AccountLimits_spec_update_outflow'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)), $t0))) else (($IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1), $1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1))) || $IsEqual'$1_AccountLimits_Window'$1_XDX_XDX''($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory, $t1), $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)))));
 
     // return $t8 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:499:9+266
@@ -28503,16 +28503,16 @@ L2:
     return;
 
     // label L3 at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:123:5+1
-    assume {:print "$at(31,5180,5181)"} true;
+    assume {:print "$at(35,5180,5181)"} true;
 L3:
 
     // assert Or(Or(Or(Or(Not(exists[@164]<AccountLimits::Window<#0>>($t1)), Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1))))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64()))), And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]()))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
-    assume {:print "$at(31,5186,5488)"} true;
-    assert {:msg "assert_failed(31,5186,5488): abort not covered by any of the `aborts_if` clauses"}
+    assume {:print "$at(35,5186,5488)"} true;
+    assert {:msg "assert_failed(35,5186,5488): abort not covered by any of the `aborts_if` clauses"}
       ((((!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1) || !$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1))) + $t0) > 18446744073709551615))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)))) > $MAX_U64))) || (!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166)));
 
     // assert Or(Or(Or(Or(And(Not(exists[@164]<AccountLimits::Window<#0>>($t1)), Eq(0, $t6)), And(Not(exists[@165]<AccountLimits::LimitsDefinition<#0>>(select AccountLimits::Window.limit_address(global[@164]<AccountLimits::Window<#0>>($t1)))), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_outflow(AccountLimits::spec_window_reset[@166, @165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), $t0), 18446744073709551615)), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Gt(Add(select AccountLimits::Window.window_start(global[@164]<AccountLimits::Window<#0>>($t1)), select AccountLimits::LimitsDefinition.time_period(AccountLimits::spec_window_limits[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1)))), MaxU64())), Eq(0, $t6))), And(And(Not(AccountLimits::spec_window_unrestricted[@165]<#0>(global[@164]<AccountLimits::Window<#0>>($t1))), Not(DiemTimestamp::$is_operating[@166]())), Eq(0, $t6))) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302
-    assert {:msg "assert_failed(31,5186,5488): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
+    assert {:msg "assert_failed(35,5186,5488): abort code not covered by any of the `aborts_if` or `aborts_with` clauses"}
       (((((!$ResourceExists($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1) && $IsEqual'num'(0, $t6)) || (!$ResourceExists($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $limit_address#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1))) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && (($window_outflow#$1_AccountLimits_Window'$1_XDX_XDX'($1_AccountLimits_spec_window_reset'$1_XDX_XDX'($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166, $1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1))) + $t0) > 18446744073709551615)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && (($window_start#$1_AccountLimits_Window'$1_XDX_XDX'($ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) + $time_period#$1_AccountLimits_LimitsDefinition'$1_XDX_XDX'($1_AccountLimits_spec_window_limits'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)))) > $MAX_U64)) && $IsEqual'num'(0, $t6))) || ((!$1_AccountLimits_spec_window_unrestricted'$1_XDX_XDX'($1_AccountLimits_LimitsDefinition'$1_XDX_XDX'_$memory#165, $ResourceValue($1_AccountLimits_Window'$1_XDX_XDX'_$memory#164, $t1)) && !$1_DiemTimestamp_$is_operating($1_DiemTimestamp_CurrentTimeMicroseconds_$memory#166)) && $IsEqual'num'(0, $t6)));
 
     // abort($t6) at ../../../../diem-move/diem-framework/core/sources/AccountLimits.move:124:5+302

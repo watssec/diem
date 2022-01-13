@@ -7,7 +7,11 @@ use num::CheckedAdd;
 extern crate rand;
 use rand::Rng;
 use std::collections::BTreeMap;
-// Expression Mutation
+use crate::typing::core::Context;
+use move_ir_types::location::*;
+
+// Mutation Details
+
 pub fn booloperator_mutation(op: BinOp) -> BinOp {
     if op.value == BinOp_::And{
         sp(op.loc, BinOp_::And)
@@ -143,4 +147,11 @@ pub fn constant_mutation<T: Integer + CheckedSub+ CheckedAdd + std::ops::Add<Out
     mutated_constant
 }
 
+//env management
 
+pub fn env_insert(context:&mut Context,mutation_type:String,loc:Loc)
+{
+    context.env.diag_map.insert(loc, mutation_type);
+    context.env.mutation_counter.insert(loc,false);
+    context.env.moduleIdent.insert(loc, context.current_module.unwrap().clone());
+}
