@@ -151,7 +151,10 @@ pub fn constant_mutation<T: Integer + CheckedSub+ CheckedAdd + std::ops::Add<Out
 
 pub fn env_insert(context:&mut Context,mutation_type:String,loc:Loc)
 {
+
     context.env.diag_map.insert(loc, mutation_type);
     context.env.mutation_counter.insert(loc,false);
     context.env.moduleIdent.insert(loc, context.current_module.unwrap().clone());
 }
+
+pub fn option_init()

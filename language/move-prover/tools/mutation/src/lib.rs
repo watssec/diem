@@ -21,12 +21,18 @@ use pbr::ProgressBar;
 
 pub fn run(options: &mut MutationOptions) -> Result<()> {
     // is mutation_option is empty, which means the user didn't set any limitations
+    // mutation_option init
+
     if options.mutation_option.is_empty(){
     (*options).mutation_option.push(("ArithmeticOperator".to_string(),true));
     (*options).mutation_option.push(("Constant".to_string(),true));
     (*options).mutation_option.push(("IfElse".to_string(),true));
     (*options).mutation_option.push(("ContinueBreak".to_string(),true));
-    (*options).mutation_option.push(("Borrow".to_string(),true));
+    (*options).mutation_option.push(("Unary".to_string(),true));
+    (*options).mutation_option.push(("BitOperator".to_string(),true));
+    (*options).mutation_option.push(("CompareOperator".to_string(),true));
+    (*options).mutation_option.push(("BoolOperator".to_string(),true));
+
     }
     println!("{:?}",&options.mutation_option);
     let now = Instant::now();
@@ -56,12 +62,7 @@ pub fn run(options: &mut MutationOptions) -> Result<()> {
     let files = env.files;
     let mut cnt = 0;
 
-
-    //let mut rng = rand_chacha::ChaCha8Rng::seed_from_u64(10);
-    // create the random number generator
     //TODO: Consider changing the env.is_source_module to map<loc, bool>
-
-
 
     let mut rng = rand::thread_rng();
     let mut mutate_loc_original = Vec::new();
@@ -70,7 +71,10 @@ pub fn run(options: &mut MutationOptions) -> Result<()> {
         ("IfElse".to_string(),codes::Mutation::IfElse),
         ("ContinueBreak".to_string(), codes::Mutation::ContinueBreak),
         ("Constant".to_string(),codes::Mutation::Constant),
-        ("Borrow".to_string(), codes::Mutation::Borrow),
+        ("Unary".to_string(), codes::Mutation::Unary),
+        ("BitOperator".to_string(), codes::Mutation::BitOperator),
+        ("CompareOperator".to_string(), codes::Mutation::CompareOperator),
+        ("BoolOperator".to_string(), codes::Mutation::BoolOperator),
     ]);
 
     let mut user_filter = Vec::new();
